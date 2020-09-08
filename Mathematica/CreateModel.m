@@ -15,14 +15,6 @@
 *)
 
 (* 
-    ToDo
-    - gauge interaction couples only to first doublet? ✓
-    - have to derive first and then set fields to vev in CT? otherwise different terms 
-    - rethink derivation of tensors
-    - 
- *)
-
-(* 
 -------    Higgs potential  --------
 definition of the scalar potential and calculation of scalar tensors
 ------------------------------------
@@ -54,8 +46,8 @@ FCm11s = Flatten[Phi1dagger.Phi1//Simplify];
 FCm22s = Flatten[Phi2dagger.Phi2//Simplify];
 FCmSs = Flatten[PhiS.PhiS];
 
-FCARe = Flatten[Phi1dagger.Phi2.PhiS//Simplify];
-FCAIm = Flatten[PhiS.Phi2dagger.Phi1//Simplify];
+FCA = Flatten[Phi1dagger.Phi2.PhiS//Simplify];
+FCAdagger = Flatten[PhiS.Phi2dagger.Phi1//Simplify];
 
 FCL1 = Flatten[FCm11s^2//Expand];
 FCL2 = Flatten[FCm22s^2//Expand];
@@ -67,7 +59,19 @@ FCL7 = Flatten[FCm11s.FCmSs//Expand];
 FCL8 = Flatten[FCm22s.FCmSs//Expand];
 
 (* define Higgs potential *)
-VHiggs = par[[1]]*FCm11s+par[[2]]*FCm22s+par[[3]]/2*FCmSs+(par[[4]] + I*par[[5]])*FCARe+(par[[4]] - I*par[[5]])*FCAIm+par[[6]]/2*FCL1+par[[7]]/2*FCL2+par[[8]]*FCL3+par[[9]]*FCL4+par[[10]]/2*FCL5+par[[11]]/4*FCL6+par[[12]]/2*FCL7+par[[13]]/2*FCL8//Simplify;
+VHiggs =    par[[1]]*FCm11s+
+            par[[2]]*FCm22s+
+            par[[3]]/2*FCmSs+
+            (par[[4]] + I*par[[5]])*FCA+
+            (par[[4]] - I*par[[5]])*FCAdagger+
+            par[[6]]/2*FCL1+
+            par[[7]]/2*FCL2+
+            par[[8]]*FCL3+
+            par[[9]]*FCL4+
+            par[[10]]/2*FCL5+
+            par[[11]]/4*FCL6+
+            par[[12]]/2*FCL7+
+            par[[13]]/2*FCL8//Simplify;
 
 (* calculate Higgs Curvature Tensors L_i,L_ij,L_ijk,L_ijkl *)
 RepAllZero = {Gplus->0,Hplus->0,h->0,Gzero->0,rho->0,eta->0,s->0};
@@ -160,7 +164,20 @@ Print["----------------------------------------------------------------------"];
 CT = {dm11s,dm22s,dmSs,dReA,dImA,dL1,dL2,dL3,dL4,dL5,dL6,dL7,dL8,dT};
 
 (* counterterm potential constructed from counterterms CT and field combinations FC*)
-VCT = CT[[1]]*FCm11s+CT[[2]]*FCm22s+CT[[3]]/2*FCmSs+(CT[[4]] + I*CT[[5]])*FCARe+(CT[[4]] - I*CT[[5]])*FCAIm+CT[[6]]/2*FCL1+CT[[7]]/2*FCL2+CT[[8]]*FCL3+CT[[9]]*FCL4+CT[[10]]/2*FCL5+CT[[11]]/4*FCL6+CT[[12]]/2*FCL7+CT[[13]]/2*FCL8+CT[[14]]*(h+v)//Simplify;
+VCT =   CT[[1]]*FCm11s+
+        CT[[2]]*FCm22s+
+        CT[[3]]/2*FCmSs+
+        (CT[[4]] + I*CT[[5]])*FCA+
+        (CT[[4]] - I*CT[[5]])*FCAdagger+
+        CT[[6]]/2*FCL1+
+        CT[[7]]/2*FCL2+
+        CT[[8]]*FCL3+
+        CT[[9]]*FCL4+
+        CT[[10]]/2*FCL5+
+        CT[[11]]/4*FCL6+
+        CT[[12]]/2*FCL7+
+        CT[[13]]/2*FCL8+
+        CT[[14]]*(h+v)//Simplify;
 
 (* store set of equations with one derivative *)
 NCW = Table[0, {i, 1, nHiggs}];
@@ -182,28 +199,43 @@ eq8 := HCW77 == HCW[[7]][[7]][[1]]
 eq9 := HCW57 == HCW[[5]][[7]][[1]]
 eq10 := HCW67 == HCW[[6]][[7]][[1]]
 
+
+(* dReA and dImA are determined by one equation each *)
 Solve[eq9,CT[[4]]] (* ReA *)
 Solve[eq10,CT[[5]]] (* ImA *)
 
-(* dT, dL1, dm11s *)
-r1 = Solve[eq1, CT[[14]]]; 
+(* 4 equations for 3 CT: dT, dL1, dm11s - overconstrained*)
+(* consistent solution only possible if HCW11 = 2 HCW44 *)
+Reduce[{eq1,eq2,eq4,eq5},{dT,dm11s,dL1}]
+(* r1 = Solve[eq1, CT[[14]]]; 
 r2 = Solve[eq2, CT[[1]]]; 
 r3 = Solve[eq4 /. r2, CT[[6]]] (* dL1 *)
 r4 = Solve[eq2 /. r3, CT[[1]]] (* dm11s *)
-r5 = eq5 /. r3 /. r4 // Simplify  (* has to be fulfilled ??*)
-r6 = r1 /. r3 /. r4 // Simplify (* dT *)
+r5 = eq5 /. r3 /. r4 // Simplify  (* has to be fulfilled*)
+r6 = r1 /. r3 /. r4 // Simplify (*dT*) *)
 
-(* dL4, dL5, dm22s assuming dL3 = t *)
-r7 = Solve[eq3 /. dL3 -> t, CT[[2]]] (* dm22s *)
+(* 3 equations for 4 CT: dm22s, dL3, dL4, dL5 - underconstrained *)
+(* one-dimensional solution space parametrized by dL3 = t *)
+Reduce[{eq3,eq6,eq7}/.dL3->t,{dm22s,dL3,dL4,dL5}]
+(* r7 = Solve[eq3 /. dL3 -> t, CT[[2]]] (* dm22s *)
 r8 = Solve[eq6 /. r7 /. dL3 -> t, CT[[10]]];
 r9 = Solve[eq7 /. r8/. dL3 -> t, CT[[9]]];
 r10 = r9/. r7 (* dL4 *)
-r11 = r8 /. r9 /. r7 // Simplify (* dL5 *)
+r11 = r8 /. r9 /. r7 // Simplify (*dL5*) *)
 
-(* dmSs assuming dL7 = u *)
-r12 = Solve[eq8 /. dL7 -> u, CT[[3]]] (* dmSs *)
+(* 1 equation for 2 CT: dL7, dmSs - underconstrained *)
+(* one-dimensional solution space parametrized by dL7 = u *)
+Reduce[eq8/.dL7->u,dmSs]
+(*r12 = Solve[eq8 /. dL7 -> u, CT[[3]]] (* dmSs *)*)
 
-(* dL2, dL6, dL8 are not constrained!!! *)
+(* dL2, dL6, dL8 are not constrained, they only appear in terms with no Phi1 *)
+
+(* Refine acting on whole system of equations with additional assumptions *)
+(* ass1 = HCW11 == 2*HCW44;
+ass2 = dL3 == t;
+ass3 = dL7 == u;
+
+Assuming[v=!=0&&NCW3=!=0&&HCW11=!=0&&HCW22=!=0&&HCW33=!=0&&HCW44=!=0&&HCW55=!=0&&HCW66=!=0&&HCW77=!=0&&HCW57=!=0&&HCW67=!=0,Simplify@Reduce[{eq1,eq2,eq3,eq4,eq5,eq6,eq7,eq8,eq9,eq10,ass1,ass2,ass3}, CT]] *)
 
 (* calculate curvature Higgs CT *)
 (* calculate L_i *)
@@ -299,7 +331,7 @@ Dmu = I/2*(g*(sigma1*gaugebase[[1]]+sigma2*gaugebase[[2]]+sigma3*gaugebase[[3]])
 
 Dmudagger = -I/2*(g*(ConjugateTranspose[sigma1]*gaugebase[[1]] + ConjugateTranspose[sigma2]*gaugebase[[2]] + ConjugateTranspose[sigma3]*gaugebase[[3]]) + gprime*sigma0*gaugebase[[4]])//Simplify;
 
-VGauge = Flatten[Phi1dagger.Dmudagger.Dmu.Phi1]//Simplify; (* only first doublet couples to gauge fields - get SM gauge sector *)
+VGauge = Flatten[Phi1dagger.Dmudagger.Dmu.Phi1+Phi2dagger.Dmudagger.Dmu.Phi2]//Simplify; (* both doublets couple to gauge sector *)
 
 nCount = 0;
 For[a=1,a<=nGauge,a++,
