@@ -32,25 +32,16 @@
 #include <BSMPT/utility.h>
 using namespace Eigen;
 
-/**
- * @file
- * Template for adding a new model class
- */
-
 namespace BSMPT{
 namespace Models{
-/**
- * Here you have to adjust NNeutralHiggs, NChargedHiggs, nPar (number of Lagrangian parameters AFTER
- *  using the tadpole conditions),
- * nParCT (number of counterterms) as well as nVEV (number of VEVs for minimization)
- */
+
 Class_Potential_CPintheDark::Class_Potential_CPintheDark ()
 {
   Model = ModelID::ModelIDs::CPINTHEDARK; // global int constant which will be used to tell the program which model is called
   NNeutralHiggs = 5; // number of neutral Higgs bosons at T = 0
   NChargedHiggs = 4; // number of charged Higgs bosons  at T = 0 (all d.o.f.)
 
-  nPar = 13; // number of parameters in the tree-Level Lagrangian
+  nPar = 13; // number of parameters in the tree-Level Lagrangian AFTER using tadpole equations
   nParCT = 18; // number of parameters in the counterterm potential
 
   nVEV = 5; // number of VEVs to minimize the potential
@@ -248,7 +239,7 @@ void Class_Potential_CPintheDark::set_gen(const std::vector<double>& par) {
 
 	//m11s = - L1 / 0.2e1 * pow(v1 , 2); // Class member ist set accordingly to the tadpole relation
 
-	//set VEVs
+	//set vev
 	v1 = C_vev0;
 
     scale = C_vev0; // Renormalisation scale is set to the SM VEV
@@ -953,7 +944,7 @@ void Class_Potential_CPintheDark::TripleHiggsCouplings()
 	// Here you have to set the vector HiggsOrder. By telling e.g. HiggsOrder[0] = 5 you always want your 6th lightest
 	// particle to be the first particle in the vector (which has the index 5 because they are sorted by mass)
 
-	// example for keeping the mass order
+	// sort in order of ascending masses
 	for(std::size_t i=0;i<NHiggs;i++) {
 		HiggsOrder[i]=i;
 	}
