@@ -418,6 +418,12 @@ protected:
    */
   std::vector<std::vector<std::vector<std::vector<double>>>> Curvature_Higgs_L4;
   /**
+   * L_{(S)}^{ijklmn}
+   */
+  std::vector<
+      std::vector<std::vector<std::vector<std::vector<std::vector<double>>>>>>
+      Curvature_Higgs_L6;
+  /**
    * L_{(S),CT}^{i}
    */
   std::vector<double> Curvature_Higgs_CT_L1;
@@ -435,15 +441,33 @@ protected:
   std::vector<std::vector<std::vector<std::vector<double>>>>
       Curvature_Higgs_CT_L4;
   /**
+   * L_{(S),CT}^{ijklmn}
+   */
+  std::vector<
+      std::vector<std::vector<std::vector<std::vector<std::vector<double>>>>>>
+      Curvature_Higgs_CT_L6;
+  /**
    * G^{abij}
    */
   std::vector<std::vector<std::vector<std::vector<double>>>>
       Curvature_Gauge_G2H2;
   /**
+   * G^{abijklmn}
+   */
+  std::vector<
+      std::vector<std::vector<std::vector<std::vector<std::vector<double>>>>>>
+      Curvature_Gauge_G2H4;
+  /**
    * Y^{IJk} for Quarks
    */
   std::vector<std::vector<std::vector<std::complex<double>>>>
       Curvature_Quark_F2H1;
+  /**
+   * Y^{IJklm} for Quarks
+   */
+  std::vector<
+      std::vector<std::vector<std::vector<std::vector<std::complex<double>>>>>>
+      Curvature_Quark_F2H3;
   /**
    * Y^{IJ} for Quarks
    */
@@ -453,6 +477,12 @@ protected:
    */
   std::vector<std::vector<std::vector<std::complex<double>>>>
       Curvature_Lepton_F2H1;
+  /**
+   * Y^{IJklm} for Leptons
+   */
+  std::vector<
+      std::vector<std::vector<std::vector<std::vector<std::complex<double>>>>>>
+      Curvature_Lepton_F2H3;
   /**
    * Y^{IJ} for Leptons
    */
