@@ -10,7 +10,8 @@ set(header
     ${header_path}/ClassPotentialOrigin.h
     ${header_path}/ClassPotentialC2HDM.h
     ${header_path}/ClassPotentialR2HDM.h
-    ${header_path}/ClassPotentialN2HDM.h
+    ${header_path}/ClassPotentialC2HDMEFT.h
+  ${header_path}/ClassPotentialN2HDM.h
     ${header_path}/ClassPotentialCxSM.h
     ${header_path}/ClassPotentialSM.h
     ${header_path}/ClassPotentialCPintheDark.h
@@ -24,7 +25,8 @@ set(src
     ClassPotentialOrigin_deprecated.cpp
     ClassPotentialC2HDM.cpp
     ClassPotentialR2HDM.cpp
-    ClassPotentialN2HDM.cpp
+    ClassPotentialC2HDMEFT.cpp
+  ClassPotentialN2HDM.cpp
     ClassPotentialCxSM.cpp
     ClassPotentialSM.cpp
     ClassPotentialCPintheDark.cpp
