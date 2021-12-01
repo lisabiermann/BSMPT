@@ -369,9 +369,17 @@ protected:
    */
   std::vector<std::vector<std::vector<double>>> LambdaGauge_3;
   /**
+   * @brief LambdaGauge_4 Stores the Lambda_{(G)}^{abij} tensor
+   */
+  std::vector<std::vector<std::vector<std::vector<double>>>> LambdaGauge_4;
+  /**
    * @brief LambdaHiggs_3 Stores the Lambda_{(S)}^{ijk} tensor
    */
   std::vector<std::vector<std::vector<double>>> LambdaHiggs_3;
+  /**
+   * @brief LambdaHiggs_4 Stores the Lambda_{(S)}^{ijkl} tensor
+   */
+  std::vector<std::vector<std::vector<std::vector<double>>>> LambdaHiggs_4;
   /**
    * @brief LambdaHiggs_3 Stores the Lambda_{(S)}^{ijk} tensor for the
    * counterterm parameters
