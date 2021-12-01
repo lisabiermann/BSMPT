@@ -1083,23 +1083,51 @@ void Class_Potential_Origin::CalculatePhysicalCouplings()
       {
         LambdaGauge_3[a][b][i] = 0;
         for (std::size_t j = 0; j < NHiggs; j++)
+        {
           LambdaGauge_3[a][b][i] +=
               Curvature_Gauge_G2H2[a][b][i][j] * HiggsVev[j];
+          LambdaGauge_4[a][b][i][j] = Curvature_Gauge_G2H2[a][b][i][j];
+          for (std::size_t k = 0; k < NHiggs; k++)
+          {
+            for (std::size_t l = 0; l < NHiggs; l++)
+            {
+              LambdaGauge_3[a][b][i] += 1.0 / 6.0 *
+                                        Curvature_Gauge_G2H4[a][b][i][j][k][l] *
+                                        HiggsVev[j] * HiggsVev[k] * HiggsVev[l];
+              LambdaGauge_4[a][b][i][j] +=
+                  0.5 * Curvature_Gauge_G2H4[a][b][i][j][k][l] * HiggsVev[k] *
+                  HiggsVev[l];
+            }
+          }
+        }
       }
     }
   }
-  for (std::size_t a = 0; a < NHiggs; a++)
+  for (std::size_t i = 0; i < NHiggs; i++)
   {
-    for (std::size_t b = 0; b < NHiggs; b++)
+    for (std::size_t j = 0; j < NHiggs; j++)
     {
-      for (std::size_t i = 0; i < NHiggs; i++)
+      for (std::size_t k = 0; k < NHiggs; k++)
       {
-        LambdaHiggs_3[a][b][i] = Curvature_Higgs_L3[a][b][i];
+        LambdaHiggs_3[i][j][k] = Curvature_Higgs_L3[i][j][k];
 
-        for (std::size_t j = 0; j < NHiggs; j++)
+        for (std::size_t l = 0; l < NHiggs; l++)
         {
-          LambdaHiggs_3[a][b][i] +=
-              Curvature_Higgs_L4[a][b][i][j] * HiggsVev[j];
+          LambdaHiggs_3[i][j][k] +=
+              Curvature_Higgs_L4[i][j][k][l] * HiggsVev[l];
+          LambdaHiggs_4[i][j][k][l] = Curvature_Higgs_L4[i][j][k][l];
+          for (std::size_t m = 0; m < NHiggs; m++)
+          {
+            for (std::size_t n = 0; n < NHiggs; n++)
+            {
+              LambdaHiggs_3[i][j][k] += 1.0 / 6.0 *
+                                        Curvature_Higgs_L6[i][j][k][l][m][n] *
+                                        HiggsVev[l] * HiggsVev[m] * HiggsVev[n];
+              LambdaHiggs_4[i][j][k][l] +=
+                  0.5 * Curvature_Higgs_L6[i][j][k][l][m][n] * HiggsVev[m] *
+                  HiggsVev[n];
+            }
+          }
         }
       }
     }
@@ -1118,6 +1146,18 @@ void Class_Potential_Origin::CalculatePhysicalCouplings()
               conj(Curvature_Quark_F2H1[i][l][k]) * MIJQuarks(l, j);
           LambdaQuark_3[i][j][k] +=
               conj(MIJQuarks(i, l)) * Curvature_Quark_F2H1[l][j][k];
+          for (std::size_t m = 0; m < NHiggs; m++)
+          {
+            for (std::size_t n = 0; n < NHiggs; n++)
+            {
+              LambdaQuark_3[i][j][k] +=
+                  0.5 * conj(Curvature_Quark_F2H3[i][l][k][m][n]) *
+                  MIJQuarks(l, j) * HiggsVev[m] * HiggsVev[n];
+              LambdaQuark_3[i][j][k] += 0.5 * conj(MIJQuarks(i, l)) *
+                                        Curvature_Quark_F2H3[l][j][k][m][n] *
+                                        HiggsVev[m] * HiggsVev[n];
+            }
+          }
         }
         for (std::size_t m = 0; m < NHiggs; m++)
         {
@@ -1128,6 +1168,46 @@ void Class_Potential_Origin::CalculatePhysicalCouplings()
                                          Curvature_Quark_F2H1[l][j][m];
             LambdaQuark_4[i][j][k][m] += conj(Curvature_Quark_F2H1[i][l][m]) *
                                          Curvature_Quark_F2H1[l][j][k];
+            for (std::size_t n = 0; n < NHiggs; n++)
+            {
+              LambdaQuark_4[i][j][k][m] +=
+                  conj(Curvature_Quark_F2H3[i][l][k][m][n]) * MIJQuarks(l, j) *
+                  HiggsVev[n];
+              LambdaQuark_4[i][j][k][m] += conj(MIJQuarks(i, l)) *
+                                           Curvature_Quark_F2H3[l][j][k][m][n] *
+                                           HiggsVev[n];
+              for (std::size_t o = 0; o < NHiggs; o++)
+              {
+                LambdaQuark_4[i][j][k][m] +=
+                    0.5 * conj(Curvature_Quark_F2H1[i][l][k]) *
+                    Curvature_Quark_F2H3[l][j][m][n][o] * HiggsVev[n] *
+                    HiggsVev[o];
+                LambdaQuark_4[i][j][k][m] +=
+                    0.5 * conj(Curvature_Quark_F2H3[i][l][k][n][o]) *
+                    Curvature_Quark_F2H1[l][j][m] * HiggsVev[n] * HiggsVev[o];
+                LambdaQuark_4[i][j][k][m] +=
+                    0.5 * conj(Curvature_Quark_F2H1[i][l][m]) *
+                    Curvature_Quark_F2H3[l][j][k][n][o] * HiggsVev[n] *
+                    HiggsVev[o];
+                LambdaQuark_4[i][j][k][m] +=
+                    0.5 * conj(Curvature_Quark_F2H3[i][l][m][n][o]) *
+                    Curvature_Quark_F2H1[l][j][k] * HiggsVev[n] * HiggsVev[o];
+                for (std::size_t p = 0; p < NHiggs; p++)
+                {
+                  for (std::size_t q = 0; q < NHiggs; q++)
+                  {
+                    LambdaQuark_4[i][j][k][m] +=
+                        0.25 * conj(Curvature_Quark_F2H3[i][l][k][n][o]) *
+                        Curvature_Quark_F2H3[l][j][m][p][q] * HiggsVev[n] *
+                        HiggsVev[o] * HiggsVev[p] * HiggsVev[q];
+                    LambdaQuark_4[i][j][k][m] +=
+                        0.25 * conj(Curvature_Quark_F2H3[i][l][m][n][o]) *
+                        Curvature_Quark_F2H3[l][j][k][p][q] * HiggsVev[n] *
+                        HiggsVev[o] * HiggsVev[p] * HiggsVev[q];
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -1147,6 +1227,18 @@ void Class_Potential_Origin::CalculatePhysicalCouplings()
               conj(Curvature_Lepton_F2H1[i][l][k]) * MIJLeptons(l, j);
           LambdaLepton_3[i][j][k] +=
               conj(MIJLeptons(i, l)) * Curvature_Lepton_F2H1[l][j][k];
+          for (std::size_t m = 0; m < NHiggs; m++)
+          {
+            for (std::size_t n = 0; n < NHiggs; n++)
+            {
+              LambdaLepton_3[i][j][k] +=
+                  0.5 * conj(Curvature_Lepton_F2H3[i][l][k][m][n]) *
+                  MIJLeptons(l, j) * HiggsVev[m] * HiggsVev[n];
+              LambdaLepton_3[i][j][k] += 0.5 * conj(MIJLeptons(i, l)) *
+                                         Curvature_Lepton_F2H3[l][j][k][m][n] *
+                                         HiggsVev[m] * HiggsVev[n];
+            }
+          }
         }
         for (std::size_t m = 0; m < NHiggs; m++)
         {
@@ -1157,6 +1249,46 @@ void Class_Potential_Origin::CalculatePhysicalCouplings()
                                           Curvature_Lepton_F2H1[l][j][m];
             LambdaLepton_4[i][j][k][m] += conj(Curvature_Lepton_F2H1[i][l][m]) *
                                           Curvature_Lepton_F2H1[l][j][k];
+            for (std::size_t n = 0; n < NHiggs; n++)
+            {
+              LambdaLepton_4[i][j][k][m] +=
+                  conj(Curvature_Lepton_F2H3[i][l][k][m][n]) *
+                  MIJLeptons(l, j) * HiggsVev[n];
+              LambdaLepton_4[i][j][k][m] +=
+                  conj(MIJLeptons(i, l)) *
+                  Curvature_Lepton_F2H3[l][j][k][m][n] * HiggsVev[n];
+              for (std::size_t o = 0; o < NHiggs; o++)
+              {
+                LambdaLepton_4[i][j][k][m] +=
+                    0.5 * conj(Curvature_Lepton_F2H1[i][l][k]) *
+                    Curvature_Lepton_F2H3[l][j][m][n][o] * HiggsVev[n] *
+                    HiggsVev[o];
+                LambdaLepton_4[i][j][k][m] +=
+                    0.5 * conj(Curvature_Lepton_F2H3[i][l][k][n][o]) *
+                    Curvature_Lepton_F2H1[l][j][m] * HiggsVev[n] * HiggsVev[o];
+                LambdaLepton_4[i][j][k][m] +=
+                    0.5 * conj(Curvature_Lepton_F2H1[i][l][m]) *
+                    Curvature_Lepton_F2H3[l][j][k][n][o] * HiggsVev[n] *
+                    HiggsVev[o];
+                LambdaLepton_4[i][j][k][m] +=
+                    0.5 * conj(Curvature_Lepton_F2H3[i][l][m][n][o]) *
+                    Curvature_Lepton_F2H1[l][j][k] * HiggsVev[n] * HiggsVev[o];
+                for (std::size_t p = 0; p < NHiggs; p++)
+                {
+                  for (std::size_t q = 0; q < NHiggs; q++)
+                  {
+                    LambdaLepton_4[i][j][k][m] +=
+                        0.25 * conj(Curvature_Lepton_F2H3[i][l][k][n][o]) *
+                        Curvature_Lepton_F2H3[l][j][m][p][q] * HiggsVev[n] *
+                        HiggsVev[o] * HiggsVev[p] * HiggsVev[q];
+                    LambdaLepton_4[i][j][k][m] +=
+                        0.25 * conj(Curvature_Lepton_F2H3[i][l][m][n][o]) *
+                        Curvature_Lepton_F2H3[l][j][k][p][q] * HiggsVev[n] *
+                        HiggsVev[o] * HiggsVev[p] * HiggsVev[q];
+                  }
+                }
+              } 
+            }
           }
         }
       }
@@ -1259,7 +1391,7 @@ void Class_Potential_Origin::CalculatePhysicalCouplings()
                 {
                   Couplings_Higgs_Quartic[i][j][k][l] +=
                       HiggsRot(i, is) * HiggsRot(j, js) * HiggsRot(k, ks) *
-                      HiggsRot(l, ls) * Curvature_Higgs_L4[is][js][ks][ls];
+                      HiggsRot(l, ls) * LambdaHiggs_4[is][js][ks][ls];
                 }
               }
             }
@@ -1301,7 +1433,7 @@ void Class_Potential_Origin::CalculatePhysicalCouplings()
                   double RotFac = GaugeRot(a, as) * GaugeRot(b, bs) *
                                   HiggsRot(i, is) * HiggsRot(j, js);
                   Couplings_Gauge_Higgs_22[a][b][i][j] +=
-                      RotFac * Curvature_Gauge_G2H2[as][bs][is][js];
+                      RotFac * LambdaGauge_4[as][bs][is][js];
                 }
               }
             }
@@ -2507,6 +2639,14 @@ Class_Potential_Origin::HiggsMassesSquared(const std::vector<double> &v,
         for (std::size_t k = 0; k < NHiggs; k++)
         {
           Diff(i, j) += Curvature_Higgs_L4[i][j][x0][k] * v[k];
+          for (std::size_t m = 0; m < NHiggs; m++)
+          {
+            for (std::size_t n = 0; n < NHiggs; n++)
+            {
+              Diff(i, j) += 0.5 * Curvature_Higgs_L6[i][j][x0][k][m][n] * v[k] *
+                            v[m] * v[n];
+            }
+          }
         }
       }
     }
@@ -2720,11 +2860,11 @@ Class_Potential_Origin::QuarkMassesSquared(const std::vector<double> &v,
             for (std::size_t l = 0; l < NHiggs; l++)
             {
               Diff(a, b) +=
-                  std::conj(1.0 / 2.0 * Curvature_Quark_F2H3[a][i][m][n][l] *
+                  std::conj(1.0 / 6.0 * Curvature_Quark_F2H3[a][i][m][n][l] *
                             v.at(n) * v.at(l)) *
                   MIJ(i, b);
               Diff(a, b) += std::conj(MIJ(a, i)) *
-                            (1.0 / 2.0 * Curvature_Quark_F2H3[a][i][m][n][l] *
+                            (1.0 / 6.0 * Curvature_Quark_F2H3[i][b][m][n][l] *
                              v.at(n) * v.at(l));
             }
           }
@@ -2808,11 +2948,11 @@ Class_Potential_Origin::LeptonMassesSquared(const std::vector<double> &v,
             for (std::size_t m{0}; m < NLepton; ++m)
             {
               Diff(I, J) +=
-                  std::conj(1.0 / 2.0 * Curvature_Lepton_F2H3[I][L][k][l][m] *
+                  std::conj(1.0 / 6.0 * Curvature_Lepton_F2H3[I][L][k][l][m] *
                             v.at(l) * v.at(m)) *
                   MIJ(L, J);
               Diff(I, J) += std::conj(MIJ(I, L)) *
-                            (1.0 / 2.0 * Curvature_Lepton_F2H3[I][L][k][l][m] *
+                            (1.0 / 6.0 * Curvature_Lepton_F2H3[L][J][k][l][m] *
                              v.at(l) * v.at(m));
             }
           }
@@ -3449,6 +3589,9 @@ void Class_Potential_Origin::initVectors()
   LambdaHiggs_3    = vec3{NHiggs, vec2{NHiggs, std::vector<double>(NHiggs, 0)}};
   LambdaHiggs_3_CT = vec3{NHiggs, vec2{NHiggs, std::vector<double>(NHiggs, 0)}};
 
+  LambdaHiggs_4 =
+      vec4{NHiggs, vec3{NHiggs, vec2{NHiggs, std::vector<double>(NHiggs, 0)}}};
+
   Curvature_Gauge_G2H2 =
       vec4{NGauge, vec3{NGauge, vec2{NHiggs, std::vector<double>(NHiggs, 0)}}};
   Curvature_Gauge_G2H4 = vec6{
@@ -3458,6 +3601,8 @@ void Class_Potential_Origin::initVectors()
                 vec3{NHiggs, vec2{NHiggs, std::vector<double>(NHiggs, 0)}}}}};
   DebyeGauge    = vec2{NGauge, std::vector<double>(NGauge, 0)};
   LambdaGauge_3 = vec3{NGauge, vec2{NGauge, std::vector<double>(NHiggs, 0)}};
+  LambdaGauge_4 =
+      vec4{NGauge, vec3{NGauge, vec2{NHiggs, std::vector<double>(NHiggs, 0)}}};
 
   Curvature_Lepton_F2 = vec2Complex{NLepton, vec1Complex(NLepton, 0)};
   Curvature_Lepton_F2H1 =
@@ -3844,8 +3989,8 @@ Class_Potential_Origin::QuarkMassMatrix(const std::vector<double> &v) const
         {
           for (std::size_t m = 0; m < NHiggs; m++)
           {
-            MIJ(i, j) +=
-                Curvature_Quark_F2H3[i][j][k][l][m] * v[k] * v[l] * v[m];
+            MIJ(i, j) += 1.0 / 6.0 * Curvature_Quark_F2H3[i][j][k][l][m] *
+                         v[k] * v[l] * v[m];
           }
         }
       }
@@ -3926,8 +4071,8 @@ Class_Potential_Origin::LeptonMassMatrix(const std::vector<double> &v) const
         {
           for (std::size_t m = 0; m < NHiggs; m++)
           {
-            res(i, j) +=
-                Curvature_Lepton_F2H3[i][j][k][l][m] * v[k] * v[l] * v[m];
+            res(i, j) += 1.0 / 6.0 * Curvature_Lepton_F2H3[i][j][k][l][m] *
+                         v[k] * v[l] * v[m];
           }
         }
       }
