@@ -68,6 +68,12 @@ protected:
   bool UseTreeLevel = false;
 
   /**
+   * @brief UseTwoLoopThermalMass Enforces VEff to only use the tree-level
+   * potential
+   */
+  bool UseTwoLoopThermalMass = false;
+
+  /**
    * MSBar renormalization scale
    */
   double scale;
@@ -263,6 +269,12 @@ protected:
       std::vector<std::vector<std::vector<std::vector<std::vector<double>>>>>>
       Curvature_Gauge_G2H4;
   /**
+   * G^{abcdij}
+   */
+  std::vector<
+      std::vector<std::vector<std::vector<std::vector<std::vector<double>>>>>>
+      Curvature_Gauge_G4H2;
+  /**
    * Y^{IJk} for Quarks
    */
   std::vector<std::vector<std::vector<std::complex<double>>>>
@@ -416,10 +428,20 @@ protected:
    */
   std::vector<std::vector<double>> DebyeHiggs;
   /**
+   * @brief DebyeHiggsDim6 Stores the two-loop debye corrections due to dim-6
+   * operators to the mass matrix of the Higgs bosons
+   */
+  std::vector<std::vector<double>> DebyeHiggsDim6;
+  /**
    * @brief DebyeGauge Stores the debye corrections to the mass matrix of the
    * gauge bosons
    */
   std::vector<std::vector<double>> DebyeGauge;
+  /**
+   * @brief DebyeGaugeDim6 Stores the two-loop debye corrections due to dim-6
+   * operators to the mass matrix of the gauge bosons
+   */
+  std::vector<std::vector<double>> DebyeGaugeDim6;
   /**
    * @brief VevOrder Stores the matching order used in MinimizeOrderVEV, set in
    * the constructor of the model
@@ -1201,6 +1223,11 @@ public:
    * Set the parameter UseTreeLevel to the input
    */
   void SetUseTreeLevel(bool val);
+
+  /**
+   * Set the parameter UseTwoLoopThermalMass to the input
+   */
+  void SetUseTwoLoopThermalMass(bool val);
 
   /**
    * Gets the parameter line as an Input and calls
