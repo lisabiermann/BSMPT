@@ -54,6 +54,10 @@ Class_Potential_C2HDMEFT::Class_Potential_C2HDMEFT()
   // Set UseVCounterSimplified to use the counterterm potential defined in
   // VCounterSimplified
   UseVCounterSimplified = true;
+
+  // Set UseTwoLoopThermalMass to include tow-loop thermal mass corrections
+  // propto T^4
+  UseTwoLoopThermalMass = true;
 }
 
 Class_Potential_C2HDMEFT::~Class_Potential_C2HDMEFT()
@@ -2267,6 +2271,12 @@ void Class_Potential_C2HDMEFT::write() const
     ss << std::abs(MassMixing(2, 2)) << " zeta_3 \n";
   }
 
+  if (UseTwoLoopThermalMass)
+  {
+    ss << "Dim-6 two-loop corrections to thermal masses are taken into account.";
+  }
+  
+
   Logger::Write(LoggingLevel::Default, ss.str());
 }
 
@@ -2765,40 +2775,52 @@ void Class_Potential_C2HDMEFT::SetCurvatureArrays()
   Curvature_Higgs_L6[0][0][2][2][3][3] =
       pow(Lambda, -0.2e1) * (double)(2 * Op6_122122 + 2 * Op6_112222);
   Curvature_Higgs_L6[0][0][2][2][4][4] =
-      pow(Lambda, -0.2e1) * (double)(2 * Op6_111122 + 2 * Op6_121211 + Op6_122111);
+      pow(Lambda, -0.2e1) *
+      (double)(2 * Op6_111122 + 2 * Op6_121211 + Op6_122111);
   Curvature_Higgs_L6[0][0][2][2][5][5] =
-      pow(Lambda, -0.2e1) * (double)(2 * Op6_111122 + 2 * Op6_121211 + Op6_122111);
+      pow(Lambda, -0.2e1) *
+      (double)(2 * Op6_111122 + 2 * Op6_121211 + Op6_122111);
   Curvature_Higgs_L6[0][0][2][2][6][6] =
-      pow(Lambda, -0.2e1) * (double)(2 * Op6_112222 + 2 * Op6_121222 + Op6_122122);
+      pow(Lambda, -0.2e1) *
+      (double)(2 * Op6_112222 + 2 * Op6_121222 + Op6_122122);
   Curvature_Higgs_L6[0][0][2][2][7][7] =
-      pow(Lambda, -0.2e1) * (double)(2 * Op6_112222 + 2 * Op6_121222 + Op6_122122);
+      pow(Lambda, -0.2e1) *
+      (double)(2 * Op6_112222 + 2 * Op6_121222 + Op6_122122);
   Curvature_Higgs_L6[0][0][3][3][3][3] =
       pow(Lambda, -0.2e1) *
       (double)(6 * Op6_122122 - 12 * Op6_121222 + 6 * Op6_112222);
   Curvature_Higgs_L6[0][0][3][3][4][4] =
-      pow(Lambda, -0.2e1) * (double)(2 * Op6_111122 - 2 * Op6_121211 + Op6_122111);
+      pow(Lambda, -0.2e1) *
+      (double)(2 * Op6_111122 - 2 * Op6_121211 + Op6_122111);
   Curvature_Higgs_L6[0][0][3][3][5][5] =
-      pow(Lambda, -0.2e1) * (double)(2 * Op6_111122 - 2 * Op6_121211 + Op6_122111);
+      pow(Lambda, -0.2e1) *
+      (double)(2 * Op6_111122 - 2 * Op6_121211 + Op6_122111);
   Curvature_Higgs_L6[0][0][3][3][6][6] =
-      pow(Lambda, -0.2e1) * (double)(2 * Op6_112222 - 2 * Op6_121222 + Op6_122122);
+      pow(Lambda, -0.2e1) *
+      (double)(2 * Op6_112222 - 2 * Op6_121222 + Op6_122122);
   Curvature_Higgs_L6[0][0][3][3][7][7] =
-      pow(Lambda, -0.2e1) * (double)(2 * Op6_112222 - 2 * Op6_121222 + Op6_122122);
+      pow(Lambda, -0.2e1) *
+      (double)(2 * Op6_112222 - 2 * Op6_121222 + Op6_122122);
   Curvature_Higgs_L6[0][0][4][4][4][4] =
       0.18e2 * pow(Lambda, -0.2e1) * Op6_111111;
   Curvature_Higgs_L6[0][0][4][4][5][5] =
       0.6e1 * pow(Lambda, -0.2e1) * Op6_111111;
   Curvature_Higgs_L6[0][0][4][4][6][6] =
-      pow(Lambda, -0.2e1) * (double)(2 * Op6_111122 + 2 * Op6_121211 + Op6_122111);
+      pow(Lambda, -0.2e1) *
+      (double)(2 * Op6_111122 + 2 * Op6_121211 + Op6_122111);
   Curvature_Higgs_L6[0][0][4][4][7][7] =
-      pow(Lambda, -0.2e1) * (double)(2 * Op6_111122 - 2 * Op6_121211 + Op6_122111);
+      pow(Lambda, -0.2e1) *
+      (double)(2 * Op6_111122 - 2 * Op6_121211 + Op6_122111);
   Curvature_Higgs_L6[0][0][4][5][6][7] =
       0.2e1 * pow(Lambda, -0.2e1) * Op6_121211;
   Curvature_Higgs_L6[0][0][5][5][5][5] =
       0.18e2 * pow(Lambda, -0.2e1) * Op6_111111;
   Curvature_Higgs_L6[0][0][5][5][6][6] =
-      pow(Lambda, -0.2e1) * (double)(2 * Op6_111122 - 2 * Op6_121211 + Op6_122111);
+      pow(Lambda, -0.2e1) *
+      (double)(2 * Op6_111122 - 2 * Op6_121211 + Op6_122111);
   Curvature_Higgs_L6[0][0][5][5][7][7] =
-      pow(Lambda, -0.2e1) * (double)(2 * Op6_111122 + Op6_122111 + 2 * Op6_121211);
+      pow(Lambda, -0.2e1) *
+      (double)(2 * Op6_111122 + Op6_122111 + 2 * Op6_121211);
   Curvature_Higgs_L6[0][0][6][6][6][6] =
       0.6e1 * pow(Lambda, -0.2e1) * Op6_112222;
   Curvature_Higgs_L6[0][0][6][6][7][7] =
@@ -2905,40 +2927,52 @@ void Class_Potential_C2HDMEFT::SetCurvatureArrays()
   Curvature_Higgs_L6[1][1][2][2][3][3] =
       pow(Lambda, -0.2e1) * (double)(2 * Op6_122122 + 2 * Op6_112222);
   Curvature_Higgs_L6[1][1][2][2][4][4] =
-      pow(Lambda, -0.2e1) * (double)(2 * Op6_111122 - 2 * Op6_121211 + Op6_122111);
+      pow(Lambda, -0.2e1) *
+      (double)(2 * Op6_111122 - 2 * Op6_121211 + Op6_122111);
   Curvature_Higgs_L6[1][1][2][2][5][5] =
-      pow(Lambda, -0.2e1) * (double)(2 * Op6_111122 - 2 * Op6_121211 + Op6_122111);
+      pow(Lambda, -0.2e1) *
+      (double)(2 * Op6_111122 - 2 * Op6_121211 + Op6_122111);
   Curvature_Higgs_L6[1][1][2][2][6][6] =
-      pow(Lambda, -0.2e1) * (double)(2 * Op6_112222 - 2 * Op6_121222 + Op6_122122);
+      pow(Lambda, -0.2e1) *
+      (double)(2 * Op6_112222 - 2 * Op6_121222 + Op6_122122);
   Curvature_Higgs_L6[1][1][2][2][7][7] =
-      pow(Lambda, -0.2e1) * (double)(2 * Op6_112222 - 2 * Op6_121222 + Op6_122122);
+      pow(Lambda, -0.2e1) *
+      (double)(2 * Op6_112222 - 2 * Op6_121222 + Op6_122122);
   Curvature_Higgs_L6[1][1][3][3][3][3] =
       pow(Lambda, -0.2e1) *
       (double)(6 * Op6_112222 + 6 * Op6_122122 + 12 * Op6_121222);
   Curvature_Higgs_L6[1][1][3][3][4][4] =
-      pow(Lambda, -0.2e1) * (double)(2 * Op6_111122 + Op6_122111 + 2 * Op6_121211);
+      pow(Lambda, -0.2e1) *
+      (double)(2 * Op6_111122 + Op6_122111 + 2 * Op6_121211);
   Curvature_Higgs_L6[1][1][3][3][5][5] =
-      pow(Lambda, -0.2e1) * (double)(2 * Op6_111122 + Op6_122111 + 2 * Op6_121211);
+      pow(Lambda, -0.2e1) *
+      (double)(2 * Op6_111122 + Op6_122111 + 2 * Op6_121211);
   Curvature_Higgs_L6[1][1][3][3][6][6] =
-      pow(Lambda, -0.2e1) * (double)(2 * Op6_112222 + 2 * Op6_121222 + Op6_122122);
+      pow(Lambda, -0.2e1) *
+      (double)(2 * Op6_112222 + 2 * Op6_121222 + Op6_122122);
   Curvature_Higgs_L6[1][1][3][3][7][7] =
-      pow(Lambda, -0.2e1) * (double)(2 * Op6_112222 + 2 * Op6_121222 + Op6_122122);
+      pow(Lambda, -0.2e1) *
+      (double)(2 * Op6_112222 + 2 * Op6_121222 + Op6_122122);
   Curvature_Higgs_L6[1][1][4][4][4][4] =
       0.18e2 * pow(Lambda, -0.2e1) * Op6_111111;
   Curvature_Higgs_L6[1][1][4][4][5][5] =
       0.6e1 * pow(Lambda, -0.2e1) * Op6_111111;
   Curvature_Higgs_L6[1][1][4][4][6][6] =
-      pow(Lambda, -0.2e1) * (double)(2 * Op6_111122 + Op6_122111 + 2 * Op6_121211);
+      pow(Lambda, -0.2e1) *
+      (double)(2 * Op6_111122 + Op6_122111 + 2 * Op6_121211);
   Curvature_Higgs_L6[1][1][4][4][7][7] =
-      pow(Lambda, -0.2e1) * (double)(2 * Op6_111122 - 2 * Op6_121211 + Op6_122111);
+      pow(Lambda, -0.2e1) *
+      (double)(2 * Op6_111122 - 2 * Op6_121211 + Op6_122111);
   Curvature_Higgs_L6[1][1][4][5][6][7] =
       0.2e1 * pow(Lambda, -0.2e1) * Op6_121211;
   Curvature_Higgs_L6[1][1][5][5][5][5] =
       0.18e2 * pow(Lambda, -0.2e1) * Op6_111111;
   Curvature_Higgs_L6[1][1][5][5][6][6] =
-      pow(Lambda, -0.2e1) * (double)(2 * Op6_111122 - 2 * Op6_121211 + Op6_122111);
+      pow(Lambda, -0.2e1) *
+      (double)(2 * Op6_111122 - 2 * Op6_121211 + Op6_122111);
   Curvature_Higgs_L6[1][1][5][5][7][7] =
-      pow(Lambda, -0.2e1) * (double)(2 * Op6_111122 + Op6_122111 + 2 * Op6_121211);
+      pow(Lambda, -0.2e1) *
+      (double)(2 * Op6_111122 + Op6_122111 + 2 * Op6_121211);
   Curvature_Higgs_L6[1][1][6][6][6][6] =
       0.6e1 * pow(Lambda, -0.2e1) * Op6_112222;
   Curvature_Higgs_L6[1][1][6][6][7][7] =
@@ -3020,17 +3054,21 @@ void Class_Potential_C2HDMEFT::SetCurvatureArrays()
   Curvature_Higgs_L6[2][2][4][4][5][5] =
       0.2e1 * pow(Lambda, -0.2e1) * Op6_111122;
   Curvature_Higgs_L6[2][2][4][4][6][6] =
-      pow(Lambda, -0.2e1) * (double)(2 * Op6_112222 + 2 * Op6_121222 + Op6_122122);
+      pow(Lambda, -0.2e1) *
+      (double)(2 * Op6_112222 + 2 * Op6_121222 + Op6_122122);
   Curvature_Higgs_L6[2][2][4][4][7][7] =
-      pow(Lambda, -0.2e1) * (double)(2 * Op6_112222 - 2 * Op6_121222 + Op6_122122);
+      pow(Lambda, -0.2e1) *
+      (double)(2 * Op6_112222 - 2 * Op6_121222 + Op6_122122);
   Curvature_Higgs_L6[2][2][4][5][6][7] =
       0.2e1 * pow(Lambda, -0.2e1) * Op6_121222;
   Curvature_Higgs_L6[2][2][5][5][5][5] =
       0.6e1 * pow(Lambda, -0.2e1) * Op6_111122;
   Curvature_Higgs_L6[2][2][5][5][6][6] =
-      pow(Lambda, -0.2e1) * (double)(2 * Op6_112222 - 2 * Op6_121222 + Op6_122122);
+      pow(Lambda, -0.2e1) *
+      (double)(2 * Op6_112222 - 2 * Op6_121222 + Op6_122122);
   Curvature_Higgs_L6[2][2][5][5][7][7] =
-      pow(Lambda, -0.2e1) * (double)(2 * Op6_112222 + 2 * Op6_121222 + Op6_122122);
+      pow(Lambda, -0.2e1) *
+      (double)(2 * Op6_112222 + 2 * Op6_121222 + Op6_122122);
   Curvature_Higgs_L6[2][2][6][6][6][6] =
       0.18e2 * pow(Lambda, -0.2e1) * Op6_222222;
   Curvature_Higgs_L6[2][2][6][6][7][7] =
@@ -3052,17 +3090,21 @@ void Class_Potential_C2HDMEFT::SetCurvatureArrays()
   Curvature_Higgs_L6[3][3][4][4][5][5] =
       0.2e1 * pow(Lambda, -0.2e1) * Op6_111122;
   Curvature_Higgs_L6[3][3][4][4][6][6] =
-      pow(Lambda, -0.2e1) * (double)(2 * Op6_112222 + 2 * Op6_121222 + Op6_122122);
+      pow(Lambda, -0.2e1) *
+      (double)(2 * Op6_112222 + 2 * Op6_121222 + Op6_122122);
   Curvature_Higgs_L6[3][3][4][4][7][7] =
-      pow(Lambda, -0.2e1) * (double)(2 * Op6_112222 - 2 * Op6_121222 + Op6_122122);
+      pow(Lambda, -0.2e1) *
+      (double)(2 * Op6_112222 - 2 * Op6_121222 + Op6_122122);
   Curvature_Higgs_L6[3][3][4][5][6][7] =
       0.2e1 * pow(Lambda, -0.2e1) * Op6_121222;
   Curvature_Higgs_L6[3][3][5][5][5][5] =
       0.6e1 * pow(Lambda, -0.2e1) * Op6_111122;
   Curvature_Higgs_L6[3][3][5][5][6][6] =
-      pow(Lambda, -0.2e1) * (double)(2 * Op6_112222 - 2 * Op6_121222 + Op6_122122);
+      pow(Lambda, -0.2e1) *
+      (double)(2 * Op6_112222 - 2 * Op6_121222 + Op6_122122);
   Curvature_Higgs_L6[3][3][5][5][7][7] =
-      pow(Lambda, -0.2e1) * (double)(2 * Op6_112222 + Op6_122122 + 2 * Op6_121222);
+      pow(Lambda, -0.2e1) *
+      (double)(2 * Op6_112222 + Op6_122122 + 2 * Op6_121222);
   Curvature_Higgs_L6[3][3][6][6][6][6] =
       0.18e2 * pow(Lambda, -0.2e1) * Op6_222222;
   Curvature_Higgs_L6[3][3][6][6][7][7] =
