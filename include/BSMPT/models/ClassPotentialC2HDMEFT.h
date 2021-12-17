@@ -85,6 +85,7 @@ public:
 
   double L1 = 0, L2 = 0, L3 = 0, L4 = 0, RL5 = 0, RealMMix = 0, u1 = 0, u2 = 0;
   double IL5 = 0, Iu3 = 0;
+  double L6 = 0, L7 = 0;
   double DL1CT = 0, DL2CT = 0, DL3CT = 0, DL4CT = 0, DRL5CT = 0, Du2CT = 0,
          Du1CT = 0, DRu3CT = 0;
   double DIL5CT = 0, DIu3CT = 0;
