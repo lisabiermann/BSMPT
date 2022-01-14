@@ -83,6 +83,8 @@ public:
 
   bool UseHsmNotationInTripleHiggs = false;
 
+  const double C_alpha_S = 0.119;
+
   double L1 = 0, L2 = 0, L3 = 0, L4 = 0, RL5 = 0, RealMMix = 0, u1 = 0, u2 = 0;
   double IL5 = 0, Iu3 = 0;
   double L6 = 0, L7 = 0;
@@ -103,24 +105,26 @@ public:
   /*
    *    EFT parameters: see 1905.11047
    */
-  double Lambda = 1000; // EFT scale
+  double LambdaEFT = 1000; // EFT scale
   // phi^6 operators (only scalar couplings)
   double Op6_111111 = 0, Op6_111122 = 0, Op6_122111 = 0, Op6_121211 = 0,
          Op6_111112 = 0, Op6_121221 = 0, Op6_112212 = 0, Op6_222222 = 0,
          Op6_112222 = 0, Op6_122122 = 0, Op6_121222 = 0, Op6_122222 = 0,
          Op6_121212 = 0;
   // phi^2 X^2 operators (couplings of scalars to EW gauge bosons and gluons)
-  double Op2G_11 = 0, Op2Gbar_11 = 0, Op2G_22 = 0, Op2Gbar_22 = 0, Op2W_11 = 0,
-         Op2Wbar_11 = 0, Op2W_22 = 0, Op2Wbar_22 = 0, Op2B_11 = 0,
-         Op2Bbar_11 = 0, Op2B_22 = 0, Op2Bbar_22 = 0, Op2WB_11 = 0,
-         Op2WbarB_11 = 0, Op2WB_22 = 0, Op2WbarB_22 = 0;
+  double Op2G_11 = 0, Op2Gbar_11 = 0, Op2G_22 = 0, Op2Gbar_22 = 0, Op2G_12 = 0,
+         Op2G_21 = 0, Op2W_11 = 0, Op2Wbar_11 = 0, Op2W_22 = 0, Op2Wbar_22 = 0,
+         Op2W_12 = 0, Op2W_21 = 0, Op2B_11 = 0, Op2Bbar_11 = 0, Op2B_22 = 0,
+         Op2Bbar_22 = 0, Op2WB_11 = 0, Op2WbarB_11 = 0, Op2WB_22 = 0,
+         Op2WbarB_22 = 0;
   // psi^3 phi^2 operators (scalar-fermion couplings)
   double OLe_121 = 0, OLe_222 = 0, OLe_211 = 0, OLe_112 = 0, OQd_121 = 0,
          OQd_222 = 0, OQd_211 = 0, OQd_112 = 0, OQu_222 = 0, OQu_112 = 0,
          OQu_211 = 0, OQu_121 = 0;
   // phi^4 D^2 operators (scalar-EW-gauge-boson couplings)
   double ODD_1111 = 0, ODD_1122 = 0, ODD_2222 = 0, ODD_2211 = 0, ODD_2121 = 0,
-         OpD_1212 = 0, OpD_1111 = 0, OpD_2222 = 0, OpD_1221 = 0, OpD_2112 = 0;
+         OpD_1212 = 0, OpD_1111 = 0, OpD_2222 = 0, OpD_1221 = 0, OpD_2112 = 0,
+         OpD_2221 = 0, OpD_1211A = 0, OpD_1211B = 0, OpD_2122 = 0;
 
   void ReadAndSet(const std::string &linestr,
                   std::vector<double> &par) override;

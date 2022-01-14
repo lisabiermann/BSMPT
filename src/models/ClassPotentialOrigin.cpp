@@ -2524,7 +2524,7 @@ MatrixXd Class_Potential_Origin::HiggsMassMatrix(const std::vector<double> &v,
               for (std::size_t n = 0; n < NHiggs; n++)
               {
                 res(i, j) += 1.0 / 24.0 * Curvature_Higgs_L6[i][j][k][l][m][n] *
-                             v[i] * v[j] * v[k] * v[l] * v[m] * v[n];
+                             v[k] * v[l] * v[m] * v[n];
               }
             }
           }
@@ -3440,6 +3440,7 @@ void Class_Potential_Origin::CalculateDebye()
     {
       for (std::size_t j = i; j < NHiggs; j++)
       {
+        double HiggsFacdim6L6 = 0, HiggsFacdim6G2H4 = 0, HiggsFacdim6G4H2 = 0;
         DebyeHiggs[i][j]     = 0;
         DebyeHiggsDim6[i][j] = 0;
         for (std::size_t k = 0; k < NHiggs; k++)
@@ -3447,127 +3448,144 @@ void Class_Potential_Origin::CalculateDebye()
           DebyeHiggs[i][j] += 0.5 * Curvature_Higgs_L4[i][j][k][k] / 12.0;
           for (std::size_t l = 0; l < NHiggs; l++)
           {
-            DebyeHiggsDim6[i][j] += Curvature_Higgs_L6[i][j][k][k][l][l] +
-                                    Curvature_Higgs_L6[i][j][k][l][k][l] +
-                                    Curvature_Higgs_L6[i][j][k][l][l][k] +
-                                    Curvature_Higgs_L6[i][j][l][k][k][l] +
-                                    Curvature_Higgs_L6[i][j][l][k][l][k] +
-                                    Curvature_Higgs_L6[i][j][l][l][k][k] +
+            HiggsFacdim6L6 += Curvature_Higgs_L6[i][j][k][k][l][l] +
+                              Curvature_Higgs_L6[i][j][k][l][k][l] +
+                              Curvature_Higgs_L6[i][j][k][l][l][k] +
+                              Curvature_Higgs_L6[i][j][l][k][k][l] +
+                              Curvature_Higgs_L6[i][j][l][k][l][k] +
+                              Curvature_Higgs_L6[i][j][l][l][k][k] +
 
-                                    Curvature_Higgs_L6[i][k][j][k][l][l] +
-                                    Curvature_Higgs_L6[i][k][j][l][k][l] +
-                                    Curvature_Higgs_L6[i][k][j][l][l][k] +
-                                    Curvature_Higgs_L6[i][l][j][k][k][l] +
-                                    Curvature_Higgs_L6[i][l][j][k][l][k] +
-                                    Curvature_Higgs_L6[i][l][j][l][k][k] +
+                              Curvature_Higgs_L6[i][k][j][k][l][l] +
+                              Curvature_Higgs_L6[i][k][j][l][k][l] +
+                              Curvature_Higgs_L6[i][k][j][l][l][k] +
+                              Curvature_Higgs_L6[i][l][j][k][k][l] +
+                              Curvature_Higgs_L6[i][l][j][k][l][k] +
+                              Curvature_Higgs_L6[i][l][j][l][k][k] +
 
-                                    Curvature_Higgs_L6[k][i][j][k][l][l] +
-                                    Curvature_Higgs_L6[k][i][j][l][k][l] +
-                                    Curvature_Higgs_L6[k][i][j][l][l][k] +
-                                    Curvature_Higgs_L6[l][i][j][k][k][l] +
-                                    Curvature_Higgs_L6[l][i][j][k][l][k] +
-                                    Curvature_Higgs_L6[l][i][j][l][k][k] +
+                              Curvature_Higgs_L6[k][i][j][k][l][l] +
+                              Curvature_Higgs_L6[k][i][j][l][k][l] +
+                              Curvature_Higgs_L6[k][i][j][l][l][k] +
+                              Curvature_Higgs_L6[l][i][j][k][k][l] +
+                              Curvature_Higgs_L6[l][i][j][k][l][k] +
+                              Curvature_Higgs_L6[l][i][j][l][k][k] +
 
-                                    Curvature_Higgs_L6[i][k][k][j][l][l] +
-                                    Curvature_Higgs_L6[i][k][l][j][k][l] +
-                                    Curvature_Higgs_L6[i][k][l][j][l][k] +
-                                    Curvature_Higgs_L6[i][l][k][j][k][l] +
-                                    Curvature_Higgs_L6[i][l][k][j][l][k] +
-                                    Curvature_Higgs_L6[i][l][l][j][k][k] +
+                              Curvature_Higgs_L6[i][k][k][j][l][l] +
+                              Curvature_Higgs_L6[i][k][l][j][k][l] +
+                              Curvature_Higgs_L6[i][k][l][j][l][k] +
+                              Curvature_Higgs_L6[i][l][k][j][k][l] +
+                              Curvature_Higgs_L6[i][l][k][j][l][k] +
+                              Curvature_Higgs_L6[i][l][l][j][k][k] +
 
-                                    Curvature_Higgs_L6[k][i][k][j][l][l] +
-                                    Curvature_Higgs_L6[k][i][l][j][k][l] +
-                                    Curvature_Higgs_L6[k][i][l][j][l][k] +
-                                    Curvature_Higgs_L6[l][i][k][j][k][l] +
-                                    Curvature_Higgs_L6[l][i][k][j][l][k] +
-                                    Curvature_Higgs_L6[l][i][l][j][k][k] +
+                              Curvature_Higgs_L6[k][i][k][j][l][l] +
+                              Curvature_Higgs_L6[k][i][l][j][k][l] +
+                              Curvature_Higgs_L6[k][i][l][j][l][k] +
+                              Curvature_Higgs_L6[l][i][k][j][k][l] +
+                              Curvature_Higgs_L6[l][i][k][j][l][k] +
+                              Curvature_Higgs_L6[l][i][l][j][k][k] +
 
-                                    Curvature_Higgs_L6[k][k][i][j][l][l] +
-                                    Curvature_Higgs_L6[k][l][i][j][k][l] +
-                                    Curvature_Higgs_L6[k][l][i][j][l][k] +
-                                    Curvature_Higgs_L6[l][k][i][j][k][l] +
-                                    Curvature_Higgs_L6[l][k][i][j][l][k] +
-                                    Curvature_Higgs_L6[l][l][i][j][k][k] +
+                              Curvature_Higgs_L6[k][k][i][j][l][l] +
+                              Curvature_Higgs_L6[k][l][i][j][k][l] +
+                              Curvature_Higgs_L6[k][l][i][j][l][k] +
+                              Curvature_Higgs_L6[l][k][i][j][k][l] +
+                              Curvature_Higgs_L6[l][k][i][j][l][k] +
+                              Curvature_Higgs_L6[l][l][i][j][k][k] +
 
-                                    Curvature_Higgs_L6[i][k][k][l][j][l] +
-                                    Curvature_Higgs_L6[i][k][l][k][j][l] +
-                                    Curvature_Higgs_L6[i][k][l][l][j][k] +
-                                    Curvature_Higgs_L6[i][l][k][k][j][l] +
-                                    Curvature_Higgs_L6[i][l][k][l][j][k] +
-                                    Curvature_Higgs_L6[i][l][l][k][j][k] +
+                              Curvature_Higgs_L6[i][k][k][l][j][l] +
+                              Curvature_Higgs_L6[i][k][l][k][j][l] +
+                              Curvature_Higgs_L6[i][k][l][l][j][k] +
+                              Curvature_Higgs_L6[i][l][k][k][j][l] +
+                              Curvature_Higgs_L6[i][l][k][l][j][k] +
+                              Curvature_Higgs_L6[i][l][l][k][j][k] +
 
-                                    Curvature_Higgs_L6[k][i][k][l][j][l] +
-                                    Curvature_Higgs_L6[k][i][l][k][j][l] +
-                                    Curvature_Higgs_L6[k][i][l][l][j][k] +
-                                    Curvature_Higgs_L6[l][i][k][k][j][l] +
-                                    Curvature_Higgs_L6[l][i][k][l][j][k] +
-                                    Curvature_Higgs_L6[l][i][l][k][j][k] +
+                              Curvature_Higgs_L6[k][i][k][l][j][l] +
+                              Curvature_Higgs_L6[k][i][l][k][j][l] +
+                              Curvature_Higgs_L6[k][i][l][l][j][k] +
+                              Curvature_Higgs_L6[l][i][k][k][j][l] +
+                              Curvature_Higgs_L6[l][i][k][l][j][k] +
+                              Curvature_Higgs_L6[l][i][l][k][j][k] +
 
-                                    Curvature_Higgs_L6[k][k][i][l][j][l] +
-                                    Curvature_Higgs_L6[k][l][i][k][j][l] +
-                                    Curvature_Higgs_L6[k][l][i][l][j][k] +
-                                    Curvature_Higgs_L6[l][k][i][k][j][l] +
-                                    Curvature_Higgs_L6[l][k][i][l][j][k] +
-                                    Curvature_Higgs_L6[l][l][i][k][j][k] +
+                              Curvature_Higgs_L6[k][k][i][l][j][l] +
+                              Curvature_Higgs_L6[k][l][i][k][j][l] +
+                              Curvature_Higgs_L6[k][l][i][l][j][k] +
+                              Curvature_Higgs_L6[l][k][i][k][j][l] +
+                              Curvature_Higgs_L6[l][k][i][l][j][k] +
+                              Curvature_Higgs_L6[l][l][i][k][j][k] +
 
-                                    Curvature_Higgs_L6[k][k][l][i][j][l] +
-                                    Curvature_Higgs_L6[k][l][k][i][j][l] +
-                                    Curvature_Higgs_L6[k][l][l][i][j][k] +
-                                    Curvature_Higgs_L6[l][k][k][i][j][l] +
-                                    Curvature_Higgs_L6[l][k][l][i][j][k] +
-                                    Curvature_Higgs_L6[l][l][k][i][j][k] +
-                                    
-                                    Curvature_Higgs_L6[i][k][k][l][l][j] +
-                                    Curvature_Higgs_L6[i][k][l][k][l][j] +
-                                    Curvature_Higgs_L6[i][k][l][l][k][j] +
-                                    Curvature_Higgs_L6[i][l][k][k][l][j] +
-                                    Curvature_Higgs_L6[i][l][k][l][k][j] +
-                                    Curvature_Higgs_L6[i][l][l][k][k][j] +
+                              Curvature_Higgs_L6[k][k][l][i][j][l] +
+                              Curvature_Higgs_L6[k][l][k][i][j][l] +
+                              Curvature_Higgs_L6[k][l][l][i][j][k] +
+                              Curvature_Higgs_L6[l][k][k][i][j][l] +
+                              Curvature_Higgs_L6[l][k][l][i][j][k] +
+                              Curvature_Higgs_L6[l][l][k][i][j][k] +
 
-                                    Curvature_Higgs_L6[k][i][k][l][l][j] +
-                                    Curvature_Higgs_L6[k][i][l][k][l][j] +
-                                    Curvature_Higgs_L6[k][i][l][l][k][j] +
-                                    Curvature_Higgs_L6[l][i][k][k][l][j] +
-                                    Curvature_Higgs_L6[l][i][k][l][k][j] +
-                                    Curvature_Higgs_L6[l][i][l][k][k][j] +
+                              Curvature_Higgs_L6[i][k][k][l][l][j] +
+                              Curvature_Higgs_L6[i][k][l][k][l][j] +
+                              Curvature_Higgs_L6[i][k][l][l][k][j] +
+                              Curvature_Higgs_L6[i][l][k][k][l][j] +
+                              Curvature_Higgs_L6[i][l][k][l][k][j] +
+                              Curvature_Higgs_L6[i][l][l][k][k][j] +
 
-                                    Curvature_Higgs_L6[k][k][i][l][l][j] +
-                                    Curvature_Higgs_L6[k][l][i][k][l][j] +
-                                    Curvature_Higgs_L6[k][l][i][l][k][j] +
-                                    Curvature_Higgs_L6[l][k][i][k][l][j] +
-                                    Curvature_Higgs_L6[l][k][i][l][k][j] +
-                                    Curvature_Higgs_L6[l][l][i][k][k][j] +
+                              Curvature_Higgs_L6[k][i][k][l][l][j] +
+                              Curvature_Higgs_L6[k][i][l][k][l][j] +
+                              Curvature_Higgs_L6[k][i][l][l][k][j] +
+                              Curvature_Higgs_L6[l][i][k][k][l][j] +
+                              Curvature_Higgs_L6[l][i][k][l][k][j] +
+                              Curvature_Higgs_L6[l][i][l][k][k][j] +
 
-                                    Curvature_Higgs_L6[k][k][l][i][l][j] +
-                                    Curvature_Higgs_L6[k][l][k][i][l][j] +
-                                    Curvature_Higgs_L6[k][l][l][i][k][j] +
-                                    Curvature_Higgs_L6[l][k][k][i][l][j] +
-                                    Curvature_Higgs_L6[l][k][l][i][k][j] +
-                                    Curvature_Higgs_L6[l][l][k][i][k][j] +
+                              Curvature_Higgs_L6[k][k][i][l][l][j] +
+                              Curvature_Higgs_L6[k][l][i][k][l][j] +
+                              Curvature_Higgs_L6[k][l][i][l][k][j] +
+                              Curvature_Higgs_L6[l][k][i][k][l][j] +
+                              Curvature_Higgs_L6[l][k][i][l][k][j] +
+                              Curvature_Higgs_L6[l][l][i][k][k][j] +
 
-                                    Curvature_Higgs_L6[k][k][l][l][i][j] +
-                                    Curvature_Higgs_L6[k][l][k][l][i][j] +
-                                    Curvature_Higgs_L6[k][l][l][k][i][j] +
-                                    Curvature_Higgs_L6[l][k][k][l][i][j] +
-                                    Curvature_Higgs_L6[l][k][l][k][i][j] +
-                                    Curvature_Higgs_L6[l][l][k][k][i][j];
+                              Curvature_Higgs_L6[k][k][l][i][l][j] +
+                              Curvature_Higgs_L6[k][l][k][i][l][j] +
+                              Curvature_Higgs_L6[k][l][l][i][k][j] +
+                              Curvature_Higgs_L6[l][k][k][i][l][j] +
+                              Curvature_Higgs_L6[l][k][l][i][k][j] +
+                              Curvature_Higgs_L6[l][l][k][i][k][j] +
+
+                              Curvature_Higgs_L6[k][k][l][l][i][j] +
+                              Curvature_Higgs_L6[k][l][k][l][i][j] +
+                              Curvature_Higgs_L6[k][l][l][k][i][j] +
+                              Curvature_Higgs_L6[l][k][k][l][i][j] +
+                              Curvature_Higgs_L6[l][k][l][k][i][j] +
+                              Curvature_Higgs_L6[l][l][k][k][i][j];
           }
         }
+        if (!UseTensorSymFac)
+        {
+          DebyeHiggsDim6[i][j] += SymFac_HiggsL6[i][j] * HiggsFacdim6L6;
+        }
+
         for (std::size_t a = 0; a < NGauge; a++)
         {
           DebyeHiggs[i][j] += 3 * 0.5 * Curvature_Gauge_G2H2[a][a][i][j] / 12.0;
           for (std::size_t k = 0; k < NHiggs; k++)
           {
-            DebyeHiggsDim6[i][j] += Curvature_Gauge_G2H4[a][a][i][j][k][k] +
-                                    Curvature_Gauge_G2H4[a][a][i][k][j][k] +
-                                    Curvature_Gauge_G2H4[a][a][i][k][k][j];
+            HiggsFacdim6G2H4 += Curvature_Gauge_G2H4[a][a][i][j][k][k] +
+                                Curvature_Gauge_G2H4[a][a][i][k][j][k] +
+                                Curvature_Gauge_G2H4[a][a][i][k][k][j];
+          }
+          if (!UseTensorSymFac)
+          {
+            DebyeHiggsDim6[i][j] += SymFac_HiggsG2H4[i][j] * HiggsFacdim6G2H4;
           }
           for (std::size_t b = 0; b < NGauge; b++)
           {
-            DebyeHiggsDim6[i][j] += Curvature_Gauge_G4H2[a][a][b][b][i][j] +
-                                    Curvature_Gauge_G4H2[a][b][a][b][i][j] +
-                                    Curvature_Gauge_G4H2[a][a][b][b][i][j];
+            HiggsFacdim6G4H2 += Curvature_Gauge_G4H2[a][a][b][b][i][j] +
+                                Curvature_Gauge_G4H2[a][b][a][b][i][j] +
+                                Curvature_Gauge_G4H2[a][a][b][b][i][j];
           }
+        }
+        if (!UseTensorSymFac)
+        {
+          DebyeHiggsDim6[i][j] += SymFac_HiggsG4H2[i][j] * HiggsFacdim6G4H2;
+        }
+        else
+        {
+          DebyeHiggsDim6[i][j] += SymFac_Higgs[i][j];
         }
 
         for (std::size_t a = 0; a < NQuarks; a++)
@@ -3605,6 +3623,7 @@ void Class_Potential_Origin::CalculateDebye()
       for (std::size_t j = i; j < NHiggs; j++)
       {
         if (std::abs(DebyeHiggs[i][j]) <= 1e-5) DebyeHiggs[i][j] = 0;
+        if (std::abs(DebyeHiggsDim6[i][j]) <= 1e-5) DebyeHiggsDim6[i][j] = 0;
       }
     }
 
@@ -3612,7 +3631,8 @@ void Class_Potential_Origin::CalculateDebye()
     {
       for (std::size_t j = 0; j < i; j++)
       {
-        DebyeHiggs[i][j] = DebyeHiggs[j][i];
+        DebyeHiggs[i][j]     = DebyeHiggs[j][i];
+        DebyeHiggsDim6[i][j] = DebyeHiggsDim6[j][i];
       }
     }
   }
@@ -3626,15 +3646,6 @@ void Class_Potential_Origin::CalculateDebye()
 
 void Class_Potential_Origin::CalculateDebyeGauge()
 {
-  for (std::size_t i = 0; i < NGauge; i++)
-  {
-    for (std::size_t j = 0; j < NGauge; j++)
-    {
-      DebyeGauge[i][j]     = 0;
-      DebyeGaugeDim6[i][j] = 0;
-    }
-  }
-
   bool Done = CalculateDebyeGaugeSimplified();
   if (Done) return;
 
@@ -3649,27 +3660,35 @@ void Class_Potential_Origin::CalculateDebyeGauge()
   }
   for (std::size_t a = 0; a < NGauge; a++)
   {
-    double GaugeFac     = 0;
-    double GaugeFacdim6 = 0;
+    double GaugeFac         = 0;
+    double GaugeFacdim6G4H2 = 0, GaugeFacdim6G2H4 = 0;
     for (std::size_t i = 0; i < NHiggs; i++)
     {
       GaugeFac += Curvature_Gauge_G2H2[a][a][i][i];
       for (std::size_t b = 0; b < NGauge; b++)
       {
-        GaugeFacdim6 += Curvature_Gauge_G4H2[a][a][b][b][i][i] +
-                        Curvature_Gauge_G4H2[a][b][a][b][i][i] +
-                        Curvature_Gauge_G4H2[a][b][b][a][i][i];
+        GaugeFacdim6G4H2 += Curvature_Gauge_G4H2[a][a][b][b][i][i] +
+                            Curvature_Gauge_G4H2[a][b][a][b][i][i] +
+                            Curvature_Gauge_G4H2[a][b][b][a][i][i];
       }
       for (std::size_t j = 0; j < NHiggs; j++)
       {
-        GaugeFacdim6 += Curvature_Gauge_G2H4[a][a][i][i][j][j] +
-                        Curvature_Gauge_G2H4[a][a][i][j][i][j] +
-                        Curvature_Gauge_G2H4[a][a][i][j][j][i];
+        GaugeFacdim6G2H4 += Curvature_Gauge_G2H4[a][a][i][i][j][j] +
+                            Curvature_Gauge_G2H4[a][a][i][j][i][j] +
+                            Curvature_Gauge_G2H4[a][a][i][j][j][i];
       }
     }
     GaugeFac *= 1.0 / nGaugeHiggs;
-    DebyeGauge[a][a]     = 2.0 / 3.0 * (nGaugeHiggs / 8.0 + 5) * GaugeFac;
-    DebyeGaugeDim6[a][a] = GaugeFacdim6;
+    DebyeGauge[a][a] = 2.0 / 3.0 * (nGaugeHiggs / 8.0 + 5) * GaugeFac;
+    if (UseTensorSymFac)
+    {
+      DebyeGaugeDim6[a][a] = SymFac_Gauge[a][a];
+    }
+    else
+    {
+      DebyeGaugeDim6[a][a] = SymFac_GaugeG4H2[a][a] * GaugeFacdim6G4H2 +
+                             SymFac_GaugeG2H4[a][a] * GaugeFacdim6G2H4;
+    }
   }
 
   for (std::size_t i = 0; i < NGauge; i++)
@@ -3730,6 +3749,11 @@ void Class_Potential_Origin::initVectors()
   DebyeHiggs     = vec2{NHiggs, std::vector<double>(NHiggs, 0)};
   DebyeHiggsDim6 = vec2{NHiggs, std::vector<double>(NHiggs, 0)};
 
+  SymFac_HiggsL6   = vec2{NHiggs, std::vector<double>(NHiggs, 0)};
+  SymFac_Higgs     = vec2{NHiggs, std::vector<double>(NHiggs, 0)};
+  SymFac_HiggsG2H4 = vec2{NHiggs, std::vector<double>(NHiggs, 0)};
+  SymFac_HiggsG4H2 = vec2{NHiggs, std::vector<double>(NHiggs, 0)};
+
   LambdaHiggs_3    = vec3{NHiggs, vec2{NHiggs, std::vector<double>(NHiggs, 0)}};
   LambdaHiggs_3_CT = vec3{NHiggs, vec2{NHiggs, std::vector<double>(NHiggs, 0)}};
 
@@ -3748,9 +3772,18 @@ void Class_Potential_Origin::initVectors()
       vec5{NGauge,
            vec4{NGauge,
                 vec3{NGauge, vec2{NHiggs, std::vector<double>(NHiggs, 0)}}}}};
+
   DebyeGauge     = vec2{NGauge, std::vector<double>(NGauge, 0)};
   DebyeGaugeDim6 = vec2{NGauge, std::vector<double>(NGauge, 0)};
-  LambdaGauge_3  = vec3{NGauge, vec2{NGauge, std::vector<double>(NHiggs, 0)}};
+
+  SymFac_Gauge = vec2{NGauge, std::vector<double>(NGauge, 0)};
+  ;
+  SymFac_GaugeG4H2 = vec2{NGauge, std::vector<double>(NGauge, 0)};
+  ;
+  SymFac_GaugeG2H4 = vec2{NGauge, std::vector<double>(NGauge, 0)};
+  ;
+
+  LambdaGauge_3 = vec3{NGauge, vec2{NGauge, std::vector<double>(NHiggs, 0)}};
   LambdaGauge_4 =
       vec4{NGauge, vec3{NGauge, vec2{NHiggs, std::vector<double>(NHiggs, 0)}}};
 
@@ -4039,6 +4072,11 @@ void Class_Potential_Origin::FindSignSymmetries()
 void Class_Potential_Origin::SetUseTreeLevel(bool val)
 {
   UseTreeLevel = val;
+}
+
+void Class_Potential_Origin::SetUseTensorSymFac(bool val)
+{
+  UseTensorSymFac = val;
 }
 
 void Class_Potential_Origin::SetUseTwoLoopThermalMass(bool val)
