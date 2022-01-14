@@ -68,6 +68,12 @@ protected:
   bool UseTreeLevel = false;
 
   /**
+   * @brief UseTensorSymFac = true to input the whole EFT debye mass
+   * corrections, no split-up into symmetry factor and tensor
+   */
+  bool UseTensorSymFac = false;
+
+  /**
    * @brief UseTwoLoopThermalMass Enforces VEff to only use the tree-level
    * potential
    */
@@ -305,22 +311,22 @@ protected:
    */
   std::vector<std::vector<std::complex<double>>> Curvature_Lepton_F2;
   /**
-   * @brief MassSquaredHiggs Stores the masses of the Higgs Bosons calculated in
+   * @brief MassSquaredHiggs stores the masses of the Higgs Bosons calculated in
    * CalculatePhysicalCouplings
    */
   std::vector<double> MassSquaredHiggs;
   /**
-   * @brief MassSquaredGauge Stores the masses of the gauge Bosons calculated in
+   * @brief MassSquaredGauge stores the masses of the gauge Bosons calculated in
    * CalculatePhysicalCouplings
    */
   std::vector<double> MassSquaredGauge;
   /**
-   * @brief MassSquaredQuark Stores the masses of the quarks calculated in
+   * @brief MassSquaredQuark stores the masses of the quarks calculated in
    * CalculatePhysicalCouplings
    */
   std::vector<double> MassSquaredQuark;
   /**
-   * @brief MassSquaredLepton Stores the masses of the leptons calculated in
+   * @brief MassSquaredLepton stores the masses of the leptons calculated in
    * CalculatePhysicalCouplings
    */
   std::vector<double> MassSquaredLepton;
@@ -330,92 +336,92 @@ protected:
    */
   std::vector<std::vector<double>> HiggsRotationMatrix;
   /**
-   * @brief Couplings_Higgs_Quartic Stores the quartic Higgs couplings in the
+   * @brief Couplings_Higgs_Quartic stores the quartic Higgs couplings in the
    * mass base
    */
   std::vector<std::vector<std::vector<std::vector<double>>>>
       Couplings_Higgs_Quartic;
   /**
-   * @brief Couplings_Higgs_Triple Stores the triple Higgs couplings in the mass
+   * @brief Couplings_Higgs_Triple stores the triple Higgs couplings in the mass
    * base
    */
   std::vector<std::vector<std::vector<double>>> Couplings_Higgs_Triple;
   /**
-   * @brief Couplings_Gauge_Higgs_22 Stores the couplings between two Higgs and
+   * @brief Couplings_Gauge_Higgs_22 stores the couplings between two Higgs and
    * two gauge bosons in the mass base
    */
   std::vector<std::vector<std::vector<std::vector<double>>>>
       Couplings_Gauge_Higgs_22;
   /**
-   * @brief Couplings_Gauge_Higgs_21 Stores the coupling between two gauge and
+   * @brief Couplings_Gauge_Higgs_21 stores the coupling between two gauge and
    * one Higgs boson in the mass base
    */
   std::vector<std::vector<std::vector<double>>> Couplings_Gauge_Higgs_21;
   /**
-   * @brief Couplings_Quark_Higgs_22 Stores the couplings between two quarks and
+   * @brief Couplings_Quark_Higgs_22 stores the couplings between two quarks and
    * two Higgs bosons in the mass base
    */
   std::vector<std::vector<std::vector<std::vector<std::complex<double>>>>>
       Couplings_Quark_Higgs_22;
   /**
-   * @brief Couplings_Quark_Higgs_21 Stores the couplings between two quarks and
+   * @brief Couplings_Quark_Higgs_21 stores the couplings between two quarks and
    * one Higgs boson in the mass base
    */
   std::vector<std::vector<std::vector<std::complex<double>>>>
       Couplings_Quark_Higgs_21;
   /**
-   * @brief Couplings_Lepton_Higgs_22 Stores the couplings between two leptons
+   * @brief Couplings_Lepton_Higgs_22 stores the couplings between two leptons
    * and two Higgs bosons in the mass base
    */
   std::vector<std::vector<std::vector<std::vector<std::complex<double>>>>>
       Couplings_Lepton_Higgs_22;
   /**
-   * @brief Couplings_Quark_Higgs_21 Stores the couplings between two leptons
+   * @brief Couplings_Quark_Higgs_21 stores the couplings between two leptons
    * and one Higgs boson in the mass base
    */
   std::vector<std::vector<std::vector<std::complex<double>>>>
       Couplings_Lepton_Higgs_21;
 
   /**
-   * @brief LambdaGauge_3 Stores the Lambda_{(G)}^{abi} tensor
+   * @brief LambdaGauge_3 stores the Lambda_{(G)}^{abi} tensor
    */
   std::vector<std::vector<std::vector<double>>> LambdaGauge_3;
   /**
-   * @brief LambdaGauge_4 Stores the Lambda_{(G)}^{abij} tensor
+   * @brief LambdaGauge_4 stores the Lambda_{(G)}^{abij} tensor
    */
   std::vector<std::vector<std::vector<std::vector<double>>>> LambdaGauge_4;
   /**
-   * @brief LambdaHiggs_3 Stores the Lambda_{(S)}^{ijk} tensor
+   * @brief LambdaHiggs_3 stores the Lambda_{(S)}^{ijk} tensor
    */
   std::vector<std::vector<std::vector<double>>> LambdaHiggs_3;
   /**
-   * @brief LambdaHiggs_4 Stores the Lambda_{(S)}^{ijkl} tensor
+   * @brief LambdaHiggs_4 stores the Lambda_{(S)}^{ijkl} tensor
    */
   std::vector<std::vector<std::vector<std::vector<double>>>> LambdaHiggs_4;
   /**
-   * @brief LambdaHiggs_3 Stores the Lambda_{(S)}^{ijk} tensor for the
+   * @brief LambdaHiggs_3 stores the Lambda_{(S)}^{ijk} tensor for the
    * counterterm parameters
    */
   std::vector<std::vector<std::vector<double>>> LambdaHiggs_3_CT;
   /**
-   * @brief LambdaQuark_3 Stores the Lambda_{(F)}^{IJk} tensor for quarks ,
+   * @brief LambdaQuark_3 stores the Lambda_{(F)}^{IJk} tensor for quarks ,
    * describing the derivative of Lambda_{(F)}^{IJ} w.r.t. the Higgs field k
    */
   std::vector<std::vector<std::vector<std::complex<double>>>> LambdaQuark_3;
   /**
-   * @brief LambdaLepton_3 Stores the Lambda_{(F)}^{IJk} tensor for leptons ,
+   * @brief LambdaLepton_3 stores the Lambda_{(F)}^{IJk} tensor for leptons ,
    * describing the derivative of Lambda_{(F)}^{IJ} w.r.t. the Higgs field k
    */
   std::vector<std::vector<std::vector<std::complex<double>>>> LambdaLepton_3;
   /**
-   * @brief LambdaQuark_4 Stores the Lambda_{(F)}^{IJkm} tensor for quarks ,
+   * @brief LambdaQuark_4 stores the Lambda_{(F)}^{IJkm} tensor for quarks ,
    * describing the derivative of Lambda_{(F)}^{IJ} w.r.t. the Higgs fields k
    * and m
    */
   std::vector<std::vector<std::vector<std::vector<std::complex<double>>>>>
       LambdaQuark_4;
   /**
-   * @brief LambdaLepton_4 Stores the Lambda_{(F)}^{IJkm} tensor for leptons ,
+   * @brief LambdaLepton_4 stores the Lambda_{(F)}^{IJkm} tensor for leptons ,
    * describing the derivative of Lambda_{(F)}^{IJ} w.r.t. the Higgs fields k
    * and m
    */
@@ -423,27 +429,60 @@ protected:
       LambdaLepton_4;
 
   /**
-   * @brief DebyeHiggs Stores the debye corrections to the mass matrix of the
+   * @brief DebyeHiggs stores the debye corrections to the mass matrix of the
    * Higgs bosons
    */
   std::vector<std::vector<double>> DebyeHiggs;
   /**
-   * @brief DebyeHiggsDim6 Stores the two-loop debye corrections due to dim-6
+   * @brief DebyeHiggsDim6 stores the two-loop debye corrections due to dim-6
    * operators to the mass matrix of the Higgs bosons
    */
   std::vector<std::vector<double>> DebyeHiggsDim6;
   /**
-   * @brief DebyeGauge Stores the debye corrections to the mass matrix of the
+   * @brief DebyeGauge stores the debye corrections to the mass matrix of the
    * gauge bosons
    */
   std::vector<std::vector<double>> DebyeGauge;
   /**
-   * @brief DebyeGaugeDim6 Stores the two-loop debye corrections due to dim-6
+   * @brief DebyeGaugeDim6 stores the two-loop debye corrections due to dim-6
    * operators to the mass matrix of the gauge bosons
    */
   std::vector<std::vector<double>> DebyeGaugeDim6;
   /**
-   * @brief VevOrder Stores the matching order used in MinimizeOrderVEV, set in
+   * @brief SymFac_HiggsL6 stores the prefactors stemming from the L6 two-loop
+   * scalar debye mass corrections
+   */
+  std::vector<std::vector<double>> SymFac_HiggsL6;
+  /**
+   * @brief SymFac_Higgs stores the general EFT debye scalar mass corrections
+   */
+  std::vector<std::vector<double>> SymFac_Higgs;
+  /**
+   * @brief SymFac_HiggsG2H4 stores the prefactors stemming from the G2H4
+   * two-loop scalar debye mass corrections
+   */
+  std::vector<std::vector<double>> SymFac_HiggsG2H4;
+  /**
+   * @brief SymFac_HiggsG4H2 stores the prefactors stemming from the G4H2
+   * two-loop scalar debye mass corrections
+   */
+  std::vector<std::vector<double>> SymFac_HiggsG4H2;
+  /**
+   * @brief SymFac_GaugeG4H2 stores the prefactors stemming from the G4H2
+   * two-loop gauge boson debye mass corrections
+   */
+  std::vector<std::vector<double>> SymFac_GaugeG4H2;
+  /**
+   * @brief SymFac_Gauge stores the general EFT debye gauge mass corrections
+   */
+  std::vector<std::vector<double>> SymFac_Gauge;
+  /**
+   * @brief SymFac_GaugeG2H4 stores the prefactors stemming from the G2H4
+   * two-loop gauge boson debye mass corrections
+   */
+  std::vector<std::vector<double>> SymFac_GaugeG2H4;
+  /**
+   * @brief VevOrder stores the matching order used in MinimizeOrderVEV, set in
    * the constructor of the model
    */
   std::vector<std::size_t> VevOrder;
@@ -1223,6 +1262,11 @@ public:
    * Set the parameter UseTreeLevel to the input
    */
   void SetUseTreeLevel(bool val);
+
+  /**
+   * Set the parameter UseTensorSymFac to the input
+   */
+  void SetUseTensorSymFac(bool val);
 
   /**
    * Set the parameter UseTwoLoopThermalMass to the input
