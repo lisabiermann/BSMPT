@@ -12,6 +12,7 @@
 #include <BSMPT/models/ClassPotentialOrigin.h> // for Class_Potential_Origin
 #include <BSMPT/models/ClassPotentialR2HDM.h>
 #include <BSMPT/models/ClassPotentialSM.h>
+#include <BSMPT/models/ClassPotentialR2HDMEFT.h>
 #include <BSMPT/models/IncludeAllModels.h>
 #include <ctype.h>   // for isdigit, tolower
 #include <iostream>  // for operator<<, cerr, ost...
@@ -44,6 +45,7 @@ std::unique_ptr<Class_Potential_Origin> FChoose(ModelIDs choice,
   case ModelIDs::C2HDM:
     return std::make_unique<Class_Potential_C2HDM>(smConstants);
     break;
+  case ModelIDs::R2HDMEFT: return std::make_unique<Class_Potential_R2HDMEFT>(); break;
   case ModelIDs::C2HDMEFT: return std::make_unique<Class_Potential_C2HDMEFT>(); break;
   case ModelIDs::N2HDM:
     return std::make_unique<Class_Potential_N2HDM>(smConstants);
