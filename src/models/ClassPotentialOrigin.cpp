@@ -1047,6 +1047,7 @@ void Class_Potential_Origin::CalculatePhysicalCouplings()
 
   es.compute(MassHiggs);
   HiggsRot = es.eigenvectors().transpose();
+
   for (std::size_t i = 0; i < NHiggs; i++)
   {
     for (std::size_t j = 0; j < NHiggs; j++)
@@ -2565,8 +2566,8 @@ MatrixXd Class_Potential_Origin::HiggsMassMatrix(const std::vector<double> &v,
           {
             for (std::size_t n = 0; n < NHiggs; n++)
             {
-              res(i, j) += 0.5 * Curvature_Higgs_L6[i][j][x0][k][m][n] * v[k] *
-                           v[m] * v[n];
+              res(i, j) += 1.0 / 6.0 * Curvature_Higgs_L6[i][j][x0][k][m][n] *
+                           v[k] * v[m] * v[n];
             }
           }
         }
@@ -2650,8 +2651,8 @@ Class_Potential_Origin::HiggsMassesSquared(const std::vector<double> &v,
           {
             for (std::size_t n = 0; n < NHiggs; n++)
             {
-              Diff(i, j) += 0.5 * Curvature_Higgs_L6[i][j][x0][k][m][n] * v[k] *
-                            v[m] * v[n];
+              Diff(i, j) += 1.0 / 6.0 * Curvature_Higgs_L6[i][j][x0][k][m][n] *
+                            v[k] * v[m] * v[n];
             }
           }
         }
@@ -3075,7 +3076,7 @@ double Class_Potential_Origin::VTree(const std::vector<double> &v,
           {
             for (std::size_t n = 0; n < NHiggs; n++)
             {
-              res += 1.0 / 24.0 * Curvature_Higgs_L6[i][j][k][l][m][n] * v[j] *
+              res += 1.0 / 120.0 * Curvature_Higgs_L6[i][j][k][l][m][n] * v[j] *
                      v[k] * v[l] * v[m] * v[n];
             }
           }
@@ -3147,7 +3148,7 @@ double Class_Potential_Origin::CounterTerm(const std::vector<double> &v,
           {
             for (std::size_t n = 0; n < NHiggs; n++)
             {
-              res += 1.0 / 24.0 * Curvature_Higgs_CT_L6[i][j][k][l][m][n] *
+              res += 1.0 / 120.0 * Curvature_Higgs_CT_L6[i][j][k][l][m][n] *
                      v[j] * v[k] * v[l] * v[m] * v[n];
             }
           }
@@ -3559,7 +3560,7 @@ void Class_Potential_Origin::CalculateDebye(bool forceCalculation)
                               Curvature_Higgs_L6[l][l][k][k][i][j];
           }
         }
-        if (!UseTensorSymFac)
+        if (!UseTensorSymFac and UseTwoLoopThermalMass)
         {
           DebyeHiggsDim6[i][j] += SymFac_HiggsL6[i][j] * HiggsFacdim6L6;
         }
@@ -3573,7 +3574,7 @@ void Class_Potential_Origin::CalculateDebye(bool forceCalculation)
                                 Curvature_Gauge_G2H4[a][a][i][k][j][k] +
                                 Curvature_Gauge_G2H4[a][a][i][k][k][j];
           }
-          if (!UseTensorSymFac)
+          if (!UseTensorSymFac and UseTwoLoopThermalMass)
           {
             DebyeHiggsDim6[i][j] += SymFac_HiggsG2H4[i][j] * HiggsFacdim6G2H4;
           }
@@ -3584,13 +3585,16 @@ void Class_Potential_Origin::CalculateDebye(bool forceCalculation)
                                 Curvature_Gauge_G4H2[a][a][b][b][i][j];
           }
         }
-        if (!UseTensorSymFac)
+        if (UseTwoLoopThermalMass)
         {
-          DebyeHiggsDim6[i][j] += SymFac_HiggsG4H2[i][j] * HiggsFacdim6G4H2;
-        }
-        else
-        {
-          DebyeHiggsDim6[i][j] += SymFac_Higgs[i][j];
+          if (!UseTensorSymFac)
+          {
+            DebyeHiggsDim6[i][j] += SymFac_HiggsG4H2[i][j] * HiggsFacdim6G4H2;
+          }
+          else
+          {
+            DebyeHiggsDim6[i][j] += SymFac_Higgs[i][j];
+          }
         }
 
         for (std::size_t a = 0; a < NQuarks; a++)
@@ -3679,14 +3683,17 @@ void Class_Potential_Origin::CalculateDebyeGauge()
     }
     GaugeFac *= 1.0 / nGaugeHiggs;
     DebyeGauge[a][a] = 2.0 / 3.0 * (nGaugeHiggs / 8.0 + 5) * GaugeFac;
-    if (UseTensorSymFac)
+    if (UseTwoLoopThermalMass)
     {
-      DebyeGaugeDim6[a][a] = SymFac_Gauge[a][a];
-    }
-    else
-    {
-      DebyeGaugeDim6[a][a] = SymFac_GaugeG4H2[a][a] * GaugeFacdim6G4H2 +
-                             SymFac_GaugeG2H4[a][a] * GaugeFacdim6G2H4;
+      if (UseTensorSymFac)
+      {
+        DebyeGaugeDim6[a][a] = SymFac_Gauge[a][a];
+      }
+      else
+      {
+        DebyeGaugeDim6[a][a] = SymFac_GaugeG4H2[a][a] * GaugeFacdim6G4H2 +
+                               SymFac_GaugeG2H4[a][a] * GaugeFacdim6G2H4;
+      }
     }
   }
 

@@ -6,6 +6,7 @@
 
 #include <BSMPT/models/ClassPotentialC2HDM.h>
 #include <BSMPT/models/ClassPotentialC2HDMEFT.h>
+#include <BSMPT/models/ClassPotentialR2HDMEFTPHI6.h>
 #include <BSMPT/models/ClassPotentialCPintheDark.h>
 #include <BSMPT/models/ClassPotentialCxSM.h>
 #include <BSMPT/models/ClassPotentialN2HDM.h>
@@ -47,6 +48,7 @@ std::unique_ptr<Class_Potential_Origin> FChoose(ModelIDs choice,
     break;
   case ModelIDs::R2HDMEFT: return std::make_unique<Class_Potential_R2HDMEFT>(); break;
   case ModelIDs::C2HDMEFT: return std::make_unique<Class_Potential_C2HDMEFT>(); break;
+  case ModelIDs::R2HDMEFTPHI6: return std::make_unique<Class_Potential_R2HDMEFTPHI6>(); break;
   case ModelIDs::N2HDM:
     return std::make_unique<Class_Potential_N2HDM>(smConstants);
     break;

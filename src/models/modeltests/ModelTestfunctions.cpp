@@ -486,9 +486,10 @@ TestResults CheckTadpoleRelations(const Class_Potential_Origin &point)
 
   double SurviveTadpole = 0;
   auto transformedVEV   = point.MinimizeOrderVEV(point.get_vevTreeMin());
-  for (std::size_t i = 0; i < point.get_NHiggs(); i++)
+  for (std::size_t i = 0; i < point.get_NHiggs(); i++){
     SurviveTadpole += std::abs(point.VTree(transformedVEV, i + 1));
-
+    std::cout << "tadpole (" << i << ") = " << std::abs(point.VTree(transformedVEV, i + 1)) << std::endl;
+  }
   if (SurviveTadpole > 1e-5)
   {
     Logger::Write(

@@ -12,6 +12,7 @@
 #define SRC_CLASSPOTENTIALC2HDMEFT_H_
 
 #include <BSMPT/models/ClassPotentialOrigin.h>
+
 namespace BSMPT
 {
 namespace Models
@@ -83,8 +84,6 @@ public:
 
   bool UseHsmNotationInTripleHiggs = false;
 
-  const double C_alpha_S = 0.119;
-
   double L1 = 0, L2 = 0, L3 = 0, L4 = 0, RL5 = 0, RealMMix = 0, u1 = 0, u2 = 0;
   double IL5 = 0, Iu3 = 0;
   double L6 = 0, L7 = 0;
@@ -101,6 +100,8 @@ public:
   double CTempC1 = 0, CTempC2 = 0, CTempCS = 0;
   double R_Hh_1 = 0, R_Hh_2 = 0, R_Hh_3 = 0, R_Hl_1 = 0, R_Hl_2 = 0, R_Hl_3 = 0,
          R_Hsm_1 = 0, R_Hsm_2 = 0, R_Hsm_3 = 0;
+
+  const double C_alpha_S = 0.119;
 
   /*
    *    EFT parameters: see 1905.11047
@@ -125,6 +126,8 @@ public:
   double ODD_1111 = 0, ODD_1122 = 0, ODD_2222 = 0, ODD_2211 = 0, ODD_2121 = 0,
          OpD_1212 = 0, OpD_1111 = 0, OpD_2222 = 0, OpD_1221 = 0, OpD_2112 = 0,
          OpD_2221 = 0, OpD_1211A = 0, OpD_1211B = 0, OpD_2122 = 0;
+
+  double dOp6_111111 = 0;
 
   void ReadAndSet(const std::string &linestr,
                   std::vector<double> &par) override;

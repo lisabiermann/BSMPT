@@ -13,7 +13,9 @@
  */
 
 #include <BSMPT/minimizer/Minimizer.h>
-#include <BSMPT/models/ClassPotentialOrigin.h> // for Class_Potential_Origin
+#include <BSMPT/models/ClassPotentialOrigin.h>   // for Class_Potential_Origin
+#include <BSMPT/models/ClassPotentialR2HDMEFT.h> // for Class_Potential_R2HDMEFT
+#include <BSMPT/models/ClassPotentialR2HDMEFTPHI6.h> // for Class_Potential_R2HDMEFTPHI6
 #include <BSMPT/models/IncludeAllModels.h>
 #include <BSMPT/utility/Logger.h>
 #include <BSMPT/utility/utility.h>
@@ -42,7 +44,7 @@ struct CLIOptions
   bool UseCMAES{Minimizer::UseLibCMAESDefault};
   bool UseNLopt{Minimizer::UseNLoptDefault};
   int WhichMinimizer{Minimizer::WhichMinimizerDefault};
-  bool UseMultithreading{true};
+  bool UseMultithreading{false};
 
   CLIOptions(const BSMPT::parser &argparser);
   bool good() const;
@@ -97,8 +99,12 @@ try
     if (linecounter == 1)
     {
       outfile << linestr << sep << modelPointer->addLegendCT() << sep
-              << modelPointer->addLegendTemp() << std::endl;
-
+              << modelPointer->addLegendTemp() << sep << "Op6_111111" << sep
+              << "Op6_111122" << sep << "Op6_122111" << sep << "Op6_121211"
+              << sep << "Op6_222222" << sep << "Op6_112222" << sep
+              << "Op6_122122" << sep << "Op6_121222" << sep << "L1tmp" << sep
+              << "L2tmp" << sep << "L4tmp" << sep << "L5tmp" << sep
+              << "m12Sqtmp" << std::endl;
       modelPointer->setUseIndexCol(linestr);
     }
     if (linecounter >= args.FirstLine and linecounter <= args.LastLine and
@@ -195,8 +201,36 @@ try
                             " found.");
         }
       }
+
+      double StoreOp6_111111 =
+          BSMPT::Models::Class_Potential_R2HDMEFTPHI6::Op6_111111;
+      double StoreOp6_111122 =
+          BSMPT::Models::Class_Potential_R2HDMEFTPHI6::Op6_111122;
+      double StoreOp6_122111 =
+          BSMPT::Models::Class_Potential_R2HDMEFTPHI6::Op6_122111;
+      double StoreOp6_121211 =
+          BSMPT::Models::Class_Potential_R2HDMEFTPHI6::Op6_121211;
+      double StoreOp6_222222 =
+          BSMPT::Models::Class_Potential_R2HDMEFTPHI6::Op6_222222;
+      double StoreOp6_112222 =
+          BSMPT::Models::Class_Potential_R2HDMEFTPHI6::Op6_112222;
+      double StoreOp6_122122 =
+          BSMPT::Models::Class_Potential_R2HDMEFTPHI6::Op6_122122;
+      double StoreOp6_121222 =
+          BSMPT::Models::Class_Potential_R2HDMEFTPHI6::Op6_121222;
+
+      double Store_L1tmp = BSMPT::Models::Class_Potential_R2HDMEFTPHI6::L1tmp;
+      double Store_L2tmp = BSMPT::Models::Class_Potential_R2HDMEFTPHI6::L2tmp;
+      double Store_L4tmp = BSMPT::Models::Class_Potential_R2HDMEFTPHI6::L4tmp;
+      double Store_L5tmp = BSMPT::Models::Class_Potential_R2HDMEFTPHI6::L5tmp;
+      double Store_m12Sqtmp =
+          BSMPT::Models::Class_Potential_R2HDMEFTPHI6::m12Sqtmp;
+
       if (PrintErrorLines)
       {
+        typedef std::numeric_limits<double> dbl;
+        outfile.precision(dbl::max_digits10);
+
         outfile << linestr;
         outfile << sep << parameters.second;
         outfile << sep << EWPT.Tc << sep << EWPT.vc;
@@ -206,6 +240,19 @@ try
         else
           outfile << sep << static_cast<int>(EWPT.StatusFlag);
         outfile << sep << EWPT.EWMinimum;
+        outfile << sep << StoreOp6_111111;
+        outfile << sep << StoreOp6_111122;
+        outfile << sep << StoreOp6_122111;
+        outfile << sep << StoreOp6_121211;
+        outfile << sep << StoreOp6_222222;
+        outfile << sep << StoreOp6_112222;
+        outfile << sep << StoreOp6_122122;
+        outfile << sep << StoreOp6_121222;
+        outfile << sep << Store_L1tmp;
+        outfile << sep << Store_L2tmp;
+        outfile << sep << Store_L4tmp;
+        outfile << sep << Store_L5tmp;
+        outfile << sep << Store_m12Sqtmp;
         outfile << std::endl;
       }
       else if (EWPT.StatusFlag == Minimizer::MinimizerStatus::SUCCESS)
@@ -216,6 +263,14 @@ try
           outfile << sep << EWPT.Tc << sep << EWPT.vc;
           outfile << sep << EWPT.vc / EWPT.Tc;
           outfile << sep << EWPT.EWMinimum;
+          outfile << sep << StoreOp6_111111;
+          outfile << sep << StoreOp6_111122;
+          outfile << sep << StoreOp6_122111;
+          outfile << sep << StoreOp6_121211;
+          outfile << sep << StoreOp6_222222;
+          outfile << sep << StoreOp6_112222;
+          outfile << sep << StoreOp6_122122;
+          outfile << sep << StoreOp6_121222;
           outfile << std::endl;
         }
       }

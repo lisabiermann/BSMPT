@@ -11,7 +11,8 @@ set(header
     ${header_path}/ClassPotentialC2HDM.h
     ${header_path}/ClassPotentialR2HDM.h
     ${header_path}/ClassPotentialC2HDMEFT.h
-    ${header_path}/ClassPotentialR2HDMEFT.h
+    ${header_path}/ClassPotentialR2HDMEFTPHI6.h
+  ${header_path}/ClassPotentialR2HDMEFT.h
     ${header_path}/ClassPotentialN2HDM.h
     ${header_path}/ClassPotentialCxSM.h
     ${header_path}/ClassPotentialSM.h
@@ -27,7 +28,8 @@ set(src
     ClassPotentialC2HDM.cpp
     ClassPotentialR2HDM.cpp
     ClassPotentialC2HDMEFT.cpp
-    ClassPotentialR2HDMEFT.cpp
+    ClassPotentialR2HDMEFTPHI6.cpp
+  ClassPotentialR2HDMEFT.cpp
     ClassPotentialN2HDM.cpp
     ClassPotentialCxSM.cpp
     ClassPotentialSM.cpp
