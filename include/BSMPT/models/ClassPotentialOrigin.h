@@ -269,8 +269,8 @@ protected:
   bool UseTensorSymFac = false;
 
   /**
-   * @brief UseTwoLoopThermalMass Enforces VEff to only use the tree-level
-   * potential
+   * @brief UseTwoLoopThermalMass Set true to include Debye-mass corrections by
+   * the dim6 operators
    */
   bool UseTwoLoopThermalMass = false;
 

@@ -12,6 +12,8 @@
 #include <BSMPT/minimizer/Minimizer.h>
 #include <BSMPT/models/ClassPotentialOrigin.h> // for Class_Potential_Origin
 #include <BSMPT/models/IncludeAllModels.h>
+#include <BSMPT/models/ClassPotentialR2HDMEFT.h> // for Class_Potential_R2HDMEFT
+#include <BSMPT/models/ClassPotentialR2HDMEFTPHI6.h> // for Class_Potential_R2HDMEFTPHI6
 #include <BSMPT/utility/Logger.h>
 #include <BSMPT/utility/utility.h>
 #include <algorithm> // for copy, max
@@ -153,6 +155,39 @@ CLIOptions::CLIOptions(int argc, char *argv[])
   std::vector<std::string> args;
   for (int i{1}; i < argc; ++i)
     args.push_back(argv[i]);
+
+  if (argc == 9)
+  {
+    BSMPT::Models::Class_Potential_R2HDMEFT::Op6_111111 = std::stod(args.at(7));
+    std::cout << "Ophi6_111111 = " << std::stod(args.at(7)) << std::endl;
+  }
+  else
+  {
+    BSMPT::Models::Class_Potential_R2HDMEFT::Op6_111111 = 0;
+  }
+
+  if (argc == 16)
+  {
+    BSMPT::Models::Class_Potential_R2HDMEFTPHI6::Op6_111111 = std::stod(args.at(7));
+    BSMPT::Models::Class_Potential_R2HDMEFTPHI6::Op6_111122 = std::stod(args.at(8));
+    BSMPT::Models::Class_Potential_R2HDMEFTPHI6::Op6_122111 = std::stod(args.at(9));
+    BSMPT::Models::Class_Potential_R2HDMEFTPHI6::Op6_121211 = std::stod(args.at(10));
+    BSMPT::Models::Class_Potential_R2HDMEFTPHI6::Op6_222222 = std::stod(args.at(11));
+    BSMPT::Models::Class_Potential_R2HDMEFTPHI6::Op6_112222 = std::stod(args.at(12));
+    BSMPT::Models::Class_Potential_R2HDMEFTPHI6::Op6_122122 = std::stod(args.at(13));
+    BSMPT::Models::Class_Potential_R2HDMEFTPHI6::Op6_121222 = std::stod(args.at(14));
+  }
+  else
+  {
+    BSMPT::Models::Class_Potential_R2HDMEFTPHI6::Op6_111111 = 0;
+    BSMPT::Models::Class_Potential_R2HDMEFTPHI6::Op6_111122 = 0;
+    BSMPT::Models::Class_Potential_R2HDMEFTPHI6::Op6_122111 = 0;
+    BSMPT::Models::Class_Potential_R2HDMEFTPHI6::Op6_121211 = 0;
+    BSMPT::Models::Class_Potential_R2HDMEFTPHI6::Op6_222222 = 0;
+    BSMPT::Models::Class_Potential_R2HDMEFTPHI6::Op6_112222 = 0;
+    BSMPT::Models::Class_Potential_R2HDMEFTPHI6::Op6_122122 = 0;
+    BSMPT::Models::Class_Potential_R2HDMEFTPHI6::Op6_121222 = 0;
+  }
 
   if (argc < 8 or args.at(0) == "--help")
   {

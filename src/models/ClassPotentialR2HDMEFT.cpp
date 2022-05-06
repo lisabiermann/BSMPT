@@ -49,7 +49,7 @@ Class_Potential_R2HDMEFT::Class_Potential_R2HDMEFT()
 
   // Set UseTwoLoopThermalMass to include tow-loop thermal mass corrections
   // propto T^4
-  UseTwoLoopThermalMass = true;
+  SetUseTwoLoopThermalMass(true);
 }
 
 Class_Potential_R2HDMEFT::~Class_Potential_R2HDMEFT()
@@ -163,24 +163,47 @@ void Class_Potential_R2HDMEFT::ReadAndSet(const std::string &linestr,
     ss >> tmp;
   }
 
-  for (int k = 1; k <= 8; k++)
+  // old format
+//   for (int k = 1; k <= 8; k++)
+//   {
+//     ss >> tmp;
+//     if (k == 1)
+//       Type = tmp;
+//     else if (k == 2)
+//       L1 = tmp;
+//     else if (k == 3)
+//       L2 = tmp;
+//     else if (k == 4)
+//       L3 = tmp;
+//     else if (k == 5)
+//       L4 = tmp;
+//     else if (k == 6)
+//       L5 = tmp;
+//     else if (k == 7)
+//       m12Sq = tmp;
+//     else if (k == 8)
+//       TanBeta = tmp;
+//   }
+  
+  // new format
+  for (int k = 1; k <= 16; k++)
   {
     ss >> tmp;
-    if (k == 1)
+    if (k == 16)
       Type = tmp;
-    else if (k == 2)
+    else if (k == 9)
       L1 = tmp;
-    else if (k == 3)
+    else if (k == 10)
       L2 = tmp;
-    else if (k == 4)
+    else if (k == 11)
       L3 = tmp;
-    else if (k == 5)
+    else if (k == 12)
       L4 = tmp;
-    else if (k == 6)
+    else if (k == 13)
       L5 = tmp;
     else if (k == 7)
       m12Sq = tmp;
-    else if (k == 8)
+    else if (k == 6)
       TanBeta = tmp;
   }
 
@@ -223,7 +246,7 @@ void Class_Potential_R2HDMEFT::set_gen(const std::vector<double> &par)
   // double *p = (double *)par;
   scale = C_vev0;
   //	scale=C_MassZ;
-  L1               = par[0];
+  double L1tmp     = par[0];
   L2               = par[1];
   L3               = par[2];
   L4               = par[3];
@@ -236,6 +259,11 @@ void Class_Potential_R2HDMEFT::set_gen(const std::vector<double> &par)
   C_CosBeta        = sqrt(C_CosBetaSquared);
   C_SinBetaSquared = TanBeta * TanBeta * C_CosBetaSquared;
   C_SinBeta        = sqrt(C_SinBetaSquared);
+
+  // corrected L1 to absorb CP-even mass shifts due to EFT
+  L1 = L1tmp + 0.3e1 * Op6_111111 *
+                    (double)pow((double)LambdaEFT, (double)(-2)) * C_vev0 *
+                    C_vev0 * C_CosBetaSquared;
 
   m11Sq = m12Sq * TanBeta -
           C_vev0 * C_vev0 * C_SinBetaSquared * (L4 + L5 + L3) / 0.2e1 -
@@ -2052,6 +2080,12 @@ void Class_Potential_R2HDMEFT::write() const
     ss << "Dim-6 two-loop corrections to thermal masses are taken into "
           "account.\n";
   }
+  else
+  {
+      ss << "Note that NO Dim-6 two-loop corrections to thermal masses are taken into "
+          "account!\n";
+  }
+  
   if (UseTensorSymFac)
   {
     ss << "Usage of combined c-factor * tensor structure!\n";
