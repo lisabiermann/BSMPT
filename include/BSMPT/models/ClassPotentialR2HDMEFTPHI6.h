@@ -103,6 +103,12 @@ public:
   double dOp6_111111 = 0, dOp6_111122 = 0, dOp6_122111 = 0, dOp6_121211 = 0,
          dOp6_222222 = 0, dOp6_112222 = 0, dOp6_122122 = 0, dOp6_121222 = 0;
 
+  /*
+   * Top Yukawa Coupling
+   */
+  double C_MassTop_Varied = 0;
+  static double Yuk_Top;
+
   void ReadAndSet(const std::string &linestr,
                   std::vector<double> &par) override;
   std::vector<std::string> addLegendCT() const override;

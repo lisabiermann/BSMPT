@@ -29,6 +29,8 @@ double BSMPT::Models::Class_Potential_R2HDMEFTPHI6::L4tmp;
 double BSMPT::Models::Class_Potential_R2HDMEFTPHI6::L5tmp;
 double BSMPT::Models::Class_Potential_R2HDMEFTPHI6::m12Sqtmp;
 
+double BSMPT::Models::Class_Potential_R2HDMEFTPHI6::Yuk_Top;
+
 Class_Potential_R2HDMEFTPHI6::Class_Potential_R2HDMEFTPHI6()
 {
   // TODO Auto-generated constructor stub
@@ -281,6 +283,8 @@ void Class_Potential_R2HDMEFTPHI6::set_gen(const std::vector<double> &par)
   C_SinBetaSquared  = TanBeta * TanBeta * C_CosBetaSquared;
   C_SinBeta         = sqrt(C_SinBetaSquared);
 
+  C_MassTop_Varied = C_vev0 / std::sqrt(2) * Yuk_Top;
+
   // corrected Lambdas to absorb CP-even mass shifts due to EFT
 
   double v1   = C_vev0 * C_CosBeta;
@@ -387,7 +391,7 @@ void Class_Potential_R2HDMEFTPHI6::set_gen(const std::vector<double> &par)
   }
   CTempC1 = 1.0 / 48 *
             (12 * L1 + 8 * L3 + 4 * L4 + 3 * (3 * C_g * C_g + C_gs * C_gs));
-  double ct = std::sqrt(2) * C_MassTop / (C_vev0 * C_SinBeta);
+  double ct = std::sqrt(2) * C_MassTop_Varied / (C_vev0 * C_SinBeta);
   CTempC2   = 1.0 / 48 *
             (12 * L2 + 8 * L3 + 4 * L4 + 3 * (3 * C_g * C_g + C_gs * C_gs) +
              12 * ct * ct);
@@ -2634,6 +2638,18 @@ void Class_Potential_R2HDMEFTPHI6::write() const
   ss << "Op6_112222 = " << Op6_112222 << "\n";
   ss << "Op6_122122 = " << Op6_122122 << "\n";
   ss << "Op6_121222 = " << Op6_121222 << std::endl;
+
+  ss << "The top-Yukawa-coupling is set to \n";
+  ss << "Yuk_Top     = " << Yuk_Top << std::endl;
+
+  double Yuk_Top_default = 0.9907894789166337;
+  // t-pole mass from cross-section measurements (PDG average): 172.5 +/- 0.7
+  // yuk_up = 0.9948100739035418
+  // yuk_do = 0.9867688839297258
+
+  ss << "it differs from the default value by "
+     << std::abs(Yuk_Top - Yuk_Top_default) / Yuk_Top_default * 100 << " %."
+     << std::endl;
 
   Logger::Write(LoggingLevel::Default, ss.str());
 }
@@ -5160,13 +5176,13 @@ void Class_Potential_R2HDMEFTPHI6::SetCurvatureArrays()
   YIJR2(1, 10) = -std::conj(V22) * C_MassCharm / v2;
   YIJR2(1, 11) = -std::conj(V23) * C_MassCharm / v2;
 
-  YIJR2(2, 9)  = -std::conj(V31) * C_MassTop / v2;
-  YIJR2(2, 10) = -std::conj(V32) * C_MassTop / v2;
-  YIJR2(2, 11) = -std::conj(V33) * C_MassTop / v2;
+  YIJR2(2, 9)  = -std::conj(V31) * C_MassTop_Varied / v2;
+  YIJR2(2, 10) = -std::conj(V32) * C_MassTop_Varied / v2;
+  YIJR2(2, 11) = -std::conj(V33) * C_MassTop_Varied / v2;
 
   YIJS2(0, 6) = C_MassUp / v2;
   YIJS2(1, 7) = C_MassCharm / v2;
-  YIJS2(2, 8) = C_MassTop / v2;
+  YIJS2(2, 8) = C_MassTop_Varied / v2;
 
   YIJSD(3, 9)  = C_MassDown / vD;
   YIJSD(4, 10) = C_MassStrange / vD;

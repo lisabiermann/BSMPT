@@ -92,9 +92,9 @@ try
               << modelPointer->addLegendTemp() << sep << "Op6_111111" << sep
               << "Op6_111122" << sep << "Op6_122111" << sep << "Op6_121211"
               << sep << "Op6_222222" << sep << "Op6_112222" << sep
-              << "Op6_122122" << sep << "Op6_121222" << sep << "L1tmp" << sep
-              << "L2tmp" << sep << "L4tmp" << sep << "L5tmp" << sep
-              << "m12Sqtmp" << std::endl;
+              << "Op6_122122" << sep << "Op6_121222" << sep << "Yuk_Top" << sep
+              << "L1tmp" << sep << "L2tmp" << sep << "L4tmp" << sep << "L5tmp"
+              << sep << "m12Sqtmp" << std::endl;
       modelPointer->setUseIndexCol(linestr);
     }
     if (linecounter >= args.FirstLine and linecounter <= args.LastLine and
@@ -193,6 +193,9 @@ try
       double Store_m12Sqtmp =
           BSMPT::Models::Class_Potential_R2HDMEFTPHI6::m12Sqtmp;
 
+      double Store_YukTop =
+          BSMPT::Models::Class_Potential_R2HDMEFTPHI6::Yuk_Top;
+
       if (PrintErrorLines)
       {
         typedef std::numeric_limits<double> dbl;
@@ -215,6 +218,7 @@ try
         outfile << sep << StoreOp6_112222;
         outfile << sep << StoreOp6_122122;
         outfile << sep << StoreOp6_121222;
+        outfile << sep << Store_YukTop;
         outfile << sep << Store_L1tmp;
         outfile << sep << Store_L2tmp;
         outfile << sep << Store_L4tmp;
@@ -238,6 +242,7 @@ try
           outfile << sep << StoreOp6_112222;
           outfile << sep << StoreOp6_122122;
           outfile << sep << StoreOp6_121222;
+          outfile << sep << Store_YukTop;
           outfile << std::endl;
         }
       }
@@ -274,7 +279,7 @@ CLIOptions::CLIOptions(int argc, char *argv[])
     BSMPT::Models::Class_Potential_R2HDMEFT::Op6_111111 = 0;
   }
 
-  if (argc == 14)
+  if (argc == 15)
   {
     BSMPT::Models::Class_Potential_R2HDMEFTPHI6::Op6_111111 =
         std::stod(args.at(5));
@@ -292,6 +297,8 @@ CLIOptions::CLIOptions(int argc, char *argv[])
         std::stod(args.at(11));
     BSMPT::Models::Class_Potential_R2HDMEFTPHI6::Op6_121222 =
         std::stod(args.at(12));
+    BSMPT::Models::Class_Potential_R2HDMEFTPHI6::Yuk_Top =
+        std::stod(args.at(13));
   }
   else
   {
@@ -303,6 +310,7 @@ CLIOptions::CLIOptions(int argc, char *argv[])
     BSMPT::Models::Class_Potential_R2HDMEFTPHI6::Op6_112222 = 0;
     BSMPT::Models::Class_Potential_R2HDMEFTPHI6::Op6_122122 = 0;
     BSMPT::Models::Class_Potential_R2HDMEFTPHI6::Op6_121222 = 0;
+    BSMPT::Models::Class_Potential_R2HDMEFTPHI6::Yuk_Top    = 0;
   }
 
   if (argc < 6 or args.at(0) == "--help")
