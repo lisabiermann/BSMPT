@@ -755,6 +755,39 @@ public:
   void initVectors();
 
   /**
+   * Symmetrize 4-dim tensor
+   */
+  void sym4Dim(
+      std::vector<std::vector<std::vector<std::vector<double>>>> &Tensor4Dim,
+      std::size_t Nk1,
+      std::size_t Nk2,
+      std::size_t Nk3,
+      std::size_t Nk4);
+  /**
+   * Symmetrize 5-dim tensor
+   */
+  void sym5Dim(std::vector<std::vector<
+                   std::vector<std::vector<std::vector<std::complex<double>>>>>>
+                   &Tensor5Dim,
+               std::size_t Na1,
+               std::size_t Na2,
+               std::size_t Nk1,
+               std::size_t Nk2,
+               std::size_t Nk3);
+  /**
+   * Symmetrize 6-dim tensor
+   */
+  void sym6Dim(std::vector<std::vector<
+                   std::vector<std::vector<std::vector<std::vector<double>>>>>>
+                   &Tensor6Dim,
+               std::size_t Nk1,
+               std::size_t Nk2,
+               std::size_t Nk3,
+               std::size_t Nk4,
+               std::size_t Nk5,
+               std::size_t Nk6);
+
+  /**
    * Calculates the effective potential and its derivatives.
    * @param v vev configuration at which the potential should be evaluated
    * @param Temp temperature at which the potential should be evaluated
