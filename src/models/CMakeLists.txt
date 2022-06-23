@@ -12,9 +12,8 @@ set(header
 	${header_path}/ClassPotentialOrigin.h
 	${header_path}/ClassPotentialC2HDM.h
 	${header_path}/ClassPotentialR2HDM.h
-  ${header_path}/ClassPotentialC2HDMEFT.h
   ${header_path}/ClassPotentialR2HDMEFTPHI6.h
-  ${header_path}/ClassPotentialR2HDMEFT.h
+  ${header_path}/ClassPotentialR2HDMEFTPHI6_PHI2PSI3.h
   ${header_path}/ClassPotentialRN2HDM.h
   ${header_path}/ClassPotentialCxSM.h
   ${header_path}/ClassPotentialCPintheDark.h
@@ -33,9 +32,8 @@ set(src
 
   ClassPotentialC2HDM.cpp
   ClassPotentialR2HDM.cpp
-  ClassPotentialC2HDMEFT.cpp
   ClassPotentialR2HDMEFTPHI6.cpp
-  ClassPotentialR2HDMEFT.cpp
+  ClassPotentialR2HDMEFTPHI6_PHI2PSI3.cpp
   ClassPotentialRN2HDM.cpp
   ClassPotentialCxSM.cpp
   ClassPotentialCPintheDark.cpp

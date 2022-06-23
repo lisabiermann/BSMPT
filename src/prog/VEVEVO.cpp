@@ -12,7 +12,6 @@
 #include <BSMPT/minimizer/Minimizer.h>
 #include <BSMPT/models/ClassPotentialOrigin.h> // for Class_Potential_Origin
 #include <BSMPT/models/IncludeAllModels.h>
-#include <BSMPT/models/ClassPotentialR2HDMEFT.h> // for Class_Potential_R2HDMEFT
 #include <BSMPT/models/ClassPotentialR2HDMEFTPHI6.h> // for Class_Potential_R2HDMEFTPHI6
 #include <BSMPT/utility/Logger.h>
 #include <BSMPT/utility/utility.h>
@@ -155,16 +154,6 @@ CLIOptions::CLIOptions(int argc, char *argv[])
   std::vector<std::string> args;
   for (int i{1}; i < argc; ++i)
     args.push_back(argv[i]);
-
-  if (argc == 9)
-  {
-    BSMPT::Models::Class_Potential_R2HDMEFT::Op6_111111 = std::stod(args.at(7));
-    std::cout << "Ophi6_111111 = " << std::stod(args.at(7)) << std::endl;
-  }
-  else
-  {
-    BSMPT::Models::Class_Potential_R2HDMEFT::Op6_111111 = 0;
-  }
 
   if (argc == 16)
   {
