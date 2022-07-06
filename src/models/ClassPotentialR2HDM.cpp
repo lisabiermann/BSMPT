@@ -144,6 +144,28 @@ std::vector<std::string> Class_Potential_R2HDM::addLegendTripleCouplings() const
   return labels;
 }
 
+/**
+ * returns a string which tells the user the chronological order of the EFT
+ * parameters.
+ */
+std::vector<std::string> Class_Potential_R2HDM::addLegendEFT() const
+{
+  std::vector<std::string> labels;
+  labels.push_back("not_set");
+  return labels;
+}
+
+/**
+ * Returns the numerical values of the EFT parameters. This has to be
+ * specified in the model file.
+ */
+std::vector<double> Class_Potential_R2HDM::getParamsEFT() const
+{
+  std::vector<double> valsEFT;
+  valsEFT.push_back(0);
+  return valsEFT;
+}
+
 void Class_Potential_R2HDM::ReadAndSet(const std::string &linestr,
                                        std::vector<double> &par)
 {

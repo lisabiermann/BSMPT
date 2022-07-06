@@ -28,6 +28,7 @@ std::string TestResultsToString(const TestResults &input);
 TestResults CheckNumberOfCTParameters(const Class_Potential_Origin &point);
 TestResults CheckNumberOfVEVLabels(const Class_Potential_Origin &point);
 TestResults CheckLegendTemp(const Class_Potential_Origin &point);
+TestResults CheckNumberOfEFTLabels(const Class_Potential_Origin &point);
 TestResults CheckNumberOfTripleCouplings(const Class_Potential_Origin &point);
 TestResults CheckGaugeBosonMasses(const Class_Potential_Origin &point);
 std::pair<TestResults, TestResults>

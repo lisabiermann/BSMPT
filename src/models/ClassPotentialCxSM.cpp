@@ -153,6 +153,28 @@ std::vector<std::string> Class_CxSM::addLegendVEV() const
 }
 
 /**
+ * returns a string which tells the user the chronological order of the EFT
+ * parameters.
+ */
+std::vector<std::string> Class_CxSM::addLegendEFT() const
+{
+  std::vector<std::string> labels;
+  labels.push_back("not_set");
+  return labels;
+}
+
+/**
+ * Returns the numerical values of the EFT parameters. This has to be
+ * specified in the model file.
+ */
+std::vector<double> Class_CxSM::getParamsEFT() const
+{
+  std::vector<double> valsEFT;
+  valsEFT.push_back(0);
+  return valsEFT;
+}
+
+/**
  * Reads the string linestr and sets the parameter point
  */
 void Class_CxSM::ReadAndSet(const std::string &linestr,

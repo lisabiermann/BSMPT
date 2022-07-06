@@ -214,9 +214,30 @@ TestResults CheckLegendTemp(const Class_Potential_Origin &point)
         "number of VEVs + 3."
         " If you don't fix this, then your header will not match the "
         "numerical output in the output file."
-        " It is expected to be label for the critical temperature, the cirtical VEV, the ratio of VEV and temperature and the labels\
+        " It is expected to be label for the critical temperature, the critical VEV, the ratio of VEV and temperature and the labels\
                        for the VEVs.");
   }
+  return result;
+}
+
+TestResults CheckNumberOfEFTLabels(const Class_Potential_Origin &point)
+{
+  auto result = TestResults::Fail;
+
+  if (point.getParamsEFT().size() == point.addLegendEFT().size())
+  {
+    result = TestResults::Pass;
+  }
+  else
+  {
+    Logger::Write(
+        LoggingLevel::Default,
+        "WARNING: The number of labels for the EFT parameters does not match "
+        "the amount of supplied numerical input."
+        " If you don't fix this, then your header will not match the "
+        "numerical output in the output file.");
+  }
+
   return result;
 }
 
@@ -486,9 +507,12 @@ TestResults CheckTadpoleRelations(const Class_Potential_Origin &point)
 
   double SurviveTadpole = 0;
   auto transformedVEV   = point.MinimizeOrderVEV(point.get_vevTreeMin());
-  for (std::size_t i = 0; i < point.get_NHiggs(); i++){
+  for (std::size_t i = 0; i < point.get_NHiggs(); i++)
+  {
     SurviveTadpole += std::abs(point.VTree(transformedVEV, i + 1));
-    std::cout << "tadpole (" << i << ") = " << std::abs(point.VTree(transformedVEV, i + 1)) << std::endl;
+    std::cout << "tadpole (" << i
+              << ") = " << std::abs(point.VTree(transformedVEV, i + 1))
+              << std::endl;
   }
   if (SurviveTadpole > 1e-5)
   {

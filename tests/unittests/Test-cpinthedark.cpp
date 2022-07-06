@@ -129,6 +129,16 @@ TEST_CASE("Checking number of labels for temperature dependend results for "
   REQUIRE(result == ModelTests::TestResults::Pass);
 }
 
+TEST_CASE("Checking number of EFT labels for CPINTHEDARK", "[cpinthedark]")
+{
+  using namespace BSMPT;
+  std::shared_ptr<BSMPT::Class_Potential_Origin> modelPointer =
+      ModelID::FChoose(ModelID::ModelIDs::CPINTHEDARK);
+  modelPointer->initModel(example_point_CPINTHEDARK);
+  auto result = ModelTests::CheckNumberOfEFTLabels(*modelPointer);
+  REQUIRE(result == ModelTests::TestResults::Pass);
+}
+
 TEST_CASE("Checking number of triple Higgs couplings for CPINTHEDARK",
           "[cpinthedark]")
 {

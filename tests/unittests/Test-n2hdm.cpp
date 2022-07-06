@@ -123,6 +123,16 @@ TEST_CASE(
   REQUIRE(result == ModelTests::TestResults::Pass);
 }
 
+TEST_CASE("Checking number of EFT labels for N2HDM", "[n2hdm]")
+{
+  using namespace BSMPT;
+  std::shared_ptr<BSMPT::Class_Potential_Origin> modelPointer =
+      ModelID::FChoose(ModelID::ModelIDs::RN2HDM);
+  modelPointer->initModel(example_point_RN2HDM);
+  auto result = ModelTests::CheckNumberOfEFTLabels(*modelPointer);
+  REQUIRE(result == ModelTests::TestResults::Pass);
+}
+
 TEST_CASE("Checking number of triple Higgs couplings for N2HDM", "[n2hdm]")
 {
   using namespace BSMPT;

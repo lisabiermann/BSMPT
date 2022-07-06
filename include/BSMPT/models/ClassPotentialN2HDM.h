@@ -105,6 +105,8 @@ public:
   std::vector<std::string> addLegendTemp() const override;
   std::vector<std::string> addLegendTripleCouplings() const override;
   std::vector<std::string> addLegendVEV() const override;
+  std::vector<std::string> addLegendEFT() const override;
+  std::vector<double> getParamsEFT() const override;
 
   /**
    * Set the numerical values for the Lagrange parameters

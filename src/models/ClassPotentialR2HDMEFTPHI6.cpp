@@ -134,6 +134,52 @@ std::vector<std::string> Class_Potential_R2HDMEFTPHI6::addLegendVEV() const
 }
 
 /**
+ * returns a string which tells the user the chronological order of the EFT
+ * parameters.
+ */
+std::vector<std::string> Class_Potential_R2HDMEFTPHI6::addLegendEFT() const
+{
+  std::vector<std::string> labels;
+  labels.push_back("Op6_111111");
+  labels.push_back("Op6_111122");
+  labels.push_back("Op6_122111");
+  labels.push_back("Op6_121211");
+  labels.push_back("Op6_222222");
+  labels.push_back("Op6_112222");
+  labels.push_back("Op6_122122");
+  labels.push_back("Op6_121222");
+  labels.push_back("L1tmp");
+  labels.push_back("L2tmp");
+  labels.push_back("L4tmp");
+  labels.push_back("L5tmp");
+  labels.push_back("m12Sqtmp");
+  return labels;
+}
+
+/**
+ * Returns the numerical values of the EFT parameters. This has to be
+ * specified in the model file.
+ */
+std::vector<double> Class_Potential_R2HDMEFTPHI6::getParamsEFT() const
+{
+  std::vector<double> valsEFT;
+  valsEFT.push_back(Op6_111111);
+  valsEFT.push_back(Op6_111122);
+  valsEFT.push_back(Op6_122111);
+  valsEFT.push_back(Op6_121211);
+  valsEFT.push_back(Op6_222222);
+  valsEFT.push_back(Op6_112222);
+  valsEFT.push_back(Op6_122122);
+  valsEFT.push_back(Op6_121222);
+  valsEFT.push_back(L1tmp);
+  valsEFT.push_back(L2tmp);
+  valsEFT.push_back(L4tmp);
+  valsEFT.push_back(L5tmp);
+  valsEFT.push_back(m12Sqtmp);
+  return valsEFT;
+}
+
+/**
  * returns a string which tells the user the chronological order of the Triple
  * higgs couplings. Use this to complement the legend of the given inputfile
  *

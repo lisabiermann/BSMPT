@@ -876,6 +876,17 @@ public:
    * specified in the model file.
    */
   virtual std::vector<std::string> addLegendVEV() const = 0;
+  /**
+   * Adds the name of the EFT parameters to the legend of the output file. This
+   * has to be specified in the model file.
+   */
+  virtual std::vector<std::string> addLegendEFT() const = 0;
+
+  /**
+   * Returns the numerical values of the EFT parameters. This has to be
+   * specified in the model file.
+   */
+  virtual std::vector<double> getParamsEFT() const = 0;
 
   /**
    * Reads the Lagrangian parameters from the vector 'par' and sets them to the
