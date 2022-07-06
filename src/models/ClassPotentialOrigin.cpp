@@ -5450,6 +5450,10 @@ void Class_Potential_Origin::CheckImplementation(
   TestResults.push_back(
       ModelTests::TestResultsToString(ModelTests::CheckLegendTemp(*this)));
 
+  TestNames.push_back("addLegendEFT number/label match");
+  TestResults.push_back(ModelTests::TestResultsToString(
+      ModelTests::CheckNumberOfEFTLabels(*this)));
+
   TestNames.push_back("addLegendTripleCouplings number/label match");
   TestResults.push_back(ModelTests::TestResultsToString(
       ModelTests::CheckNumberOfTripleCouplings(*this)));

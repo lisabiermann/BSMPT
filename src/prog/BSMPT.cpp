@@ -88,13 +88,11 @@ try
 
     if (linecounter == 1)
     {
+
       outfile << linestr << sep << modelPointer->addLegendCT() << sep
-              << modelPointer->addLegendTemp() << sep << "Op6_111111" << sep
-              << "Op6_111122" << sep << "Op6_122111" << sep << "Op6_121211"
-              << sep << "Op6_222222" << sep << "Op6_112222" << sep
-              << "Op6_122122" << sep << "Op6_121222" << sep << "L1tmp" << sep
-              << "L2tmp" << sep << "L4tmp" << sep << "L5tmp" << sep
-              << "m12Sqtmp" << std::endl;
+              << modelPointer->addLegendTemp() << sep
+              << modelPointer->addLegendEFT() << std::endl;
+
       modelPointer->setUseIndexCol(linestr);
     }
     if (linecounter >= args.FirstLine and linecounter <= args.LastLine and
@@ -169,30 +167,6 @@ try
         }
       }
 
-      double StoreOp6_111111 =
-          BSMPT::Models::Class_Potential_R2HDMEFTPHI6::Op6_111111;
-      double StoreOp6_111122 =
-          BSMPT::Models::Class_Potential_R2HDMEFTPHI6::Op6_111122;
-      double StoreOp6_122111 =
-          BSMPT::Models::Class_Potential_R2HDMEFTPHI6::Op6_122111;
-      double StoreOp6_121211 =
-          BSMPT::Models::Class_Potential_R2HDMEFTPHI6::Op6_121211;
-      double StoreOp6_222222 =
-          BSMPT::Models::Class_Potential_R2HDMEFTPHI6::Op6_222222;
-      double StoreOp6_112222 =
-          BSMPT::Models::Class_Potential_R2HDMEFTPHI6::Op6_112222;
-      double StoreOp6_122122 =
-          BSMPT::Models::Class_Potential_R2HDMEFTPHI6::Op6_122122;
-      double StoreOp6_121222 =
-          BSMPT::Models::Class_Potential_R2HDMEFTPHI6::Op6_121222;
-
-      double Store_L1tmp = BSMPT::Models::Class_Potential_R2HDMEFTPHI6::L1tmp;
-      double Store_L2tmp = BSMPT::Models::Class_Potential_R2HDMEFTPHI6::L2tmp;
-      double Store_L4tmp = BSMPT::Models::Class_Potential_R2HDMEFTPHI6::L4tmp;
-      double Store_L5tmp = BSMPT::Models::Class_Potential_R2HDMEFTPHI6::L5tmp;
-      double Store_m12Sqtmp =
-          BSMPT::Models::Class_Potential_R2HDMEFTPHI6::m12Sqtmp;
-
       if (PrintErrorLines)
       {
         typedef std::numeric_limits<double> dbl;
@@ -207,19 +181,7 @@ try
         else
           outfile << sep << static_cast<int>(EWPT.StatusFlag);
         outfile << sep << EWPT.EWMinimum;
-        outfile << sep << StoreOp6_111111;
-        outfile << sep << StoreOp6_111122;
-        outfile << sep << StoreOp6_122111;
-        outfile << sep << StoreOp6_121211;
-        outfile << sep << StoreOp6_222222;
-        outfile << sep << StoreOp6_112222;
-        outfile << sep << StoreOp6_122122;
-        outfile << sep << StoreOp6_121222;
-        outfile << sep << Store_L1tmp;
-        outfile << sep << Store_L2tmp;
-        outfile << sep << Store_L4tmp;
-        outfile << sep << Store_L5tmp;
-        outfile << sep << Store_m12Sqtmp;
+        outfile << sep << modelPointer->getParamsEFT();
         outfile << std::endl;
       }
       else if (EWPT.StatusFlag == Minimizer::MinimizerStatus::SUCCESS)
@@ -230,14 +192,7 @@ try
           outfile << sep << EWPT.Tc << sep << EWPT.vc;
           outfile << sep << EWPT.vc / EWPT.Tc;
           outfile << sep << EWPT.EWMinimum;
-          outfile << sep << StoreOp6_111111;
-          outfile << sep << StoreOp6_111122;
-          outfile << sep << StoreOp6_122111;
-          outfile << sep << StoreOp6_121211;
-          outfile << sep << StoreOp6_222222;
-          outfile << sep << StoreOp6_112222;
-          outfile << sep << StoreOp6_122122;
-          outfile << sep << StoreOp6_121222;
+          outfile << sep << modelPointer->getParamsEFT();
           outfile << std::endl;
         }
       }
@@ -315,18 +270,30 @@ CLIOptions::CLIOptions(int argc, char *argv[])
     BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::Op6_121222 =
         std::stod(args.at(12));
 
-    BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::OL_1b12b  = std::stod(args.at(13));
-    BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::OL_1b21b  = std::stod(args.at(14));
-    BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::OL_2b11b  = std::stod(args.at(15));
-    BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::OL_2b22b  = std::stod(args.at(16));
-    BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::OQu_1b12b = std::stod(args.at(17));
-    BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::OQu_1b21b = std::stod(args.at(18));
-    BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::OQu_2b11b = std::stod(args.at(19));
-    BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::OQu_2b22b = std::stod(args.at(20));
-    BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::OQd_1b12b = std::stod(args.at(21));
-    BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::OQd_1b21b = std::stod(args.at(22));
-    BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::OQd_2b11b = std::stod(args.at(23));
-    BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::OQd_2b22b = std::stod(args.at(24));
+    BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::OL_1b12b =
+        std::stod(args.at(13));
+    BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::OL_1b21b =
+        std::stod(args.at(14));
+    BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::OL_2b11b =
+        std::stod(args.at(15));
+    BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::OL_2b22b =
+        std::stod(args.at(16));
+    BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::OQu_1b12b =
+        std::stod(args.at(17));
+    BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::OQu_1b21b =
+        std::stod(args.at(18));
+    BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::OQu_2b11b =
+        std::stod(args.at(19));
+    BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::OQu_2b22b =
+        std::stod(args.at(20));
+    BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::OQd_1b12b =
+        std::stod(args.at(21));
+    BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::OQd_1b21b =
+        std::stod(args.at(22));
+    BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::OQd_2b11b =
+        std::stod(args.at(23));
+    BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::OQd_2b22b =
+        std::stod(args.at(24));
   }
   else
   {

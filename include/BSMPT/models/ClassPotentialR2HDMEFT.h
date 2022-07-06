@@ -80,7 +80,8 @@ public:
   Class_Potential_R2HDMEFT();
   virtual ~Class_Potential_R2HDMEFT();
 
-  double L1 = 0, L2 = 0, L3 = 0, L4 = 0, L5 = 0, m12Sq = 0, m11Sq = 0, m22Sq = 0;
+  double L1 = 0, L2 = 0, L3 = 0, L4 = 0, L5 = 0, m12Sq = 0, m11Sq = 0,
+         m22Sq = 0;
   double dL1 = 0, dL2 = 0, dL3 = 0, dL4 = 0, dL5 = 0, dm11Sq = 0, dm22Sq = 0,
          dm12Sq = 0, dT1 = 0, dT2 = 0, dTCP = 0, dTCB = 0;
   double TanBeta = 0, C_CosBeta = 0, C_SinBeta = 0, C_CosBetaSquared = 0,
@@ -93,7 +94,7 @@ public:
   /*
    *    EFT parameters: see 1905.11047, only Op6_111111 contribution
    */
-  double LambdaEFT  = 1000; // EFT scale
+  double LambdaEFT = 1000;  // EFT scale
   static double Op6_111111; // CLI input parameter
   double dOp6_111111 = 0;
 
@@ -103,6 +104,8 @@ public:
   std::vector<std::string> addLegendTemp() const override;
   std::vector<std::string> addLegendTripleCouplings() const override;
   std::vector<std::string> addLegendVEV() const override;
+  std::vector<std::string> addLegendEFT() const override;
+  std::vector<double> getParamsEFT() const override;
 
   /**
    * Set the numerical values for the Lagrange parameters
