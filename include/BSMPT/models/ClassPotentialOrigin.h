@@ -434,10 +434,13 @@ protected:
    */
   std::vector<std::vector<double>> DebyeHiggs;
   /**
-   * @brief DebyeHiggsDim6 stores the two-loop debye corrections due to dim-6
-   * operators to the mass matrix of the Higgs bosons
+   * @brief DebyeHiggsOneDim6 stores the scalar dim-6 one-loop debye corrections
    */
-  std::vector<std::vector<double>> DebyeHiggsDim6;
+  std::vector<std::vector<double>> DebyeHiggsOneDim6;
+  /**
+   * @brief DebyeHiggsTwoDim6 stores the scalar dim-6 two-loop debye corrections
+   */
+  std::vector<std::vector<double>> DebyeHiggsTwoDim6;
   /**
    * @brief DebyeGauge stores the debye corrections to the mass matrix of the
    * gauge bosons
@@ -454,9 +457,15 @@ protected:
    */
   std::vector<std::vector<double>> SymFac_HiggsL6;
   /**
-   * @brief SymFac_Higgs stores the general EFT debye scalar mass corrections
+   * @brief SymFac_Higgs stores the general one-loop EFT debye scalar mass
+   * corrections (including Yukawa modifications)
    */
-  std::vector<std::vector<double>> SymFac_Higgs;
+  std::vector<std::vector<double>> SymFac_Higgs_OneLoop;
+  /**
+   * @brief SymFac_Higgs stores the general two-loop EFT debye scalar mass
+   * corrections
+   */
+  std::vector<std::vector<double>> SymFac_Higgs_TwoLoop;
   /**
    * @brief SymFac_HiggsG2H4 stores the prefactors stemming from the G2H4
    * two-loop scalar debye mass corrections

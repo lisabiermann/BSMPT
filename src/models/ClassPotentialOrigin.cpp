@@ -2539,7 +2539,8 @@ MatrixXd Class_Potential_Origin::HiggsMassMatrix(const std::vector<double> &v,
         if (Temp != 0)
         {
           res(i, j) += DebyeHiggs[i][j] * std::pow(Temp, 2) +
-                       DebyeHiggsDim6[i][j] * std::pow(Temp, 4);
+                       DebyeHiggsOneDim6[i][j] * std::pow(Temp, 2) +
+                       DebyeHiggsTwoDim6[i][j] * std::pow(Temp, 4);
         }
       }
     }
@@ -2581,7 +2582,8 @@ MatrixXd Class_Potential_Origin::HiggsMassMatrix(const std::vector<double> &v,
       for (std::size_t j = 0; j < NHiggs; j++)
       {
         res(i, j) = 2 * DebyeHiggs[i][j] * Temp +
-                    4 * DebyeHiggsDim6[i][j] * std::pow(Temp, 3);
+                    2 * DebyeHiggsOneDim6[i][j] * Temp +
+                    4 * DebyeHiggsTwoDim6[i][j] * std::pow(Temp, 3);
       }
     }
   }
@@ -2672,7 +2674,8 @@ Class_Potential_Origin::HiggsMassesSquared(const std::vector<double> &v,
       for (std::size_t j = 0; j < NHiggs; j++)
       {
         Diff(i, j) = 2 * DebyeHiggs[i][j] * Temp +
-                     4 * DebyeHiggs[i][j] * std::pow(Temp, 3);
+                     2 * DebyeHiggsOneDim6[i][j] * Temp +
+                     4 * DebyeHiggsTwoDim6[i][j] * std::pow(Temp, 3);
       }
     }
 
@@ -3447,8 +3450,7 @@ void Class_Potential_Origin::CalculateDebye(bool forceCalculation)
       for (std::size_t j = i; j < NHiggs; j++)
       {
         double HiggsFacdim6L6 = 0, HiggsFacdim6G2H4 = 0, HiggsFacdim6G4H2 = 0;
-        DebyeHiggs[i][j]     = 0;
-        DebyeHiggsDim6[i][j] = 0;
+        // scalar diagrams
         for (std::size_t k = 0; k < NHiggs; k++)
         {
           DebyeHiggs[i][j] += 0.5 * Curvature_Higgs_L4[i][j][k][k] / 12.0;
@@ -3562,9 +3564,10 @@ void Class_Potential_Origin::CalculateDebye(bool forceCalculation)
         }
         if (!UseTensorSymFac and UseTwoLoopThermalMass)
         {
-          DebyeHiggsDim6[i][j] += SymFac_HiggsL6[i][j] * HiggsFacdim6L6;
+          DebyeHiggsTwoDim6[i][j] += SymFac_HiggsL6[i][j] * HiggsFacdim6L6;
         }
 
+        // gauge boson diagrams
         for (std::size_t a = 0; a < NGauge; a++)
         {
           DebyeHiggs[i][j] += 3 * 0.5 * Curvature_Gauge_G2H2[a][a][i][j] / 12.0;
@@ -3576,7 +3579,8 @@ void Class_Potential_Origin::CalculateDebye(bool forceCalculation)
           }
           if (!UseTensorSymFac and UseTwoLoopThermalMass)
           {
-            DebyeHiggsDim6[i][j] += SymFac_HiggsG2H4[i][j] * HiggsFacdim6G2H4;
+            DebyeHiggsTwoDim6[i][j] +=
+                SymFac_HiggsG2H4[i][j] * HiggsFacdim6G2H4;
           }
           for (std::size_t b = 0; b < NGauge; b++)
           {
@@ -3589,14 +3593,20 @@ void Class_Potential_Origin::CalculateDebye(bool forceCalculation)
         {
           if (!UseTensorSymFac)
           {
-            DebyeHiggsDim6[i][j] += SymFac_HiggsG4H2[i][j] * HiggsFacdim6G4H2;
+            DebyeHiggsTwoDim6[i][j] +=
+                SymFac_HiggsG4H2[i][j] * HiggsFacdim6G4H2;
           }
           else
           {
-            DebyeHiggsDim6[i][j] += SymFac_Higgs[i][j];
+            DebyeHiggsTwoDim6[i][j] +=
+                SymFac_Higgs_TwoLoop[i]
+                                    [j]; // includes scalar, gauge boson and
+                                         // fermion two-loop dim-6 corrections
           }
         }
 
+        // fermion diagrams
+        double HiggsFacdim6QuarkF2H3 = 0, HiggsFacdim6LeptonF2H3 = 0;
         for (std::size_t a = 0; a < NQuarks; a++)
         {
           for (std::size_t b = 0; b < NQuarks; b++)
@@ -3607,6 +3617,40 @@ void Class_Potential_Origin::CalculateDebye(bool forceCalculation)
                                     Curvature_Quark_F2H1[a][b][j])
                                    .real();
             DebyeHiggs[i][j] += 6.0 / 24.0 * tmp;
+            for (std::size_t k = 0; k < NHiggs; k++)
+            {
+              HiggsFacdim6QuarkF2H3 +=
+                  (std::conj(Curvature_Quark_F2H3[a][b][i][k][k]) *
+                       Curvature_Quark_F2H1[a][b][j] +
+                   std::conj(Curvature_Quark_F2H1[a][b][j]) *
+                       Curvature_Quark_F2H3[a][b][i][k][k])
+                      .real() +
+                  (std::conj(Curvature_Quark_F2H3[a][b][k][i][k]) *
+                       Curvature_Quark_F2H1[a][b][j] +
+                   std::conj(Curvature_Quark_F2H1[a][b][j]) *
+                       Curvature_Quark_F2H3[a][b][k][i][k])
+                      .real() +
+                  (std::conj(Curvature_Quark_F2H3[a][b][k][k][i]) *
+                       Curvature_Quark_F2H1[a][b][j] +
+                   std::conj(Curvature_Quark_F2H1[a][b][j]) *
+                       Curvature_Quark_F2H3[a][b][k][k][i])
+                      .real() +
+                  (std::conj(Curvature_Quark_F2H3[a][b][j][k][k]) *
+                       Curvature_Quark_F2H1[a][b][i] +
+                   std::conj(Curvature_Quark_F2H1[a][b][i]) *
+                       Curvature_Quark_F2H3[a][b][j][k][k])
+                      .real() +
+                  (std::conj(Curvature_Quark_F2H3[a][b][k][j][k]) *
+                       Curvature_Quark_F2H1[a][b][i] +
+                   std::conj(Curvature_Quark_F2H1[a][b][i]) *
+                       Curvature_Quark_F2H3[a][b][k][j][k])
+                      .real() +
+                  (std::conj(Curvature_Quark_F2H3[a][b][k][k][j]) *
+                       Curvature_Quark_F2H1[a][b][i] +
+                   std::conj(Curvature_Quark_F2H1[a][b][i]) *
+                       Curvature_Quark_F2H3[a][b][k][k][j])
+                      .real();
+            }
           }
         }
 
@@ -3620,7 +3664,55 @@ void Class_Potential_Origin::CalculateDebye(bool forceCalculation)
                                     Curvature_Lepton_F2H1[a][b][j])
                                    .real();
             DebyeHiggs[i][j] += 2.0 / 24.0 * tmp;
+            for (std::size_t k = 0; k < NHiggs; k++)
+            {
+              HiggsFacdim6LeptonF2H3 +=
+                  (std::conj(Curvature_Lepton_F2H3[a][b][i][k][k]) *
+                       Curvature_Lepton_F2H1[a][b][j] +
+                   std::conj(Curvature_Lepton_F2H1[a][b][j]) *
+                       Curvature_Lepton_F2H3[a][b][i][k][k])
+                      .real() +
+                  (std::conj(Curvature_Lepton_F2H3[a][b][k][i][k]) *
+                       Curvature_Lepton_F2H1[a][b][j] +
+                   std::conj(Curvature_Lepton_F2H1[a][b][j]) *
+                       Curvature_Lepton_F2H3[a][b][k][i][k])
+                      .real() +
+                  (std::conj(Curvature_Lepton_F2H3[a][b][k][k][i]) *
+                       Curvature_Lepton_F2H1[a][b][j] +
+                   std::conj(Curvature_Lepton_F2H1[a][b][j]) *
+                       Curvature_Lepton_F2H3[a][b][k][k][i])
+                      .real() +
+                  (std::conj(Curvature_Lepton_F2H3[a][b][j][k][k]) *
+                       Curvature_Lepton_F2H1[a][b][i] +
+                   std::conj(Curvature_Lepton_F2H1[a][b][i]) *
+                       Curvature_Lepton_F2H3[a][b][j][k][k])
+                      .real() +
+                  (std::conj(Curvature_Lepton_F2H3[a][b][k][j][k]) *
+                       Curvature_Lepton_F2H1[a][b][i] +
+                   std::conj(Curvature_Lepton_F2H1[a][b][i]) *
+                       Curvature_Lepton_F2H3[a][b][k][j][k])
+                      .real() +
+                  (std::conj(Curvature_Lepton_F2H3[a][b][k][k][j]) *
+                       Curvature_Lepton_F2H1[a][b][i] +
+                   std::conj(Curvature_Lepton_F2H1[a][b][i]) *
+                       Curvature_Lepton_F2H3[a][b][k][k][j])
+                      .real();
+            }
           }
+        }
+
+        if (!UseTensorSymFac)
+        {
+          DebyeHiggsOneDim6[i][j] +=
+              SymFac_Higgs_OneLoop[i][j] *
+              (HiggsFacdim6QuarkF2H3 + HiggsFacdim6LeptonF2H3);
+        }
+        else
+        {
+          DebyeHiggsOneDim6[i][j] +=
+              SymFac_Higgs_OneLoop[i][j]; // one-loop dim-6 diagrams with closed
+                                          // fermion loops or with Yukawa
+                                          // modifications
         }
 
         //	            if(i==j) DebyeHiggs[i][j] *= 0.5;
@@ -3632,7 +3724,10 @@ void Class_Potential_Origin::CalculateDebye(bool forceCalculation)
       for (std::size_t j = i; j < NHiggs; j++)
       {
         if (std::abs(DebyeHiggs[i][j]) <= 1e-5) DebyeHiggs[i][j] = 0;
-        if (std::abs(DebyeHiggsDim6[i][j]) <= 1e-5) DebyeHiggsDim6[i][j] = 0;
+        if (std::abs(DebyeHiggsOneDim6[i][j]) <= 1e-5)
+          DebyeHiggsOneDim6[i][j] = 0;
+        if (std::abs(DebyeHiggsTwoDim6[i][j]) <= 1e-5)
+          DebyeHiggsTwoDim6[i][j] = 0;
       }
     }
 
@@ -3640,8 +3735,9 @@ void Class_Potential_Origin::CalculateDebye(bool forceCalculation)
     {
       for (std::size_t j = 0; j < i; j++)
       {
-        DebyeHiggs[i][j]     = DebyeHiggs[j][i];
-        DebyeHiggsDim6[i][j] = DebyeHiggsDim6[j][i];
+        DebyeHiggs[i][j]        = DebyeHiggs[j][i];
+        DebyeHiggsOneDim6[i][j] = DebyeHiggsOneDim6[j][i];
+        DebyeHiggsTwoDim6[i][j] = DebyeHiggsTwoDim6[j][i];
       }
     }
   }
@@ -3752,13 +3848,15 @@ void Class_Potential_Origin::initVectors()
 
   VEVSymmetric = std::vector<double>(NHiggs, 0);
 
-  DebyeHiggs     = vec2{NHiggs, std::vector<double>(NHiggs, 0)};
-  DebyeHiggsDim6 = vec2{NHiggs, std::vector<double>(NHiggs, 0)};
+  DebyeHiggs        = vec2{NHiggs, std::vector<double>(NHiggs, 0)};
+  DebyeHiggsOneDim6 = vec2{NHiggs, std::vector<double>(NHiggs, 0)};
+  DebyeHiggsTwoDim6 = vec2{NHiggs, std::vector<double>(NHiggs, 0)};
 
-  SymFac_HiggsL6   = vec2{NHiggs, std::vector<double>(NHiggs, 0)};
-  SymFac_Higgs     = vec2{NHiggs, std::vector<double>(NHiggs, 0)};
-  SymFac_HiggsG2H4 = vec2{NHiggs, std::vector<double>(NHiggs, 0)};
-  SymFac_HiggsG4H2 = vec2{NHiggs, std::vector<double>(NHiggs, 0)};
+  SymFac_HiggsL6       = vec2{NHiggs, std::vector<double>(NHiggs, 0)};
+  SymFac_Higgs_OneLoop = vec2{NHiggs, std::vector<double>(NHiggs, 0)};
+  SymFac_Higgs_TwoLoop = vec2{NHiggs, std::vector<double>(NHiggs, 0)};
+  SymFac_HiggsG2H4     = vec2{NHiggs, std::vector<double>(NHiggs, 0)};
+  SymFac_HiggsG4H2     = vec2{NHiggs, std::vector<double>(NHiggs, 0)};
 
   LambdaHiggs_3    = vec3{NHiggs, vec2{NHiggs, std::vector<double>(NHiggs, 0)}};
   LambdaHiggs_3_CT = vec3{NHiggs, vec2{NHiggs, std::vector<double>(NHiggs, 0)}};

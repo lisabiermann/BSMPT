@@ -186,27 +186,27 @@ void Class_Potential_R2HDMEFT::ReadAndSet(const std::string &linestr,
   }
 
   // old format
-//   for (int k = 1; k <= 8; k++)
-//   {
-//     ss >> tmp;
-//     if (k == 1)
-//       Type = tmp;
-//     else if (k == 2)
-//       L1 = tmp;
-//     else if (k == 3)
-//       L2 = tmp;
-//     else if (k == 4)
-//       L3 = tmp;
-//     else if (k == 5)
-//       L4 = tmp;
-//     else if (k == 6)
-//       L5 = tmp;
-//     else if (k == 7)
-//       m12Sq = tmp;
-//     else if (k == 8)
-//       TanBeta = tmp;
-//   }
-  
+  //   for (int k = 1; k <= 8; k++)
+  //   {
+  //     ss >> tmp;
+  //     if (k == 1)
+  //       Type = tmp;
+  //     else if (k == 2)
+  //       L1 = tmp;
+  //     else if (k == 3)
+  //       L2 = tmp;
+  //     else if (k == 4)
+  //       L3 = tmp;
+  //     else if (k == 5)
+  //       L4 = tmp;
+  //     else if (k == 6)
+  //       L5 = tmp;
+  //     else if (k == 7)
+  //       m12Sq = tmp;
+  //     else if (k == 8)
+  //       TanBeta = tmp;
+  //   }
+
   // new format
   for (int k = 1; k <= 16; k++)
   {
@@ -284,8 +284,8 @@ void Class_Potential_R2HDMEFT::set_gen(const std::vector<double> &par)
 
   // corrected L1 to absorb CP-even mass shifts due to EFT
   L1 = L1tmp + 0.3e1 * Op6_111111 *
-                    (double)pow((double)LambdaEFT, (double)(-2)) * C_vev0 *
-                    C_vev0 * C_CosBetaSquared;
+                   (double)pow((double)LambdaEFT, (double)(-2)) * C_vev0 *
+                   C_vev0 * C_CosBetaSquared;
 
   m11Sq = m12Sq * TanBeta -
           C_vev0 * C_vev0 * C_SinBetaSquared * (L4 + L5 + L3) / 0.2e1 -
@@ -2104,10 +2104,11 @@ void Class_Potential_R2HDMEFT::write() const
   }
   else
   {
-      ss << "Note that NO Dim-6 two-loop corrections to thermal masses are taken into "
+    ss << "Note that NO Dim-6 two-loop corrections to thermal masses are taken "
+          "into "
           "account!\n";
   }
-  
+
   if (UseTensorSymFac)
   {
     ss << "Usage of combined c-factor * tensor structure!\n";
@@ -4275,15 +4276,18 @@ void Class_Potential_R2HDMEFT::SetCurvatureArrays()
 
   SetUseTensorSymFac(true); // true for whole SymFac*Tensor input
 
-  SymFac_Higgs[0][0] = -Op6_111111 / 4. *
-                       (double)pow((double)LambdaEFT, (double)(-2)); // rho1rho1
-  SymFac_Higgs[1][1] = -Op6_111111 / 4. *
-                       (double)pow((double)LambdaEFT, (double)(-2)); // eta1eta1
-  SymFac_Higgs[4][4] =
+  SymFac_Higgs_TwoLoop[0][0] =
+      -Op6_111111 / 4. *
+      (double)pow((double)LambdaEFT, (double)(-2)); // rho1rho1
+  SymFac_Higgs_TwoLoop[1][1] =
+      -Op6_111111 / 4. *
+      (double)pow((double)LambdaEFT, (double)(-2)); // eta1eta1
+  SymFac_Higgs_TwoLoop[4][4] =
       -Op6_111111 / 4. *
       (double)pow((double)LambdaEFT, (double)(-2)); // zeta1zeta1
-  SymFac_Higgs[5][5] = -Op6_111111 / 4. *
-                       (double)pow((double)LambdaEFT, (double)(-2)); // psi1psi1
+  SymFac_Higgs_TwoLoop[5][5] =
+      -Op6_111111 / 4. *
+      (double)pow((double)LambdaEFT, (double)(-2)); // psi1psi1
 
   // SymFac_Gauge is independent of Op6_111111
 
