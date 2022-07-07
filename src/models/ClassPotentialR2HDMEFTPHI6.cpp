@@ -2290,72 +2290,72 @@ void Class_Potential_R2HDMEFTPHI6::SetCurvatureArrays()
 
   SetUseTensorSymFac(true); // true for whole SymFac*Tensor input
 
-  SymFac_Higgs[0][0] =
+  SymFac_Higgs_TwoLoop[0][0] =
       pow(LambdaEFT, -0.2e1) *
       (-2 * (6 * Op6_111111 + 2 * Op6_111122 + Op6_112222 + Op6_122111) -
        Op6_122122) /
       48.; // rho1rho1
-  SymFac_Higgs[0][2] =
+  SymFac_Higgs_TwoLoop[0][2] =
       pow(LambdaEFT, -0.2e1) *
       (-4 * Op6_111112 - 3 * Op6_112212 - 2 * (Op6_121221 + 2 * Op6_122222)) /
       48.; // rho1rho2
-  SymFac_Higgs[1][1] =
+  SymFac_Higgs_TwoLoop[1][1] =
       pow(LambdaEFT, -0.2e1) *
       (-2 * (6 * Op6_111111 + 2 * Op6_111122 + Op6_112222 + Op6_122111) -
        Op6_122122) /
       48.; // eta1eta1
-  SymFac_Higgs[1][3] =
+  SymFac_Higgs_TwoLoop[1][3] =
       pow(LambdaEFT, -0.2e1) *
       (-4 * Op6_111112 - 3 * Op6_112212 - 2 * (Op6_121221 + 2 * Op6_122222)) /
       48.; // eta1eta2
-  SymFac_Higgs[2][0] =
+  SymFac_Higgs_TwoLoop[2][0] =
       pow(LambdaEFT, -0.2e1) *
       (-4 * Op6_111112 - 3 * Op6_112212 - 2 * (Op6_121221 + 2 * Op6_122222)) /
       48.; // rho2rho1
-  SymFac_Higgs[2][2] = pow(LambdaEFT, -0.2e1) *
+  SymFac_Higgs_TwoLoop[2][2] = pow(LambdaEFT, -0.2e1) *
                        (-2 * Op6_111122 - 4 * Op6_112222 - Op6_122111 -
                         2 * (Op6_122122 + 6 * Op6_222222)) /
                        48.; // rho2rho2
-  SymFac_Higgs[3][1] =
+  SymFac_Higgs_TwoLoop[3][1] =
       pow(LambdaEFT, -0.2e1) *
       (-4 * Op6_111112 - 3 * Op6_112212 - 2 * (Op6_121221 + 2 * Op6_122222)) /
       48.; // eta2eta1
-  SymFac_Higgs[3][3] = pow(LambdaEFT, -0.2e1) *
+  SymFac_Higgs_TwoLoop[3][3] = pow(LambdaEFT, -0.2e1) *
                        (-2 * Op6_111122 - 4 * Op6_112222 - Op6_122111 -
                         2 * (Op6_122122 + 6 * Op6_222222)) /
                        48.; // eta2eta2
 
-  SymFac_Higgs[4][4] =
+  SymFac_Higgs_TwoLoop[4][4] =
       pow(LambdaEFT, -0.2e1) *
       (-2 * (6 * Op6_111111 + 2 * Op6_111122 + Op6_112222 + Op6_122111) -
        Op6_122122) /
       48.; // zeta1zeta1
-  SymFac_Higgs[4][6] =
+  SymFac_Higgs_TwoLoop[4][6] =
       pow(LambdaEFT, -0.2e1) *
       (-4 * Op6_111112 - 3 * Op6_112212 - 2 * (Op6_121221 + 2 * Op6_122222)) /
       48.; // zeta1zeta2
-  SymFac_Higgs[5][5] =
+  SymFac_Higgs_TwoLoop[5][5] =
       pow(LambdaEFT, -0.2e1) *
       (-2 * (6 * Op6_111111 + 2 * Op6_111122 + Op6_112222 + Op6_122111) -
        Op6_122122) /
       48.; // psi1psi1
-  SymFac_Higgs[5][7] =
+  SymFac_Higgs_TwoLoop[5][7] =
       pow(LambdaEFT, -0.2e1) *
       (-4 * Op6_111112 - 3 * Op6_112212 - 2 * (Op6_121221 + 2 * Op6_122222)) /
       48.; // psi1psi2
-  SymFac_Higgs[6][4] =
+  SymFac_Higgs_TwoLoop[6][4] =
       pow(LambdaEFT, -0.2e1) *
       (-4 * Op6_111112 - 3 * Op6_112212 - 2 * (Op6_121221 + 2 * Op6_122222)) /
       48.; // zeta2zeta1
-  SymFac_Higgs[6][6] = pow(LambdaEFT, -0.2e1) *
+  SymFac_Higgs_TwoLoop[6][6] = pow(LambdaEFT, -0.2e1) *
                        (-2 * Op6_111122 - 4 * Op6_112222 - Op6_122111 -
                         2 * (Op6_122122 + 6 * Op6_222222)) /
                        48.; // zeta2zeta2
-  SymFac_Higgs[7][5] =
+  SymFac_Higgs_TwoLoop[7][5] =
       pow(LambdaEFT, -0.2e1) *
       (-4 * Op6_111112 - 3 * Op6_112212 - 2 * (Op6_121221 + 2 * Op6_122222)) /
       48.; // psi2psi1
-  SymFac_Higgs[7][7] = pow(LambdaEFT, -0.2e1) *
+  SymFac_Higgs_TwoLoop[7][7] = pow(LambdaEFT, -0.2e1) *
                        (-2 * Op6_111122 - 4 * Op6_112222 - Op6_122111 -
                         2 * (Op6_122122 + 6 * Op6_222222)) /
                        48.; // psi2psi2
