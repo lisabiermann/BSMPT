@@ -287,7 +287,7 @@ PTFinder_gen_all(const std::shared_ptr<Class_Potential_Origin> &modelPointer,
   std::vector<double> solStartPot, solMittePot, solEndPot;
   std::vector<double> checkStart, checkMitte, checkEnde;
   std::vector<double> startStart, startMitte, startEnde;
-  double Distance = 1e-2;
+  double Distance = 1e-3;
   double TA       = TempStart;
   double TM;
   double TE = TempEnd;
