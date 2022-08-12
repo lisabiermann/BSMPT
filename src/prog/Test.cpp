@@ -13,9 +13,7 @@
  */
 
 #include <BSMPT/minimizer/Minimizer.h>
-#include <BSMPT/models/ClassPotentialOrigin.h>   // for Class_Potential_Origin
-#include <BSMPT/models/ClassPotentialR2HDMEFTPHI6.h> // for Class_Potential_R2HDMEFTPHI6
-#include <BSMPT/models/ClassPotentialR2HDMEFTPHI6_PHI2PSI3.h> // for Class_Potential_R2HDMEFTPHI6_PHI2PSI3
+#include <BSMPT/models/ClassPotentialOrigin.h> // for Class_Potential_Origin
 #include <BSMPT/models/IncludeAllModels.h>
 #include <BSMPT/models/modeltests/ModelTestfunctions.h>
 #include <BSMPT/utility/Logger.h>
@@ -87,7 +85,6 @@ try
 
     if (linecounter == 1)
     {
-
       modelPointer->setUseIndexCol(linestr);
     }
     if (linecounter == args.Line and linecounter != 1)

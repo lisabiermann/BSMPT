@@ -82,7 +82,8 @@ public:
 
   double L1 = 0, L2 = 0, L3 = 0, L4 = 0, L5 = 0, m12Sq = 0, m11Sq = 0,
          m22Sq = 0;
-  static double L1tmp, L2tmp, L4tmp, L5tmp, m12Sqtmp;
+  double L1tmp = 0, L2tmp = 0, L4tmp = 0, L5tmp = 0,
+         m12Sqtmp = 0; // storage of unshifted parameters
   double dL1 = 0, dL2 = 0, dL3 = 0, dL4 = 0, dL5 = 0, dm11Sq = 0, dm22Sq = 0,
          dm12Sq = 0, dT1 = 0, dT2 = 0, dTCP = 0, dTCB = 0;
   double TanBeta = 0, C_CosBeta = 0, C_SinBeta = 0, C_CosBetaSquared = 0,
@@ -95,11 +96,11 @@ public:
   /*
    *    EFT parameters: see 1905.11047, only Ophi6 contributions
    */
-  double LambdaEFT = 1000; // EFT scale
-  static double Op6_111111, Op6_111122, Op6_122111, Op6_121211, Op6_222222,
-      Op6_112222, Op6_122122, Op6_121222; // CLI input parameter
-  double Op6_111112 = 0, Op6_121221 = 0, Op6_112212 = 0, Op6_122222 = 0,
-         Op6_121212  = 0; // phi6-operators that violate Z2-symmetry
+  double LambdaEFT  = 1000; // EFT scale
+  double Op6_111111 = 0, Op6_111122 = 0, Op6_122111 = 0, Op6_121211 = 0,
+         Op6_111112 = 0, Op6_121221 = 0, Op6_112212 = 0, Op6_222222 = 0,
+         Op6_112222 = 0, Op6_122122 = 0, Op6_121222 = 0, Op6_122222 = 0,
+         Op6_121212  = 0;
   double dOp6_111111 = 0, dOp6_111122 = 0, dOp6_122111 = 0, dOp6_121211 = 0,
          dOp6_222222 = 0, dOp6_112222 = 0, dOp6_122122 = 0, dOp6_121222 = 0;
 

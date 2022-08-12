@@ -13,35 +13,6 @@ namespace BSMPT
 {
 namespace Models
 {
-
-double BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::Op6_111111;
-double BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::Op6_111122;
-double BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::Op6_122111;
-double BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::Op6_121211;
-double BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::Op6_222222;
-double BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::Op6_112222;
-double BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::Op6_122122;
-double BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::Op6_121222;
-
-double BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::OL_1b12b;
-double BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::OL_1b21b;
-double BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::OL_2b11b;
-double BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::OL_2b22b;
-double BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::OQu_1b12b;
-double BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::OQu_1b21b;
-double BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::OQu_2b11b;
-double BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::OQu_2b22b;
-double BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::OQd_1b12b;
-double BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::OQd_1b21b;
-double BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::OQd_2b11b;
-double BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::OQd_2b22b;
-
-double BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::L1tmp;
-double BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::L2tmp;
-double BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::L4tmp;
-double BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::L5tmp;
-double BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::m12Sqtmp;
-
 Class_Potential_R2HDMEFTPHI6_PHI2PSI3::Class_Potential_R2HDMEFTPHI6_PHI2PSI3()
 {
   // TODO Auto-generated constructor stub
@@ -115,8 +86,8 @@ Class_Potential_R2HDMEFTPHI6_PHI2PSI3::addLegendCT() const
 }
 
 /**
- * returns a string which tells the user the chronological order of the VEVs and
- * the critical temperature. Use this to complement the legend of the given
+ * returns a string which tells the user the chronological order of the VEVs
+ * and the critical temperature. Use this to complement the legend of the given
  * inputfile
  */
 std::vector<std::string>
@@ -161,27 +132,44 @@ Class_Potential_R2HDMEFTPHI6_PHI2PSI3::addLegendEFT() const
   labels.push_back("Op6_111122");
   labels.push_back("Op6_122111");
   labels.push_back("Op6_121211");
+  labels.push_back("Op6_111112");
+  labels.push_back("Op6_121221");
+  labels.push_back("Op6_112212");
   labels.push_back("Op6_222222");
   labels.push_back("Op6_112222");
   labels.push_back("Op6_122122");
   labels.push_back("Op6_121222");
-  labels.push_back("OL_1b12b");
-  labels.push_back("OL_1b21b");
-  labels.push_back("OL_2b11b");
-  labels.push_back("OL_2b22b");
+  labels.push_back("Op6_122222");
+  labels.push_back("Op6_121212");
+  labels.push_back("OQu_1b11b");
   labels.push_back("OQu_1b12b");
   labels.push_back("OQu_1b21b");
+  labels.push_back("OQu_1b22b");
   labels.push_back("OQu_2b11b");
+  labels.push_back("OQu_2b12b");
+  labels.push_back("OQu_2b21b");
   labels.push_back("OQu_2b22b");
+  labels.push_back("OQd_1b11b");
   labels.push_back("OQd_1b12b");
   labels.push_back("OQd_1b21b");
+  labels.push_back("OQd_1b22b");
   labels.push_back("OQd_2b11b");
+  labels.push_back("OQd_2b12b");
+  labels.push_back("OQd_2b21b");
   labels.push_back("OQd_2b22b");
-  labels.push_back("L1tmp");
-  labels.push_back("L2tmp");
-  labels.push_back("L4tmp");
-  labels.push_back("L5tmp");
-  labels.push_back("m12Sqtmp");
+  labels.push_back("OL_1b11b");
+  labels.push_back("OL_1b12b");
+  labels.push_back("OL_1b21b");
+  labels.push_back("OL_1b22b");
+  labels.push_back("OL_2b11b");
+  labels.push_back("OL_2b12b");
+  labels.push_back("OL_2b21b");
+  labels.push_back("OL_2b22b");
+  labels.push_back("L1_shifted");
+  labels.push_back("L2_shifted");
+  labels.push_back("L4_shifted");
+  labels.push_back("L5_shifted");
+  labels.push_back("m12Sq_shifted");
   return labels;
 }
 
@@ -196,27 +184,44 @@ std::vector<double> Class_Potential_R2HDMEFTPHI6_PHI2PSI3::getParamsEFT() const
   valsEFT.push_back(Op6_111122);
   valsEFT.push_back(Op6_122111);
   valsEFT.push_back(Op6_121211);
+  valsEFT.push_back(Op6_111112);
+  valsEFT.push_back(Op6_121221);
+  valsEFT.push_back(Op6_112212);
   valsEFT.push_back(Op6_222222);
   valsEFT.push_back(Op6_112222);
   valsEFT.push_back(Op6_122122);
   valsEFT.push_back(Op6_121222);
-  valsEFT.push_back(OL_1b12b);
-  valsEFT.push_back(OL_1b21b);
-  valsEFT.push_back(OL_2b11b);
-  valsEFT.push_back(OL_2b22b);
+  valsEFT.push_back(Op6_122222);
+  valsEFT.push_back(Op6_121212);
+  valsEFT.push_back(OQu_1b11b);
   valsEFT.push_back(OQu_1b12b);
   valsEFT.push_back(OQu_1b21b);
+  valsEFT.push_back(OQu_1b22b);
   valsEFT.push_back(OQu_2b11b);
+  valsEFT.push_back(OQu_2b12b);
+  valsEFT.push_back(OQu_2b21b);
   valsEFT.push_back(OQu_2b22b);
+  valsEFT.push_back(OQd_1b11b);
   valsEFT.push_back(OQd_1b12b);
   valsEFT.push_back(OQd_1b21b);
+  valsEFT.push_back(OQd_1b22b);
   valsEFT.push_back(OQd_2b11b);
+  valsEFT.push_back(OQd_2b12b);
+  valsEFT.push_back(OQd_2b21b);
   valsEFT.push_back(OQd_2b22b);
-  valsEFT.push_back(L1tmp);
-  valsEFT.push_back(L2tmp);
-  valsEFT.push_back(L4tmp);
-  valsEFT.push_back(L5tmp);
-  valsEFT.push_back(m12Sqtmp);
+  valsEFT.push_back(OL_1b11b);
+  valsEFT.push_back(OL_1b12b);
+  valsEFT.push_back(OL_1b21b);
+  valsEFT.push_back(OL_1b22b);
+  valsEFT.push_back(OL_2b11b);
+  valsEFT.push_back(OL_2b12b);
+  valsEFT.push_back(OL_2b21b);
+  valsEFT.push_back(OL_2b22b);
+  valsEFT.push_back(L1);
+  valsEFT.push_back(L2);
+  valsEFT.push_back(L4);
+  valsEFT.push_back(L5);
+  valsEFT.push_back(m12Sq);
   return valsEFT;
 }
 
@@ -265,82 +270,122 @@ void Class_Potential_R2HDMEFTPHI6_PHI2PSI3::ReadAndSet(
 {
   std::stringstream ss(linestr);
   double tmp;
+  double lType = 0, lL1 = 0, lL2 = 0, lL3 = 0, lL4 = 0, lL5 = 0, lm12Sq = 0,
+         lTanBeta = 0;
+  // double lm11Sq = 0, lm22Sq = 0;
 
   if (UseIndexCol)
   {
     ss >> tmp;
   }
 
-  // old format
-  //   for (int k = 1; k <= 8; k++)
-  //   {
-  //     ss >> tmp;
-  //     if (k == 1)
-  //       Type = tmp;
-  //     else if (k == 2)
-  //       L1 = tmp;
-  //     else if (k == 3)
-  //       L2 = tmp;
-  //     else if (k == 4)
-  //       L3 = tmp;
-  //     else if (k == 5)
-  //       L4 = tmp;
-  //     else if (k == 6)
-  //       L5 = tmp;
-  //     else if (k == 7)
-  //       m12Sq = tmp;
-  //     else if (k == 8)
-  //       TanBeta = tmp;
-  //   }
-
-  // new format
-  for (int k = 1; k <= 16; k++)
+  for (int k = 1; k <= 47; k++)
   {
     ss >> tmp;
-    if (k == 16)
-      Type = tmp;
-    else if (k == 9)
-      L1 = tmp;
-    else if (k == 10)
-      L2 = tmp;
-    else if (k == 11)
-      L3 = tmp;
-    else if (k == 12)
-      L4 = tmp;
-    else if (k == 13)
-      L5 = tmp;
-    else if (k == 7)
-      m12Sq = tmp;
+    if (k == 1)
+      lType = tmp;
+    else if (k == 2)
+      lL1 = tmp;
+    else if (k == 3)
+      lL2 = tmp;
+    else if (k == 4)
+      lL3 = tmp;
+    else if (k == 5)
+      lL4 = tmp;
     else if (k == 6)
-      TanBeta = tmp;
+      lL5 = tmp;
+    // else if (k == 7)
+    //  lm11Sq = tmp;
+    // else if (k == 8)
+    //  lm22Sq = tmp;
+    else if (k == 9)
+      lm12Sq = tmp;
+    else if (k == 10)
+      lTanBeta = tmp;
+    else if (k == 11)
+      Op6_111111 = tmp;
+    else if (k == 12)
+      Op6_111122 = tmp;
+    else if (k == 13)
+      Op6_122111 = tmp;
+    else if (k == 14)
+      Op6_121211 = tmp;
+    else if (k == 15)
+      Op6_111112 = tmp;
+    else if (k == 16)
+      Op6_121221 = tmp;
+    else if (k == 17)
+      Op6_112212 = tmp;
+    else if (k == 18)
+      Op6_222222 = tmp;
+    else if (k == 19)
+      Op6_112222 = tmp;
+    else if (k == 20)
+      Op6_122122 = tmp;
+    else if (k == 21)
+      Op6_121222 = tmp;
+    else if (k == 22)
+      Op6_122222 = tmp;
+    else if (k == 23)
+      Op6_121212 = tmp;
+    else if (k == 24)
+      OQu_1b11b = tmp;
+    else if (k == 25)
+      OQu_1b12b = tmp;
+    else if (k == 26)
+      OQu_1b21b = tmp;
+    else if (k == 27)
+      OQu_1b22b = tmp;
+    else if (k == 28)
+      OQu_2b11b = tmp;
+    else if (k == 29)
+      OQu_2b12b = tmp;
+    else if (k == 30)
+      OQu_2b21b = tmp;
+    else if (k == 31)
+      OQu_2b22b = tmp;
+    else if (k == 32)
+      OQd_1b11b = tmp;
+    else if (k == 33)
+      OQd_1b12b = tmp;
+    else if (k == 34)
+      OQd_1b21b = tmp;
+    else if (k == 35)
+      OQd_1b22b = tmp;
+    else if (k == 36)
+      OQd_2b11b = tmp;
+    else if (k == 37)
+      OQd_2b12b = tmp;
+    else if (k == 38)
+      OQd_2b21b = tmp;
+    else if (k == 39)
+      OQd_2b22b = tmp;
+    else if (k == 40)
+      OL_1b11b = tmp;
+    else if (k == 41)
+      OL_1b12b = tmp;
+    else if (k == 42)
+      OL_1b21b = tmp;
+    else if (k == 43)
+      OL_1b22b = tmp;
+    else if (k == 44)
+      OL_2b11b = tmp;
+    else if (k == 45)
+      OL_2b12b = tmp;
+    else if (k == 46)
+      OL_2b21b = tmp;
+    else if (k == 47)
+      OL_2b22b = tmp;
   }
 
-  //	double sa = std::sin(alpha);
-  //	double ca = std::cos(alpha);
-  C_CosBetaSquared = 1.0 / (1 + TanBeta * TanBeta);
-  C_CosBeta        = std::sqrt(C_CosBetaSquared);
-  C_SinBetaSquared = TanBeta * TanBeta * C_CosBetaSquared;
-  C_SinBeta        = std::sqrt(C_SinBetaSquared);
-  //	L1 =1.0 / (C_vev0 * C_vev0 * C_CosBeta * C_CosBeta)* (ca * ca * MH *
-  // MH +
-  // sa * sa * Mh * Mh- m12Sq * C_SinBeta / C_CosBeta); 	L2 =1.0 / (C_vev0
-  // * C_vev0 * C_SinBeta * C_SinBeta)* (sa * sa * MH * MH + ca * ca * Mh *
-  // Mh- m12Sq * C_CosBeta / C_SinBeta); 	L3 = 2 * MHP * MHP / (C_vev0 *
-  // C_vev0)+ sa * ca * (MH * MH - Mh * Mh)/ (C_vev0 * C_vev0
-  // *C_CosBeta*C_SinBeta )- m12Sq / (C_vev0 * C_vev0 * C_SinBeta *
-  // C_CosBeta); 	L4 = (MA * MA - 2 * MHP * MHP) / (C_vev0 * C_vev0)+ m12Sq /
-  // (C_vev0 * C_vev0 * C_SinBeta * C_CosBeta); 	L5 = m12Sq / (C_vev0 *
-  // C_vev0 * C_SinBeta * C_CosBeta) - MA
-  //* MA / (C_vev0 * C_vev0);
-
-  par[6] = TanBeta;
-  par[4] = L5;
-  par[0] = L1;
-  par[1] = L2;
-  par[2] = L3;
-  par[3] = L4;
-  par[5] = m12Sq;
-  par[7] = Type;
+  par[0] = lL1;
+  par[1] = lL2;
+  par[2] = lL3;
+  par[3] = lL4;
+  par[4] = lL5;
+  par[5] = lm12Sq;
+  par[6] = lTanBeta;
+  par[7] = lType;
 
   set_gen(par);
   return;
@@ -356,19 +401,19 @@ void Class_Potential_R2HDMEFTPHI6_PHI2PSI3::set_gen(
   // double *p = (double *)par;
   scale = C_vev0;
   //	scale=C_MassZ;
-  double L1store    = par[0];
-  double L2store    = par[1];
-  L3                = par[2];
-  double L4store    = par[3];
-  double L5store    = par[4];
-  double m12Sqstore = par[5];
-  TanBeta           = par[6];
-  beta              = std::atan(TanBeta);
-  Type              = static_cast<int>(par[7]);
-  C_CosBetaSquared  = 1.0 / (1 + TanBeta * TanBeta);
-  C_CosBeta         = std::sqrt(C_CosBetaSquared);
-  C_SinBetaSquared  = TanBeta * TanBeta * C_CosBetaSquared;
-  C_SinBeta         = std::sqrt(C_SinBetaSquared);
+  L1tmp            = par[0];
+  L2tmp            = par[1];
+  L3               = par[2];
+  L4tmp            = par[3];
+  L5tmp            = par[4];
+  m12Sqtmp         = par[5];
+  TanBeta          = par[6];
+  beta             = std::atan(TanBeta);
+  Type             = static_cast<int>(par[7]);
+  C_CosBetaSquared = 1.0 / (1 + TanBeta * TanBeta);
+  C_CosBeta        = std::sqrt(C_CosBetaSquared);
+  C_SinBetaSquared = TanBeta * TanBeta * C_CosBetaSquared;
+  C_SinBeta        = std::sqrt(C_SinBetaSquared);
 
   // corrected Lambdas to absorb CP-even mass shifts due to EFT
 
@@ -377,95 +422,77 @@ void Class_Potential_R2HDMEFTPHI6_PHI2PSI3::set_gen(
   double v2   = C_vev0 * C_SinBeta;
   double v2Sq = C_vev0 * C_vev0 * C_SinBetaSquared;
 
-  L1 = L1store +
-       2 * (double)std::pow((double)LambdaEFT, (double)(-2)) *
+  L1 = L1tmp +
+       2 * std::pow(LambdaEFT, -0.2e1) *
            (6 * Op6_111111 * v1Sq * v1Sq + 2 * Op6_121211 * v1Sq * v2Sq +
             Op6_122111 * v1Sq * v2Sq -
             (2 * Op6_112222 + 2 * Op6_121222 + Op6_122122) * v2Sq * v2Sq) /
            (4 * v1Sq);
-  L2 = L2store +
-       2 * (double)std::pow((double)LambdaEFT, (double)(-2)) *
+  L2 = L2tmp +
+       2 * std::pow(LambdaEFT, -0.2e1) *
            (-2 * Op6_111122 * v1Sq * v1Sq - 2 * Op6_121211 * v1Sq * v1Sq -
             Op6_122111 * v1Sq * v1Sq + 2 * Op6_121222 * v1Sq * v2Sq +
             Op6_122122 * v1Sq * v2Sq + 6 * Op6_222222 * v2Sq * v2Sq) /
            (4 * v2Sq);
-  L4 =
-      L4store + (double)std::pow((double)LambdaEFT, (double)(-2)) *
-                    (Op6_111122 * v1Sq + Op6_121211 * v1Sq + Op6_122111 * v1Sq +
-                     Op6_112222 * v2Sq + Op6_121222 * v2Sq + Op6_122122 * v2Sq);
-  L5 = L5store +
-       (double)std::pow((double)LambdaEFT, (double)(-2)) * 0.5 *
+  L4 = L4tmp + std::pow(LambdaEFT, -0.2e1) *
+                   (Op6_111122 * v1Sq + Op6_121211 * v1Sq + Op6_122111 * v1Sq +
+                    Op6_112222 * v2Sq + Op6_121222 * v2Sq + Op6_122122 * v2Sq);
+  L5 = L5tmp +
+       std::pow(LambdaEFT, -0.2e1) * 0.5 *
            (2 * Op6_111122 * v1Sq + 4 * Op6_121211 * v1Sq + Op6_122111 * v1Sq +
             2 * Op6_112222 * v2Sq + 4 * Op6_121222 * v2Sq + Op6_122122 * v2Sq);
-  m12Sq =
-      m12Sqstore +
-      (double)std::pow((double)LambdaEFT, (double)(-2)) * 0.5 * v1 * v2 *
-          (2 * Op6_111122 * v1Sq + 2 * Op6_121211 * v1Sq + Op6_122111 * v1Sq +
-           2 * Op6_112222 * v2Sq + 2 * Op6_121222 * v2Sq + Op6_122122 * v2Sq);
+  m12Sq = m12Sqtmp + std::pow(LambdaEFT, -0.2e1) * 0.5 * v1 * v2 *
+                         (2 * Op6_111122 * v1Sq + 2 * Op6_121211 * v1Sq +
+                          Op6_122111 * v1Sq + 2 * Op6_112222 * v2Sq +
+                          2 * Op6_121222 * v2Sq + Op6_122122 * v2Sq);
 
-  L1tmp    = L1;
-  L2tmp    = L2;
-  L4tmp    = L4;
-  L5tmp    = L5;
-  m12Sqtmp = m12Sq;
+  m11Sq = m12Sq * TanBeta -
+          C_vev0 * C_vev0 * C_SinBetaSquared * (L4 + L5 + L3) / 0.2e1 -
+          C_vev0 * C_vev0 * C_CosBetaSquared * L1 / 0.2e1 +
+          (3 * C_CosBetaSquared * C_CosBetaSquared * C_vev0 * C_vev0 * C_vev0 *
+           C_vev0 * Op6_111111 * std::pow(LambdaEFT, -0.2e1)) /
+              4. +
+          (C_CosBetaSquared * C_SinBetaSquared * C_vev0 * C_vev0 * C_vev0 *
+           C_vev0 * Op6_111122 * std::pow(LambdaEFT, -0.2e1)) /
+              2. +
+          (C_SinBetaSquared * C_SinBetaSquared * C_vev0 * C_vev0 * C_vev0 *
+           C_vev0 * Op6_112222 * std::pow(LambdaEFT, -0.2e1)) /
+              4. +
+          C_CosBetaSquared * C_SinBetaSquared * C_vev0 * C_vev0 * C_vev0 *
+              C_vev0 * Op6_121211 * std::pow(LambdaEFT, -0.2e1) +
+          (C_SinBetaSquared * C_SinBetaSquared * C_vev0 * C_vev0 * C_vev0 *
+           C_vev0 * Op6_121222 * std::pow(LambdaEFT, -0.2e1)) /
+              2. +
+          (C_CosBetaSquared * C_SinBetaSquared * C_vev0 * C_vev0 * C_vev0 *
+           C_vev0 * Op6_122111 * std::pow(LambdaEFT, -0.2e1)) /
+              2. +
+          (C_SinBetaSquared * C_SinBetaSquared * C_vev0 * C_vev0 * C_vev0 *
+           C_vev0 * Op6_122122 * std::pow(LambdaEFT, -0.2e1)) /
+              4;
 
-  m11Sq =
-      m12Sq * TanBeta -
-      C_vev0 * C_vev0 * C_SinBetaSquared * (L4 + L5 + L3) / 0.2e1 -
-      C_vev0 * C_vev0 * C_CosBetaSquared * L1 / 0.2e1 +
-      (3 * C_CosBetaSquared * C_CosBetaSquared * C_vev0 * C_vev0 * C_vev0 *
-       C_vev0 * Op6_111111 *
-       (double)std::pow((double)LambdaEFT, (double)(-2))) /
-          4. +
-      (C_CosBetaSquared * C_SinBetaSquared * C_vev0 * C_vev0 * C_vev0 * C_vev0 *
-       Op6_111122 * (double)std::pow((double)LambdaEFT, (double)(-2))) /
-          2. +
-      (C_SinBetaSquared * C_SinBetaSquared * C_vev0 * C_vev0 * C_vev0 * C_vev0 *
-       Op6_112222 * (double)std::pow((double)LambdaEFT, (double)(-2))) /
-          4. +
-      C_CosBetaSquared * C_SinBetaSquared * C_vev0 * C_vev0 * C_vev0 * C_vev0 *
-          Op6_121211 * (double)std::pow((double)LambdaEFT, (double)(-2)) +
-      (C_SinBetaSquared * C_SinBetaSquared * C_vev0 * C_vev0 * C_vev0 * C_vev0 *
-       Op6_121222 * (double)std::pow((double)LambdaEFT, (double)(-2))) /
-          2. +
-      (C_CosBetaSquared * C_SinBetaSquared * C_vev0 * C_vev0 * C_vev0 * C_vev0 *
-       Op6_122111 * (double)std::pow((double)LambdaEFT, (double)(-2))) /
-          2. +
-      (C_SinBetaSquared * C_SinBetaSquared * C_vev0 * C_vev0 * C_vev0 * C_vev0 *
-       Op6_122122 * (double)std::pow((double)LambdaEFT, (double)(-2))) /
-          4;
-  m22Sq =
-      m12Sq * 1.0 / TanBeta -
-      C_vev0 * C_vev0 * C_CosBetaSquared * (L4 + L5 + L3) / 0.2e1 -
-      C_vev0 * C_vev0 * C_SinBetaSquared * L2 / 0.2e1 +
-      (C_CosBetaSquared * C_CosBetaSquared * C_vev0 * C_vev0 * C_vev0 * C_vev0 *
-       Op6_111122 * (double)std::pow((double)LambdaEFT, (double)(-2))) /
-          4. +
-      (C_CosBetaSquared * C_SinBetaSquared * C_vev0 * C_vev0 * C_vev0 * C_vev0 *
-       Op6_112222 * (double)std::pow((double)LambdaEFT, (double)(-2))) /
-          2. +
-      (C_CosBetaSquared * C_CosBetaSquared * C_vev0 * C_vev0 * C_vev0 * C_vev0 *
-       Op6_121211 * (double)std::pow((double)LambdaEFT, (double)(-2))) /
-          2. +
-      C_CosBetaSquared * C_SinBetaSquared * C_vev0 * C_vev0 * C_vev0 * C_vev0 *
-          Op6_121222 * (double)std::pow((double)LambdaEFT, (double)(-2)) +
-      (C_CosBetaSquared * C_CosBetaSquared * C_vev0 * C_vev0 * C_vev0 * C_vev0 *
-       Op6_122111 * (double)std::pow((double)LambdaEFT, (double)(-2))) /
-          4. +
-      (C_CosBetaSquared * C_SinBetaSquared * C_vev0 * C_vev0 * C_vev0 * C_vev0 *
-       Op6_122122 * (double)std::pow((double)LambdaEFT, (double)(-2))) /
-          2. +
-      (3 * C_SinBetaSquared * C_SinBetaSquared * C_vev0 * C_vev0 * C_vev0 *
-       C_vev0 * Op6_222222 *
-       (double)std::pow((double)LambdaEFT, (double)(-2))) /
-          4.;
-
-  //	double ML5 = 2*m12Sq/(C_vev0*C_vev0*C_SinBeta*C_CosBeta);
-  //	double TripleHiggs =
-  //-3.0/(C_vev0*std::sin(2*beta))*(Mh*Mh*(2*std::cos(alpha+beta)+std::sin(2*alpha)*std::sin(beta-alpha))
-  //- std::cos(alpha+beta)*
-  //(double)
-  // std::pow((double)std::cos(beta-alpha),(double)(2))*C_vev0*C_vev0*ML5 );
+  m22Sq = m12Sq * 1.0 / TanBeta -
+          C_vev0 * C_vev0 * C_CosBetaSquared * (L4 + L5 + L3) / 0.2e1 -
+          C_vev0 * C_vev0 * C_SinBetaSquared * L2 / 0.2e1 +
+          (C_CosBetaSquared * C_CosBetaSquared * C_vev0 * C_vev0 * C_vev0 *
+           C_vev0 * Op6_111122 * std::pow(LambdaEFT, -0.2e1)) /
+              4. +
+          (C_CosBetaSquared * C_SinBetaSquared * C_vev0 * C_vev0 * C_vev0 *
+           C_vev0 * Op6_112222 * std::pow(LambdaEFT, -0.2e1)) /
+              2. +
+          (C_CosBetaSquared * C_CosBetaSquared * C_vev0 * C_vev0 * C_vev0 *
+           C_vev0 * Op6_121211 * std::pow(LambdaEFT, -0.2e1)) /
+              2. +
+          C_CosBetaSquared * C_SinBetaSquared * C_vev0 * C_vev0 * C_vev0 *
+              C_vev0 * Op6_121222 * std::pow(LambdaEFT, -0.2e1) +
+          (C_CosBetaSquared * C_CosBetaSquared * C_vev0 * C_vev0 * C_vev0 *
+           C_vev0 * Op6_122111 * std::pow(LambdaEFT, -0.2e1)) /
+              4. +
+          (C_CosBetaSquared * C_SinBetaSquared * C_vev0 * C_vev0 * C_vev0 *
+           C_vev0 * Op6_122122 * std::pow(LambdaEFT, -0.2e1)) /
+              2. +
+          (3 * C_SinBetaSquared * C_SinBetaSquared * C_vev0 * C_vev0 * C_vev0 *
+           C_vev0 * Op6_222222 * std::pow(LambdaEFT, -0.2e1)) /
+              4.;
 
   double cb = 0;
 
@@ -520,6 +547,13 @@ void Class_Potential_R2HDMEFTPHI6_PHI2PSI3::set_CT_Pot_Par(
   dTCP        = p[10];
   dTCB        = p[11];
   dOp6_111111 = p[12];
+  dOp6_111122 = p[13];
+  dOp6_122111 = p[13];
+  dOp6_121211 = p[14];
+  dOp6_222222 = p[15];
+  dOp6_112222 = p[16];
+  dOp6_122122 = p[17];
+  dOp6_121222 = p[18];
 
   Curvature_Higgs_CT_L1[2] = dTCB;
   Curvature_Higgs_CT_L1[4] = dT1;
@@ -597,10 +631,10 @@ void Class_Potential_R2HDMEFTPHI6_PHI2PSI3::set_CT_Pot_Par(
   Curvature_Higgs_CT_L6[0][0][0][0][1][1] =
       -0.18e2 * std::pow(LambdaEFT, -0.2e1) * dOp6_111111;
   Curvature_Higgs_CT_L6[0][0][0][0][2][2] =
-      (double)(-6 * dOp6_111122 - 6 * dOp6_122111 - 12 * dOp6_121211) *
+      (-6 * dOp6_111122 - 6 * dOp6_122111 - 12 * dOp6_121211) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_CT_L6[0][0][0][0][3][3] =
-      (double)(-6 * dOp6_111122 - 6 * dOp6_122111 + 12 * dOp6_121211) *
+      (-6 * dOp6_111122 - 6 * dOp6_122111 + 12 * dOp6_121211) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_CT_L6[0][0][0][0][4][4] =
       -0.18e2 * std::pow(LambdaEFT, -0.2e1) * dOp6_111111;
@@ -613,25 +647,22 @@ void Class_Potential_R2HDMEFTPHI6_PHI2PSI3::set_CT_Pot_Par(
   Curvature_Higgs_CT_L6[0][0][0][1][2][3] =
       -0.6e1 * std::pow(LambdaEFT, -0.2e1) * dOp6_121211;
   Curvature_Higgs_CT_L6[0][0][0][2][4][6] =
-      (double)(-3 * dOp6_122111 - 6 * dOp6_121211) *
-      std::pow(LambdaEFT, -0.2e1) / 0.2e1;
+      (-3 * dOp6_122111 - 6 * dOp6_121211) * std::pow(LambdaEFT, -0.2e1) /
+      0.2e1;
   Curvature_Higgs_CT_L6[0][0][0][2][5][7] =
-      (double)(-3 * dOp6_122111 - 6 * dOp6_121211) *
-      std::pow(LambdaEFT, -0.2e1) / 0.2e1;
+      (-3 * dOp6_122111 - 6 * dOp6_121211) * std::pow(LambdaEFT, -0.2e1) /
+      0.2e1;
   Curvature_Higgs_CT_L6[0][0][0][3][4][7] =
-      (double)(-3 * dOp6_122111 + 6 * dOp6_121211) *
-      std::pow(LambdaEFT, -0.2e1) / 0.2e1;
+      (-3 * dOp6_122111 + 6 * dOp6_121211) * std::pow(LambdaEFT, -0.2e1) /
+      0.2e1;
   Curvature_Higgs_CT_L6[0][0][0][3][5][6] =
-      (double)(3 * dOp6_122111 - 6 * dOp6_121211) *
-      std::pow(LambdaEFT, -0.2e1) / 0.2e1;
+      (3 * dOp6_122111 - 6 * dOp6_121211) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_CT_L6[0][0][1][1][1][1] =
       -0.18e2 * std::pow(LambdaEFT, -0.2e1) * dOp6_111111;
   Curvature_Higgs_CT_L6[0][0][1][1][2][2] =
-      (double)(-2 * dOp6_111122 - 2 * dOp6_122111) *
-      std::pow(LambdaEFT, -0.2e1);
+      (-2 * dOp6_111122 - 2 * dOp6_122111) * std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_CT_L6[0][0][1][1][3][3] =
-      (double)(-2 * dOp6_111122 - 2 * dOp6_122111) *
-      std::pow(LambdaEFT, -0.2e1);
+      (-2 * dOp6_111122 - 2 * dOp6_122111) * std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_CT_L6[0][0][1][1][4][4] =
       -0.6e1 * std::pow(LambdaEFT, -0.2e1) * dOp6_111111;
   Curvature_Higgs_CT_L6[0][0][1][1][5][5] =
@@ -641,69 +672,64 @@ void Class_Potential_R2HDMEFTPHI6_PHI2PSI3::set_CT_Pot_Par(
   Curvature_Higgs_CT_L6[0][0][1][1][7][7] =
       -0.2e1 * std::pow(LambdaEFT, -0.2e1) * dOp6_111122;
   Curvature_Higgs_CT_L6[0][0][1][2][4][7] =
-      (double)(dOp6_122111 - 2 * dOp6_121211) * std::pow(LambdaEFT, -0.2e1) /
-      0.2e1;
+      (dOp6_122111 - 2 * dOp6_121211) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_CT_L6[0][0][1][2][5][6] =
-      (double)(-dOp6_122111 + 2 * dOp6_121211) * std::pow(LambdaEFT, -0.2e1) /
-      0.2e1;
+      (-dOp6_122111 + 2 * dOp6_121211) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_CT_L6[0][0][1][3][4][6] =
-      (double)(-dOp6_122111 - 2 * dOp6_121211) * std::pow(LambdaEFT, -0.2e1) /
-      0.2e1;
+      (-dOp6_122111 - 2 * dOp6_121211) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_CT_L6[0][0][1][3][5][7] =
-      (double)(-dOp6_122111 - 2 * dOp6_121211) * std::pow(LambdaEFT, -0.2e1) /
-      0.2e1;
+      (-dOp6_122111 - 2 * dOp6_121211) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_CT_L6[0][0][2][2][2][2] =
-      (double)(-12 * dOp6_121222 - 6 * dOp6_122122 - 6 * dOp6_112222) *
+      (-12 * dOp6_121222 - 6 * dOp6_122122 - 6 * dOp6_112222) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_CT_L6[0][0][2][2][3][3] =
-      (double)(-2 * dOp6_122122 - 2 * dOp6_112222) *
-      std::pow(LambdaEFT, -0.2e1);
+      (-2 * dOp6_122122 - 2 * dOp6_112222) * std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_CT_L6[0][0][2][2][4][4] =
-      (double)(-2 * dOp6_121211 - dOp6_122111 - 2 * dOp6_111122) *
+      (-2 * dOp6_121211 - dOp6_122111 - 2 * dOp6_111122) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_CT_L6[0][0][2][2][5][5] =
-      (double)(-2 * dOp6_121211 - dOp6_122111 - 2 * dOp6_111122) *
+      (-2 * dOp6_121211 - dOp6_122111 - 2 * dOp6_111122) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_CT_L6[0][0][2][2][6][6] =
-      (double)(-dOp6_122122 - 2 * dOp6_112222 - 2 * dOp6_121222) *
+      (-dOp6_122122 - 2 * dOp6_112222 - 2 * dOp6_121222) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_CT_L6[0][0][2][2][7][7] =
-      (double)(-dOp6_122122 - 2 * dOp6_112222 - 2 * dOp6_121222) *
+      (-dOp6_122122 - 2 * dOp6_112222 - 2 * dOp6_121222) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_CT_L6[0][0][3][3][3][3] =
-      (double)(-6 * dOp6_122122 - 6 * dOp6_112222 + 12 * dOp6_121222) *
+      (-6 * dOp6_122122 - 6 * dOp6_112222 + 12 * dOp6_121222) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_CT_L6[0][0][3][3][4][4] =
-      (double)(-dOp6_122111 + 2 * dOp6_121211 - 2 * dOp6_111122) *
+      (-dOp6_122111 + 2 * dOp6_121211 - 2 * dOp6_111122) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_CT_L6[0][0][3][3][5][5] =
-      (double)(-dOp6_122111 + 2 * dOp6_121211 - 2 * dOp6_111122) *
+      (-dOp6_122111 + 2 * dOp6_121211 - 2 * dOp6_111122) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_CT_L6[0][0][3][3][6][6] =
-      (double)(-dOp6_122122 + 2 * dOp6_121222 - 2 * dOp6_112222) *
+      (-dOp6_122122 + 2 * dOp6_121222 - 2 * dOp6_112222) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_CT_L6[0][0][3][3][7][7] =
-      (double)(-dOp6_122122 + 2 * dOp6_121222 - 2 * dOp6_112222) *
+      (-dOp6_122122 + 2 * dOp6_121222 - 2 * dOp6_112222) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_CT_L6[0][0][4][4][4][4] =
       -0.18e2 * std::pow(LambdaEFT, -0.2e1) * dOp6_111111;
   Curvature_Higgs_CT_L6[0][0][4][4][5][5] =
       -0.6e1 * std::pow(LambdaEFT, -0.2e1) * dOp6_111111;
   Curvature_Higgs_CT_L6[0][0][4][4][6][6] =
-      (double)(-2 * dOp6_121211 - dOp6_122111 - 2 * dOp6_111122) *
+      (-2 * dOp6_121211 - dOp6_122111 - 2 * dOp6_111122) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_CT_L6[0][0][4][4][7][7] =
-      (double)(-dOp6_122111 + 2 * dOp6_121211 - 2 * dOp6_111122) *
+      (-dOp6_122111 + 2 * dOp6_121211 - 2 * dOp6_111122) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_CT_L6[0][0][4][5][6][7] =
       -0.2e1 * std::pow(LambdaEFT, -0.2e1) * dOp6_121211;
   Curvature_Higgs_CT_L6[0][0][5][5][5][5] =
       -0.18e2 * std::pow(LambdaEFT, -0.2e1) * dOp6_111111;
   Curvature_Higgs_CT_L6[0][0][5][5][6][6] =
-      (double)(-dOp6_122111 + 2 * dOp6_121211 - 2 * dOp6_111122) *
+      (-dOp6_122111 + 2 * dOp6_121211 - 2 * dOp6_111122) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_CT_L6[0][0][5][5][7][7] =
-      (double)(-2 * dOp6_121211 - dOp6_122111 - 2 * dOp6_111122) *
+      (-2 * dOp6_121211 - dOp6_122111 - 2 * dOp6_111122) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_CT_L6[0][0][6][6][6][6] =
       -0.6e1 * std::pow(LambdaEFT, -0.2e1) * dOp6_112222;
@@ -714,17 +740,13 @@ void Class_Potential_R2HDMEFTPHI6_PHI2PSI3::set_CT_Pot_Par(
   Curvature_Higgs_CT_L6[0][1][1][1][2][3] =
       -0.6e1 * std::pow(LambdaEFT, -0.2e1) * dOp6_121211;
   Curvature_Higgs_CT_L6[0][1][1][2][4][6] =
-      (double)(-dOp6_122111 - 2 * dOp6_121211) * std::pow(LambdaEFT, -0.2e1) /
-      0.2e1;
+      (-dOp6_122111 - 2 * dOp6_121211) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_CT_L6[0][1][1][2][5][7] =
-      (double)(-dOp6_122111 - 2 * dOp6_121211) * std::pow(LambdaEFT, -0.2e1) /
-      0.2e1;
+      (-dOp6_122111 - 2 * dOp6_121211) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_CT_L6[0][1][1][3][4][7] =
-      (double)(-dOp6_122111 + 2 * dOp6_121211) * std::pow(LambdaEFT, -0.2e1) /
-      0.2e1;
+      (-dOp6_122111 + 2 * dOp6_121211) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_CT_L6[0][1][1][3][5][6] =
-      (double)(dOp6_122111 - 2 * dOp6_121211) * std::pow(LambdaEFT, -0.2e1) /
-      0.2e1;
+      (dOp6_122111 - 2 * dOp6_121211) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_CT_L6[0][1][2][2][2][3] =
       -0.6e1 * std::pow(LambdaEFT, -0.2e1) * dOp6_121222;
   Curvature_Higgs_CT_L6[0][1][2][3][3][3] =
@@ -738,84 +760,69 @@ void Class_Potential_R2HDMEFTPHI6_PHI2PSI3::set_CT_Pot_Par(
   Curvature_Higgs_CT_L6[0][1][2][3][7][7] =
       -0.2e1 * std::pow(LambdaEFT, -0.2e1) * dOp6_121222;
   Curvature_Higgs_CT_L6[0][2][2][2][4][6] =
-      (double)(-3 * dOp6_122122 - 6 * dOp6_121222) *
-      std::pow(LambdaEFT, -0.2e1) / 0.2e1;
+      (-3 * dOp6_122122 - 6 * dOp6_121222) * std::pow(LambdaEFT, -0.2e1) /
+      0.2e1;
   Curvature_Higgs_CT_L6[0][2][2][2][5][7] =
-      (double)(-3 * dOp6_122122 - 6 * dOp6_121222) *
-      std::pow(LambdaEFT, -0.2e1) / 0.2e1;
+      (-3 * dOp6_122122 - 6 * dOp6_121222) * std::pow(LambdaEFT, -0.2e1) /
+      0.2e1;
   Curvature_Higgs_CT_L6[0][2][2][3][4][7] =
-      (double)(2 * dOp6_121222 - dOp6_122122) * std::pow(LambdaEFT, -0.2e1) /
-      0.2e1;
+      (2 * dOp6_121222 - dOp6_122122) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_CT_L6[0][2][2][3][5][6] =
-      (double)(-2 * dOp6_121222 + dOp6_122122) * std::pow(LambdaEFT, -0.2e1) /
-      0.2e1;
+      (-2 * dOp6_121222 + dOp6_122122) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_CT_L6[0][2][3][3][4][6] =
-      (double)(-dOp6_122122 - 2 * dOp6_121222) * std::pow(LambdaEFT, -0.2e1) /
-      0.2e1;
+      (-dOp6_122122 - 2 * dOp6_121222) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_CT_L6[0][2][3][3][5][7] =
-      (double)(-dOp6_122122 - 2 * dOp6_121222) * std::pow(LambdaEFT, -0.2e1) /
-      0.2e1;
+      (-dOp6_122122 - 2 * dOp6_121222) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_CT_L6[0][2][4][4][4][6] =
-      (double)(-3 * dOp6_122111 - 6 * dOp6_121211) *
-      std::pow(LambdaEFT, -0.2e1) / 0.2e1;
+      (-3 * dOp6_122111 - 6 * dOp6_121211) * std::pow(LambdaEFT, -0.2e1) /
+      0.2e1;
   Curvature_Higgs_CT_L6[0][2][4][4][5][7] =
-      (double)(-dOp6_122111 - 2 * dOp6_121211) * std::pow(LambdaEFT, -0.2e1) /
-      0.2e1;
+      (-dOp6_122111 - 2 * dOp6_121211) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_CT_L6[0][2][4][5][5][6] =
-      (double)(-dOp6_122111 - 2 * dOp6_121211) * std::pow(LambdaEFT, -0.2e1) /
-      0.2e1;
+      (-dOp6_122111 - 2 * dOp6_121211) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_CT_L6[0][2][4][6][6][6] =
-      (double)(-3 * dOp6_122122 - 6 * dOp6_121222) *
-      std::pow(LambdaEFT, -0.2e1) / 0.2e1;
+      (-3 * dOp6_122122 - 6 * dOp6_121222) * std::pow(LambdaEFT, -0.2e1) /
+      0.2e1;
   Curvature_Higgs_CT_L6[0][2][4][6][7][7] =
-      (double)(-dOp6_122122 - 2 * dOp6_121222) * std::pow(LambdaEFT, -0.2e1) /
-      0.2e1;
+      (-dOp6_122122 - 2 * dOp6_121222) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_CT_L6[0][2][5][5][5][7] =
-      (double)(-3 * dOp6_122111 - 6 * dOp6_121211) *
-      std::pow(LambdaEFT, -0.2e1) / 0.2e1;
+      (-3 * dOp6_122111 - 6 * dOp6_121211) * std::pow(LambdaEFT, -0.2e1) /
+      0.2e1;
   Curvature_Higgs_CT_L6[0][2][5][6][6][7] =
-      (double)(-dOp6_122122 - 2 * dOp6_121222) * std::pow(LambdaEFT, -0.2e1) /
-      0.2e1;
+      (-dOp6_122122 - 2 * dOp6_121222) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_CT_L6[0][2][5][7][7][7] =
-      (double)(-3 * dOp6_122122 - 6 * dOp6_121222) *
-      std::pow(LambdaEFT, -0.2e1) / 0.2e1;
+      (-3 * dOp6_122122 - 6 * dOp6_121222) * std::pow(LambdaEFT, -0.2e1) /
+      0.2e1;
   Curvature_Higgs_CT_L6[0][3][3][3][4][7] =
-      (double)(-3 * dOp6_122122 + 6 * dOp6_121222) *
-      std::pow(LambdaEFT, -0.2e1) / 0.2e1;
+      (-3 * dOp6_122122 + 6 * dOp6_121222) * std::pow(LambdaEFT, -0.2e1) /
+      0.2e1;
   Curvature_Higgs_CT_L6[0][3][3][3][5][6] =
-      (double)(3 * dOp6_122122 - 6 * dOp6_121222) *
-      std::pow(LambdaEFT, -0.2e1) / 0.2e1;
+      (3 * dOp6_122122 - 6 * dOp6_121222) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_CT_L6[0][3][4][4][4][7] =
-      (double)(-3 * dOp6_122111 + 6 * dOp6_121211) *
-      std::pow(LambdaEFT, -0.2e1) / 0.2e1;
+      (-3 * dOp6_122111 + 6 * dOp6_121211) * std::pow(LambdaEFT, -0.2e1) /
+      0.2e1;
   Curvature_Higgs_CT_L6[0][3][4][4][5][6] =
-      (double)(dOp6_122111 - 2 * dOp6_121211) * std::pow(LambdaEFT, -0.2e1) /
-      0.2e1;
+      (dOp6_122111 - 2 * dOp6_121211) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_CT_L6[0][3][4][5][5][7] =
-      (double)(-dOp6_122111 + 2 * dOp6_121211) * std::pow(LambdaEFT, -0.2e1) /
-      0.2e1;
+      (-dOp6_122111 + 2 * dOp6_121211) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_CT_L6[0][3][4][6][6][7] =
-      (double)(-dOp6_122122 + 2 * dOp6_121222) * std::pow(LambdaEFT, -0.2e1) /
-      0.2e1;
+      (-dOp6_122122 + 2 * dOp6_121222) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_CT_L6[0][3][4][7][7][7] =
-      (double)(-3 * dOp6_122122 + 6 * dOp6_121222) *
-      std::pow(LambdaEFT, -0.2e1) / 0.2e1;
-  Curvature_Higgs_CT_L6[0][3][5][5][5][6] =
-      (double)(3 * dOp6_122111 - 6 * dOp6_121211) *
-      std::pow(LambdaEFT, -0.2e1) / 0.2e1;
-  Curvature_Higgs_CT_L6[0][3][5][6][6][6] =
-      (double)(3 * dOp6_122122 - 6 * dOp6_121222) *
-      std::pow(LambdaEFT, -0.2e1) / 0.2e1;
-  Curvature_Higgs_CT_L6[0][3][5][6][7][7] =
-      (double)(dOp6_122122 - 2 * dOp6_121222) * std::pow(LambdaEFT, -0.2e1) /
+      (-3 * dOp6_122122 + 6 * dOp6_121222) * std::pow(LambdaEFT, -0.2e1) /
       0.2e1;
+  Curvature_Higgs_CT_L6[0][3][5][5][5][6] =
+      (3 * dOp6_122111 - 6 * dOp6_121211) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
+  Curvature_Higgs_CT_L6[0][3][5][6][6][6] =
+      (3 * dOp6_122122 - 6 * dOp6_121222) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
+  Curvature_Higgs_CT_L6[0][3][5][6][7][7] =
+      (dOp6_122122 - 2 * dOp6_121222) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_CT_L6[1][1][1][1][1][1] =
       -0.90e2 * std::pow(LambdaEFT, -0.2e1) * dOp6_111111;
   Curvature_Higgs_CT_L6[1][1][1][1][2][2] =
-      (double)(-6 * dOp6_111122 - 6 * dOp6_122111 + 12 * dOp6_121211) *
+      (-6 * dOp6_111122 - 6 * dOp6_122111 + 12 * dOp6_121211) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_CT_L6[1][1][1][1][3][3] =
-      (double)(-6 * dOp6_111122 - 6 * dOp6_122111 - 12 * dOp6_121211) *
+      (-6 * dOp6_111122 - 6 * dOp6_122111 - 12 * dOp6_121211) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_CT_L6[1][1][1][1][4][4] =
       -0.18e2 * std::pow(LambdaEFT, -0.2e1) * dOp6_111111;
@@ -826,69 +833,67 @@ void Class_Potential_R2HDMEFTPHI6_PHI2PSI3::set_CT_Pot_Par(
   Curvature_Higgs_CT_L6[1][1][1][1][7][7] =
       -0.6e1 * std::pow(LambdaEFT, -0.2e1) * dOp6_111122;
   Curvature_Higgs_CT_L6[1][1][1][2][4][7] =
-      (double)(3 * dOp6_122111 - 6 * dOp6_121211) *
-      std::pow(LambdaEFT, -0.2e1) / 0.2e1;
+      (3 * dOp6_122111 - 6 * dOp6_121211) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_CT_L6[1][1][1][2][5][6] =
-      (double)(-3 * dOp6_122111 + 6 * dOp6_121211) *
-      std::pow(LambdaEFT, -0.2e1) / 0.2e1;
+      (-3 * dOp6_122111 + 6 * dOp6_121211) * std::pow(LambdaEFT, -0.2e1) /
+      0.2e1;
   Curvature_Higgs_CT_L6[1][1][1][3][4][6] =
-      (double)(-3 * dOp6_122111 - 6 * dOp6_121211) *
-      std::pow(LambdaEFT, -0.2e1) / 0.2e1;
+      (-3 * dOp6_122111 - 6 * dOp6_121211) * std::pow(LambdaEFT, -0.2e1) /
+      0.2e1;
   Curvature_Higgs_CT_L6[1][1][1][3][5][7] =
-      (double)(-3 * dOp6_122111 - 6 * dOp6_121211) *
-      std::pow(LambdaEFT, -0.2e1) / 0.2e1;
+      (-3 * dOp6_122111 - 6 * dOp6_121211) * std::pow(LambdaEFT, -0.2e1) /
+      0.2e1;
   Curvature_Higgs_CT_L6[1][1][2][2][2][2] =
-      (double)(-6 * dOp6_122122 + 12 * dOp6_121222 - 6 * dOp6_112222) *
+      (-6 * dOp6_122122 + 12 * dOp6_121222 - 6 * dOp6_112222) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_CT_L6[1][1][2][2][3][3] =
-      (double)(-2 * dOp6_122122 - 2 * dOp6_112222) *
-      std::pow(LambdaEFT, -0.2e1);
+      (-2 * dOp6_122122 - 2 * dOp6_112222) * std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_CT_L6[1][1][2][2][4][4] =
-      (double)(-dOp6_122111 + 2 * dOp6_121211 - 2 * dOp6_111122) *
+      (-dOp6_122111 + 2 * dOp6_121211 - 2 * dOp6_111122) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_CT_L6[1][1][2][2][5][5] =
-      (double)(-dOp6_122111 + 2 * dOp6_121211 - 2 * dOp6_111122) *
+      (-dOp6_122111 + 2 * dOp6_121211 - 2 * dOp6_111122) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_CT_L6[1][1][2][2][6][6] =
-      (double)(-dOp6_122122 + 2 * dOp6_121222 - 2 * dOp6_112222) *
+      (-dOp6_122122 + 2 * dOp6_121222 - 2 * dOp6_112222) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_CT_L6[1][1][2][2][7][7] =
-      (double)(-dOp6_122122 + 2 * dOp6_121222 - 2 * dOp6_112222) *
+      (-dOp6_122122 + 2 * dOp6_121222 - 2 * dOp6_112222) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_CT_L6[1][1][3][3][3][3] =
-      (double)(-6 * dOp6_122122 - 12 * dOp6_121222 - 6 * dOp6_112222) *
+      (-6 * dOp6_122122 - 12 * dOp6_121222 - 6 * dOp6_112222) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_CT_L6[1][1][3][3][4][4] =
-      (double)(-2 * dOp6_121211 - dOp6_122111 - 2 * dOp6_111122) *
+      (-2 * dOp6_121211 - dOp6_122111 - 2 * dOp6_111122) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_CT_L6[1][1][3][3][5][5] =
-      (double)(-2 * dOp6_121211 - dOp6_122111 - 2 * dOp6_111122) *
+      (-2 * dOp6_121211 - dOp6_122111 - 2 * dOp6_111122) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_CT_L6[1][1][3][3][6][6] =
-      (double)(-dOp6_122122 - 2 * dOp6_112222 - 2 * dOp6_121222) *
+      (-dOp6_122122 - 2 * dOp6_112222 - 2 * dOp6_121222) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_CT_L6[1][1][3][3][7][7] =
-      (double)(-dOp6_122122 - 2 * dOp6_112222 - 2 * dOp6_121222) *
+      (-dOp6_122122 - 2 * dOp6_112222 - 2 * dOp6_121222) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_CT_L6[1][1][4][4][4][4] =
       -0.18e2 * std::pow(LambdaEFT, -0.2e1) * dOp6_111111;
   Curvature_Higgs_CT_L6[1][1][4][4][5][5] =
       -0.6e1 * std::pow(LambdaEFT, -0.2e1) * dOp6_111111;
   Curvature_Higgs_CT_L6[1][1][4][4][6][6] =
-      (double)(-2 * dOp6_121211 - dOp6_122111 - 2 * dOp6_111122) *
+      (-2 * dOp6_121211 - dOp6_122111 - 2 * dOp6_111122) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_CT_L6[1][1][4][4][7][7] =
-      (double)(-dOp6_122111 + 2 * dOp6_121211 - 2 * dOp6_111122) *
+      (-dOp6_122111 + 2 * dOp6_121211 - 2 * dOp6_111122) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_CT_L6[1][1][4][5][6][7] =
       -0.2e1 * std::pow(LambdaEFT, -0.2e1) * dOp6_121211;
   Curvature_Higgs_CT_L6[1][1][5][5][5][5] =
       -0.18e2 * std::pow(LambdaEFT, -0.2e1) * dOp6_111111;
   Curvature_Higgs_CT_L6[1][1][5][5][6][6] =
-      (double)(-dOp6_122111 + 2 * dOp6_121211 - 2 * dOp6_111122) *
+      (-dOp6_122111 + 2 * dOp6_121211 - 2 * dOp6_111122) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_CT_L6[1][1][5][5][7][7] =
-      (double)(-2 * dOp6_121211 - dOp6_122111 - 2 * dOp6_111122) *
+      (-2 * dOp6_121211 - dOp6_122111 - 2 * dOp6_111122) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_CT_L6[1][1][6][6][6][6] =
       -0.6e1 * std::pow(LambdaEFT, -0.2e1) * dOp6_112222;
@@ -897,77 +902,62 @@ void Class_Potential_R2HDMEFTPHI6_PHI2PSI3::set_CT_Pot_Par(
   Curvature_Higgs_CT_L6[1][1][7][7][7][7] =
       -0.6e1 * std::pow(LambdaEFT, -0.2e1) * dOp6_112222;
   Curvature_Higgs_CT_L6[1][2][2][2][4][7] =
-      (double)(3 * dOp6_122122 - 6 * dOp6_121222) *
-      std::pow(LambdaEFT, -0.2e1) / 0.2e1;
+      (3 * dOp6_122122 - 6 * dOp6_121222) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_CT_L6[1][2][2][2][5][6] =
-      (double)(-3 * dOp6_122122 + 6 * dOp6_121222) *
-      std::pow(LambdaEFT, -0.2e1) / 0.2e1;
+      (-3 * dOp6_122122 + 6 * dOp6_121222) * std::pow(LambdaEFT, -0.2e1) /
+      0.2e1;
   Curvature_Higgs_CT_L6[1][2][2][3][4][6] =
-      (double)(-dOp6_122122 - 2 * dOp6_121222) * std::pow(LambdaEFT, -0.2e1) /
-      0.2e1;
+      (-dOp6_122122 - 2 * dOp6_121222) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_CT_L6[1][2][2][3][5][7] =
-      (double)(-dOp6_122122 - 2 * dOp6_121222) * std::pow(LambdaEFT, -0.2e1) /
-      0.2e1;
+      (-dOp6_122122 - 2 * dOp6_121222) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_CT_L6[1][2][3][3][4][7] =
-      (double)(dOp6_122122 - 2 * dOp6_121222) * std::pow(LambdaEFT, -0.2e1) /
-      0.2e1;
+      (dOp6_122122 - 2 * dOp6_121222) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_CT_L6[1][2][3][3][5][6] =
-      (double)(-dOp6_122122 + 2 * dOp6_121222) * std::pow(LambdaEFT, -0.2e1) /
-      0.2e1;
+      (-dOp6_122122 + 2 * dOp6_121222) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_CT_L6[1][2][4][4][4][7] =
-      (double)(3 * dOp6_122111 - 6 * dOp6_121211) *
-      std::pow(LambdaEFT, -0.2e1) / 0.2e1;
+      (3 * dOp6_122111 - 6 * dOp6_121211) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_CT_L6[1][2][4][4][5][6] =
-      (double)(-dOp6_122111 + 2 * dOp6_121211) * std::pow(LambdaEFT, -0.2e1) /
-      0.2e1;
+      (-dOp6_122111 + 2 * dOp6_121211) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_CT_L6[1][2][4][5][5][7] =
-      (double)(dOp6_122111 - 2 * dOp6_121211) * std::pow(LambdaEFT, -0.2e1) /
-      0.2e1;
+      (dOp6_122111 - 2 * dOp6_121211) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_CT_L6[1][2][4][6][6][7] =
-      (double)(dOp6_122122 - 2 * dOp6_121222) * std::pow(LambdaEFT, -0.2e1) /
-      0.2e1;
+      (dOp6_122122 - 2 * dOp6_121222) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_CT_L6[1][2][4][7][7][7] =
-      (double)(3 * dOp6_122122 - 6 * dOp6_121222) *
-      std::pow(LambdaEFT, -0.2e1) / 0.2e1;
+      (3 * dOp6_122122 - 6 * dOp6_121222) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_CT_L6[1][2][5][5][5][6] =
-      (double)(-3 * dOp6_122111 + 6 * dOp6_121211) *
-      std::pow(LambdaEFT, -0.2e1) / 0.2e1;
+      (-3 * dOp6_122111 + 6 * dOp6_121211) * std::pow(LambdaEFT, -0.2e1) /
+      0.2e1;
   Curvature_Higgs_CT_L6[1][2][5][6][6][6] =
-      (double)(-3 * dOp6_122122 + 6 * dOp6_121222) *
-      std::pow(LambdaEFT, -0.2e1) / 0.2e1;
+      (-3 * dOp6_122122 + 6 * dOp6_121222) * std::pow(LambdaEFT, -0.2e1) /
+      0.2e1;
   Curvature_Higgs_CT_L6[1][2][5][6][7][7] =
-      (double)(-dOp6_122122 + 2 * dOp6_121222) * std::pow(LambdaEFT, -0.2e1) /
-      0.2e1;
+      (-dOp6_122122 + 2 * dOp6_121222) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_CT_L6[1][3][3][3][4][6] =
-      (double)(-3 * dOp6_122122 - 6 * dOp6_121222) *
-      std::pow(LambdaEFT, -0.2e1) / 0.2e1;
+      (-3 * dOp6_122122 - 6 * dOp6_121222) * std::pow(LambdaEFT, -0.2e1) /
+      0.2e1;
   Curvature_Higgs_CT_L6[1][3][3][3][5][7] =
-      (double)(-3 * dOp6_122122 - 6 * dOp6_121222) *
-      std::pow(LambdaEFT, -0.2e1) / 0.2e1;
+      (-3 * dOp6_122122 - 6 * dOp6_121222) * std::pow(LambdaEFT, -0.2e1) /
+      0.2e1;
   Curvature_Higgs_CT_L6[1][3][4][4][4][6] =
-      (double)(-3 * dOp6_122111 - 6 * dOp6_121211) *
-      std::pow(LambdaEFT, -0.2e1) / 0.2e1;
+      (-3 * dOp6_122111 - 6 * dOp6_121211) * std::pow(LambdaEFT, -0.2e1) /
+      0.2e1;
   Curvature_Higgs_CT_L6[1][3][4][4][5][7] =
-      (double)(-dOp6_122111 - 2 * dOp6_121211) * std::pow(LambdaEFT, -0.2e1) /
-      0.2e1;
+      (-dOp6_122111 - 2 * dOp6_121211) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_CT_L6[1][3][4][5][5][6] =
-      (double)(-dOp6_122111 - 2 * dOp6_121211) * std::pow(LambdaEFT, -0.2e1) /
-      0.2e1;
+      (-dOp6_122111 - 2 * dOp6_121211) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_CT_L6[1][3][4][6][6][6] =
-      (double)(-3 * dOp6_122122 - 6 * dOp6_121222) *
-      std::pow(LambdaEFT, -0.2e1) / 0.2e1;
+      (-3 * dOp6_122122 - 6 * dOp6_121222) * std::pow(LambdaEFT, -0.2e1) /
+      0.2e1;
   Curvature_Higgs_CT_L6[1][3][4][6][7][7] =
-      (double)(-dOp6_122122 - 2 * dOp6_121222) * std::pow(LambdaEFT, -0.2e1) /
-      0.2e1;
+      (-dOp6_122122 - 2 * dOp6_121222) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_CT_L6[1][3][5][5][5][7] =
-      (double)(-3 * dOp6_122111 - 6 * dOp6_121211) *
-      std::pow(LambdaEFT, -0.2e1) / 0.2e1;
-  Curvature_Higgs_CT_L6[1][3][5][6][6][7] =
-      (double)(-dOp6_122122 - 2 * dOp6_121222) * std::pow(LambdaEFT, -0.2e1) /
+      (-3 * dOp6_122111 - 6 * dOp6_121211) * std::pow(LambdaEFT, -0.2e1) /
       0.2e1;
+  Curvature_Higgs_CT_L6[1][3][5][6][6][7] =
+      (-dOp6_122122 - 2 * dOp6_121222) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_CT_L6[1][3][5][7][7][7] =
-      (double)(-3 * dOp6_122122 - 6 * dOp6_121222) *
-      std::pow(LambdaEFT, -0.2e1) / 0.2e1;
+      (-3 * dOp6_122122 - 6 * dOp6_121222) * std::pow(LambdaEFT, -0.2e1) /
+      0.2e1;
   Curvature_Higgs_CT_L6[2][2][2][2][2][2] =
       -0.90e2 * std::pow(LambdaEFT, -0.2e1) * dOp6_222222;
   Curvature_Higgs_CT_L6[2][2][2][2][3][3] =
@@ -995,20 +985,20 @@ void Class_Potential_R2HDMEFTPHI6_PHI2PSI3::set_CT_Pot_Par(
   Curvature_Higgs_CT_L6[2][2][4][4][5][5] =
       -0.2e1 * std::pow(LambdaEFT, -0.2e1) * dOp6_111122;
   Curvature_Higgs_CT_L6[2][2][4][4][6][6] =
-      (double)(-dOp6_122122 - 2 * dOp6_112222 - 2 * dOp6_121222) *
+      (-dOp6_122122 - 2 * dOp6_112222 - 2 * dOp6_121222) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_CT_L6[2][2][4][4][7][7] =
-      (double)(-dOp6_122122 + 2 * dOp6_121222 - 2 * dOp6_112222) *
+      (-dOp6_122122 + 2 * dOp6_121222 - 2 * dOp6_112222) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_CT_L6[2][2][4][5][6][7] =
       -0.2e1 * std::pow(LambdaEFT, -0.2e1) * dOp6_121222;
   Curvature_Higgs_CT_L6[2][2][5][5][5][5] =
       -0.6e1 * std::pow(LambdaEFT, -0.2e1) * dOp6_111122;
   Curvature_Higgs_CT_L6[2][2][5][5][6][6] =
-      (double)(-dOp6_122122 + 2 * dOp6_121222 - 2 * dOp6_112222) *
+      (-dOp6_122122 + 2 * dOp6_121222 - 2 * dOp6_112222) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_CT_L6[2][2][5][5][7][7] =
-      (double)(-dOp6_122122 - 2 * dOp6_112222 - 2 * dOp6_121222) *
+      (-dOp6_122122 - 2 * dOp6_112222 - 2 * dOp6_121222) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_CT_L6[2][2][6][6][6][6] =
       -0.18e2 * std::pow(LambdaEFT, -0.2e1) * dOp6_222222;
@@ -1031,20 +1021,20 @@ void Class_Potential_R2HDMEFTPHI6_PHI2PSI3::set_CT_Pot_Par(
   Curvature_Higgs_CT_L6[3][3][4][4][5][5] =
       -0.2e1 * std::pow(LambdaEFT, -0.2e1) * dOp6_111122;
   Curvature_Higgs_CT_L6[3][3][4][4][6][6] =
-      (double)(-dOp6_122122 - 2 * dOp6_112222 - 2 * dOp6_121222) *
+      (-dOp6_122122 - 2 * dOp6_112222 - 2 * dOp6_121222) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_CT_L6[3][3][4][4][7][7] =
-      (double)(-dOp6_122122 + 2 * dOp6_121222 - 2 * dOp6_112222) *
+      (-dOp6_122122 + 2 * dOp6_121222 - 2 * dOp6_112222) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_CT_L6[3][3][4][5][6][7] =
       -0.2e1 * std::pow(LambdaEFT, -0.2e1) * dOp6_121222;
   Curvature_Higgs_CT_L6[3][3][5][5][5][5] =
       -0.6e1 * std::pow(LambdaEFT, -0.2e1) * dOp6_111122;
   Curvature_Higgs_CT_L6[3][3][5][5][6][6] =
-      (double)(-dOp6_122122 + 2 * dOp6_121222 - 2 * dOp6_112222) *
+      (-dOp6_122122 + 2 * dOp6_121222 - 2 * dOp6_112222) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_CT_L6[3][3][5][5][7][7] =
-      (double)(-dOp6_122122 - 2 * dOp6_112222 - 2 * dOp6_121222) *
+      (-dOp6_122122 - 2 * dOp6_112222 - 2 * dOp6_121222) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_CT_L6[3][3][6][6][6][6] =
       -0.18e2 * std::pow(LambdaEFT, -0.2e1) * dOp6_222222;
@@ -1057,29 +1047,26 @@ void Class_Potential_R2HDMEFTPHI6_PHI2PSI3::set_CT_Pot_Par(
   Curvature_Higgs_CT_L6[4][4][4][4][5][5] =
       -0.18e2 * std::pow(LambdaEFT, -0.2e1) * dOp6_111111;
   Curvature_Higgs_CT_L6[4][4][4][4][6][6] =
-      (double)(-6 * dOp6_111122 - 6 * dOp6_122111 - 12 * dOp6_121211) *
+      (-6 * dOp6_111122 - 6 * dOp6_122111 - 12 * dOp6_121211) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_CT_L6[4][4][4][4][7][7] =
-      (double)(-6 * dOp6_111122 - 6 * dOp6_122111 + 12 * dOp6_121211) *
+      (-6 * dOp6_111122 - 6 * dOp6_122111 + 12 * dOp6_121211) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_CT_L6[4][4][4][5][6][7] =
       -0.6e1 * std::pow(LambdaEFT, -0.2e1) * dOp6_121211;
   Curvature_Higgs_CT_L6[4][4][5][5][5][5] =
       -0.18e2 * std::pow(LambdaEFT, -0.2e1) * dOp6_111111;
   Curvature_Higgs_CT_L6[4][4][5][5][6][6] =
-      (double)(-2 * dOp6_111122 - 2 * dOp6_122111) *
-      std::pow(LambdaEFT, -0.2e1);
+      (-2 * dOp6_111122 - 2 * dOp6_122111) * std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_CT_L6[4][4][5][5][7][7] =
-      (double)(-2 * dOp6_111122 - 2 * dOp6_122111) *
-      std::pow(LambdaEFT, -0.2e1);
+      (-2 * dOp6_111122 - 2 * dOp6_122111) * std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_CT_L6[4][4][6][6][6][6] =
-      (double)(-6 * dOp6_122122 - 12 * dOp6_121222 - 6 * dOp6_112222) *
+      (-6 * dOp6_122122 - 12 * dOp6_121222 - 6 * dOp6_112222) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_CT_L6[4][4][6][6][7][7] =
-      (double)(-2 * dOp6_122122 - 2 * dOp6_112222) *
-      std::pow(LambdaEFT, -0.2e1);
+      (-2 * dOp6_122122 - 2 * dOp6_112222) * std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_CT_L6[4][4][7][7][7][7] =
-      (double)(-6 * dOp6_122122 + 12 * dOp6_121222 - 6 * dOp6_112222) *
+      (-6 * dOp6_122122 + 12 * dOp6_121222 - 6 * dOp6_112222) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_CT_L6[4][5][5][5][6][7] =
       -0.6e1 * std::pow(LambdaEFT, -0.2e1) * dOp6_121211;
@@ -1090,19 +1077,18 @@ void Class_Potential_R2HDMEFTPHI6_PHI2PSI3::set_CT_Pot_Par(
   Curvature_Higgs_CT_L6[5][5][5][5][5][5] =
       -0.90e2 * std::pow(LambdaEFT, -0.2e1) * dOp6_111111;
   Curvature_Higgs_CT_L6[5][5][5][5][6][6] =
-      (double)(-6 * dOp6_111122 - 6 * dOp6_122111 + 12 * dOp6_121211) *
+      (-6 * dOp6_111122 - 6 * dOp6_122111 + 12 * dOp6_121211) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_CT_L6[5][5][5][5][7][7] =
-      (double)(-6 * dOp6_111122 - 6 * dOp6_122111 - 12 * dOp6_121211) *
+      (-6 * dOp6_111122 - 6 * dOp6_122111 - 12 * dOp6_121211) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_CT_L6[5][5][6][6][6][6] =
-      (double)(-6 * dOp6_122122 + 12 * dOp6_121222 - 6 * dOp6_112222) *
+      (-6 * dOp6_122122 + 12 * dOp6_121222 - 6 * dOp6_112222) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_CT_L6[5][5][6][6][7][7] =
-      (double)(-2 * dOp6_122122 - 2 * dOp6_112222) *
-      std::pow(LambdaEFT, -0.2e1);
+      (-2 * dOp6_122122 - 2 * dOp6_112222) * std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_CT_L6[5][5][7][7][7][7] =
-      (double)(-6 * dOp6_122122 - 12 * dOp6_121222 - 6 * dOp6_112222) *
+      (-6 * dOp6_122122 - 12 * dOp6_121222 - 6 * dOp6_112222) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_CT_L6[6][6][6][6][6][6] =
       -0.90e2 * std::pow(LambdaEFT, -0.2e1) * dOp6_222222;
@@ -1136,16 +1122,16 @@ void Class_Potential_R2HDMEFTPHI6_PHI2PSI3::write() const
   ss << "v2 = " << C_vev0 * C_SinBeta << "\n";
   ss << "Type = " << Type << "\n";
 
-  ss << "beta = " << beta << std::endl;
-  ss << "tan(beta) = " << TanBeta << std::endl;
-  ss << "L1 = " << L1 << std::endl;
-  ss << "L2 = " << L2 << std::endl;
-  ss << "L3 = " << L3 << std::endl;
-  ss << "L4 = " << L4 << std::endl;
-  ss << "Re(L5) = " << L5 << std::endl;
-  ss << "Re(m_12^2) = " << m12Sq << std::endl;
-  ss << "m_{11}^2 = " << m11Sq << std::endl;
-  ss << "m_{22}^2 = " << m22Sq << std::endl;
+  ss << "beta = " << beta << "\n";
+  ss << "tan(beta) = " << TanBeta << "\n";
+  ss << "L1 = " << L1tmp << " ---> " << L1 << "\n";
+  ss << "L2 = " << L2tmp << " ---> " << L2 << "\n";
+  ss << "L3 = " << L3 << "\n";
+  ss << "L4 = " << L4tmp << " ---> " << L4 << "\n";
+  ss << "Re(L5) = " << L5tmp << " ---> " << L5 << "\n";
+  ss << "Re(m_12^2) = " << m12Sqtmp << " ---> " << m12Sq << "\n";
+  ss << "m_{11}^2 = " << m11Sq << "\n";
+  ss << "m_{22}^2 = " << m22Sq << "\n";
 
   ss << "The counterterms are :\n";
 
@@ -1161,7 +1147,16 @@ void Class_Potential_R2HDMEFTPHI6_PHI2PSI3::write() const
   ss << "dT1 := " << dT1 << ";\n";
   ss << "dT2 := " << dT2 << ";\n";
   ss << "dTCP := " << dTCP << ";\n";
-  ss << "dTCB:= " << dTCB << ";" << std::endl;
+  ss << "dTCB:= " << dTCB << ";\n";
+
+  ss << "dOp6_111111 := " << dOp6_111111 << ";\n";
+  ss << "dOp6_111122 := " << dOp6_111122 << ";\n";
+  ss << "dOp6_122111 := " << dOp6_122111 << ";\n";
+  ss << "dOp6_121211 := " << dOp6_121211 << ";\n";
+  ss << "dOp6_222222 := " << dOp6_222222 << ";\n";
+  ss << "dOp6_112222 := " << dOp6_112222 << ";\n";
+  ss << "dOp6_122122 := " << dOp6_122122 << ";\n";
+  ss << "dOp6_121222 := " << dOp6_121222 << ";\n";
 
   MatrixXd HiggsRot(NHiggs, NHiggs);
   for (std::size_t i = 0; i < NHiggs; i++)
@@ -1229,7 +1224,7 @@ void Class_Potential_R2HDMEFTPHI6_PHI2PSI3::write() const
     ss << "-";
   else
     ss << "+";
-  ss << std::abs(HiggsRot(posN[1], 6)) << " zeta_2" << std::endl;
+  ss << std::abs(HiggsRot(posN[1], 6)) << " zeta_2\n";
 
   if (UseTwoLoopThermalMass)
   {
@@ -1247,30 +1242,49 @@ void Class_Potential_R2HDMEFTPHI6_PHI2PSI3::write() const
     ss << "Usage of combined c-factor * tensor structure!\n";
   }
 
-  ss << "The dim-6 operator are set to \nOp6_111111 = " << Op6_111111
-     << std::endl;
+  ss << "The dim-6 operator are set to:"
+     << "\n"
+     << "purely-scalar:\n";
+  ss << "Op6_111111 = " << Op6_111111 << "\n";
   ss << "Op6_111122 = " << Op6_111122 << "\n";
   ss << "Op6_122111 = " << Op6_122111 << "\n";
   ss << "Op6_121211 = " << Op6_121211 << "\n";
+  ss << "Op6_111112 = " << Op6_111112 << "\n";
+  ss << "Op6_121221 = " << Op6_121221 << "\n";
+  ss << "Op6_112212 = " << Op6_112212 << "\n";
   ss << "Op6_222222 = " << Op6_222222 << "\n";
   ss << "Op6_112222 = " << Op6_112222 << "\n";
   ss << "Op6_122122 = " << Op6_122122 << "\n";
   ss << "Op6_121222 = " << Op6_121222 << "\n";
-
+  ss << "Op6_122222 = " << Op6_122222 << "\n";
+  ss << "Op6_121212 = " << Op6_121212 << "\n";
+  ss << "up-type quarks:\n";
+  ss << "OQu_1b11b = " << OQu_1b11b << "\n";
+  ss << "OQu_1b12b = " << OQu_1b12b << "\n";
+  ss << "OQu_1b21b = " << OQu_1b21b << "\n";
+  ss << "OQu_1b22b = " << OQu_1b22b << "\n";
+  ss << "OQu_2b11b = " << OQu_2b11b << "\n";
+  ss << "OQu_2b12b = " << OQu_2b12b << "\n";
+  ss << "OQu_2b21b = " << OQu_2b21b << "\n";
+  ss << "OQu_2b22b = " << OQu_2b22b << "\n";
+  ss << "down-type quarks:\n";
+  ss << "OQd_1b11b = " << OQd_1b11b << "\n";
+  ss << "OQd_1b12b = " << OQd_1b12b << "\n";
+  ss << "OQd_1b21b = " << OQd_1b21b << "\n";
+  ss << "OQd_1b22b = " << OQd_1b22b << "\n";
+  ss << "OQd_2b11b = " << OQd_2b11b << "\n";
+  ss << "OQd_2b12b = " << OQd_2b12b << "\n";
+  ss << "OQd_2b21b = " << OQd_2b21b << "\n";
+  ss << "OQd_2b21b = " << OQd_2b21b << "\n";
+  ss << "leptons:\n";
+  ss << "OL_1b11b = " << OL_1b11b << "\n";
   ss << "OL_1b12b = " << OL_1b12b << "\n";
   ss << "OL_1b21b = " << OL_1b21b << "\n";
+  ss << "OL_1b22b = " << OL_1b22b << "\n";
   ss << "OL_2b11b = " << OL_2b11b << "\n";
+  ss << "OL_2b12b = " << OL_2b12b << "\n";
+  ss << "OL_2b21b = " << OL_2b21b << "\n";
   ss << "OL_2b22b = " << OL_2b22b << "\n";
-
-  ss << "OL_1b12b = " << OQu_1b12b << "\n";
-  ss << "OL_1b12b = " << OQu_1b21b << "\n";
-  ss << "OL_1b12b = " << OQu_2b11b << "\n";
-  ss << "OL_1b12b = " << OQu_2b22b << "\n";
-
-  ss << "OL_1b12b = " << OQd_1b12b << "\n";
-  ss << "OL_1b12b = " << OQd_1b21b << "\n";
-  ss << "OL_1b12b = " << OQd_2b11b << "\n";
-  ss << "OL_1b12b = " << OQd_2b22b << std::endl;
 
   Logger::Write(LoggingLevel::Default, ss.str());
 }
@@ -1320,10 +1334,10 @@ std::vector<double> Class_Potential_R2HDMEFTPHI6_PHI2PSI3::calc_CT() const
 
   // dm11Sq
   parCT.push_back(
-      -(double)((-2 * t * v1 * v2 * v2 + 5 * HesseWeinberg(0, 0) * v1 +
-                 HesseWeinberg(1, 3) * v2 - HesseWeinberg(4, 6) * v2 -
-                 HesseWeinberg(4, 4) * v1 - 2 * HesseWeinberg(5, 5) * v1) /
-                v1) /
+      -((-2 * t * v1 * v2 * v2 + 5 * HesseWeinberg(0, 0) * v1 +
+         HesseWeinberg(1, 3) * v2 - HesseWeinberg(4, 6) * v2 -
+         HesseWeinberg(4, 4) * v1 - 2 * HesseWeinberg(5, 5) * v1) /
+        v1) /
           0.2e1 -
       0.3e1 / 0.4e1 * std::pow(LambdaEFT, -2) * std::pow(v1, 4) * s1 -
       std::pow(LambdaEFT, -2) * v1 * v1 * s2 * v2 * v2 / 2 -
@@ -1334,13 +1348,11 @@ std::vector<double> Class_Potential_R2HDMEFTPHI6_PHI2PSI3::calc_CT() const
       std::pow(LambdaEFT, -2) * s8 * std::pow(v2, 4) / 2);
   // dm22Sq
   parCT.push_back(
-      (double)((2 * t * v1 * v1 * v2 * v2 + HesseWeinberg(6, 6) * v2 * v2 -
-                2 * HesseWeinberg(0, 0) * v1 * v1 -
-                HesseWeinberg(1, 3) * v1 * v2 -
-                3 * HesseWeinberg(3, 3) * v2 * v2 +
-                HesseWeinberg(4, 6) * v1 * v2 +
-                2 * v1 * v1 * HesseWeinberg(5, 5)) *
-               (double)std::pow((double)v2, (double)(-2))) /
+      ((2 * t * v1 * v1 * v2 * v2 + HesseWeinberg(6, 6) * v2 * v2 -
+        2 * HesseWeinberg(0, 0) * v1 * v1 - HesseWeinberg(1, 3) * v1 * v2 -
+        3 * HesseWeinberg(3, 3) * v2 * v2 + HesseWeinberg(4, 6) * v1 * v2 +
+        2 * v1 * v1 * HesseWeinberg(5, 5)) *
+       std::pow(v2, (-2))) /
           0.2e1 -
       std::pow(LambdaEFT, -2) * s2 * std::pow(v1, 4) / 4 -
       0.3e1 / 0.4e1 * std::pow(LambdaEFT, -2) * s3 * std::pow(v1, 4) -
@@ -1356,8 +1368,8 @@ std::vector<double> Class_Potential_R2HDMEFTPHI6_PHI2PSI3::calc_CT() const
                   v2 * std::pow(v1, 3) * std::pow(LambdaEFT, -2) * s3 / 2 -
                   std::pow(v2, 3) * v1 * std::pow(LambdaEFT, -2) * s7 / 2);
   // dL1
-  parCT.push_back((double)(-t * v2 * v2 + 2 * HesseWeinberg(0, 0) -
-                           HesseWeinberg(4, 4) - HesseWeinberg(5, 5)) *
+  parCT.push_back((-t * v2 * v2 + 2 * HesseWeinberg(0, 0) -
+                   HesseWeinberg(4, 4) - HesseWeinberg(5, 5)) *
                       std::pow(v1, -0.2e1) +
                   3 * std::pow(LambdaEFT, -2) * v1 * v1 * s1 +
                   std::pow(LambdaEFT, -2) * v2 * v2 * s2 +
@@ -1392,7 +1404,7 @@ std::vector<double> Class_Potential_R2HDMEFTPHI6_PHI2PSI3::calc_CT() const
   // dL5
   parCT.push_back(
       -(-t * v2 * v2 + 2 * HesseWeinberg(0, 0) - 2 * HesseWeinberg(5, 5)) *
-          (double)std::pow((double)v2, (double)(-2)) +
+          std::pow(v2, (-2)) +
       -std::pow(LambdaEFT, -2) * s3 * v1 * v1 / 2 +
       std::pow(LambdaEFT, -2) * s4 * v1 * v1 -
       std::pow(LambdaEFT, -2) * v2 * v2 * s7 / 2 +
@@ -1660,10 +1672,10 @@ void Class_Potential_R2HDMEFTPHI6_PHI2PSI3::SetCurvatureArrays()
   Curvature_Higgs_L6[0][0][0][0][1][1] =
       -0.18e2 * std::pow(LambdaEFT, -0.2e1) * Op6_111111;
   Curvature_Higgs_L6[0][0][0][0][2][2] =
-      (double)(-6 * Op6_111122 - 6 * Op6_122111 - 12 * Op6_121211) *
+      (-6 * Op6_111122 - 6 * Op6_122111 - 12 * Op6_121211) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_L6[0][0][0][0][3][3] =
-      (double)(-6 * Op6_111122 - 6 * Op6_122111 + 12 * Op6_121211) *
+      (-6 * Op6_111122 - 6 * Op6_122111 + 12 * Op6_121211) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_L6[0][0][0][0][4][4] =
       -0.18e2 * std::pow(LambdaEFT, -0.2e1) * Op6_111111;
@@ -1676,23 +1688,19 @@ void Class_Potential_R2HDMEFTPHI6_PHI2PSI3::SetCurvatureArrays()
   Curvature_Higgs_L6[0][0][0][1][2][3] =
       -0.6e1 * std::pow(LambdaEFT, -0.2e1) * Op6_121211;
   Curvature_Higgs_L6[0][0][0][2][4][6] =
-      (double)(-3 * Op6_122111 - 6 * Op6_121211) * std::pow(LambdaEFT, -0.2e1) /
-      0.2e1;
+      (-3 * Op6_122111 - 6 * Op6_121211) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_L6[0][0][0][2][5][7] =
-      (double)(-3 * Op6_122111 - 6 * Op6_121211) * std::pow(LambdaEFT, -0.2e1) /
-      0.2e1;
+      (-3 * Op6_122111 - 6 * Op6_121211) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_L6[0][0][0][3][4][7] =
-      (double)(-3 * Op6_122111 + 6 * Op6_121211) * std::pow(LambdaEFT, -0.2e1) /
-      0.2e1;
+      (-3 * Op6_122111 + 6 * Op6_121211) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_L6[0][0][0][3][5][6] =
-      (double)(3 * Op6_122111 - 6 * Op6_121211) * std::pow(LambdaEFT, -0.2e1) /
-      0.2e1;
+      (3 * Op6_122111 - 6 * Op6_121211) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_L6[0][0][1][1][1][1] =
       -0.18e2 * std::pow(LambdaEFT, -0.2e1) * Op6_111111;
   Curvature_Higgs_L6[0][0][1][1][2][2] =
-      (double)(-2 * Op6_111122 - 2 * Op6_122111) * std::pow(LambdaEFT, -0.2e1);
+      (-2 * Op6_111122 - 2 * Op6_122111) * std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_L6[0][0][1][1][3][3] =
-      (double)(-2 * Op6_111122 - 2 * Op6_122111) * std::pow(LambdaEFT, -0.2e1);
+      (-2 * Op6_111122 - 2 * Op6_122111) * std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_L6[0][0][1][1][4][4] =
       -0.6e1 * std::pow(LambdaEFT, -0.2e1) * Op6_111111;
   Curvature_Higgs_L6[0][0][1][1][5][5] =
@@ -1701,68 +1709,65 @@ void Class_Potential_R2HDMEFTPHI6_PHI2PSI3::SetCurvatureArrays()
       -0.2e1 * std::pow(LambdaEFT, -0.2e1) * Op6_111122;
   Curvature_Higgs_L6[0][0][1][1][7][7] =
       -0.2e1 * std::pow(LambdaEFT, -0.2e1) * Op6_111122;
-  Curvature_Higgs_L6[0][0][1][2][4][7] = (double)(Op6_122111 - 2 * Op6_121211) *
-                                         std::pow(LambdaEFT, -0.2e1) / 0.2e1;
+  Curvature_Higgs_L6[0][0][1][2][4][7] =
+      (Op6_122111 - 2 * Op6_121211) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_L6[0][0][1][2][5][6] =
-      (double)(-Op6_122111 + 2 * Op6_121211) * std::pow(LambdaEFT, -0.2e1) /
-      0.2e1;
+      (-Op6_122111 + 2 * Op6_121211) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_L6[0][0][1][3][4][6] =
-      (double)(-Op6_122111 - 2 * Op6_121211) * std::pow(LambdaEFT, -0.2e1) /
-      0.2e1;
+      (-Op6_122111 - 2 * Op6_121211) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_L6[0][0][1][3][5][7] =
-      (double)(-Op6_122111 - 2 * Op6_121211) * std::pow(LambdaEFT, -0.2e1) /
-      0.2e1;
+      (-Op6_122111 - 2 * Op6_121211) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_L6[0][0][2][2][2][2] =
-      (double)(-6 * Op6_112222 - 6 * Op6_122122 - 12 * Op6_121222) *
+      (-6 * Op6_112222 - 6 * Op6_122122 - 12 * Op6_121222) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_L6[0][0][2][2][3][3] =
-      (double)(-2 * Op6_112222 - 2 * Op6_122122) * std::pow(LambdaEFT, -0.2e1);
+      (-2 * Op6_112222 - 2 * Op6_122122) * std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_L6[0][0][2][2][4][4] =
-      (double)(-2 * Op6_111122 - 2 * Op6_121211 - Op6_122111) *
+      (-2 * Op6_111122 - 2 * Op6_121211 - Op6_122111) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_L6[0][0][2][2][5][5] =
-      (double)(-2 * Op6_111122 - 2 * Op6_121211 - Op6_122111) *
+      (-2 * Op6_111122 - 2 * Op6_121211 - Op6_122111) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_L6[0][0][2][2][6][6] =
-      (double)(-2 * Op6_112222 - 2 * Op6_121222 - Op6_122122) *
+      (-2 * Op6_112222 - 2 * Op6_121222 - Op6_122122) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_L6[0][0][2][2][7][7] =
-      (double)(-2 * Op6_112222 - 2 * Op6_121222 - Op6_122122) *
+      (-2 * Op6_112222 - 2 * Op6_121222 - Op6_122122) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_L6[0][0][3][3][3][3] =
-      (double)(-6 * Op6_122122 - 6 * Op6_112222 + 12 * Op6_121222) *
+      (-6 * Op6_122122 - 6 * Op6_112222 + 12 * Op6_121222) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_L6[0][0][3][3][4][4] =
-      (double)(-2 * Op6_111122 + 2 * Op6_121211 - Op6_122111) *
+      (-2 * Op6_111122 + 2 * Op6_121211 - Op6_122111) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_L6[0][0][3][3][5][5] =
-      (double)(-2 * Op6_111122 + 2 * Op6_121211 - Op6_122111) *
+      (-2 * Op6_111122 + 2 * Op6_121211 - Op6_122111) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_L6[0][0][3][3][6][6] =
-      (double)(-2 * Op6_112222 + 2 * Op6_121222 - Op6_122122) *
+      (-2 * Op6_112222 + 2 * Op6_121222 - Op6_122122) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_L6[0][0][3][3][7][7] =
-      (double)(-2 * Op6_112222 + 2 * Op6_121222 - Op6_122122) *
+      (-2 * Op6_112222 + 2 * Op6_121222 - Op6_122122) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_L6[0][0][4][4][4][4] =
       -0.18e2 * std::pow(LambdaEFT, -0.2e1) * Op6_111111;
   Curvature_Higgs_L6[0][0][4][4][5][5] =
       -0.6e1 * std::pow(LambdaEFT, -0.2e1) * Op6_111111;
   Curvature_Higgs_L6[0][0][4][4][6][6] =
-      (double)(-2 * Op6_111122 - 2 * Op6_121211 - Op6_122111) *
+      (-2 * Op6_111122 - 2 * Op6_121211 - Op6_122111) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_L6[0][0][4][4][7][7] =
-      (double)(-2 * Op6_111122 + 2 * Op6_121211 - Op6_122111) *
+      (-2 * Op6_111122 + 2 * Op6_121211 - Op6_122111) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_L6[0][0][4][5][6][7] =
       -0.2e1 * std::pow(LambdaEFT, -0.2e1) * Op6_121211;
   Curvature_Higgs_L6[0][0][5][5][5][5] =
       -0.18e2 * std::pow(LambdaEFT, -0.2e1) * Op6_111111;
   Curvature_Higgs_L6[0][0][5][5][6][6] =
-      (double)(-2 * Op6_111122 + 2 * Op6_121211 - Op6_122111) *
+      (-2 * Op6_111122 + 2 * Op6_121211 - Op6_122111) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_L6[0][0][5][5][7][7] =
-      (double)(-2 * Op6_111122 - 2 * Op6_121211 - Op6_122111) *
+      (-2 * Op6_111122 - 2 * Op6_121211 - Op6_122111) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_L6[0][0][6][6][6][6] =
       -0.6e1 * std::pow(LambdaEFT, -0.2e1) * Op6_112222;
@@ -1773,16 +1778,13 @@ void Class_Potential_R2HDMEFTPHI6_PHI2PSI3::SetCurvatureArrays()
   Curvature_Higgs_L6[0][1][1][1][2][3] =
       -0.6e1 * std::pow(LambdaEFT, -0.2e1) * Op6_121211;
   Curvature_Higgs_L6[0][1][1][2][4][6] =
-      (double)(-Op6_122111 - 2 * Op6_121211) * std::pow(LambdaEFT, -0.2e1) /
-      0.2e1;
+      (-Op6_122111 - 2 * Op6_121211) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_L6[0][1][1][2][5][7] =
-      (double)(-Op6_122111 - 2 * Op6_121211) * std::pow(LambdaEFT, -0.2e1) /
-      0.2e1;
+      (-Op6_122111 - 2 * Op6_121211) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_L6[0][1][1][3][4][7] =
-      (double)(-Op6_122111 + 2 * Op6_121211) * std::pow(LambdaEFT, -0.2e1) /
-      0.2e1;
-  Curvature_Higgs_L6[0][1][1][3][5][6] = (double)(Op6_122111 - 2 * Op6_121211) *
-                                         std::pow(LambdaEFT, -0.2e1) / 0.2e1;
+      (-Op6_122111 + 2 * Op6_121211) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
+  Curvature_Higgs_L6[0][1][1][3][5][6] =
+      (Op6_122111 - 2 * Op6_121211) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_L6[0][1][2][2][2][3] =
       -0.6e1 * std::pow(LambdaEFT, -0.2e1) * Op6_121222;
   Curvature_Higgs_L6[0][1][2][3][3][3] =
@@ -1796,81 +1798,60 @@ void Class_Potential_R2HDMEFTPHI6_PHI2PSI3::SetCurvatureArrays()
   Curvature_Higgs_L6[0][1][2][3][7][7] =
       -0.2e1 * std::pow(LambdaEFT, -0.2e1) * Op6_121222;
   Curvature_Higgs_L6[0][2][2][2][4][6] =
-      (double)(-6 * Op6_121222 - 3 * Op6_122122) * std::pow(LambdaEFT, -0.2e1) /
-      0.2e1;
+      (-6 * Op6_121222 - 3 * Op6_122122) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_L6[0][2][2][2][5][7] =
-      (double)(-6 * Op6_121222 - 3 * Op6_122122) * std::pow(LambdaEFT, -0.2e1) /
-      0.2e1;
-  Curvature_Higgs_L6[0][2][2][3][4][7] = (double)(2 * Op6_121222 - Op6_122122) *
-                                         std::pow(LambdaEFT, -0.2e1) / 0.2e1;
+      (-6 * Op6_121222 - 3 * Op6_122122) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
+  Curvature_Higgs_L6[0][2][2][3][4][7] =
+      (2 * Op6_121222 - Op6_122122) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_L6[0][2][2][3][5][6] =
-      (double)(-2 * Op6_121222 + Op6_122122) * std::pow(LambdaEFT, -0.2e1) /
-      0.2e1;
+      (-2 * Op6_121222 + Op6_122122) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_L6[0][2][3][3][4][6] =
-      (double)(-2 * Op6_121222 - Op6_122122) * std::pow(LambdaEFT, -0.2e1) /
-      0.2e1;
+      (-2 * Op6_121222 - Op6_122122) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_L6[0][2][3][3][5][7] =
-      (double)(-2 * Op6_121222 - Op6_122122) * std::pow(LambdaEFT, -0.2e1) /
-      0.2e1;
+      (-2 * Op6_121222 - Op6_122122) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_L6[0][2][4][4][4][6] =
-      (double)(-3 * Op6_122111 - 6 * Op6_121211) * std::pow(LambdaEFT, -0.2e1) /
-      0.2e1;
+      (-3 * Op6_122111 - 6 * Op6_121211) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_L6[0][2][4][4][5][7] =
-      (double)(-Op6_122111 - 2 * Op6_121211) * std::pow(LambdaEFT, -0.2e1) /
-      0.2e1;
+      (-Op6_122111 - 2 * Op6_121211) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_L6[0][2][4][5][5][6] =
-      (double)(-Op6_122111 - 2 * Op6_121211) * std::pow(LambdaEFT, -0.2e1) /
-      0.2e1;
+      (-Op6_122111 - 2 * Op6_121211) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_L6[0][2][4][6][6][6] =
-      (double)(-6 * Op6_121222 - 3 * Op6_122122) * std::pow(LambdaEFT, -0.2e1) /
-      0.2e1;
+      (-6 * Op6_121222 - 3 * Op6_122122) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_L6[0][2][4][6][7][7] =
-      (double)(-2 * Op6_121222 - Op6_122122) * std::pow(LambdaEFT, -0.2e1) /
-      0.2e1;
+      (-2 * Op6_121222 - Op6_122122) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_L6[0][2][5][5][5][7] =
-      (double)(-3 * Op6_122111 - 6 * Op6_121211) * std::pow(LambdaEFT, -0.2e1) /
-      0.2e1;
+      (-3 * Op6_122111 - 6 * Op6_121211) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_L6[0][2][5][6][6][7] =
-      (double)(-2 * Op6_121222 - Op6_122122) * std::pow(LambdaEFT, -0.2e1) /
-      0.2e1;
+      (-2 * Op6_121222 - Op6_122122) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_L6[0][2][5][7][7][7] =
-      (double)(-6 * Op6_121222 - 3 * Op6_122122) * std::pow(LambdaEFT, -0.2e1) /
-      0.2e1;
+      (-6 * Op6_121222 - 3 * Op6_122122) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_L6[0][3][3][3][4][7] =
-      (double)(6 * Op6_121222 - 3 * Op6_122122) * std::pow(LambdaEFT, -0.2e1) /
-      0.2e1;
+      (6 * Op6_121222 - 3 * Op6_122122) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_L6[0][3][3][3][5][6] =
-      (double)(-6 * Op6_121222 + 3 * Op6_122122) * std::pow(LambdaEFT, -0.2e1) /
-      0.2e1;
+      (-6 * Op6_121222 + 3 * Op6_122122) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_L6[0][3][4][4][4][7] =
-      (double)(-3 * Op6_122111 + 6 * Op6_121211) * std::pow(LambdaEFT, -0.2e1) /
-      0.2e1;
-  Curvature_Higgs_L6[0][3][4][4][5][6] = (double)(Op6_122111 - 2 * Op6_121211) *
-                                         std::pow(LambdaEFT, -0.2e1) / 0.2e1;
+      (-3 * Op6_122111 + 6 * Op6_121211) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
+  Curvature_Higgs_L6[0][3][4][4][5][6] =
+      (Op6_122111 - 2 * Op6_121211) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_L6[0][3][4][5][5][7] =
-      (double)(-Op6_122111 + 2 * Op6_121211) * std::pow(LambdaEFT, -0.2e1) /
-      0.2e1;
-  Curvature_Higgs_L6[0][3][4][6][6][7] = (double)(2 * Op6_121222 - Op6_122122) *
-                                         std::pow(LambdaEFT, -0.2e1) / 0.2e1;
+      (-Op6_122111 + 2 * Op6_121211) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
+  Curvature_Higgs_L6[0][3][4][6][6][7] =
+      (2 * Op6_121222 - Op6_122122) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_L6[0][3][4][7][7][7] =
-      (double)(6 * Op6_121222 - 3 * Op6_122122) * std::pow(LambdaEFT, -0.2e1) /
-      0.2e1;
+      (6 * Op6_121222 - 3 * Op6_122122) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_L6[0][3][5][5][5][6] =
-      (double)(3 * Op6_122111 - 6 * Op6_121211) * std::pow(LambdaEFT, -0.2e1) /
-      0.2e1;
+      (3 * Op6_122111 - 6 * Op6_121211) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_L6[0][3][5][6][6][6] =
-      (double)(-6 * Op6_121222 + 3 * Op6_122122) * std::pow(LambdaEFT, -0.2e1) /
-      0.2e1;
+      (-6 * Op6_121222 + 3 * Op6_122122) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_L6[0][3][5][6][7][7] =
-      (double)(-2 * Op6_121222 + Op6_122122) * std::pow(LambdaEFT, -0.2e1) /
-      0.2e1;
+      (-2 * Op6_121222 + Op6_122122) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_L6[1][1][1][1][1][1] =
       -0.90e2 * std::pow(LambdaEFT, -0.2e1) * Op6_111111;
   Curvature_Higgs_L6[1][1][1][1][2][2] =
-      (double)(-6 * Op6_111122 - 6 * Op6_122111 + 12 * Op6_121211) *
+      (-6 * Op6_111122 - 6 * Op6_122111 + 12 * Op6_121211) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_L6[1][1][1][1][3][3] =
-      (double)(-6 * Op6_111122 - 6 * Op6_122111 - 12 * Op6_121211) *
+      (-6 * Op6_111122 - 6 * Op6_122111 - 12 * Op6_121211) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_L6[1][1][1][1][4][4] =
       -0.18e2 * std::pow(LambdaEFT, -0.2e1) * Op6_111111;
@@ -1881,68 +1862,64 @@ void Class_Potential_R2HDMEFTPHI6_PHI2PSI3::SetCurvatureArrays()
   Curvature_Higgs_L6[1][1][1][1][7][7] =
       -0.6e1 * std::pow(LambdaEFT, -0.2e1) * Op6_111122;
   Curvature_Higgs_L6[1][1][1][2][4][7] =
-      (double)(3 * Op6_122111 - 6 * Op6_121211) * std::pow(LambdaEFT, -0.2e1) /
-      0.2e1;
+      (3 * Op6_122111 - 6 * Op6_121211) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_L6[1][1][1][2][5][6] =
-      (double)(-3 * Op6_122111 + 6 * Op6_121211) * std::pow(LambdaEFT, -0.2e1) /
-      0.2e1;
+      (-3 * Op6_122111 + 6 * Op6_121211) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_L6[1][1][1][3][4][6] =
-      (double)(-3 * Op6_122111 - 6 * Op6_121211) * std::pow(LambdaEFT, -0.2e1) /
-      0.2e1;
+      (-3 * Op6_122111 - 6 * Op6_121211) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_L6[1][1][1][3][5][7] =
-      (double)(-3 * Op6_122111 - 6 * Op6_121211) * std::pow(LambdaEFT, -0.2e1) /
-      0.2e1;
+      (-3 * Op6_122111 - 6 * Op6_121211) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_L6[1][1][2][2][2][2] =
-      (double)(-6 * Op6_122122 - 6 * Op6_112222 + 12 * Op6_121222) *
+      (-6 * Op6_122122 - 6 * Op6_112222 + 12 * Op6_121222) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_L6[1][1][2][2][3][3] =
-      (double)(-2 * Op6_122122 - 2 * Op6_112222) * std::pow(LambdaEFT, -0.2e1);
+      (-2 * Op6_122122 - 2 * Op6_112222) * std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_L6[1][1][2][2][4][4] =
-      (double)(-2 * Op6_111122 + 2 * Op6_121211 - Op6_122111) *
+      (-2 * Op6_111122 + 2 * Op6_121211 - Op6_122111) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_L6[1][1][2][2][5][5] =
-      (double)(-2 * Op6_111122 + 2 * Op6_121211 - Op6_122111) *
+      (-2 * Op6_111122 + 2 * Op6_121211 - Op6_122111) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_L6[1][1][2][2][6][6] =
-      (double)(-2 * Op6_112222 + 2 * Op6_121222 - Op6_122122) *
+      (-2 * Op6_112222 + 2 * Op6_121222 - Op6_122122) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_L6[1][1][2][2][7][7] =
-      (double)(-2 * Op6_112222 + 2 * Op6_121222 - Op6_122122) *
+      (-2 * Op6_112222 + 2 * Op6_121222 - Op6_122122) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_L6[1][1][3][3][3][3] =
-      (double)(-6 * Op6_112222 - 6 * Op6_122122 - 12 * Op6_121222) *
+      (-6 * Op6_112222 - 6 * Op6_122122 - 12 * Op6_121222) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_L6[1][1][3][3][4][4] =
-      (double)(-2 * Op6_111122 - 2 * Op6_121211 - Op6_122111) *
+      (-2 * Op6_111122 - 2 * Op6_121211 - Op6_122111) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_L6[1][1][3][3][5][5] =
-      (double)(-2 * Op6_111122 - 2 * Op6_121211 - Op6_122111) *
+      (-2 * Op6_111122 - 2 * Op6_121211 - Op6_122111) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_L6[1][1][3][3][6][6] =
-      (double)(-2 * Op6_112222 - 2 * Op6_121222 - Op6_122122) *
+      (-2 * Op6_112222 - 2 * Op6_121222 - Op6_122122) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_L6[1][1][3][3][7][7] =
-      (double)(-2 * Op6_112222 - 2 * Op6_121222 - Op6_122122) *
+      (-2 * Op6_112222 - 2 * Op6_121222 - Op6_122122) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_L6[1][1][4][4][4][4] =
       -0.18e2 * std::pow(LambdaEFT, -0.2e1) * Op6_111111;
   Curvature_Higgs_L6[1][1][4][4][5][5] =
       -0.6e1 * std::pow(LambdaEFT, -0.2e1) * Op6_111111;
   Curvature_Higgs_L6[1][1][4][4][6][6] =
-      (double)(-2 * Op6_111122 - 2 * Op6_121211 - Op6_122111) *
+      (-2 * Op6_111122 - 2 * Op6_121211 - Op6_122111) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_L6[1][1][4][4][7][7] =
-      (double)(-2 * Op6_111122 + 2 * Op6_121211 - Op6_122111) *
+      (-2 * Op6_111122 + 2 * Op6_121211 - Op6_122111) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_L6[1][1][4][5][6][7] =
       -0.2e1 * std::pow(LambdaEFT, -0.2e1) * Op6_121211;
   Curvature_Higgs_L6[1][1][5][5][5][5] =
       -0.18e2 * std::pow(LambdaEFT, -0.2e1) * Op6_111111;
   Curvature_Higgs_L6[1][1][5][5][6][6] =
-      (double)(-2 * Op6_111122 + 2 * Op6_121211 - Op6_122111) *
+      (-2 * Op6_111122 + 2 * Op6_121211 - Op6_122111) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_L6[1][1][5][5][7][7] =
-      (double)(-2 * Op6_111122 - 2 * Op6_121211 - Op6_122111) *
+      (-2 * Op6_111122 - 2 * Op6_121211 - Op6_122111) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_L6[1][1][6][6][6][6] =
       -0.6e1 * std::pow(LambdaEFT, -0.2e1) * Op6_112222;
@@ -1951,76 +1928,53 @@ void Class_Potential_R2HDMEFTPHI6_PHI2PSI3::SetCurvatureArrays()
   Curvature_Higgs_L6[1][1][7][7][7][7] =
       -0.6e1 * std::pow(LambdaEFT, -0.2e1) * Op6_112222;
   Curvature_Higgs_L6[1][2][2][2][4][7] =
-      (double)(3 * Op6_122122 - 6 * Op6_121222) * std::pow(LambdaEFT, -0.2e1) /
-      0.2e1;
+      (3 * Op6_122122 - 6 * Op6_121222) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_L6[1][2][2][2][5][6] =
-      (double)(-3 * Op6_122122 + 6 * Op6_121222) * std::pow(LambdaEFT, -0.2e1) /
-      0.2e1;
+      (-3 * Op6_122122 + 6 * Op6_121222) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_L6[1][2][2][3][4][6] =
-      (double)(-Op6_122122 - 2 * Op6_121222) * std::pow(LambdaEFT, -0.2e1) /
-      0.2e1;
+      (-Op6_122122 - 2 * Op6_121222) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_L6[1][2][2][3][5][7] =
-      (double)(-Op6_122122 - 2 * Op6_121222) * std::pow(LambdaEFT, -0.2e1) /
-      0.2e1;
+      (-Op6_122122 - 2 * Op6_121222) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_L6[1][2][3][3][4][7] =
-      (double)(-2 * Op6_121222 + Op6_122122) * std::pow(LambdaEFT, -0.2e1) /
-      0.2e1;
+      (-2 * Op6_121222 + Op6_122122) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_L6[1][2][3][3][5][6] =
-      (double)(-Op6_122122 + 2 * Op6_121222) * std::pow(LambdaEFT, -0.2e1) /
-      0.2e1;
+      (-Op6_122122 + 2 * Op6_121222) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_L6[1][2][4][4][4][7] =
-      (double)(3 * Op6_122111 - 6 * Op6_121211) * std::pow(LambdaEFT, -0.2e1) /
-      0.2e1;
+      (3 * Op6_122111 - 6 * Op6_121211) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_L6[1][2][4][4][5][6] =
-      (double)(-Op6_122111 + 2 * Op6_121211) * std::pow(LambdaEFT, -0.2e1) /
-      0.2e1;
-  Curvature_Higgs_L6[1][2][4][5][5][7] = (double)(Op6_122111 - 2 * Op6_121211) *
-                                         std::pow(LambdaEFT, -0.2e1) / 0.2e1;
+      (-Op6_122111 + 2 * Op6_121211) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
+  Curvature_Higgs_L6[1][2][4][5][5][7] =
+      (Op6_122111 - 2 * Op6_121211) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_L6[1][2][4][6][6][7] =
-      (double)(-2 * Op6_121222 + Op6_122122) * std::pow(LambdaEFT, -0.2e1) /
-      0.2e1;
+      (-2 * Op6_121222 + Op6_122122) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_L6[1][2][4][7][7][7] =
-      (double)(3 * Op6_122122 - 6 * Op6_121222) * std::pow(LambdaEFT, -0.2e1) /
-      0.2e1;
+      (3 * Op6_122122 - 6 * Op6_121222) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_L6[1][2][5][5][5][6] =
-      (double)(-3 * Op6_122111 + 6 * Op6_121211) * std::pow(LambdaEFT, -0.2e1) /
-      0.2e1;
+      (-3 * Op6_122111 + 6 * Op6_121211) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_L6[1][2][5][6][6][6] =
-      (double)(-3 * Op6_122122 + 6 * Op6_121222) * std::pow(LambdaEFT, -0.2e1) /
-      0.2e1;
+      (-3 * Op6_122122 + 6 * Op6_121222) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_L6[1][2][5][6][7][7] =
-      (double)(-Op6_122122 + 2 * Op6_121222) * std::pow(LambdaEFT, -0.2e1) /
-      0.2e1;
+      (-Op6_122122 + 2 * Op6_121222) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_L6[1][3][3][3][4][6] =
-      (double)(-3 * Op6_122122 - 6 * Op6_121222) * std::pow(LambdaEFT, -0.2e1) /
-      0.2e1;
+      (-3 * Op6_122122 - 6 * Op6_121222) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_L6[1][3][3][3][5][7] =
-      (double)(-3 * Op6_122122 - 6 * Op6_121222) * std::pow(LambdaEFT, -0.2e1) /
-      0.2e1;
+      (-3 * Op6_122122 - 6 * Op6_121222) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_L6[1][3][4][4][4][6] =
-      (double)(-3 * Op6_122111 - 6 * Op6_121211) * std::pow(LambdaEFT, -0.2e1) /
-      0.2e1;
+      (-3 * Op6_122111 - 6 * Op6_121211) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_L6[1][3][4][4][5][7] =
-      (double)(-Op6_122111 - 2 * Op6_121211) * std::pow(LambdaEFT, -0.2e1) /
-      0.2e1;
+      (-Op6_122111 - 2 * Op6_121211) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_L6[1][3][4][5][5][6] =
-      (double)(-Op6_122111 - 2 * Op6_121211) * std::pow(LambdaEFT, -0.2e1) /
-      0.2e1;
+      (-Op6_122111 - 2 * Op6_121211) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_L6[1][3][4][6][6][6] =
-      (double)(-3 * Op6_122122 - 6 * Op6_121222) * std::pow(LambdaEFT, -0.2e1) /
-      0.2e1;
+      (-3 * Op6_122122 - 6 * Op6_121222) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_L6[1][3][4][6][7][7] =
-      (double)(-Op6_122122 - 2 * Op6_121222) * std::pow(LambdaEFT, -0.2e1) /
-      0.2e1;
+      (-Op6_122122 - 2 * Op6_121222) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_L6[1][3][5][5][5][7] =
-      (double)(-3 * Op6_122111 - 6 * Op6_121211) * std::pow(LambdaEFT, -0.2e1) /
-      0.2e1;
+      (-3 * Op6_122111 - 6 * Op6_121211) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_L6[1][3][5][6][6][7] =
-      (double)(-Op6_122122 - 2 * Op6_121222) * std::pow(LambdaEFT, -0.2e1) /
-      0.2e1;
+      (-Op6_122122 - 2 * Op6_121222) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_L6[1][3][5][7][7][7] =
-      (double)(-3 * Op6_122122 - 6 * Op6_121222) * std::pow(LambdaEFT, -0.2e1) /
-      0.2e1;
+      (-3 * Op6_122122 - 6 * Op6_121222) * std::pow(LambdaEFT, -0.2e1) / 0.2e1;
   Curvature_Higgs_L6[2][2][2][2][2][2] =
       -0.90e2 * std::pow(LambdaEFT, -0.2e1) * Op6_222222;
   Curvature_Higgs_L6[2][2][2][2][3][3] =
@@ -2048,20 +2002,20 @@ void Class_Potential_R2HDMEFTPHI6_PHI2PSI3::SetCurvatureArrays()
   Curvature_Higgs_L6[2][2][4][4][5][5] =
       -0.2e1 * std::pow(LambdaEFT, -0.2e1) * Op6_111122;
   Curvature_Higgs_L6[2][2][4][4][6][6] =
-      (double)(-2 * Op6_112222 - 2 * Op6_121222 - Op6_122122) *
+      (-2 * Op6_112222 - 2 * Op6_121222 - Op6_122122) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_L6[2][2][4][4][7][7] =
-      (double)(-2 * Op6_112222 - Op6_122122 + 2 * Op6_121222) *
+      (-2 * Op6_112222 - Op6_122122 + 2 * Op6_121222) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_L6[2][2][4][5][6][7] =
       -0.2e1 * std::pow(LambdaEFT, -0.2e1) * Op6_121222;
   Curvature_Higgs_L6[2][2][5][5][5][5] =
       -0.6e1 * std::pow(LambdaEFT, -0.2e1) * Op6_111122;
   Curvature_Higgs_L6[2][2][5][5][6][6] =
-      (double)(-2 * Op6_112222 - Op6_122122 + 2 * Op6_121222) *
+      (-2 * Op6_112222 - Op6_122122 + 2 * Op6_121222) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_L6[2][2][5][5][7][7] =
-      (double)(-2 * Op6_112222 - 2 * Op6_121222 - Op6_122122) *
+      (-2 * Op6_112222 - 2 * Op6_121222 - Op6_122122) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_L6[2][2][6][6][6][6] =
       -0.18e2 * std::pow(LambdaEFT, -0.2e1) * Op6_222222;
@@ -2084,20 +2038,20 @@ void Class_Potential_R2HDMEFTPHI6_PHI2PSI3::SetCurvatureArrays()
   Curvature_Higgs_L6[3][3][4][4][5][5] =
       -0.2e1 * std::pow(LambdaEFT, -0.2e1) * Op6_111122;
   Curvature_Higgs_L6[3][3][4][4][6][6] =
-      (double)(-2 * Op6_112222 - 2 * Op6_121222 - Op6_122122) *
+      (-2 * Op6_112222 - 2 * Op6_121222 - Op6_122122) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_L6[3][3][4][4][7][7] =
-      (double)(-2 * Op6_112222 - Op6_122122 + 2 * Op6_121222) *
+      (-2 * Op6_112222 - Op6_122122 + 2 * Op6_121222) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_L6[3][3][4][5][6][7] =
       -0.2e1 * std::pow(LambdaEFT, -0.2e1) * Op6_121222;
   Curvature_Higgs_L6[3][3][5][5][5][5] =
       -0.6e1 * std::pow(LambdaEFT, -0.2e1) * Op6_111122;
   Curvature_Higgs_L6[3][3][5][5][6][6] =
-      (double)(-2 * Op6_112222 - Op6_122122 + 2 * Op6_121222) *
+      (-2 * Op6_112222 - Op6_122122 + 2 * Op6_121222) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_L6[3][3][5][5][7][7] =
-      (double)(-2 * Op6_112222 - 2 * Op6_121222 - Op6_122122) *
+      (-2 * Op6_112222 - 2 * Op6_121222 - Op6_122122) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_L6[3][3][6][6][6][6] =
       -0.18e2 * std::pow(LambdaEFT, -0.2e1) * Op6_222222;
@@ -2110,26 +2064,26 @@ void Class_Potential_R2HDMEFTPHI6_PHI2PSI3::SetCurvatureArrays()
   Curvature_Higgs_L6[4][4][4][4][5][5] =
       -0.18e2 * std::pow(LambdaEFT, -0.2e1) * Op6_111111;
   Curvature_Higgs_L6[4][4][4][4][6][6] =
-      (double)(-6 * Op6_111122 - 6 * Op6_122111 - 12 * Op6_121211) *
+      (-6 * Op6_111122 - 6 * Op6_122111 - 12 * Op6_121211) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_L6[4][4][4][4][7][7] =
-      (double)(-6 * Op6_111122 - 6 * Op6_122111 + 12 * Op6_121211) *
+      (-6 * Op6_111122 - 6 * Op6_122111 + 12 * Op6_121211) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_L6[4][4][4][5][6][7] =
       -0.6e1 * std::pow(LambdaEFT, -0.2e1) * Op6_121211;
   Curvature_Higgs_L6[4][4][5][5][5][5] =
       -0.18e2 * std::pow(LambdaEFT, -0.2e1) * Op6_111111;
   Curvature_Higgs_L6[4][4][5][5][6][6] =
-      (double)(-2 * Op6_111122 - 2 * Op6_122111) * std::pow(LambdaEFT, -0.2e1);
+      (-2 * Op6_111122 - 2 * Op6_122111) * std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_L6[4][4][5][5][7][7] =
-      (double)(-2 * Op6_111122 - 2 * Op6_122111) * std::pow(LambdaEFT, -0.2e1);
+      (-2 * Op6_111122 - 2 * Op6_122111) * std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_L6[4][4][6][6][6][6] =
-      (double)(-6 * Op6_112222 - 6 * Op6_122122 - 12 * Op6_121222) *
+      (-6 * Op6_112222 - 6 * Op6_122122 - 12 * Op6_121222) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_L6[4][4][6][6][7][7] =
-      (double)(-2 * Op6_112222 - 2 * Op6_122122) * std::pow(LambdaEFT, -0.2e1);
+      (-2 * Op6_112222 - 2 * Op6_122122) * std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_L6[4][4][7][7][7][7] =
-      (double)(-6 * Op6_122122 - 6 * Op6_112222 + 12 * Op6_121222) *
+      (-6 * Op6_122122 - 6 * Op6_112222 + 12 * Op6_121222) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_L6[4][5][5][5][6][7] =
       -0.6e1 * std::pow(LambdaEFT, -0.2e1) * Op6_121211;
@@ -2140,18 +2094,18 @@ void Class_Potential_R2HDMEFTPHI6_PHI2PSI3::SetCurvatureArrays()
   Curvature_Higgs_L6[5][5][5][5][5][5] =
       -0.90e2 * std::pow(LambdaEFT, -0.2e1) * Op6_111111;
   Curvature_Higgs_L6[5][5][5][5][6][6] =
-      (double)(-6 * Op6_111122 - 6 * Op6_122111 + 12 * Op6_121211) *
+      (-6 * Op6_111122 - 6 * Op6_122111 + 12 * Op6_121211) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_L6[5][5][5][5][7][7] =
-      (double)(-6 * Op6_111122 - 6 * Op6_122111 - 12 * Op6_121211) *
+      (-6 * Op6_111122 - 6 * Op6_122111 - 12 * Op6_121211) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_L6[5][5][6][6][6][6] =
-      (double)(-6 * Op6_122122 - 6 * Op6_112222 + 12 * Op6_121222) *
+      (-6 * Op6_122122 - 6 * Op6_112222 + 12 * Op6_121222) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_L6[5][5][6][6][7][7] =
-      (double)(-2 * Op6_112222 - 2 * Op6_122122) * std::pow(LambdaEFT, -0.2e1);
+      (-2 * Op6_112222 - 2 * Op6_122122) * std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_L6[5][5][7][7][7][7] =
-      (double)(-6 * Op6_112222 - 6 * Op6_122122 - 12 * Op6_121222) *
+      (-6 * Op6_112222 - 6 * Op6_122122 - 12 * Op6_121222) *
       std::pow(LambdaEFT, -0.2e1);
   Curvature_Higgs_L6[6][6][6][6][6][6] =
       -0.90e2 * std::pow(LambdaEFT, -0.2e1) * Op6_222222;
@@ -2420,262 +2374,6 @@ void Class_Potential_R2HDMEFTPHI6_PHI2PSI3::SetCurvatureArrays()
     }
   }
 
-  Curvature_Lepton_F2H3[0][1][0][0][6] =
-      std::sqrt(0.2e1) * OL_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[0][1][0][0][7] =
-      II * std::sqrt(0.2e1) * OL_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[0][1][0][2][4] = std::sqrt(0.2e1) *
-                                         (OL_1b21b + OL_1b12b) / 0.4e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[0][1][0][2][5] = std::sqrt(0.2e1) * II *
-                                         (OL_1b21b + OL_1b12b) / 0.4e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[0][1][0][3][4] = std::sqrt(0.2e1) * II *
-                                         (OL_1b12b - OL_1b21b) / 0.4e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[0][1][0][3][5] = -std::sqrt(0.2e1) *
-                                         (OL_1b12b - OL_1b21b) / 0.4e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[0][1][1][1][6] =
-      std::sqrt(0.2e1) * OL_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[0][1][1][1][7] =
-      II * std::sqrt(0.2e1) * OL_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[0][1][1][2][4] = -std::sqrt(0.2e1) * II *
-                                         (OL_1b12b - OL_1b21b) / 0.4e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[0][1][1][2][5] = std::sqrt(0.2e1) *
-                                         (OL_1b12b - OL_1b21b) / 0.4e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[0][1][1][3][4] = std::sqrt(0.2e1) *
-                                         (OL_1b21b + OL_1b12b) / 0.4e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[0][1][1][3][5] = std::sqrt(0.2e1) * II *
-                                         (OL_1b21b + OL_1b12b) / 0.4e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[0][1][2][2][6] =
-      std::sqrt(0.2e1) * OL_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[0][1][2][2][7] =
-      II * std::sqrt(0.2e1) * OL_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[0][1][3][3][6] =
-      std::sqrt(0.2e1) * OL_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[0][1][3][3][7] =
-      II * std::sqrt(0.2e1) * OL_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[0][1][4][4][6] = std::sqrt(0.2e1) *
-                                         (OL_1b21b + OL_1b12b + OL_2b11b) /
-                                         0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[0][1][4][4][7] = std::sqrt(0.2e1) * II *
-                                         (OL_1b12b - OL_1b21b + OL_2b11b) /
-                                         0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[0][1][4][5][6] =
-      II * std::sqrt(0.2e1) * OL_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[0][1][4][5][7] =
-      std::sqrt(0.2e1) * OL_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[0][1][5][5][6] = std::sqrt(0.2e1) *
-                                         (OL_1b12b - OL_1b21b + OL_2b11b) /
-                                         0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[0][1][5][5][7] = std::sqrt(0.2e1) * II *
-                                         (OL_1b21b + OL_1b12b + OL_2b11b) /
-                                         0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[0][1][6][6][6] =
-      0.3e1 / 0.2e1 * std::sqrt(0.2e1) * OL_2b22b * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[0][1][6][6][7] =
-      II * std::sqrt(0.2e1) * OL_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[0][1][6][7][7] =
-      std::sqrt(0.2e1) * OL_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[0][1][7][7][7] = 0.3e1 / 0.2e1 * II * std::sqrt(0.2e1) *
-                                         OL_2b22b * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[1][6][0][0][2] = std::sqrt(0.2e1) *
-                                         (OL_1b21b + OL_1b12b + OL_2b11b) /
-                                         0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[1][6][0][0][3] = std::sqrt(0.2e1) * II *
-                                         (OL_1b12b - OL_1b21b + OL_2b11b) /
-                                         0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[1][6][0][1][2] =
-      II * std::sqrt(0.2e1) * OL_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[1][6][0][1][3] =
-      std::sqrt(0.2e1) * OL_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[1][6][0][4][6] = std::sqrt(0.2e1) *
-                                         (OL_1b21b + OL_1b12b) / 0.4e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[1][6][0][4][7] = std::sqrt(0.2e1) * II *
-                                         (OL_1b12b - OL_1b21b) / 0.4e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[1][6][0][5][6] = -std::sqrt(0.2e1) * II *
-                                         (OL_1b12b - OL_1b21b) / 0.4e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[1][6][0][5][7] = std::sqrt(0.2e1) *
-                                         (OL_1b21b + OL_1b12b) / 0.4e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[1][6][1][1][2] = std::sqrt(0.2e1) *
-                                         (OL_1b12b - OL_1b21b + OL_2b11b) /
-                                         0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[1][6][1][1][3] = std::sqrt(0.2e1) * II *
-                                         (OL_1b21b + OL_1b12b + OL_2b11b) /
-                                         0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[1][6][1][4][6] = std::sqrt(0.2e1) * II *
-                                         (OL_1b21b + OL_1b12b) / 0.4e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[1][6][1][4][7] = -std::sqrt(0.2e1) *
-                                         (OL_1b12b - OL_1b21b) / 0.4e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[1][6][1][5][6] = std::sqrt(0.2e1) *
-                                         (OL_1b12b - OL_1b21b) / 0.4e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[1][6][1][5][7] = std::sqrt(0.2e1) * II *
-                                         (OL_1b21b + OL_1b12b) / 0.4e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[1][6][2][2][2] =
-      0.3e1 / 0.2e1 * std::sqrt(0.2e1) * OL_2b22b * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[1][6][2][2][3] =
-      II * std::sqrt(0.2e1) * OL_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[1][6][2][3][3] =
-      std::sqrt(0.2e1) * OL_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[1][6][2][4][4] =
-      std::sqrt(0.2e1) * OL_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[1][6][2][5][5] =
-      std::sqrt(0.2e1) * OL_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[1][6][2][6][6] =
-      std::sqrt(0.2e1) * OL_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[1][6][2][7][7] =
-      std::sqrt(0.2e1) * OL_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[1][6][3][3][3] = 0.3e1 / 0.2e1 * II * std::sqrt(0.2e1) *
-                                         OL_2b22b * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[1][6][3][4][4] =
-      II * std::sqrt(0.2e1) * OL_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[1][6][3][5][5] =
-      II * std::sqrt(0.2e1) * OL_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[1][6][3][6][6] =
-      II * std::sqrt(0.2e1) * OL_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[1][6][3][7][7] =
-      II * std::sqrt(0.2e1) * OL_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[2][3][0][0][6] =
-      std::sqrt(0.2e1) * OL_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[2][3][0][0][7] =
-      II * std::sqrt(0.2e1) * OL_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[2][3][0][2][4] = std::sqrt(0.2e1) *
-                                         (OL_1b21b + OL_1b12b) / 0.4e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[2][3][0][2][5] = std::sqrt(0.2e1) * II *
-                                         (OL_1b21b + OL_1b12b) / 0.4e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[2][3][0][3][4] = std::sqrt(0.2e1) * II *
-                                         (OL_1b12b - OL_1b21b) / 0.4e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[2][3][0][3][5] = -std::sqrt(0.2e1) *
-                                         (OL_1b12b - OL_1b21b) / 0.4e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[2][3][1][1][6] =
-      std::sqrt(0.2e1) * OL_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[2][3][1][1][7] =
-      II * std::sqrt(0.2e1) * OL_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[2][3][1][2][4] = -std::sqrt(0.2e1) * II *
-                                         (OL_1b12b - OL_1b21b) / 0.4e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[2][3][1][2][5] = std::sqrt(0.2e1) *
-                                         (OL_1b12b - OL_1b21b) / 0.4e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[2][3][1][3][4] = std::sqrt(0.2e1) *
-                                         (OL_1b21b + OL_1b12b) / 0.4e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[2][3][1][3][5] = std::sqrt(0.2e1) * II *
-                                         (OL_1b21b + OL_1b12b) / 0.4e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[2][3][2][2][6] =
-      std::sqrt(0.2e1) * OL_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[2][3][2][2][7] =
-      II * std::sqrt(0.2e1) * OL_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[2][3][3][3][6] =
-      std::sqrt(0.2e1) * OL_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[2][3][3][3][7] =
-      II * std::sqrt(0.2e1) * OL_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[2][3][4][4][6] = std::sqrt(0.2e1) *
-                                         (OL_1b21b + OL_1b12b + OL_2b11b) /
-                                         0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[2][3][4][4][7] = std::sqrt(0.2e1) * II *
-                                         (OL_1b12b - OL_1b21b + OL_2b11b) /
-                                         0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[2][3][4][5][6] =
-      II * std::sqrt(0.2e1) * OL_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[2][3][4][5][7] =
-      std::sqrt(0.2e1) * OL_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[2][3][5][5][6] = std::sqrt(0.2e1) *
-                                         (OL_1b12b - OL_1b21b + OL_2b11b) /
-                                         0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[2][3][5][5][7] = std::sqrt(0.2e1) * II *
-                                         (OL_1b21b + OL_1b12b + OL_2b11b) /
-                                         0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[2][3][6][6][6] =
-      0.3e1 / 0.2e1 * std::sqrt(0.2e1) * OL_2b22b * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[2][3][6][6][7] =
-      II * std::sqrt(0.2e1) * OL_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[2][3][6][7][7] =
-      std::sqrt(0.2e1) * OL_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[2][3][7][7][7] = 0.3e1 / 0.2e1 * II * std::sqrt(0.2e1) *
-                                         OL_2b22b * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[3][7][0][0][2] = std::sqrt(0.2e1) *
-                                         (OL_1b21b + OL_1b12b + OL_2b11b) /
-                                         0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[3][7][0][0][3] = std::sqrt(0.2e1) * II *
-                                         (OL_1b12b - OL_1b21b + OL_2b11b) /
-                                         0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[3][7][0][1][2] =
-      II * std::sqrt(0.2e1) * OL_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[3][7][0][1][3] =
-      std::sqrt(0.2e1) * OL_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[3][7][0][4][6] = std::sqrt(0.2e1) *
-                                         (OL_1b21b + OL_1b12b) / 0.4e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[3][7][0][4][7] = std::sqrt(0.2e1) * II *
-                                         (OL_1b12b - OL_1b21b) / 0.4e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[3][7][0][5][6] = -std::sqrt(0.2e1) * II *
-                                         (OL_1b12b - OL_1b21b) / 0.4e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[3][7][0][5][7] = std::sqrt(0.2e1) *
-                                         (OL_1b21b + OL_1b12b) / 0.4e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[3][7][1][1][2] = std::sqrt(0.2e1) *
-                                         (OL_1b12b - OL_1b21b + OL_2b11b) /
-                                         0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[3][7][1][1][3] = std::sqrt(0.2e1) * II *
-                                         (OL_1b21b + OL_1b12b + OL_2b11b) /
-                                         0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[3][7][1][4][6] = std::sqrt(0.2e1) * II *
-                                         (OL_1b21b + OL_1b12b) / 0.4e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[3][7][1][4][7] = -std::sqrt(0.2e1) *
-                                         (OL_1b12b - OL_1b21b) / 0.4e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[3][7][1][5][6] = std::sqrt(0.2e1) *
-                                         (OL_1b12b - OL_1b21b) / 0.4e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[3][7][1][5][7] = std::sqrt(0.2e1) * II *
-                                         (OL_1b21b + OL_1b12b) / 0.4e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[3][7][2][2][2] =
-      0.3e1 / 0.2e1 * std::sqrt(0.2e1) * OL_2b22b * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[3][7][2][2][3] =
-      II * std::sqrt(0.2e1) * OL_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[3][7][2][3][3] =
-      std::sqrt(0.2e1) * OL_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[3][7][2][4][4] =
-      std::sqrt(0.2e1) * OL_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[3][7][2][5][5] =
-      std::sqrt(0.2e1) * OL_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[3][7][2][6][6] =
-      std::sqrt(0.2e1) * OL_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[3][7][2][7][7] =
-      std::sqrt(0.2e1) * OL_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[3][7][3][3][3] = 0.3e1 / 0.2e1 * II * std::sqrt(0.2e1) *
-                                         OL_2b22b * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[3][7][3][4][4] =
-      II * std::sqrt(0.2e1) * OL_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[3][7][3][5][5] =
-      II * std::sqrt(0.2e1) * OL_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[3][7][3][6][6] =
-      II * std::sqrt(0.2e1) * OL_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Lepton_F2H3[3][7][3][7][7] =
-      II * std::sqrt(0.2e1) * OL_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
   Curvature_Lepton_F2H3[4][5][0][0][6] =
       std::sqrt(0.2e1) * OL_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
   Curvature_Lepton_F2H3[4][5][0][0][7] =
@@ -2807,3035 +2505,1447 @@ void Class_Potential_R2HDMEFTPHI6_PHI2PSI3::SetCurvatureArrays()
 
   sym5Dim(Curvature_Lepton_F2H3, NLepton, NLepton, NHiggs, NHiggs, NHiggs);
 
-  Curvature_Quark_F2H3[0][6][0][0][6] =
-      std::sqrt(0.2e1) * OQu_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][0][0][7] =
-      II * std::sqrt(0.2e1) * OQu_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][0][2][4] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][0][2][5] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][0][3][4] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][0][3][5] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][0][4][2] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][0][4][3] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][0][5][2] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][0][5][3] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][0][6][0] =
-      std::sqrt(0.2e1) * OQu_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][0][7][0] =
-      II * std::sqrt(0.2e1) * OQu_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][1][1][6] =
-      std::sqrt(0.2e1) * OQu_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][1][1][7] =
-      II * std::sqrt(0.2e1) * OQu_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][1][2][4] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][1][2][5] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][1][3][4] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][1][3][5] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][1][4][2] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][1][4][3] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][1][5][2] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][1][5][3] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][1][6][1] =
-      std::sqrt(0.2e1) * OQu_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][1][7][1] =
-      II * std::sqrt(0.2e1) * OQu_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][2][0][4] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][2][0][5] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][2][1][4] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][2][1][5] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][2][2][6] =
-      std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][2][2][7] =
-      II * std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][2][4][0] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][2][4][1] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][2][5][0] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][2][5][1] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][2][6][2] =
-      std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][2][7][2] =
-      II * std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][3][0][4] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][3][0][5] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][3][1][4] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][3][1][5] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][3][3][6] =
-      std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][3][3][7] =
-      II * std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][3][4][0] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][3][4][1] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][3][5][0] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][3][5][1] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][3][6][3] =
-      std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][3][7][3] =
-      II * std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][4][0][2] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][4][0][3] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][4][1][2] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][4][1][3] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][4][2][0] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][4][2][1] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][4][3][0] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][4][3][1] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][4][4][6] = std::sqrt(0.2e1) *
-                                        (OQu_1b21b + OQu_2b11b) / 0.2e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][4][4][7] = -std::sqrt(0.2e1) * II *
-                                        (OQu_1b21b - OQu_2b11b) / 0.2e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][4][5][6] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][4][5][7] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][4][6][4] = std::sqrt(0.2e1) *
-                                        (OQu_1b21b + OQu_2b11b) / 0.2e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][4][6][5] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][4][7][4] = -std::sqrt(0.2e1) * II *
-                                        (OQu_1b21b - OQu_2b11b) / 0.2e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][4][7][5] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][5][0][2] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][5][0][3] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][5][1][2] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][5][1][3] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][5][2][0] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][5][2][1] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][5][3][0] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][5][3][1] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][5][4][6] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][5][4][7] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][5][5][6] = -std::sqrt(0.2e1) *
-                                        (OQu_1b21b - OQu_2b11b) / 0.2e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][5][5][7] = std::sqrt(0.2e1) * II *
-                                        (OQu_1b21b + OQu_2b11b) / 0.2e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][5][6][4] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][5][6][5] = -std::sqrt(0.2e1) *
-                                        (OQu_1b21b - OQu_2b11b) / 0.2e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][5][7][4] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][5][7][5] = std::sqrt(0.2e1) * II *
-                                        (OQu_1b21b + OQu_2b11b) / 0.2e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][6][0][0] =
-      std::sqrt(0.2e1) * OQu_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][6][1][1] =
-      std::sqrt(0.2e1) * OQu_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][6][2][2] =
-      std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][6][3][3] =
-      std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][6][4][4] = std::sqrt(0.2e1) *
-                                        (OQu_1b21b + OQu_2b11b) / 0.2e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][6][4][5] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][6][5][4] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][6][5][5] = -std::sqrt(0.2e1) *
-                                        (OQu_1b21b - OQu_2b11b) / 0.2e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][6][6][6] = 0.3e1 / 0.2e1 * std::sqrt(0.2e1) *
-                                        OQu_2b22b * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][6][6][7] =
-      II * std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][6][7][6] =
-      II * std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][6][7][7] =
-      std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][7][0][0] =
-      II * std::sqrt(0.2e1) * OQu_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][7][1][1] =
-      II * std::sqrt(0.2e1) * OQu_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][7][2][2] =
-      II * std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][7][3][3] =
-      II * std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][7][4][4] = -std::sqrt(0.2e1) * II *
-                                        (OQu_1b21b - OQu_2b11b) / 0.2e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][7][4][5] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][7][5][4] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][7][5][5] = std::sqrt(0.2e1) * II *
-                                        (OQu_1b21b + OQu_2b11b) / 0.2e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][7][6][6] =
-      II * std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][7][6][7] =
-      std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][7][7][6] =
-      std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][6][7][7][7] = 0.3e1 / 0.2e1 * II * std::sqrt(0.2e1) *
-                                        OQu_2b22b * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][0][0][2] = -std::sqrt(0.2e1) *
-                                        (OQu_1b21b + OQu_2b11b) / 0.2e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][0][0][3] = std::sqrt(0.2e1) * II *
-                                        (OQu_1b21b - OQu_2b11b) / 0.2e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][0][1][2] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][0][1][3] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][0][2][0] = -std::sqrt(0.2e1) *
-                                        (OQu_1b21b + OQu_2b11b) / 0.2e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][0][2][1] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][0][3][0] = std::sqrt(0.2e1) * II *
-                                        (OQu_1b21b - OQu_2b11b) / 0.2e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][0][3][1] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][0][4][6] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][0][4][7] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][0][5][6] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][0][5][7] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][0][6][4] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][0][6][5] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][0][7][4] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][0][7][5] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][1][0][2] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][1][0][3] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][1][1][2] = std::sqrt(0.2e1) *
-                                        (OQu_1b21b - OQu_2b11b) / 0.2e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][1][1][3] = -std::sqrt(0.2e1) * II *
-                                        (OQu_1b21b + OQu_2b11b) / 0.2e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][1][2][0] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][1][2][1] = std::sqrt(0.2e1) *
-                                        (OQu_1b21b - OQu_2b11b) / 0.2e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][1][3][0] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][1][3][1] = -std::sqrt(0.2e1) * II *
-                                        (OQu_1b21b + OQu_2b11b) / 0.2e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][1][4][6] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][1][4][7] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][1][5][6] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][1][5][7] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][1][6][4] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][1][6][5] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][1][7][4] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][1][7][5] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][2][0][0] = -std::sqrt(0.2e1) *
-                                        (OQu_1b21b + OQu_2b11b) / 0.2e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][2][0][1] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][2][1][0] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][2][1][1] = std::sqrt(0.2e1) *
-                                        (OQu_1b21b - OQu_2b11b) / 0.2e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][2][2][2] = -0.3e1 / 0.2e1 * std::sqrt(0.2e1) *
-                                        OQu_2b22b * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][2][2][3] =
-      -II * std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][2][3][2] =
-      -II * std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][2][3][3] =
-      -std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][2][4][4] =
-      -std::sqrt(0.2e1) * OQu_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][2][5][5] =
-      -std::sqrt(0.2e1) * OQu_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][2][6][6] =
-      -std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][2][7][7] =
-      -std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][3][0][0] = std::sqrt(0.2e1) * II *
-                                        (OQu_1b21b - OQu_2b11b) / 0.2e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][3][0][1] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][3][1][0] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][3][1][1] = -std::sqrt(0.2e1) * II *
-                                        (OQu_1b21b + OQu_2b11b) / 0.2e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][3][2][2] =
-      -II * std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][3][2][3] =
-      -std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][3][3][2] =
-      -std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][3][3][3] = -0.3e1 / 0.2e1 * II * std::sqrt(0.2e1) *
-                                        OQu_2b22b * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][3][4][4] =
-      -II * std::sqrt(0.2e1) * OQu_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][3][5][5] =
-      -II * std::sqrt(0.2e1) * OQu_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][3][6][6] =
-      -II * std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][3][7][7] =
-      -II * std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][4][0][6] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][4][0][7] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][4][1][6] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][4][1][7] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][4][2][4] =
-      -std::sqrt(0.2e1) * OQu_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][4][3][4] =
-      -II * std::sqrt(0.2e1) * OQu_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][4][4][2] =
-      -std::sqrt(0.2e1) * OQu_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][4][4][3] =
-      -II * std::sqrt(0.2e1) * OQu_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][4][6][0] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][4][6][1] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][4][7][0] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][4][7][1] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][5][0][6] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][5][0][7] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][5][1][6] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][5][1][7] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][5][2][5] =
-      -std::sqrt(0.2e1) * OQu_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][5][3][5] =
-      -II * std::sqrt(0.2e1) * OQu_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][5][5][2] =
-      -std::sqrt(0.2e1) * OQu_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][5][5][3] =
-      -II * std::sqrt(0.2e1) * OQu_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][5][6][0] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][5][6][1] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][5][7][0] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][5][7][1] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][6][0][4] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][6][0][5] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][6][1][4] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][6][1][5] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][6][2][6] =
-      -std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][6][3][6] =
-      -II * std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][6][4][0] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][6][4][1] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][6][5][0] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][6][5][1] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][6][6][2] =
-      -std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][6][6][3] =
-      -II * std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][7][0][4] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][7][0][5] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][7][1][4] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][7][1][5] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][7][2][7] =
-      -std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][7][3][7] =
-      -II * std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][7][4][0] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][7][4][1] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][7][5][0] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][7][5][1] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][7][7][2] =
-      -std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[0][9][7][7][3] =
-      -II * std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][0][0][6] =
-      std::sqrt(0.2e1) * OQu_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][0][0][7] =
-      II * std::sqrt(0.2e1) * OQu_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][0][2][4] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][0][2][5] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][0][3][4] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][0][3][5] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][0][4][2] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][0][4][3] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][0][5][2] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][0][5][3] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][0][6][0] =
-      std::sqrt(0.2e1) * OQu_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][0][7][0] =
-      II * std::sqrt(0.2e1) * OQu_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][1][1][6] =
-      std::sqrt(0.2e1) * OQu_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][1][1][7] =
-      II * std::sqrt(0.2e1) * OQu_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][1][2][4] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][1][2][5] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][1][3][4] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][1][3][5] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][1][4][2] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][1][4][3] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][1][5][2] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][1][5][3] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][1][6][1] =
-      std::sqrt(0.2e1) * OQu_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][1][7][1] =
-      II * std::sqrt(0.2e1) * OQu_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][2][0][4] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][2][0][5] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][2][1][4] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][2][1][5] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][2][2][6] =
-      std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][2][2][7] =
-      II * std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][2][4][0] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][2][4][1] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][2][5][0] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][2][5][1] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][2][6][2] =
-      std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][2][7][2] =
-      II * std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][3][0][4] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][3][0][5] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][3][1][4] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][3][1][5] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][3][3][6] =
-      std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][3][3][7] =
-      II * std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][3][4][0] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][3][4][1] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][3][5][0] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][3][5][1] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][3][6][3] =
-      std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][3][7][3] =
-      II * std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][4][0][2] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][4][0][3] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][4][1][2] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][4][1][3] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][4][2][0] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][4][2][1] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][4][3][0] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][4][3][1] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][4][4][6] = std::sqrt(0.2e1) *
-                                        (OQu_1b21b + OQu_2b11b) / 0.2e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][4][4][7] = -std::sqrt(0.2e1) * II *
-                                        (OQu_1b21b - OQu_2b11b) / 0.2e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][4][5][6] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][4][5][7] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][4][6][4] = std::sqrt(0.2e1) *
-                                        (OQu_1b21b + OQu_2b11b) / 0.2e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][4][6][5] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][4][7][4] = -std::sqrt(0.2e1) * II *
-                                        (OQu_1b21b - OQu_2b11b) / 0.2e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][4][7][5] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][5][0][2] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][5][0][3] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][5][1][2] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][5][1][3] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][5][2][0] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][5][2][1] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][5][3][0] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][5][3][1] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][5][4][6] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][5][4][7] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][5][5][6] = -std::sqrt(0.2e1) *
-                                        (OQu_1b21b - OQu_2b11b) / 0.2e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][5][5][7] = std::sqrt(0.2e1) * II *
-                                        (OQu_1b21b + OQu_2b11b) / 0.2e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][5][6][4] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][5][6][5] = -std::sqrt(0.2e1) *
-                                        (OQu_1b21b - OQu_2b11b) / 0.2e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][5][7][4] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][5][7][5] = std::sqrt(0.2e1) * II *
-                                        (OQu_1b21b + OQu_2b11b) / 0.2e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][6][0][0] =
-      std::sqrt(0.2e1) * OQu_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][6][1][1] =
-      std::sqrt(0.2e1) * OQu_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][6][2][2] =
-      std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][6][3][3] =
-      std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][6][4][4] = std::sqrt(0.2e1) *
-                                        (OQu_1b21b + OQu_2b11b) / 0.2e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][6][4][5] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][6][5][4] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][6][5][5] = -std::sqrt(0.2e1) *
-                                        (OQu_1b21b - OQu_2b11b) / 0.2e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][6][6][6] = 0.3e1 / 0.2e1 * std::sqrt(0.2e1) *
-                                        OQu_2b22b * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][6][6][7] =
-      II * std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][6][7][6] =
-      II * std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][6][7][7] =
-      std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][7][0][0] =
-      II * std::sqrt(0.2e1) * OQu_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][7][1][1] =
-      II * std::sqrt(0.2e1) * OQu_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][7][2][2] =
-      II * std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][7][3][3] =
-      II * std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][7][4][4] = -std::sqrt(0.2e1) * II *
-                                        (OQu_1b21b - OQu_2b11b) / 0.2e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][7][4][5] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][7][5][4] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][7][5][5] = std::sqrt(0.2e1) * II *
-                                        (OQu_1b21b + OQu_2b11b) / 0.2e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][7][6][6] =
-      II * std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][7][6][7] =
-      std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][7][7][6] =
-      std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][7][7][7][7] = 0.3e1 / 0.2e1 * II * std::sqrt(0.2e1) *
-                                        OQu_2b22b * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][0][0][2] = -std::sqrt(0.2e1) *
-                                         (OQu_1b21b + OQu_2b11b) / 0.2e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][0][0][3] = std::sqrt(0.2e1) * II *
-                                         (OQu_1b21b - OQu_2b11b) / 0.2e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][0][1][2] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][0][1][3] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][0][2][0] = -std::sqrt(0.2e1) *
-                                         (OQu_1b21b + OQu_2b11b) / 0.2e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][0][2][1] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][0][3][0] = std::sqrt(0.2e1) * II *
-                                         (OQu_1b21b - OQu_2b11b) / 0.2e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][0][3][1] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][0][4][6] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][0][4][7] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][0][5][6] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][0][5][7] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][0][6][4] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][0][6][5] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][0][7][4] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][0][7][5] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][1][0][2] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][1][0][3] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][1][1][2] = std::sqrt(0.2e1) *
-                                         (OQu_1b21b - OQu_2b11b) / 0.2e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][1][1][3] = -std::sqrt(0.2e1) * II *
-                                         (OQu_1b21b + OQu_2b11b) / 0.2e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][1][2][0] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][1][2][1] = std::sqrt(0.2e1) *
-                                         (OQu_1b21b - OQu_2b11b) / 0.2e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][1][3][0] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][1][3][1] = -std::sqrt(0.2e1) * II *
-                                         (OQu_1b21b + OQu_2b11b) / 0.2e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][1][4][6] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][1][4][7] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][1][5][6] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][1][5][7] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][1][6][4] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][1][6][5] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][1][7][4] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][1][7][5] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][2][0][0] = -std::sqrt(0.2e1) *
-                                         (OQu_1b21b + OQu_2b11b) / 0.2e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][2][0][1] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][2][1][0] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][2][1][1] = std::sqrt(0.2e1) *
-                                         (OQu_1b21b - OQu_2b11b) / 0.2e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][2][2][2] = -0.3e1 / 0.2e1 * std::sqrt(0.2e1) *
-                                         OQu_2b22b *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][2][2][3] =
-      -II * std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][2][3][2] =
-      -II * std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][2][3][3] =
-      -std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][2][4][4] =
-      -std::sqrt(0.2e1) * OQu_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][2][5][5] =
-      -std::sqrt(0.2e1) * OQu_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][2][6][6] =
-      -std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][2][7][7] =
-      -std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][3][0][0] = std::sqrt(0.2e1) * II *
-                                         (OQu_1b21b - OQu_2b11b) / 0.2e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][3][0][1] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][3][1][0] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][3][1][1] = -std::sqrt(0.2e1) * II *
-                                         (OQu_1b21b + OQu_2b11b) / 0.2e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][3][2][2] =
-      -II * std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][3][2][3] =
-      -std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][3][3][2] =
-      -std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][3][3][3] = -0.3e1 / 0.2e1 * II *
-                                         std::sqrt(0.2e1) * OQu_2b22b *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][3][4][4] =
-      -II * std::sqrt(0.2e1) * OQu_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][3][5][5] =
-      -II * std::sqrt(0.2e1) * OQu_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][3][6][6] =
-      -II * std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][3][7][7] =
-      -II * std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][4][0][6] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][4][0][7] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][4][1][6] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][4][1][7] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][4][2][4] =
-      -std::sqrt(0.2e1) * OQu_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][4][3][4] =
-      -II * std::sqrt(0.2e1) * OQu_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][4][4][2] =
-      -std::sqrt(0.2e1) * OQu_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][4][4][3] =
-      -II * std::sqrt(0.2e1) * OQu_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][4][6][0] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][4][6][1] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][4][7][0] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][4][7][1] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][5][0][6] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][5][0][7] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][5][1][6] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][5][1][7] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][5][2][5] =
-      -std::sqrt(0.2e1) * OQu_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][5][3][5] =
-      -II * std::sqrt(0.2e1) * OQu_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][5][5][2] =
-      -std::sqrt(0.2e1) * OQu_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][5][5][3] =
-      -II * std::sqrt(0.2e1) * OQu_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][5][6][0] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][5][6][1] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][5][7][0] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][5][7][1] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][6][0][4] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][6][0][5] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][6][1][4] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][6][1][5] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][6][2][6] =
-      -std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][6][3][6] =
-      -II * std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][6][4][0] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][6][4][1] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][6][5][0] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][6][5][1] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][6][6][2] =
-      -std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][6][6][3] =
-      -II * std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][7][0][4] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][7][0][5] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][7][1][4] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][7][1][5] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][7][2][7] =
-      -std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][7][3][7] =
-      -II * std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][7][4][0] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][7][4][1] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][7][5][0] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][7][5][1] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][7][7][2] =
-      -std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[1][10][7][7][3] =
-      -II * std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[2][8][0][0][6] =
-      std::sqrt(0.2e1) * OQu_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+      OQu_2b11b * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[2][8][0][0][7] =
-      II * std::sqrt(0.2e1) * OQu_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][8][0][2][4] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][8][0][2][5] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][8][0][3][4] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][8][0][3][5] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][8][0][4][2] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][8][0][4][3] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][8][0][5][2] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][8][0][5][3] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
+      II * OQu_2b11b * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][8][0][2][4] = (OQu_1b21b + OQu_1b12b) *
+                                        std::sqrt(0.2e1) / 0.4e1 *
+                                        std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][8][0][2][5] = II * (OQu_1b21b + OQu_1b12b) *
+                                        std::sqrt(0.2e1) / 0.4e1 *
+                                        std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][8][0][3][4] = II * (OQu_1b12b - OQu_1b21b) *
+                                        std::sqrt(0.2e1) / 0.4e1 *
+                                        std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][8][0][3][5] = -(OQu_1b12b - OQu_1b21b) *
+                                        std::sqrt(0.2e1) / 0.4e1 *
+                                        std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][8][0][4][2] = (OQu_1b21b + OQu_1b12b) *
+                                        std::sqrt(0.2e1) / 0.4e1 *
+                                        std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][8][0][4][3] = II * (OQu_1b12b - OQu_1b21b) *
+                                        std::sqrt(0.2e1) / 0.4e1 *
+                                        std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][8][0][5][2] = II * (OQu_1b21b + OQu_1b12b) *
+                                        std::sqrt(0.2e1) / 0.4e1 *
+                                        std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][8][0][5][3] = -(OQu_1b12b - OQu_1b21b) *
+                                        std::sqrt(0.2e1) / 0.4e1 *
+                                        std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[2][8][0][6][0] =
-      std::sqrt(0.2e1) * OQu_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+      OQu_2b11b * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[2][8][0][7][0] =
-      II * std::sqrt(0.2e1) * OQu_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+      II * OQu_2b11b * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[2][8][1][1][6] =
-      std::sqrt(0.2e1) * OQu_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+      OQu_2b11b * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[2][8][1][1][7] =
-      II * std::sqrt(0.2e1) * OQu_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][8][1][2][4] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][8][1][2][5] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][8][1][3][4] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][8][1][3][5] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][8][1][4][2] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][8][1][4][3] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][8][1][5][2] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][8][1][5][3] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
+      II * OQu_2b11b * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][8][1][2][4] = -II * (OQu_1b12b - OQu_1b21b) *
+                                        std::sqrt(0.2e1) / 0.4e1 *
+                                        std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][8][1][2][5] = (OQu_1b12b - OQu_1b21b) *
+                                        std::sqrt(0.2e1) / 0.4e1 *
+                                        std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][8][1][3][4] = (OQu_1b21b + OQu_1b12b) *
+                                        std::sqrt(0.2e1) / 0.4e1 *
+                                        std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][8][1][3][5] = II * (OQu_1b21b + OQu_1b12b) *
+                                        std::sqrt(0.2e1) / 0.4e1 *
+                                        std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][8][1][4][2] = -II * (OQu_1b12b - OQu_1b21b) *
+                                        std::sqrt(0.2e1) / 0.4e1 *
+                                        std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][8][1][4][3] = (OQu_1b21b + OQu_1b12b) *
+                                        std::sqrt(0.2e1) / 0.4e1 *
+                                        std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][8][1][5][2] = (OQu_1b12b - OQu_1b21b) *
+                                        std::sqrt(0.2e1) / 0.4e1 *
+                                        std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][8][1][5][3] = II * (OQu_1b21b + OQu_1b12b) *
+                                        std::sqrt(0.2e1) / 0.4e1 *
+                                        std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[2][8][1][6][1] =
-      std::sqrt(0.2e1) * OQu_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+      OQu_2b11b * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[2][8][1][7][1] =
-      II * std::sqrt(0.2e1) * OQu_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][8][2][0][4] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][8][2][0][5] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][8][2][1][4] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][8][2][1][5] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
+      II * OQu_2b11b * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][8][2][0][4] = (OQu_1b21b + OQu_1b12b) *
+                                        std::sqrt(0.2e1) / 0.4e1 *
+                                        std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][8][2][0][5] = II * (OQu_1b21b + OQu_1b12b) *
+                                        std::sqrt(0.2e1) / 0.4e1 *
+                                        std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][8][2][1][4] = -II * (OQu_1b12b - OQu_1b21b) *
+                                        std::sqrt(0.2e1) / 0.4e1 *
+                                        std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][8][2][1][5] = (OQu_1b12b - OQu_1b21b) *
+                                        std::sqrt(0.2e1) / 0.4e1 *
+                                        std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[2][8][2][2][6] =
-      std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+      OQu_2b22b * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[2][8][2][2][7] =
-      II * std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][8][2][4][0] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][8][2][4][1] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][8][2][5][0] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][8][2][5][1] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
+      II * OQu_2b22b * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][8][2][4][0] = (OQu_1b21b + OQu_1b12b) *
+                                        std::sqrt(0.2e1) / 0.4e1 *
+                                        std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][8][2][4][1] = -II * (OQu_1b12b - OQu_1b21b) *
+                                        std::sqrt(0.2e1) / 0.4e1 *
+                                        std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][8][2][5][0] = II * (OQu_1b21b + OQu_1b12b) *
+                                        std::sqrt(0.2e1) / 0.4e1 *
+                                        std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][8][2][5][1] = (OQu_1b12b - OQu_1b21b) *
+                                        std::sqrt(0.2e1) / 0.4e1 *
+                                        std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[2][8][2][6][2] =
-      std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+      OQu_2b22b * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[2][8][2][7][2] =
-      II * std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][8][3][0][4] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][8][3][0][5] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][8][3][1][4] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][8][3][1][5] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
+      II * OQu_2b22b * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][8][3][0][4] = II * (OQu_1b12b - OQu_1b21b) *
+                                        std::sqrt(0.2e1) / 0.4e1 *
+                                        std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][8][3][0][5] = -(OQu_1b12b - OQu_1b21b) *
+                                        std::sqrt(0.2e1) / 0.4e1 *
+                                        std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][8][3][1][4] = (OQu_1b21b + OQu_1b12b) *
+                                        std::sqrt(0.2e1) / 0.4e1 *
+                                        std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][8][3][1][5] = II * (OQu_1b21b + OQu_1b12b) *
+                                        std::sqrt(0.2e1) / 0.4e1 *
+                                        std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[2][8][3][3][6] =
-      std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+      OQu_2b22b * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[2][8][3][3][7] =
-      II * std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][8][3][4][0] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][8][3][4][1] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][8][3][5][0] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][8][3][5][1] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
+      II * OQu_2b22b * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][8][3][4][0] = II * (OQu_1b12b - OQu_1b21b) *
+                                        std::sqrt(0.2e1) / 0.4e1 *
+                                        std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][8][3][4][1] = (OQu_1b21b + OQu_1b12b) *
+                                        std::sqrt(0.2e1) / 0.4e1 *
+                                        std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][8][3][5][0] = -(OQu_1b12b - OQu_1b21b) *
+                                        std::sqrt(0.2e1) / 0.4e1 *
+                                        std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][8][3][5][1] = II * (OQu_1b21b + OQu_1b12b) *
+                                        std::sqrt(0.2e1) / 0.4e1 *
+                                        std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[2][8][3][6][3] =
-      std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+      OQu_2b22b * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[2][8][3][7][3] =
-      II * std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][8][4][0][2] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][8][4][0][3] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][8][4][1][2] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][8][4][1][3] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][8][4][2][0] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][8][4][2][1] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][8][4][3][0] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][8][4][3][1] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][8][4][4][6] = std::sqrt(0.2e1) *
-                                        (OQu_1b21b + OQu_2b11b) / 0.2e1 *
+      II * OQu_2b22b * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][8][4][0][2] = (OQu_1b21b + OQu_1b12b) *
+                                        std::sqrt(0.2e1) / 0.4e1 *
                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][8][4][4][7] = -std::sqrt(0.2e1) * II *
-                                        (OQu_1b21b - OQu_2b11b) / 0.2e1 *
+  Curvature_Quark_F2H3[2][8][4][0][3] = II * (OQu_1b12b - OQu_1b21b) *
+                                        std::sqrt(0.2e1) / 0.4e1 *
                                         std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][8][4][1][2] = -II * (OQu_1b12b - OQu_1b21b) *
+                                        std::sqrt(0.2e1) / 0.4e1 *
+                                        std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][8][4][1][3] = (OQu_1b21b + OQu_1b12b) *
+                                        std::sqrt(0.2e1) / 0.4e1 *
+                                        std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][8][4][2][0] = (OQu_1b21b + OQu_1b12b) *
+                                        std::sqrt(0.2e1) / 0.4e1 *
+                                        std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][8][4][2][1] = -II * (OQu_1b12b - OQu_1b21b) *
+                                        std::sqrt(0.2e1) / 0.4e1 *
+                                        std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][8][4][3][0] = II * (OQu_1b12b - OQu_1b21b) *
+                                        std::sqrt(0.2e1) / 0.4e1 *
+                                        std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][8][4][3][1] = (OQu_1b21b + OQu_1b12b) *
+                                        std::sqrt(0.2e1) / 0.4e1 *
+                                        std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][8][4][4][6] = (OQu_1b21b + OQu_1b12b + OQu_2b11b) *
+                                        std::sqrt(0.2e1) / 0.2e1 *
+                                        std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][8][4][4][7] =
+      II * (OQu_1b12b - OQu_1b21b + OQu_2b11b) * std::sqrt(0.2e1) / 0.2e1 *
+      std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[2][8][4][5][6] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+      II * OQu_1b21b * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[2][8][4][5][7] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][8][4][6][4] = std::sqrt(0.2e1) *
-                                        (OQu_1b21b + OQu_2b11b) / 0.2e1 *
+      OQu_1b21b * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][8][4][6][4] = (OQu_1b21b + OQu_1b12b + OQu_2b11b) *
+                                        std::sqrt(0.2e1) / 0.2e1 *
                                         std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[2][8][4][6][5] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][8][4][7][4] = -std::sqrt(0.2e1) * II *
-                                        (OQu_1b21b - OQu_2b11b) / 0.2e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
+      II * OQu_1b21b * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][8][4][7][4] =
+      II * (OQu_1b12b - OQu_1b21b + OQu_2b11b) * std::sqrt(0.2e1) / 0.2e1 *
+      std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[2][8][4][7][5] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][8][5][0][2] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][8][5][0][3] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][8][5][1][2] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][8][5][1][3] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][8][5][2][0] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][8][5][2][1] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][8][5][3][0] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][8][5][3][1] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
+      OQu_1b21b * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][8][5][0][2] = II * (OQu_1b21b + OQu_1b12b) *
+                                        std::sqrt(0.2e1) / 0.4e1 *
+                                        std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][8][5][0][3] = -(OQu_1b12b - OQu_1b21b) *
+                                        std::sqrt(0.2e1) / 0.4e1 *
+                                        std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][8][5][1][2] = (OQu_1b12b - OQu_1b21b) *
+                                        std::sqrt(0.2e1) / 0.4e1 *
+                                        std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][8][5][1][3] = II * (OQu_1b21b + OQu_1b12b) *
+                                        std::sqrt(0.2e1) / 0.4e1 *
+                                        std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][8][5][2][0] = II * (OQu_1b21b + OQu_1b12b) *
+                                        std::sqrt(0.2e1) / 0.4e1 *
+                                        std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][8][5][2][1] = (OQu_1b12b - OQu_1b21b) *
+                                        std::sqrt(0.2e1) / 0.4e1 *
+                                        std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][8][5][3][0] = -(OQu_1b12b - OQu_1b21b) *
+                                        std::sqrt(0.2e1) / 0.4e1 *
+                                        std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][8][5][3][1] = II * (OQu_1b21b + OQu_1b12b) *
+                                        std::sqrt(0.2e1) / 0.4e1 *
+                                        std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[2][8][5][4][6] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+      II * OQu_1b21b * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[2][8][5][4][7] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][8][5][5][6] = -std::sqrt(0.2e1) *
-                                        (OQu_1b21b - OQu_2b11b) / 0.2e1 *
+      OQu_1b21b * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][8][5][5][6] = (OQu_1b12b - OQu_1b21b + OQu_2b11b) *
+                                        std::sqrt(0.2e1) / 0.2e1 *
                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][8][5][5][7] = std::sqrt(0.2e1) * II *
-                                        (OQu_1b21b + OQu_2b11b) / 0.2e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][8][5][5][7] =
+      II * (OQu_1b21b + OQu_1b12b + OQu_2b11b) * std::sqrt(0.2e1) / 0.2e1 *
+      std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[2][8][5][6][4] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][8][5][6][5] = -std::sqrt(0.2e1) *
-                                        (OQu_1b21b - OQu_2b11b) / 0.2e1 *
+      II * OQu_1b21b * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][8][5][6][5] = (OQu_1b12b - OQu_1b21b + OQu_2b11b) *
+                                        std::sqrt(0.2e1) / 0.2e1 *
                                         std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[2][8][5][7][4] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][8][5][7][5] = std::sqrt(0.2e1) * II *
-                                        (OQu_1b21b + OQu_2b11b) / 0.2e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
+      OQu_1b21b * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][8][5][7][5] =
+      II * (OQu_1b21b + OQu_1b12b + OQu_2b11b) * std::sqrt(0.2e1) / 0.2e1 *
+      std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[2][8][6][0][0] =
-      std::sqrt(0.2e1) * OQu_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+      OQu_2b11b * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[2][8][6][1][1] =
-      std::sqrt(0.2e1) * OQu_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+      OQu_2b11b * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[2][8][6][2][2] =
-      std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+      OQu_2b22b * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[2][8][6][3][3] =
-      std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][8][6][4][4] = std::sqrt(0.2e1) *
-                                        (OQu_1b21b + OQu_2b11b) / 0.2e1 *
+      OQu_2b22b * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][8][6][4][4] = (OQu_1b21b + OQu_1b12b + OQu_2b11b) *
+                                        std::sqrt(0.2e1) / 0.2e1 *
                                         std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[2][8][6][4][5] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+      II * OQu_1b21b * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[2][8][6][5][4] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][8][6][5][5] = -std::sqrt(0.2e1) *
-                                        (OQu_1b21b - OQu_2b11b) / 0.2e1 *
+      II * OQu_1b21b * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][8][6][5][5] = (OQu_1b12b - OQu_1b21b + OQu_2b11b) *
+                                        std::sqrt(0.2e1) / 0.2e1 *
                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][8][6][6][6] = 0.3e1 / 0.2e1 * std::sqrt(0.2e1) *
-                                        OQu_2b22b * std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][8][6][6][6] = 0.3e1 / 0.2e1 * OQu_2b22b *
+                                        std::sqrt(0.2e1) *
+                                        std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[2][8][6][6][7] =
-      II * std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+      II * OQu_2b22b * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[2][8][6][7][6] =
-      II * std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+      II * OQu_2b22b * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[2][8][6][7][7] =
-      std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+      OQu_2b22b * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[2][8][7][0][0] =
-      II * std::sqrt(0.2e1) * OQu_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+      II * OQu_2b11b * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[2][8][7][1][1] =
-      II * std::sqrt(0.2e1) * OQu_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+      II * OQu_2b11b * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[2][8][7][2][2] =
-      II * std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+      II * OQu_2b22b * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[2][8][7][3][3] =
-      II * std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][8][7][4][4] = -std::sqrt(0.2e1) * II *
-                                        (OQu_1b21b - OQu_2b11b) / 0.2e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
+      II * OQu_2b22b * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][8][7][4][4] =
+      II * (OQu_1b12b - OQu_1b21b + OQu_2b11b) * std::sqrt(0.2e1) / 0.2e1 *
+      std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[2][8][7][4][5] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+      OQu_1b21b * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[2][8][7][5][4] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][8][7][5][5] = std::sqrt(0.2e1) * II *
-                                        (OQu_1b21b + OQu_2b11b) / 0.2e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
+      OQu_1b21b * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][8][7][5][5] =
+      II * (OQu_1b21b + OQu_1b12b + OQu_2b11b) * std::sqrt(0.2e1) / 0.2e1 *
+      std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[2][8][7][6][6] =
-      II * std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+      II * OQu_2b22b * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[2][8][7][6][7] =
-      std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+      OQu_2b22b * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[2][8][7][7][6] =
-      std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][8][7][7][7] = 0.3e1 / 0.2e1 * II * std::sqrt(0.2e1) *
-                                        OQu_2b22b * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][11][0][0][2] = -std::sqrt(0.2e1) *
-                                         (OQu_1b21b + OQu_2b11b) / 0.2e1 *
+      OQu_2b22b * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][8][7][7][7] = 0.3e1 / 0.2e1 * II * OQu_2b22b *
+                                        std::sqrt(0.2e1) *
+                                        std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][11][0][0][2] = -(OQu_1b21b + OQu_1b12b + OQu_2b11b) *
+                                         V33 * std::sqrt(0.2e1) / 0.2e1 *
                                          std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][11][0][0][3] = std::sqrt(0.2e1) * II *
-                                         (OQu_1b21b - OQu_2b11b) / 0.2e1 *
+  Curvature_Quark_F2H3[2][11][0][0][3] =
+      -II * (OQu_1b12b - OQu_1b21b + OQu_2b11b) * V33 * std::sqrt(0.2e1) /
+      0.2e1 * std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][11][0][1][2] = -II * OQu_1b21b * V33 *
+                                         std::sqrt(0.2e1) / 0.2e1 *
                                          std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][11][0][1][2] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[2][11][0][1][3] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][11][0][2][0] = -std::sqrt(0.2e1) *
-                                         (OQu_1b21b + OQu_2b11b) / 0.2e1 *
+      -OQu_1b21b * V33 * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][11][0][2][0] = -(OQu_1b21b + OQu_1b12b + OQu_2b11b) *
+                                         V33 * std::sqrt(0.2e1) / 0.2e1 *
                                          std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][11][0][2][1] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][11][0][3][0] = std::sqrt(0.2e1) * II *
-                                         (OQu_1b21b - OQu_2b11b) / 0.2e1 *
+  Curvature_Quark_F2H3[2][11][0][2][1] = -II * OQu_1b21b * V33 *
+                                         std::sqrt(0.2e1) / 0.2e1 *
                                          std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][11][0][3][0] =
+      -II * (OQu_1b12b - OQu_1b21b + OQu_2b11b) * V33 * std::sqrt(0.2e1) /
+      0.2e1 * std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[2][11][0][3][1] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][11][0][4][6] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][11][0][4][7] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][11][0][5][6] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][11][0][5][7] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][11][0][6][4] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][11][0][6][5] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][11][0][7][4] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][11][0][7][5] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][11][1][0][2] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+      -OQu_1b21b * V33 * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][11][0][4][6] = -(OQu_1b21b + OQu_1b12b) * V33 *
+                                         std::sqrt(0.2e1) / 0.4e1 *
+                                         std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][11][0][4][7] = -II * (OQu_1b12b - OQu_1b21b) * V33 *
+                                         std::sqrt(0.2e1) / 0.4e1 *
+                                         std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][11][0][5][6] = II * (OQu_1b12b - OQu_1b21b) * V33 *
+                                         std::sqrt(0.2e1) / 0.4e1 *
+                                         std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][11][0][5][7] = -(OQu_1b21b + OQu_1b12b) * V33 *
+                                         std::sqrt(0.2e1) / 0.4e1 *
+                                         std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][11][0][6][4] = -(OQu_1b21b + OQu_1b12b) * V33 *
+                                         std::sqrt(0.2e1) / 0.4e1 *
+                                         std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][11][0][6][5] = II * (OQu_1b12b - OQu_1b21b) * V33 *
+                                         std::sqrt(0.2e1) / 0.4e1 *
+                                         std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][11][0][7][4] = -II * (OQu_1b12b - OQu_1b21b) * V33 *
+                                         std::sqrt(0.2e1) / 0.4e1 *
+                                         std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][11][0][7][5] = -(OQu_1b21b + OQu_1b12b) * V33 *
+                                         std::sqrt(0.2e1) / 0.4e1 *
+                                         std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][11][1][0][2] = -II * OQu_1b21b * V33 *
+                                         std::sqrt(0.2e1) / 0.2e1 *
+                                         std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[2][11][1][0][3] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][11][1][1][2] = std::sqrt(0.2e1) *
-                                         (OQu_1b21b - OQu_2b11b) / 0.2e1 *
+      -OQu_1b21b * V33 * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][11][1][1][2] = -(OQu_1b12b - OQu_1b21b + OQu_2b11b) *
+                                         V33 * std::sqrt(0.2e1) / 0.2e1 *
                                          std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][11][1][1][3] = -std::sqrt(0.2e1) * II *
-                                         (OQu_1b21b + OQu_2b11b) / 0.2e1 *
+  Curvature_Quark_F2H3[2][11][1][1][3] =
+      -II * (OQu_1b21b + OQu_1b12b + OQu_2b11b) * V33 * std::sqrt(0.2e1) /
+      0.2e1 * std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][11][1][2][0] = -II * OQu_1b21b * V33 *
+                                         std::sqrt(0.2e1) / 0.2e1 *
                                          std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][11][1][2][0] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][11][1][2][1] = std::sqrt(0.2e1) *
-                                         (OQu_1b21b - OQu_2b11b) / 0.2e1 *
+  Curvature_Quark_F2H3[2][11][1][2][1] = -(OQu_1b12b - OQu_1b21b + OQu_2b11b) *
+                                         V33 * std::sqrt(0.2e1) / 0.2e1 *
                                          std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[2][11][1][3][0] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][11][1][3][1] = -std::sqrt(0.2e1) * II *
-                                         (OQu_1b21b + OQu_2b11b) / 0.2e1 *
+      -OQu_1b21b * V33 * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][11][1][3][1] =
+      -II * (OQu_1b21b + OQu_1b12b + OQu_2b11b) * V33 * std::sqrt(0.2e1) /
+      0.2e1 * std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][11][1][4][6] = -II * (OQu_1b21b + OQu_1b12b) * V33 *
+                                         std::sqrt(0.2e1) / 0.4e1 *
                                          std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][11][1][4][6] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][11][1][4][7] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][11][1][5][6] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][11][1][5][7] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][11][1][6][4] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][11][1][6][5] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][11][1][7][4] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][11][1][7][5] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][11][2][0][0] = -std::sqrt(0.2e1) *
-                                         (OQu_1b21b + OQu_2b11b) / 0.2e1 *
+  Curvature_Quark_F2H3[2][11][1][4][7] = (OQu_1b12b - OQu_1b21b) * V33 *
+                                         std::sqrt(0.2e1) / 0.4e1 *
                                          std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][11][2][0][1] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][11][2][1][0] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][11][2][1][1] = std::sqrt(0.2e1) *
-                                         (OQu_1b21b - OQu_2b11b) / 0.2e1 *
+  Curvature_Quark_F2H3[2][11][1][5][6] = -(OQu_1b12b - OQu_1b21b) * V33 *
+                                         std::sqrt(0.2e1) / 0.4e1 *
                                          std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][11][2][2][2] = -0.3e1 / 0.2e1 * std::sqrt(0.2e1) *
-                                         OQu_2b22b *
+  Curvature_Quark_F2H3[2][11][1][5][7] = -II * (OQu_1b21b + OQu_1b12b) * V33 *
+                                         std::sqrt(0.2e1) / 0.4e1 *
                                          std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][11][2][2][3] =
-      -II * std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][11][2][3][2] =
-      -II * std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][11][1][6][4] = -II * (OQu_1b21b + OQu_1b12b) * V33 *
+                                         std::sqrt(0.2e1) / 0.4e1 *
+                                         std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][11][1][6][5] = -(OQu_1b12b - OQu_1b21b) * V33 *
+                                         std::sqrt(0.2e1) / 0.4e1 *
+                                         std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][11][1][7][4] = (OQu_1b12b - OQu_1b21b) * V33 *
+                                         std::sqrt(0.2e1) / 0.4e1 *
+                                         std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][11][1][7][5] = -II * (OQu_1b21b + OQu_1b12b) * V33 *
+                                         std::sqrt(0.2e1) / 0.4e1 *
+                                         std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][11][2][0][0] = -(OQu_1b21b + OQu_1b12b + OQu_2b11b) *
+                                         V33 * std::sqrt(0.2e1) / 0.2e1 *
+                                         std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][11][2][0][1] = -II * OQu_1b21b * V33 *
+                                         std::sqrt(0.2e1) / 0.2e1 *
+                                         std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][11][2][1][0] = -II * OQu_1b21b * V33 *
+                                         std::sqrt(0.2e1) / 0.2e1 *
+                                         std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][11][2][1][1] = -(OQu_1b12b - OQu_1b21b + OQu_2b11b) *
+                                         V33 * std::sqrt(0.2e1) / 0.2e1 *
+                                         std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][11][2][2][2] = -0.3e1 / 0.2e1 * OQu_2b22b * V33 *
+                                         std::sqrt(0.2e1) *
+                                         std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][11][2][2][3] = -II * OQu_2b22b * V33 *
+                                         std::sqrt(0.2e1) / 0.2e1 *
+                                         std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][11][2][3][2] = -II * OQu_2b22b * V33 *
+                                         std::sqrt(0.2e1) / 0.2e1 *
+                                         std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[2][11][2][3][3] =
-      -std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+      -OQu_2b22b * V33 * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[2][11][2][4][4] =
-      -std::sqrt(0.2e1) * OQu_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+      -OQu_2b11b * V33 * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[2][11][2][5][5] =
-      -std::sqrt(0.2e1) * OQu_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+      -OQu_2b11b * V33 * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[2][11][2][6][6] =
-      -std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+      -OQu_2b22b * V33 * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[2][11][2][7][7] =
-      -std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][11][3][0][0] = std::sqrt(0.2e1) * II *
-                                         (OQu_1b21b - OQu_2b11b) / 0.2e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
+      -OQu_2b22b * V33 * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][11][3][0][0] =
+      -II * (OQu_1b12b - OQu_1b21b + OQu_2b11b) * V33 * std::sqrt(0.2e1) /
+      0.2e1 * std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[2][11][3][0][1] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+      -OQu_1b21b * V33 * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[2][11][3][1][0] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][11][3][1][1] = -std::sqrt(0.2e1) * II *
-                                         (OQu_1b21b + OQu_2b11b) / 0.2e1 *
+      -OQu_1b21b * V33 * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][11][3][1][1] =
+      -II * (OQu_1b21b + OQu_1b12b + OQu_2b11b) * V33 * std::sqrt(0.2e1) /
+      0.2e1 * std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][11][3][2][2] = -II * OQu_2b22b * V33 *
+                                         std::sqrt(0.2e1) / 0.2e1 *
                                          std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][11][3][2][2] =
-      -II * std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[2][11][3][2][3] =
-      -std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+      -OQu_2b22b * V33 * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[2][11][3][3][2] =
-      -std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][11][3][3][3] = -0.3e1 / 0.2e1 * II *
-                                         std::sqrt(0.2e1) * OQu_2b22b *
+      -OQu_2b22b * V33 * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][11][3][3][3] = -0.3e1 / 0.2e1 * II * OQu_2b22b * V33 *
+                                         std::sqrt(0.2e1) *
                                          std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][11][3][4][4] =
-      -II * std::sqrt(0.2e1) * OQu_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][11][3][5][5] =
-      -II * std::sqrt(0.2e1) * OQu_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][11][3][6][6] =
-      -II * std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][11][3][7][7] =
-      -II * std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][11][4][0][6] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][11][4][0][7] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][11][4][1][6] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][11][4][1][7] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][11][3][4][4] = -II * OQu_2b11b * V33 *
+                                         std::sqrt(0.2e1) / 0.2e1 *
+                                         std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][11][3][5][5] = -II * OQu_2b11b * V33 *
+                                         std::sqrt(0.2e1) / 0.2e1 *
+                                         std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][11][3][6][6] = -II * OQu_2b22b * V33 *
+                                         std::sqrt(0.2e1) / 0.2e1 *
+                                         std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][11][3][7][7] = -II * OQu_2b22b * V33 *
+                                         std::sqrt(0.2e1) / 0.2e1 *
+                                         std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][11][4][0][6] = -(OQu_1b21b + OQu_1b12b) * V33 *
+                                         std::sqrt(0.2e1) / 0.4e1 *
+                                         std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][11][4][0][7] = -II * (OQu_1b12b - OQu_1b21b) * V33 *
+                                         std::sqrt(0.2e1) / 0.4e1 *
+                                         std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][11][4][1][6] = -II * (OQu_1b21b + OQu_1b12b) * V33 *
+                                         std::sqrt(0.2e1) / 0.4e1 *
+                                         std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][11][4][1][7] = (OQu_1b12b - OQu_1b21b) * V33 *
+                                         std::sqrt(0.2e1) / 0.4e1 *
+                                         std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[2][11][4][2][4] =
-      -std::sqrt(0.2e1) * OQu_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][11][4][3][4] =
-      -II * std::sqrt(0.2e1) * OQu_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+      -OQu_2b11b * V33 * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][11][4][3][4] = -II * OQu_2b11b * V33 *
+                                         std::sqrt(0.2e1) / 0.2e1 *
+                                         std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[2][11][4][4][2] =
-      -std::sqrt(0.2e1) * OQu_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][11][4][4][3] =
-      -II * std::sqrt(0.2e1) * OQu_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][11][4][6][0] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][11][4][6][1] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][11][4][7][0] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][11][4][7][1] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][11][5][0][6] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][11][5][0][7] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][11][5][1][6] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][11][5][1][7] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
+      -OQu_2b11b * V33 * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][11][4][4][3] = -II * OQu_2b11b * V33 *
+                                         std::sqrt(0.2e1) / 0.2e1 *
+                                         std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][11][4][6][0] = -(OQu_1b21b + OQu_1b12b) * V33 *
+                                         std::sqrt(0.2e1) / 0.4e1 *
+                                         std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][11][4][6][1] = -II * (OQu_1b21b + OQu_1b12b) * V33 *
+                                         std::sqrt(0.2e1) / 0.4e1 *
+                                         std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][11][4][7][0] = -II * (OQu_1b12b - OQu_1b21b) * V33 *
+                                         std::sqrt(0.2e1) / 0.4e1 *
+                                         std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][11][4][7][1] = (OQu_1b12b - OQu_1b21b) * V33 *
+                                         std::sqrt(0.2e1) / 0.4e1 *
+                                         std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][11][5][0][6] = II * (OQu_1b12b - OQu_1b21b) * V33 *
+                                         std::sqrt(0.2e1) / 0.4e1 *
+                                         std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][11][5][0][7] = -(OQu_1b21b + OQu_1b12b) * V33 *
+                                         std::sqrt(0.2e1) / 0.4e1 *
+                                         std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][11][5][1][6] = -(OQu_1b12b - OQu_1b21b) * V33 *
+                                         std::sqrt(0.2e1) / 0.4e1 *
+                                         std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][11][5][1][7] = -II * (OQu_1b21b + OQu_1b12b) * V33 *
+                                         std::sqrt(0.2e1) / 0.4e1 *
+                                         std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[2][11][5][2][5] =
-      -std::sqrt(0.2e1) * OQu_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][11][5][3][5] =
-      -II * std::sqrt(0.2e1) * OQu_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+      -OQu_2b11b * V33 * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][11][5][3][5] = -II * OQu_2b11b * V33 *
+                                         std::sqrt(0.2e1) / 0.2e1 *
+                                         std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[2][11][5][5][2] =
-      -std::sqrt(0.2e1) * OQu_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][11][5][5][3] =
-      -II * std::sqrt(0.2e1) * OQu_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][11][5][6][0] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][11][5][6][1] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][11][5][7][0] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][11][5][7][1] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][11][6][0][4] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][11][6][0][5] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][11][6][1][4] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][11][6][1][5] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
+      -OQu_2b11b * V33 * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][11][5][5][3] = -II * OQu_2b11b * V33 *
+                                         std::sqrt(0.2e1) / 0.2e1 *
+                                         std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][11][5][6][0] = II * (OQu_1b12b - OQu_1b21b) * V33 *
+                                         std::sqrt(0.2e1) / 0.4e1 *
+                                         std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][11][5][6][1] = -(OQu_1b12b - OQu_1b21b) * V33 *
+                                         std::sqrt(0.2e1) / 0.4e1 *
+                                         std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][11][5][7][0] = -(OQu_1b21b + OQu_1b12b) * V33 *
+                                         std::sqrt(0.2e1) / 0.4e1 *
+                                         std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][11][5][7][1] = -II * (OQu_1b21b + OQu_1b12b) * V33 *
+                                         std::sqrt(0.2e1) / 0.4e1 *
+                                         std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][11][6][0][4] = -(OQu_1b21b + OQu_1b12b) * V33 *
+                                         std::sqrt(0.2e1) / 0.4e1 *
+                                         std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][11][6][0][5] = II * (OQu_1b12b - OQu_1b21b) * V33 *
+                                         std::sqrt(0.2e1) / 0.4e1 *
+                                         std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][11][6][1][4] = -II * (OQu_1b21b + OQu_1b12b) * V33 *
+                                         std::sqrt(0.2e1) / 0.4e1 *
+                                         std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][11][6][1][5] = -(OQu_1b12b - OQu_1b21b) * V33 *
+                                         std::sqrt(0.2e1) / 0.4e1 *
+                                         std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[2][11][6][2][6] =
-      -std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][11][6][3][6] =
-      -II * std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][11][6][4][0] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][11][6][4][1] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][11][6][5][0] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][11][6][5][1] =
-      std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
+      -OQu_2b22b * V33 * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][11][6][3][6] = -II * OQu_2b22b * V33 *
+                                         std::sqrt(0.2e1) / 0.2e1 *
+                                         std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][11][6][4][0] = -(OQu_1b21b + OQu_1b12b) * V33 *
+                                         std::sqrt(0.2e1) / 0.4e1 *
+                                         std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][11][6][4][1] = -II * (OQu_1b21b + OQu_1b12b) * V33 *
+                                         std::sqrt(0.2e1) / 0.4e1 *
+                                         std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][11][6][5][0] = II * (OQu_1b12b - OQu_1b21b) * V33 *
+                                         std::sqrt(0.2e1) / 0.4e1 *
+                                         std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][11][6][5][1] = -(OQu_1b12b - OQu_1b21b) * V33 *
+                                         std::sqrt(0.2e1) / 0.4e1 *
+                                         std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[2][11][6][6][2] =
-      -std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][11][6][6][3] =
-      -II * std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][11][7][0][4] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][11][7][0][5] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][11][7][1][4] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][11][7][1][5] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
+      -OQu_2b22b * V33 * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][11][6][6][3] = -II * OQu_2b22b * V33 *
+                                         std::sqrt(0.2e1) / 0.2e1 *
+                                         std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][11][7][0][4] = -II * (OQu_1b12b - OQu_1b21b) * V33 *
+                                         std::sqrt(0.2e1) / 0.4e1 *
+                                         std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][11][7][0][5] = -(OQu_1b21b + OQu_1b12b) * V33 *
+                                         std::sqrt(0.2e1) / 0.4e1 *
+                                         std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][11][7][1][4] = (OQu_1b12b - OQu_1b21b) * V33 *
+                                         std::sqrt(0.2e1) / 0.4e1 *
+                                         std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][11][7][1][5] = -II * (OQu_1b21b + OQu_1b12b) * V33 *
+                                         std::sqrt(0.2e1) / 0.4e1 *
+                                         std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[2][11][7][2][7] =
-      -std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][11][7][3][7] =
-      -II * std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][11][7][4][0] =
-      II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][11][7][4][1] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][11][7][5][0] =
-      -std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][11][7][5][1] =
-      -II * std::sqrt(0.2e1) * OQu_1b21b / 0.4e1 * std::pow(LambdaEFT, -0.2e1);
+      -OQu_2b22b * V33 * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][11][7][3][7] = -II * OQu_2b22b * V33 *
+                                         std::sqrt(0.2e1) / 0.2e1 *
+                                         std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][11][7][4][0] = -II * (OQu_1b12b - OQu_1b21b) * V33 *
+                                         std::sqrt(0.2e1) / 0.4e1 *
+                                         std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][11][7][4][1] = (OQu_1b12b - OQu_1b21b) * V33 *
+                                         std::sqrt(0.2e1) / 0.4e1 *
+                                         std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][11][7][5][0] = -(OQu_1b21b + OQu_1b12b) * V33 *
+                                         std::sqrt(0.2e1) / 0.4e1 *
+                                         std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][11][7][5][1] = -II * (OQu_1b21b + OQu_1b12b) * V33 *
+                                         std::sqrt(0.2e1) / 0.4e1 *
+                                         std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[2][11][7][7][2] =
-      -std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[2][11][7][7][3] =
-      -II * std::sqrt(0.2e1) * OQu_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][0][0][2] = std::sqrt(0.2e1) *
-                                        (OQd_1b21b + OQd_1b12b + OQd_2b11b) /
-                                        0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][0][0][3] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b12b - OQd_1b21b + OQd_2b11b) /
-                                        0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][0][1][2] =
-      II * std::sqrt(0.2e1) * OQd_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][0][1][3] =
-      std::sqrt(0.2e1) * OQd_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][0][2][0] = std::sqrt(0.2e1) *
-                                        (OQd_1b21b + OQd_1b12b + OQd_2b11b) /
-                                        0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][0][2][1] =
-      II * std::sqrt(0.2e1) * OQd_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][0][3][0] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b12b - OQd_1b21b + OQd_2b11b) /
-                                        0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][0][3][1] =
-      std::sqrt(0.2e1) * OQd_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][0][4][6] = std::sqrt(0.2e1) *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][0][4][7] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][0][5][6] = -std::sqrt(0.2e1) * II *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][0][5][7] = std::sqrt(0.2e1) *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][0][6][4] = std::sqrt(0.2e1) *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][0][6][5] = -std::sqrt(0.2e1) * II *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][0][7][4] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][0][7][5] = std::sqrt(0.2e1) *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][1][0][2] =
-      II * std::sqrt(0.2e1) * OQd_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][1][0][3] =
-      std::sqrt(0.2e1) * OQd_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][1][1][2] = std::sqrt(0.2e1) *
-                                        (OQd_1b12b - OQd_1b21b + OQd_2b11b) /
-                                        0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][1][1][3] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b21b + OQd_1b12b + OQd_2b11b) /
-                                        0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][1][2][0] =
-      II * std::sqrt(0.2e1) * OQd_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][1][2][1] = std::sqrt(0.2e1) *
-                                        (OQd_1b12b - OQd_1b21b + OQd_2b11b) /
-                                        0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][1][3][0] =
-      std::sqrt(0.2e1) * OQd_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][1][3][1] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b21b + OQd_1b12b + OQd_2b11b) /
-                                        0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][1][4][6] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][1][4][7] = -std::sqrt(0.2e1) *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][1][5][6] = std::sqrt(0.2e1) *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][1][5][7] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][1][6][4] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][1][6][5] = std::sqrt(0.2e1) *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][1][7][4] = -std::sqrt(0.2e1) *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][1][7][5] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][2][0][0] = std::sqrt(0.2e1) *
-                                        (OQd_1b21b + OQd_1b12b + OQd_2b11b) /
-                                        0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][2][0][1] =
-      II * std::sqrt(0.2e1) * OQd_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][2][1][0] =
-      II * std::sqrt(0.2e1) * OQd_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][2][1][1] = std::sqrt(0.2e1) *
-                                        (OQd_1b12b - OQd_1b21b + OQd_2b11b) /
-                                        0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][2][2][2] = 0.3e1 / 0.2e1 * std::sqrt(0.2e1) *
-                                        OQd_2b22b * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][2][2][3] =
-      II * std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][2][3][2] =
-      II * std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][2][3][3] =
-      std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][2][4][4] =
-      std::sqrt(0.2e1) * OQd_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][2][5][5] =
-      std::sqrt(0.2e1) * OQd_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][2][6][6] =
-      std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][2][7][7] =
-      std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][3][0][0] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b12b - OQd_1b21b + OQd_2b11b) /
-                                        0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][3][0][1] =
-      std::sqrt(0.2e1) * OQd_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][3][1][0] =
-      std::sqrt(0.2e1) * OQd_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][3][1][1] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b21b + OQd_1b12b + OQd_2b11b) /
-                                        0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][3][2][2] =
-      II * std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][3][2][3] =
-      std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][3][3][2] =
-      std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][3][3][3] = 0.3e1 / 0.2e1 * II * std::sqrt(0.2e1) *
-                                        OQd_2b22b * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][3][4][4] =
-      II * std::sqrt(0.2e1) * OQd_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][3][5][5] =
-      II * std::sqrt(0.2e1) * OQd_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][3][6][6] =
-      II * std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][3][7][7] =
-      II * std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][4][0][6] = std::sqrt(0.2e1) *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][4][0][7] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][4][1][6] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][4][1][7] = -std::sqrt(0.2e1) *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][4][2][4] =
-      std::sqrt(0.2e1) * OQd_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][4][3][4] =
-      II * std::sqrt(0.2e1) * OQd_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][4][4][2] =
-      std::sqrt(0.2e1) * OQd_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][4][4][3] =
-      II * std::sqrt(0.2e1) * OQd_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][4][6][0] = std::sqrt(0.2e1) *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][4][6][1] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][4][7][0] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][4][7][1] = -std::sqrt(0.2e1) *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][5][0][6] = -std::sqrt(0.2e1) * II *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][5][0][7] = std::sqrt(0.2e1) *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][5][1][6] = std::sqrt(0.2e1) *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][5][1][7] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][5][2][5] =
-      std::sqrt(0.2e1) * OQd_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][5][3][5] =
-      II * std::sqrt(0.2e1) * OQd_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][5][5][2] =
-      std::sqrt(0.2e1) * OQd_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][5][5][3] =
-      II * std::sqrt(0.2e1) * OQd_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][5][6][0] = -std::sqrt(0.2e1) * II *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][5][6][1] = std::sqrt(0.2e1) *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][5][7][0] = std::sqrt(0.2e1) *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][5][7][1] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][6][0][4] = std::sqrt(0.2e1) *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][6][0][5] = -std::sqrt(0.2e1) * II *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][6][1][4] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][6][1][5] = std::sqrt(0.2e1) *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][6][2][6] =
-      std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][6][3][6] =
-      II * std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][6][4][0] = std::sqrt(0.2e1) *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][6][4][1] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][6][5][0] = -std::sqrt(0.2e1) * II *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][6][5][1] = std::sqrt(0.2e1) *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][6][6][2] =
-      std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][6][6][3] =
-      II * std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][7][0][4] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][7][0][5] = std::sqrt(0.2e1) *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][7][1][4] = -std::sqrt(0.2e1) *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][7][1][5] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][7][2][7] =
-      std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][7][3][7] =
-      II * std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][7][4][0] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][7][4][1] = -std::sqrt(0.2e1) *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][7][5][0] = std::sqrt(0.2e1) *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][7][5][1] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][7][7][2] =
-      std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][6][7][7][3] =
-      II * std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][0][0][6] =
-      std::sqrt(0.2e1) * OQd_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][0][0][7] =
-      II * std::sqrt(0.2e1) * OQd_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][0][2][4] = std::sqrt(0.2e1) *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][0][2][5] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][0][3][4] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][0][3][5] = -std::sqrt(0.2e1) *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][0][4][2] = std::sqrt(0.2e1) *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][0][4][3] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][0][5][2] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][0][5][3] = -std::sqrt(0.2e1) *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][0][6][0] =
-      std::sqrt(0.2e1) * OQd_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][0][7][0] =
-      II * std::sqrt(0.2e1) * OQd_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][1][1][6] =
-      std::sqrt(0.2e1) * OQd_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][1][1][7] =
-      II * std::sqrt(0.2e1) * OQd_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][1][2][4] = -std::sqrt(0.2e1) * II *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][1][2][5] = std::sqrt(0.2e1) *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][1][3][4] = std::sqrt(0.2e1) *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][1][3][5] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][1][4][2] = -std::sqrt(0.2e1) * II *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][1][4][3] = std::sqrt(0.2e1) *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][1][5][2] = std::sqrt(0.2e1) *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][1][5][3] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][1][6][1] =
-      std::sqrt(0.2e1) * OQd_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][1][7][1] =
-      II * std::sqrt(0.2e1) * OQd_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][2][0][4] = std::sqrt(0.2e1) *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][2][0][5] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][2][1][4] = -std::sqrt(0.2e1) * II *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][2][1][5] = std::sqrt(0.2e1) *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][2][2][6] =
-      std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][2][2][7] =
-      II * std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][2][4][0] = std::sqrt(0.2e1) *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][2][4][1] = -std::sqrt(0.2e1) * II *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][2][5][0] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][2][5][1] = std::sqrt(0.2e1) *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][2][6][2] =
-      std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][2][7][2] =
-      II * std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][3][0][4] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][3][0][5] = -std::sqrt(0.2e1) *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][3][1][4] = std::sqrt(0.2e1) *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][3][1][5] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][3][3][6] =
-      std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][3][3][7] =
-      II * std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][3][4][0] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][3][4][1] = std::sqrt(0.2e1) *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][3][5][0] = -std::sqrt(0.2e1) *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][3][5][1] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][3][6][3] =
-      std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][3][7][3] =
-      II * std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][4][0][2] = std::sqrt(0.2e1) *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][4][0][3] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][4][1][2] = -std::sqrt(0.2e1) * II *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][4][1][3] = std::sqrt(0.2e1) *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][4][2][0] = std::sqrt(0.2e1) *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][4][2][1] = -std::sqrt(0.2e1) * II *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][4][3][0] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][4][3][1] = std::sqrt(0.2e1) *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][4][4][6] = std::sqrt(0.2e1) *
-                                        (OQd_1b21b + OQd_1b12b + OQd_2b11b) /
-                                        0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][4][4][7] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b12b - OQd_1b21b + OQd_2b11b) /
-                                        0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][4][5][6] =
-      II * std::sqrt(0.2e1) * OQd_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][4][5][7] =
-      std::sqrt(0.2e1) * OQd_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][4][6][4] = std::sqrt(0.2e1) *
-                                        (OQd_1b21b + OQd_1b12b + OQd_2b11b) /
-                                        0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][4][6][5] =
-      II * std::sqrt(0.2e1) * OQd_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][4][7][4] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b12b - OQd_1b21b + OQd_2b11b) /
-                                        0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][4][7][5] =
-      std::sqrt(0.2e1) * OQd_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][5][0][2] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][5][0][3] = -std::sqrt(0.2e1) *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][5][1][2] = std::sqrt(0.2e1) *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][5][1][3] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][5][2][0] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][5][2][1] = std::sqrt(0.2e1) *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][5][3][0] = -std::sqrt(0.2e1) *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][5][3][1] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][5][4][6] =
-      II * std::sqrt(0.2e1) * OQd_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][5][4][7] =
-      std::sqrt(0.2e1) * OQd_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][5][5][6] = std::sqrt(0.2e1) *
-                                        (OQd_1b12b - OQd_1b21b + OQd_2b11b) /
-                                        0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][5][5][7] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b21b + OQd_1b12b + OQd_2b11b) /
-                                        0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][5][6][4] =
-      II * std::sqrt(0.2e1) * OQd_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][5][6][5] = std::sqrt(0.2e1) *
-                                        (OQd_1b12b - OQd_1b21b + OQd_2b11b) /
-                                        0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][5][7][4] =
-      std::sqrt(0.2e1) * OQd_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][5][7][5] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b21b + OQd_1b12b + OQd_2b11b) /
-                                        0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][6][0][0] =
-      std::sqrt(0.2e1) * OQd_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][6][1][1] =
-      std::sqrt(0.2e1) * OQd_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][6][2][2] =
-      std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][6][3][3] =
-      std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][6][4][4] = std::sqrt(0.2e1) *
-                                        (OQd_1b21b + OQd_1b12b + OQd_2b11b) /
-                                        0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][6][4][5] =
-      II * std::sqrt(0.2e1) * OQd_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][6][5][4] =
-      II * std::sqrt(0.2e1) * OQd_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][6][5][5] = std::sqrt(0.2e1) *
-                                        (OQd_1b12b - OQd_1b21b + OQd_2b11b) /
-                                        0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][6][6][6] = 0.3e1 / 0.2e1 * std::sqrt(0.2e1) *
-                                        OQd_2b22b * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][6][6][7] =
-      II * std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][6][7][6] =
-      II * std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][6][7][7] =
-      std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][7][0][0] =
-      II * std::sqrt(0.2e1) * OQd_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][7][1][1] =
-      II * std::sqrt(0.2e1) * OQd_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][7][2][2] =
-      II * std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][7][3][3] =
-      II * std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][7][4][4] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b12b - OQd_1b21b + OQd_2b11b) /
-                                        0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][7][4][5] =
-      std::sqrt(0.2e1) * OQd_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][7][5][4] =
-      std::sqrt(0.2e1) * OQd_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][7][5][5] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b21b + OQd_1b12b + OQd_2b11b) /
-                                        0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][7][6][6] =
-      II * std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][7][6][7] =
-      std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][7][7][6] =
-      std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[3][9][7][7][7] = 0.3e1 / 0.2e1 * II * std::sqrt(0.2e1) *
-                                        OQd_2b22b * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][0][0][2] = std::sqrt(0.2e1) *
-                                        (OQd_1b21b + OQd_1b12b + OQd_2b11b) /
-                                        0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][0][0][3] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b12b - OQd_1b21b + OQd_2b11b) /
-                                        0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][0][1][2] =
-      II * std::sqrt(0.2e1) * OQd_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][0][1][3] =
-      std::sqrt(0.2e1) * OQd_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][0][2][0] = std::sqrt(0.2e1) *
-                                        (OQd_1b21b + OQd_1b12b + OQd_2b11b) /
-                                        0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][0][2][1] =
-      II * std::sqrt(0.2e1) * OQd_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][0][3][0] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b12b - OQd_1b21b + OQd_2b11b) /
-                                        0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][0][3][1] =
-      std::sqrt(0.2e1) * OQd_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][0][4][6] = std::sqrt(0.2e1) *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][0][4][7] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][0][5][6] = -std::sqrt(0.2e1) * II *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][0][5][7] = std::sqrt(0.2e1) *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][0][6][4] = std::sqrt(0.2e1) *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][0][6][5] = -std::sqrt(0.2e1) * II *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][0][7][4] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][0][7][5] = std::sqrt(0.2e1) *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][1][0][2] =
-      II * std::sqrt(0.2e1) * OQd_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][1][0][3] =
-      std::sqrt(0.2e1) * OQd_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][1][1][2] = std::sqrt(0.2e1) *
-                                        (OQd_1b12b - OQd_1b21b + OQd_2b11b) /
-                                        0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][1][1][3] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b21b + OQd_1b12b + OQd_2b11b) /
-                                        0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][1][2][0] =
-      II * std::sqrt(0.2e1) * OQd_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][1][2][1] = std::sqrt(0.2e1) *
-                                        (OQd_1b12b - OQd_1b21b + OQd_2b11b) /
-                                        0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][1][3][0] =
-      std::sqrt(0.2e1) * OQd_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][1][3][1] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b21b + OQd_1b12b + OQd_2b11b) /
-                                        0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][1][4][6] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][1][4][7] = -std::sqrt(0.2e1) *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][1][5][6] = std::sqrt(0.2e1) *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][1][5][7] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][1][6][4] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][1][6][5] = std::sqrt(0.2e1) *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][1][7][4] = -std::sqrt(0.2e1) *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][1][7][5] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][2][0][0] = std::sqrt(0.2e1) *
-                                        (OQd_1b21b + OQd_1b12b + OQd_2b11b) /
-                                        0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][2][0][1] =
-      II * std::sqrt(0.2e1) * OQd_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][2][1][0] =
-      II * std::sqrt(0.2e1) * OQd_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][2][1][1] = std::sqrt(0.2e1) *
-                                        (OQd_1b12b - OQd_1b21b + OQd_2b11b) /
-                                        0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][2][2][2] = 0.3e1 / 0.2e1 * std::sqrt(0.2e1) *
-                                        OQd_2b22b * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][2][2][3] =
-      II * std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][2][3][2] =
-      II * std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][2][3][3] =
-      std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][2][4][4] =
-      std::sqrt(0.2e1) * OQd_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][2][5][5] =
-      std::sqrt(0.2e1) * OQd_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][2][6][6] =
-      std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][2][7][7] =
-      std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][3][0][0] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b12b - OQd_1b21b + OQd_2b11b) /
-                                        0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][3][0][1] =
-      std::sqrt(0.2e1) * OQd_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][3][1][0] =
-      std::sqrt(0.2e1) * OQd_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][3][1][1] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b21b + OQd_1b12b + OQd_2b11b) /
-                                        0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][3][2][2] =
-      II * std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][3][2][3] =
-      std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][3][3][2] =
-      std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][3][3][3] = 0.3e1 / 0.2e1 * II * std::sqrt(0.2e1) *
-                                        OQd_2b22b * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][3][4][4] =
-      II * std::sqrt(0.2e1) * OQd_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][3][5][5] =
-      II * std::sqrt(0.2e1) * OQd_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][3][6][6] =
-      II * std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][3][7][7] =
-      II * std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][4][0][6] = std::sqrt(0.2e1) *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][4][0][7] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][4][1][6] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][4][1][7] = -std::sqrt(0.2e1) *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][4][2][4] =
-      std::sqrt(0.2e1) * OQd_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][4][3][4] =
-      II * std::sqrt(0.2e1) * OQd_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][4][4][2] =
-      std::sqrt(0.2e1) * OQd_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][4][4][3] =
-      II * std::sqrt(0.2e1) * OQd_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][4][6][0] = std::sqrt(0.2e1) *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][4][6][1] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][4][7][0] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][4][7][1] = -std::sqrt(0.2e1) *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][5][0][6] = -std::sqrt(0.2e1) * II *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][5][0][7] = std::sqrt(0.2e1) *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][5][1][6] = std::sqrt(0.2e1) *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][5][1][7] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][5][2][5] =
-      std::sqrt(0.2e1) * OQd_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][5][3][5] =
-      II * std::sqrt(0.2e1) * OQd_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][5][5][2] =
-      std::sqrt(0.2e1) * OQd_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][5][5][3] =
-      II * std::sqrt(0.2e1) * OQd_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][5][6][0] = -std::sqrt(0.2e1) * II *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][5][6][1] = std::sqrt(0.2e1) *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][5][7][0] = std::sqrt(0.2e1) *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][5][7][1] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][6][0][4] = std::sqrt(0.2e1) *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][6][0][5] = -std::sqrt(0.2e1) * II *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][6][1][4] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][6][1][5] = std::sqrt(0.2e1) *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][6][2][6] =
-      std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][6][3][6] =
-      II * std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][6][4][0] = std::sqrt(0.2e1) *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][6][4][1] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][6][5][0] = -std::sqrt(0.2e1) * II *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][6][5][1] = std::sqrt(0.2e1) *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][6][6][2] =
-      std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][6][6][3] =
-      II * std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][7][0][4] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][7][0][5] = std::sqrt(0.2e1) *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][7][1][4] = -std::sqrt(0.2e1) *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][7][1][5] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][7][2][7] =
-      std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][7][3][7] =
-      II * std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][7][4][0] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][7][4][1] = -std::sqrt(0.2e1) *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][7][5][0] = std::sqrt(0.2e1) *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][7][5][1] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                        std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][7][7][2] =
-      std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][7][7][7][3] =
-      II * std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][0][0][6] =
-      std::sqrt(0.2e1) * OQd_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][0][0][7] =
-      II * std::sqrt(0.2e1) * OQd_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][0][2][4] = std::sqrt(0.2e1) *
-                                         (OQd_1b21b + OQd_1b12b) / 0.4e1 *
+      -OQu_2b22b * V33 * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[2][11][7][7][3] = -II * OQu_2b22b * V33 *
+                                         std::sqrt(0.2e1) / 0.2e1 *
                                          std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][0][2][5] = std::sqrt(0.2e1) * II *
-                                         (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][0][3][4] = std::sqrt(0.2e1) * II *
-                                         (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][0][3][5] = -std::sqrt(0.2e1) *
-                                         (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][0][4][2] = std::sqrt(0.2e1) *
-                                         (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][0][4][3] = std::sqrt(0.2e1) * II *
-                                         (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][0][5][2] = std::sqrt(0.2e1) * II *
-                                         (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][0][5][3] = -std::sqrt(0.2e1) *
-                                         (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][0][6][0] =
-      std::sqrt(0.2e1) * OQd_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][0][7][0] =
-      II * std::sqrt(0.2e1) * OQd_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][1][1][6] =
-      std::sqrt(0.2e1) * OQd_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][1][1][7] =
-      II * std::sqrt(0.2e1) * OQd_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][1][2][4] = -std::sqrt(0.2e1) * II *
-                                         (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][1][2][5] = std::sqrt(0.2e1) *
-                                         (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][1][3][4] = std::sqrt(0.2e1) *
-                                         (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][1][3][5] = std::sqrt(0.2e1) * II *
-                                         (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][1][4][2] = -std::sqrt(0.2e1) * II *
-                                         (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][1][4][3] = std::sqrt(0.2e1) *
-                                         (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][1][5][2] = std::sqrt(0.2e1) *
-                                         (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][1][5][3] = std::sqrt(0.2e1) * II *
-                                         (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][1][6][1] =
-      std::sqrt(0.2e1) * OQd_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][1][7][1] =
-      II * std::sqrt(0.2e1) * OQd_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][2][0][4] = std::sqrt(0.2e1) *
-                                         (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][2][0][5] = std::sqrt(0.2e1) * II *
-                                         (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][2][1][4] = -std::sqrt(0.2e1) * II *
-                                         (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][2][1][5] = std::sqrt(0.2e1) *
-                                         (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][2][2][6] =
-      std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][2][2][7] =
-      II * std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][2][4][0] = std::sqrt(0.2e1) *
-                                         (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][2][4][1] = -std::sqrt(0.2e1) * II *
-                                         (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][2][5][0] = std::sqrt(0.2e1) * II *
-                                         (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][2][5][1] = std::sqrt(0.2e1) *
-                                         (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][2][6][2] =
-      std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][2][7][2] =
-      II * std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][3][0][4] = std::sqrt(0.2e1) * II *
-                                         (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][3][0][5] = -std::sqrt(0.2e1) *
-                                         (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][3][1][4] = std::sqrt(0.2e1) *
-                                         (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][3][1][5] = std::sqrt(0.2e1) * II *
-                                         (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][3][3][6] =
-      std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][3][3][7] =
-      II * std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][3][4][0] = std::sqrt(0.2e1) * II *
-                                         (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][3][4][1] = std::sqrt(0.2e1) *
-                                         (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][3][5][0] = -std::sqrt(0.2e1) *
-                                         (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][3][5][1] = std::sqrt(0.2e1) * II *
-                                         (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][3][6][3] =
-      std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][3][7][3] =
-      II * std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][4][0][2] = std::sqrt(0.2e1) *
-                                         (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][4][0][3] = std::sqrt(0.2e1) * II *
-                                         (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][4][1][2] = -std::sqrt(0.2e1) * II *
-                                         (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][4][1][3] = std::sqrt(0.2e1) *
-                                         (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][4][2][0] = std::sqrt(0.2e1) *
-                                         (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][4][2][1] = -std::sqrt(0.2e1) * II *
-                                         (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][4][3][0] = std::sqrt(0.2e1) * II *
-                                         (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][4][3][1] = std::sqrt(0.2e1) *
-                                         (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][4][4][6] = std::sqrt(0.2e1) *
-                                         (OQd_1b21b + OQd_1b12b + OQd_2b11b) /
-                                         0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][4][4][7] = std::sqrt(0.2e1) * II *
-                                         (OQd_1b12b - OQd_1b21b + OQd_2b11b) /
-                                         0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][4][5][6] =
-      II * std::sqrt(0.2e1) * OQd_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][4][5][7] =
-      std::sqrt(0.2e1) * OQd_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][4][6][4] = std::sqrt(0.2e1) *
-                                         (OQd_1b21b + OQd_1b12b + OQd_2b11b) /
-                                         0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][4][6][5] =
-      II * std::sqrt(0.2e1) * OQd_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][4][7][4] = std::sqrt(0.2e1) * II *
-                                         (OQd_1b12b - OQd_1b21b + OQd_2b11b) /
-                                         0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][4][7][5] =
-      std::sqrt(0.2e1) * OQd_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][5][0][2] = std::sqrt(0.2e1) * II *
-                                         (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][5][0][3] = -std::sqrt(0.2e1) *
-                                         (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][5][1][2] = std::sqrt(0.2e1) *
-                                         (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][5][1][3] = std::sqrt(0.2e1) * II *
-                                         (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][5][2][0] = std::sqrt(0.2e1) * II *
-                                         (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][5][2][1] = std::sqrt(0.2e1) *
-                                         (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][5][3][0] = -std::sqrt(0.2e1) *
-                                         (OQd_1b12b - OQd_1b21b) / 0.4e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][5][3][1] = std::sqrt(0.2e1) * II *
-                                         (OQd_1b21b + OQd_1b12b) / 0.4e1 *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][5][4][6] =
-      II * std::sqrt(0.2e1) * OQd_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][5][4][7] =
-      std::sqrt(0.2e1) * OQd_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][5][5][6] = std::sqrt(0.2e1) *
-                                         (OQd_1b12b - OQd_1b21b + OQd_2b11b) /
-                                         0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][5][5][7] = std::sqrt(0.2e1) * II *
-                                         (OQd_1b21b + OQd_1b12b + OQd_2b11b) /
-                                         0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][5][6][4] =
-      II * std::sqrt(0.2e1) * OQd_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][5][6][5] = std::sqrt(0.2e1) *
-                                         (OQd_1b12b - OQd_1b21b + OQd_2b11b) /
-                                         0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][5][7][4] =
-      std::sqrt(0.2e1) * OQd_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][5][7][5] = std::sqrt(0.2e1) * II *
-                                         (OQd_1b21b + OQd_1b12b + OQd_2b11b) /
-                                         0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][6][0][0] =
-      std::sqrt(0.2e1) * OQd_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][6][1][1] =
-      std::sqrt(0.2e1) * OQd_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][6][2][2] =
-      std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][6][3][3] =
-      std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][6][4][4] = std::sqrt(0.2e1) *
-                                         (OQd_1b21b + OQd_1b12b + OQd_2b11b) /
-                                         0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][6][4][5] =
-      II * std::sqrt(0.2e1) * OQd_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][6][5][4] =
-      II * std::sqrt(0.2e1) * OQd_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][6][5][5] = std::sqrt(0.2e1) *
-                                         (OQd_1b12b - OQd_1b21b + OQd_2b11b) /
-                                         0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][6][6][6] = 0.3e1 / 0.2e1 * std::sqrt(0.2e1) *
-                                         OQd_2b22b *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][6][6][7] =
-      II * std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][6][7][6] =
-      II * std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][6][7][7] =
-      std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][7][0][0] =
-      II * std::sqrt(0.2e1) * OQd_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][7][1][1] =
-      II * std::sqrt(0.2e1) * OQd_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][7][2][2] =
-      II * std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][7][3][3] =
-      II * std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][7][4][4] = std::sqrt(0.2e1) * II *
-                                         (OQd_1b12b - OQd_1b21b + OQd_2b11b) /
-                                         0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][7][4][5] =
-      std::sqrt(0.2e1) * OQd_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][7][5][4] =
-      std::sqrt(0.2e1) * OQd_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][7][5][5] = std::sqrt(0.2e1) * II *
-                                         (OQd_1b21b + OQd_1b12b + OQd_2b11b) /
-                                         0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][7][6][6] =
-      II * std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][7][6][7] =
-      std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][7][7][6] =
-      std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[4][10][7][7][7] = 0.3e1 / 0.2e1 * II * std::sqrt(0.2e1) *
-                                         OQd_2b22b *
-                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][8][0][0][2] = std::sqrt(0.2e1) *
-                                        (OQd_1b21b + OQd_1b12b + OQd_2b11b) /
-                                        0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][8][0][0][3] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b12b - OQd_1b21b + OQd_2b11b) /
-                                        0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][8][0][1][2] =
-      II * std::sqrt(0.2e1) * OQd_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[5][8][0][0][2] = (OQd_1b21b + OQd_1b12b + OQd_2b11b) *
+                                        V33 * std::sqrt(0.2e1) / 0.2e1 *
+                                        std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[5][8][0][0][3] =
+      II * (OQd_1b12b - OQd_1b21b + OQd_2b11b) * V33 * std::sqrt(0.2e1) /
+      0.2e1 * std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[5][8][0][1][2] = II * OQd_1b21b * V33 *
+                                        std::sqrt(0.2e1) / 0.2e1 *
+                                        std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[5][8][0][1][3] =
-      std::sqrt(0.2e1) * OQd_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][8][0][2][0] = std::sqrt(0.2e1) *
-                                        (OQd_1b21b + OQd_1b12b + OQd_2b11b) /
-                                        0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][8][0][2][1] =
-      II * std::sqrt(0.2e1) * OQd_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][8][0][3][0] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b12b - OQd_1b21b + OQd_2b11b) /
-                                        0.2e1 * std::pow(LambdaEFT, -0.2e1);
+      OQd_1b21b * V33 * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[5][8][0][2][0] = (OQd_1b21b + OQd_1b12b + OQd_2b11b) *
+                                        V33 * std::sqrt(0.2e1) / 0.2e1 *
+                                        std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[5][8][0][2][1] = II * OQd_1b21b * V33 *
+                                        std::sqrt(0.2e1) / 0.2e1 *
+                                        std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[5][8][0][3][0] =
+      II * (OQd_1b12b - OQd_1b21b + OQd_2b11b) * V33 * std::sqrt(0.2e1) /
+      0.2e1 * std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[5][8][0][3][1] =
-      std::sqrt(0.2e1) * OQd_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][8][0][4][6] = std::sqrt(0.2e1) *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
+      OQd_1b21b * V33 * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[5][8][0][4][6] = (OQd_1b21b + OQd_1b12b) * V33 *
+                                        std::sqrt(0.2e1) / 0.4e1 *
                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][8][0][4][7] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
+  Curvature_Quark_F2H3[5][8][0][4][7] = II * (OQd_1b12b - OQd_1b21b) * V33 *
+                                        std::sqrt(0.2e1) / 0.4e1 *
                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][8][0][5][6] = -std::sqrt(0.2e1) * II *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
+  Curvature_Quark_F2H3[5][8][0][5][6] = -II * (OQd_1b12b - OQd_1b21b) * V33 *
+                                        std::sqrt(0.2e1) / 0.4e1 *
                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][8][0][5][7] = std::sqrt(0.2e1) *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
+  Curvature_Quark_F2H3[5][8][0][5][7] = (OQd_1b21b + OQd_1b12b) * V33 *
+                                        std::sqrt(0.2e1) / 0.4e1 *
                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][8][0][6][4] = std::sqrt(0.2e1) *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
+  Curvature_Quark_F2H3[5][8][0][6][4] = (OQd_1b21b + OQd_1b12b) * V33 *
+                                        std::sqrt(0.2e1) / 0.4e1 *
                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][8][0][6][5] = -std::sqrt(0.2e1) * II *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
+  Curvature_Quark_F2H3[5][8][0][6][5] = -II * (OQd_1b12b - OQd_1b21b) * V33 *
+                                        std::sqrt(0.2e1) / 0.4e1 *
                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][8][0][7][4] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
+  Curvature_Quark_F2H3[5][8][0][7][4] = II * (OQd_1b12b - OQd_1b21b) * V33 *
+                                        std::sqrt(0.2e1) / 0.4e1 *
                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][8][0][7][5] = std::sqrt(0.2e1) *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
+  Curvature_Quark_F2H3[5][8][0][7][5] = (OQd_1b21b + OQd_1b12b) * V33 *
+                                        std::sqrt(0.2e1) / 0.4e1 *
                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][8][1][0][2] =
-      II * std::sqrt(0.2e1) * OQd_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[5][8][1][0][2] = II * OQd_1b21b * V33 *
+                                        std::sqrt(0.2e1) / 0.2e1 *
+                                        std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[5][8][1][0][3] =
-      std::sqrt(0.2e1) * OQd_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][8][1][1][2] = std::sqrt(0.2e1) *
-                                        (OQd_1b12b - OQd_1b21b + OQd_2b11b) /
-                                        0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][8][1][1][3] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b21b + OQd_1b12b + OQd_2b11b) /
-                                        0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][8][1][2][0] =
-      II * std::sqrt(0.2e1) * OQd_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][8][1][2][1] = std::sqrt(0.2e1) *
-                                        (OQd_1b12b - OQd_1b21b + OQd_2b11b) /
-                                        0.2e1 * std::pow(LambdaEFT, -0.2e1);
+      OQd_1b21b * V33 * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[5][8][1][1][2] = (OQd_1b12b - OQd_1b21b + OQd_2b11b) *
+                                        V33 * std::sqrt(0.2e1) / 0.2e1 *
+                                        std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[5][8][1][1][3] =
+      II * (OQd_1b21b + OQd_1b12b + OQd_2b11b) * V33 * std::sqrt(0.2e1) /
+      0.2e1 * std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[5][8][1][2][0] = II * OQd_1b21b * V33 *
+                                        std::sqrt(0.2e1) / 0.2e1 *
+                                        std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[5][8][1][2][1] = (OQd_1b12b - OQd_1b21b + OQd_2b11b) *
+                                        V33 * std::sqrt(0.2e1) / 0.2e1 *
+                                        std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[5][8][1][3][0] =
-      std::sqrt(0.2e1) * OQd_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][8][1][3][1] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b21b + OQd_1b12b + OQd_2b11b) /
-                                        0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][8][1][4][6] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
+      OQd_1b21b * V33 * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[5][8][1][3][1] =
+      II * (OQd_1b21b + OQd_1b12b + OQd_2b11b) * V33 * std::sqrt(0.2e1) /
+      0.2e1 * std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[5][8][1][4][6] = II * (OQd_1b21b + OQd_1b12b) * V33 *
+                                        std::sqrt(0.2e1) / 0.4e1 *
                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][8][1][4][7] = -std::sqrt(0.2e1) *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
+  Curvature_Quark_F2H3[5][8][1][4][7] = -(OQd_1b12b - OQd_1b21b) * V33 *
+                                        std::sqrt(0.2e1) / 0.4e1 *
                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][8][1][5][6] = std::sqrt(0.2e1) *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
+  Curvature_Quark_F2H3[5][8][1][5][6] = (OQd_1b12b - OQd_1b21b) * V33 *
+                                        std::sqrt(0.2e1) / 0.4e1 *
                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][8][1][5][7] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
+  Curvature_Quark_F2H3[5][8][1][5][7] = II * (OQd_1b21b + OQd_1b12b) * V33 *
+                                        std::sqrt(0.2e1) / 0.4e1 *
                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][8][1][6][4] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
+  Curvature_Quark_F2H3[5][8][1][6][4] = II * (OQd_1b21b + OQd_1b12b) * V33 *
+                                        std::sqrt(0.2e1) / 0.4e1 *
                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][8][1][6][5] = std::sqrt(0.2e1) *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
+  Curvature_Quark_F2H3[5][8][1][6][5] = (OQd_1b12b - OQd_1b21b) * V33 *
+                                        std::sqrt(0.2e1) / 0.4e1 *
                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][8][1][7][4] = -std::sqrt(0.2e1) *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
+  Curvature_Quark_F2H3[5][8][1][7][4] = -(OQd_1b12b - OQd_1b21b) * V33 *
+                                        std::sqrt(0.2e1) / 0.4e1 *
                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][8][1][7][5] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
+  Curvature_Quark_F2H3[5][8][1][7][5] = II * (OQd_1b21b + OQd_1b12b) * V33 *
+                                        std::sqrt(0.2e1) / 0.4e1 *
                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][8][2][0][0] = std::sqrt(0.2e1) *
-                                        (OQd_1b21b + OQd_1b12b + OQd_2b11b) /
-                                        0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][8][2][0][1] =
-      II * std::sqrt(0.2e1) * OQd_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][8][2][1][0] =
-      II * std::sqrt(0.2e1) * OQd_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][8][2][1][1] = std::sqrt(0.2e1) *
-                                        (OQd_1b12b - OQd_1b21b + OQd_2b11b) /
-                                        0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][8][2][2][2] = 0.3e1 / 0.2e1 * std::sqrt(0.2e1) *
-                                        OQd_2b22b * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][8][2][2][3] =
-      II * std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][8][2][3][2] =
-      II * std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[5][8][2][0][0] = (OQd_1b21b + OQd_1b12b + OQd_2b11b) *
+                                        V33 * std::sqrt(0.2e1) / 0.2e1 *
+                                        std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[5][8][2][0][1] = II * OQd_1b21b * V33 *
+                                        std::sqrt(0.2e1) / 0.2e1 *
+                                        std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[5][8][2][1][0] = II * OQd_1b21b * V33 *
+                                        std::sqrt(0.2e1) / 0.2e1 *
+                                        std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[5][8][2][1][1] = (OQd_1b12b - OQd_1b21b + OQd_2b11b) *
+                                        V33 * std::sqrt(0.2e1) / 0.2e1 *
+                                        std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[5][8][2][2][2] = 0.3e1 / 0.2e1 * OQd_2b22b * V33 *
+                                        std::sqrt(0.2e1) *
+                                        std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[5][8][2][2][3] = II * OQd_2b22b * V33 *
+                                        std::sqrt(0.2e1) / 0.2e1 *
+                                        std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[5][8][2][3][2] = II * OQd_2b22b * V33 *
+                                        std::sqrt(0.2e1) / 0.2e1 *
+                                        std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[5][8][2][3][3] =
-      std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+      OQd_2b22b * V33 * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[5][8][2][4][4] =
-      std::sqrt(0.2e1) * OQd_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+      OQd_2b11b * V33 * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[5][8][2][5][5] =
-      std::sqrt(0.2e1) * OQd_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+      OQd_2b11b * V33 * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[5][8][2][6][6] =
-      std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+      OQd_2b22b * V33 * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[5][8][2][7][7] =
-      std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][8][3][0][0] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b12b - OQd_1b21b + OQd_2b11b) /
-                                        0.2e1 * std::pow(LambdaEFT, -0.2e1);
+      OQd_2b22b * V33 * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[5][8][3][0][0] =
+      II * (OQd_1b12b - OQd_1b21b + OQd_2b11b) * V33 * std::sqrt(0.2e1) /
+      0.2e1 * std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[5][8][3][0][1] =
-      std::sqrt(0.2e1) * OQd_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+      OQd_1b21b * V33 * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[5][8][3][1][0] =
-      std::sqrt(0.2e1) * OQd_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][8][3][1][1] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b21b + OQd_1b12b + OQd_2b11b) /
-                                        0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][8][3][2][2] =
-      II * std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+      OQd_1b21b * V33 * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[5][8][3][1][1] =
+      II * (OQd_1b21b + OQd_1b12b + OQd_2b11b) * V33 * std::sqrt(0.2e1) /
+      0.2e1 * std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[5][8][3][2][2] = II * OQd_2b22b * V33 *
+                                        std::sqrt(0.2e1) / 0.2e1 *
+                                        std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[5][8][3][2][3] =
-      std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+      OQd_2b22b * V33 * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[5][8][3][3][2] =
-      std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][8][3][3][3] = 0.3e1 / 0.2e1 * II * std::sqrt(0.2e1) *
-                                        OQd_2b22b * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][8][3][4][4] =
-      II * std::sqrt(0.2e1) * OQd_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][8][3][5][5] =
-      II * std::sqrt(0.2e1) * OQd_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][8][3][6][6] =
-      II * std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][8][3][7][7] =
-      II * std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][8][4][0][6] = std::sqrt(0.2e1) *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
+      OQd_2b22b * V33 * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[5][8][3][3][3] = 0.3e1 / 0.2e1 * II * OQd_2b22b * V33 *
+                                        std::sqrt(0.2e1) *
                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][8][4][0][7] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
+  Curvature_Quark_F2H3[5][8][3][4][4] = II * OQd_2b11b * V33 *
+                                        std::sqrt(0.2e1) / 0.2e1 *
                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][8][4][1][6] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
+  Curvature_Quark_F2H3[5][8][3][5][5] = II * OQd_2b11b * V33 *
+                                        std::sqrt(0.2e1) / 0.2e1 *
                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][8][4][1][7] = -std::sqrt(0.2e1) *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
+  Curvature_Quark_F2H3[5][8][3][6][6] = II * OQd_2b22b * V33 *
+                                        std::sqrt(0.2e1) / 0.2e1 *
+                                        std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[5][8][3][7][7] = II * OQd_2b22b * V33 *
+                                        std::sqrt(0.2e1) / 0.2e1 *
+                                        std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[5][8][4][0][6] = (OQd_1b21b + OQd_1b12b) * V33 *
+                                        std::sqrt(0.2e1) / 0.4e1 *
+                                        std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[5][8][4][0][7] = II * (OQd_1b12b - OQd_1b21b) * V33 *
+                                        std::sqrt(0.2e1) / 0.4e1 *
+                                        std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[5][8][4][1][6] = II * (OQd_1b21b + OQd_1b12b) * V33 *
+                                        std::sqrt(0.2e1) / 0.4e1 *
+                                        std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[5][8][4][1][7] = -(OQd_1b12b - OQd_1b21b) * V33 *
+                                        std::sqrt(0.2e1) / 0.4e1 *
                                         std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[5][8][4][2][4] =
-      std::sqrt(0.2e1) * OQd_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][8][4][3][4] =
-      II * std::sqrt(0.2e1) * OQd_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+      OQd_2b11b * V33 * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[5][8][4][3][4] = II * OQd_2b11b * V33 *
+                                        std::sqrt(0.2e1) / 0.2e1 *
+                                        std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[5][8][4][4][2] =
-      std::sqrt(0.2e1) * OQd_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][8][4][4][3] =
-      II * std::sqrt(0.2e1) * OQd_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][8][4][6][0] = std::sqrt(0.2e1) *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
+      OQd_2b11b * V33 * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[5][8][4][4][3] = II * OQd_2b11b * V33 *
+                                        std::sqrt(0.2e1) / 0.2e1 *
                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][8][4][6][1] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
+  Curvature_Quark_F2H3[5][8][4][6][0] = (OQd_1b21b + OQd_1b12b) * V33 *
+                                        std::sqrt(0.2e1) / 0.4e1 *
                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][8][4][7][0] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
+  Curvature_Quark_F2H3[5][8][4][6][1] = II * (OQd_1b21b + OQd_1b12b) * V33 *
+                                        std::sqrt(0.2e1) / 0.4e1 *
                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][8][4][7][1] = -std::sqrt(0.2e1) *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
+  Curvature_Quark_F2H3[5][8][4][7][0] = II * (OQd_1b12b - OQd_1b21b) * V33 *
+                                        std::sqrt(0.2e1) / 0.4e1 *
                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][8][5][0][6] = -std::sqrt(0.2e1) * II *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
+  Curvature_Quark_F2H3[5][8][4][7][1] = -(OQd_1b12b - OQd_1b21b) * V33 *
+                                        std::sqrt(0.2e1) / 0.4e1 *
                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][8][5][0][7] = std::sqrt(0.2e1) *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
+  Curvature_Quark_F2H3[5][8][5][0][6] = -II * (OQd_1b12b - OQd_1b21b) * V33 *
+                                        std::sqrt(0.2e1) / 0.4e1 *
                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][8][5][1][6] = std::sqrt(0.2e1) *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
+  Curvature_Quark_F2H3[5][8][5][0][7] = (OQd_1b21b + OQd_1b12b) * V33 *
+                                        std::sqrt(0.2e1) / 0.4e1 *
                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][8][5][1][7] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
+  Curvature_Quark_F2H3[5][8][5][1][6] = (OQd_1b12b - OQd_1b21b) * V33 *
+                                        std::sqrt(0.2e1) / 0.4e1 *
+                                        std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[5][8][5][1][7] = II * (OQd_1b21b + OQd_1b12b) * V33 *
+                                        std::sqrt(0.2e1) / 0.4e1 *
                                         std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[5][8][5][2][5] =
-      std::sqrt(0.2e1) * OQd_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][8][5][3][5] =
-      II * std::sqrt(0.2e1) * OQd_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+      OQd_2b11b * V33 * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[5][8][5][3][5] = II * OQd_2b11b * V33 *
+                                        std::sqrt(0.2e1) / 0.2e1 *
+                                        std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[5][8][5][5][2] =
-      std::sqrt(0.2e1) * OQd_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][8][5][5][3] =
-      II * std::sqrt(0.2e1) * OQd_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][8][5][6][0] = -std::sqrt(0.2e1) * II *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
+      OQd_2b11b * V33 * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[5][8][5][5][3] = II * OQd_2b11b * V33 *
+                                        std::sqrt(0.2e1) / 0.2e1 *
                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][8][5][6][1] = std::sqrt(0.2e1) *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
+  Curvature_Quark_F2H3[5][8][5][6][0] = -II * (OQd_1b12b - OQd_1b21b) * V33 *
+                                        std::sqrt(0.2e1) / 0.4e1 *
                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][8][5][7][0] = std::sqrt(0.2e1) *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
+  Curvature_Quark_F2H3[5][8][5][6][1] = (OQd_1b12b - OQd_1b21b) * V33 *
+                                        std::sqrt(0.2e1) / 0.4e1 *
                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][8][5][7][1] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
+  Curvature_Quark_F2H3[5][8][5][7][0] = (OQd_1b21b + OQd_1b12b) * V33 *
+                                        std::sqrt(0.2e1) / 0.4e1 *
                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][8][6][0][4] = std::sqrt(0.2e1) *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
+  Curvature_Quark_F2H3[5][8][5][7][1] = II * (OQd_1b21b + OQd_1b12b) * V33 *
+                                        std::sqrt(0.2e1) / 0.4e1 *
                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][8][6][0][5] = -std::sqrt(0.2e1) * II *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
+  Curvature_Quark_F2H3[5][8][6][0][4] = (OQd_1b21b + OQd_1b12b) * V33 *
+                                        std::sqrt(0.2e1) / 0.4e1 *
                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][8][6][1][4] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
+  Curvature_Quark_F2H3[5][8][6][0][5] = -II * (OQd_1b12b - OQd_1b21b) * V33 *
+                                        std::sqrt(0.2e1) / 0.4e1 *
                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][8][6][1][5] = std::sqrt(0.2e1) *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
+  Curvature_Quark_F2H3[5][8][6][1][4] = II * (OQd_1b21b + OQd_1b12b) * V33 *
+                                        std::sqrt(0.2e1) / 0.4e1 *
+                                        std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[5][8][6][1][5] = (OQd_1b12b - OQd_1b21b) * V33 *
+                                        std::sqrt(0.2e1) / 0.4e1 *
                                         std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[5][8][6][2][6] =
-      std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][8][6][3][6] =
-      II * std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][8][6][4][0] = std::sqrt(0.2e1) *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
+      OQd_2b22b * V33 * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[5][8][6][3][6] = II * OQd_2b22b * V33 *
+                                        std::sqrt(0.2e1) / 0.2e1 *
                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][8][6][4][1] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
+  Curvature_Quark_F2H3[5][8][6][4][0] = (OQd_1b21b + OQd_1b12b) * V33 *
+                                        std::sqrt(0.2e1) / 0.4e1 *
                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][8][6][5][0] = -std::sqrt(0.2e1) * II *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
+  Curvature_Quark_F2H3[5][8][6][4][1] = II * (OQd_1b21b + OQd_1b12b) * V33 *
+                                        std::sqrt(0.2e1) / 0.4e1 *
                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][8][6][5][1] = std::sqrt(0.2e1) *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
+  Curvature_Quark_F2H3[5][8][6][5][0] = -II * (OQd_1b12b - OQd_1b21b) * V33 *
+                                        std::sqrt(0.2e1) / 0.4e1 *
+                                        std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[5][8][6][5][1] = (OQd_1b12b - OQd_1b21b) * V33 *
+                                        std::sqrt(0.2e1) / 0.4e1 *
                                         std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[5][8][6][6][2] =
-      std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][8][6][6][3] =
-      II * std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][8][7][0][4] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
+      OQd_2b22b * V33 * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[5][8][6][6][3] = II * OQd_2b22b * V33 *
+                                        std::sqrt(0.2e1) / 0.2e1 *
                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][8][7][0][5] = std::sqrt(0.2e1) *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
+  Curvature_Quark_F2H3[5][8][7][0][4] = II * (OQd_1b12b - OQd_1b21b) * V33 *
+                                        std::sqrt(0.2e1) / 0.4e1 *
                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][8][7][1][4] = -std::sqrt(0.2e1) *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
+  Curvature_Quark_F2H3[5][8][7][0][5] = (OQd_1b21b + OQd_1b12b) * V33 *
+                                        std::sqrt(0.2e1) / 0.4e1 *
                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][8][7][1][5] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
+  Curvature_Quark_F2H3[5][8][7][1][4] = -(OQd_1b12b - OQd_1b21b) * V33 *
+                                        std::sqrt(0.2e1) / 0.4e1 *
+                                        std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[5][8][7][1][5] = II * (OQd_1b21b + OQd_1b12b) * V33 *
+                                        std::sqrt(0.2e1) / 0.4e1 *
                                         std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[5][8][7][2][7] =
-      std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][8][7][3][7] =
-      II * std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][8][7][4][0] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
+      OQd_2b22b * V33 * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[5][8][7][3][7] = II * OQd_2b22b * V33 *
+                                        std::sqrt(0.2e1) / 0.2e1 *
                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][8][7][4][1] = -std::sqrt(0.2e1) *
-                                        (OQd_1b12b - OQd_1b21b) / 0.4e1 *
+  Curvature_Quark_F2H3[5][8][7][4][0] = II * (OQd_1b12b - OQd_1b21b) * V33 *
+                                        std::sqrt(0.2e1) / 0.4e1 *
                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][8][7][5][0] = std::sqrt(0.2e1) *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
+  Curvature_Quark_F2H3[5][8][7][4][1] = -(OQd_1b12b - OQd_1b21b) * V33 *
+                                        std::sqrt(0.2e1) / 0.4e1 *
                                         std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][8][7][5][1] = std::sqrt(0.2e1) * II *
-                                        (OQd_1b21b + OQd_1b12b) / 0.4e1 *
+  Curvature_Quark_F2H3[5][8][7][5][0] = (OQd_1b21b + OQd_1b12b) * V33 *
+                                        std::sqrt(0.2e1) / 0.4e1 *
+                                        std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[5][8][7][5][1] = II * (OQd_1b21b + OQd_1b12b) * V33 *
+                                        std::sqrt(0.2e1) / 0.4e1 *
                                         std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[5][8][7][7][2] =
-      std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][8][7][7][3] =
-      II * std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+      OQd_2b22b * V33 * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[5][8][7][7][3] = II * OQd_2b22b * V33 *
+                                        std::sqrt(0.2e1) / 0.2e1 *
+                                        std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[5][11][0][0][6] =
-      std::sqrt(0.2e1) * OQd_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+      OQd_2b11b * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[5][11][0][0][7] =
-      II * std::sqrt(0.2e1) * OQd_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][11][0][2][4] = std::sqrt(0.2e1) *
-                                         (OQd_1b21b + OQd_1b12b) / 0.4e1 *
+      II * OQd_2b11b * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[5][11][0][2][4] = (OQd_1b21b + OQd_1b12b) *
+                                         std::sqrt(0.2e1) / 0.4e1 *
                                          std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][11][0][2][5] = std::sqrt(0.2e1) * II *
-                                         (OQd_1b21b + OQd_1b12b) / 0.4e1 *
+  Curvature_Quark_F2H3[5][11][0][2][5] = II * (OQd_1b21b + OQd_1b12b) *
+                                         std::sqrt(0.2e1) / 0.4e1 *
                                          std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][11][0][3][4] = std::sqrt(0.2e1) * II *
-                                         (OQd_1b12b - OQd_1b21b) / 0.4e1 *
+  Curvature_Quark_F2H3[5][11][0][3][4] = II * (OQd_1b12b - OQd_1b21b) *
+                                         std::sqrt(0.2e1) / 0.4e1 *
                                          std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][11][0][3][5] = -std::sqrt(0.2e1) *
-                                         (OQd_1b12b - OQd_1b21b) / 0.4e1 *
+  Curvature_Quark_F2H3[5][11][0][3][5] = -(OQd_1b12b - OQd_1b21b) *
+                                         std::sqrt(0.2e1) / 0.4e1 *
                                          std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][11][0][4][2] = std::sqrt(0.2e1) *
-                                         (OQd_1b21b + OQd_1b12b) / 0.4e1 *
+  Curvature_Quark_F2H3[5][11][0][4][2] = (OQd_1b21b + OQd_1b12b) *
+                                         std::sqrt(0.2e1) / 0.4e1 *
                                          std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][11][0][4][3] = std::sqrt(0.2e1) * II *
-                                         (OQd_1b12b - OQd_1b21b) / 0.4e1 *
+  Curvature_Quark_F2H3[5][11][0][4][3] = II * (OQd_1b12b - OQd_1b21b) *
+                                         std::sqrt(0.2e1) / 0.4e1 *
                                          std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][11][0][5][2] = std::sqrt(0.2e1) * II *
-                                         (OQd_1b21b + OQd_1b12b) / 0.4e1 *
+  Curvature_Quark_F2H3[5][11][0][5][2] = II * (OQd_1b21b + OQd_1b12b) *
+                                         std::sqrt(0.2e1) / 0.4e1 *
                                          std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][11][0][5][3] = -std::sqrt(0.2e1) *
-                                         (OQd_1b12b - OQd_1b21b) / 0.4e1 *
+  Curvature_Quark_F2H3[5][11][0][5][3] = -(OQd_1b12b - OQd_1b21b) *
+                                         std::sqrt(0.2e1) / 0.4e1 *
                                          std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[5][11][0][6][0] =
-      std::sqrt(0.2e1) * OQd_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+      OQd_2b11b * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[5][11][0][7][0] =
-      II * std::sqrt(0.2e1) * OQd_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+      II * OQd_2b11b * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[5][11][1][1][6] =
-      std::sqrt(0.2e1) * OQd_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+      OQd_2b11b * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[5][11][1][1][7] =
-      II * std::sqrt(0.2e1) * OQd_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][11][1][2][4] = -std::sqrt(0.2e1) * II *
-                                         (OQd_1b12b - OQd_1b21b) / 0.4e1 *
+      II * OQd_2b11b * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[5][11][1][2][4] = -II * (OQd_1b12b - OQd_1b21b) *
+                                         std::sqrt(0.2e1) / 0.4e1 *
                                          std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][11][1][2][5] = std::sqrt(0.2e1) *
-                                         (OQd_1b12b - OQd_1b21b) / 0.4e1 *
+  Curvature_Quark_F2H3[5][11][1][2][5] = (OQd_1b12b - OQd_1b21b) *
+                                         std::sqrt(0.2e1) / 0.4e1 *
                                          std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][11][1][3][4] = std::sqrt(0.2e1) *
-                                         (OQd_1b21b + OQd_1b12b) / 0.4e1 *
+  Curvature_Quark_F2H3[5][11][1][3][4] = (OQd_1b21b + OQd_1b12b) *
+                                         std::sqrt(0.2e1) / 0.4e1 *
                                          std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][11][1][3][5] = std::sqrt(0.2e1) * II *
-                                         (OQd_1b21b + OQd_1b12b) / 0.4e1 *
+  Curvature_Quark_F2H3[5][11][1][3][5] = II * (OQd_1b21b + OQd_1b12b) *
+                                         std::sqrt(0.2e1) / 0.4e1 *
                                          std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][11][1][4][2] = -std::sqrt(0.2e1) * II *
-                                         (OQd_1b12b - OQd_1b21b) / 0.4e1 *
+  Curvature_Quark_F2H3[5][11][1][4][2] = -II * (OQd_1b12b - OQd_1b21b) *
+                                         std::sqrt(0.2e1) / 0.4e1 *
                                          std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][11][1][4][3] = std::sqrt(0.2e1) *
-                                         (OQd_1b21b + OQd_1b12b) / 0.4e1 *
+  Curvature_Quark_F2H3[5][11][1][4][3] = (OQd_1b21b + OQd_1b12b) *
+                                         std::sqrt(0.2e1) / 0.4e1 *
                                          std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][11][1][5][2] = std::sqrt(0.2e1) *
-                                         (OQd_1b12b - OQd_1b21b) / 0.4e1 *
+  Curvature_Quark_F2H3[5][11][1][5][2] = (OQd_1b12b - OQd_1b21b) *
+                                         std::sqrt(0.2e1) / 0.4e1 *
                                          std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][11][1][5][3] = std::sqrt(0.2e1) * II *
-                                         (OQd_1b21b + OQd_1b12b) / 0.4e1 *
+  Curvature_Quark_F2H3[5][11][1][5][3] = II * (OQd_1b21b + OQd_1b12b) *
+                                         std::sqrt(0.2e1) / 0.4e1 *
                                          std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[5][11][1][6][1] =
-      std::sqrt(0.2e1) * OQd_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+      OQd_2b11b * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[5][11][1][7][1] =
-      II * std::sqrt(0.2e1) * OQd_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][11][2][0][4] = std::sqrt(0.2e1) *
-                                         (OQd_1b21b + OQd_1b12b) / 0.4e1 *
+      II * OQd_2b11b * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[5][11][2][0][4] = (OQd_1b21b + OQd_1b12b) *
+                                         std::sqrt(0.2e1) / 0.4e1 *
                                          std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][11][2][0][5] = std::sqrt(0.2e1) * II *
-                                         (OQd_1b21b + OQd_1b12b) / 0.4e1 *
+  Curvature_Quark_F2H3[5][11][2][0][5] = II * (OQd_1b21b + OQd_1b12b) *
+                                         std::sqrt(0.2e1) / 0.4e1 *
                                          std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][11][2][1][4] = -std::sqrt(0.2e1) * II *
-                                         (OQd_1b12b - OQd_1b21b) / 0.4e1 *
+  Curvature_Quark_F2H3[5][11][2][1][4] = -II * (OQd_1b12b - OQd_1b21b) *
+                                         std::sqrt(0.2e1) / 0.4e1 *
                                          std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][11][2][1][5] = std::sqrt(0.2e1) *
-                                         (OQd_1b12b - OQd_1b21b) / 0.4e1 *
+  Curvature_Quark_F2H3[5][11][2][1][5] = (OQd_1b12b - OQd_1b21b) *
+                                         std::sqrt(0.2e1) / 0.4e1 *
                                          std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[5][11][2][2][6] =
-      std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+      OQd_2b22b * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[5][11][2][2][7] =
-      II * std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][11][2][4][0] = std::sqrt(0.2e1) *
-                                         (OQd_1b21b + OQd_1b12b) / 0.4e1 *
+      II * OQd_2b22b * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[5][11][2][4][0] = (OQd_1b21b + OQd_1b12b) *
+                                         std::sqrt(0.2e1) / 0.4e1 *
                                          std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][11][2][4][1] = -std::sqrt(0.2e1) * II *
-                                         (OQd_1b12b - OQd_1b21b) / 0.4e1 *
+  Curvature_Quark_F2H3[5][11][2][4][1] = -II * (OQd_1b12b - OQd_1b21b) *
+                                         std::sqrt(0.2e1) / 0.4e1 *
                                          std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][11][2][5][0] = std::sqrt(0.2e1) * II *
-                                         (OQd_1b21b + OQd_1b12b) / 0.4e1 *
+  Curvature_Quark_F2H3[5][11][2][5][0] = II * (OQd_1b21b + OQd_1b12b) *
+                                         std::sqrt(0.2e1) / 0.4e1 *
                                          std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][11][2][5][1] = std::sqrt(0.2e1) *
-                                         (OQd_1b12b - OQd_1b21b) / 0.4e1 *
+  Curvature_Quark_F2H3[5][11][2][5][1] = (OQd_1b12b - OQd_1b21b) *
+                                         std::sqrt(0.2e1) / 0.4e1 *
                                          std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[5][11][2][6][2] =
-      std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+      OQd_2b22b * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[5][11][2][7][2] =
-      II * std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][11][3][0][4] = std::sqrt(0.2e1) * II *
-                                         (OQd_1b12b - OQd_1b21b) / 0.4e1 *
+      II * OQd_2b22b * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[5][11][3][0][4] = II * (OQd_1b12b - OQd_1b21b) *
+                                         std::sqrt(0.2e1) / 0.4e1 *
                                          std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][11][3][0][5] = -std::sqrt(0.2e1) *
-                                         (OQd_1b12b - OQd_1b21b) / 0.4e1 *
+  Curvature_Quark_F2H3[5][11][3][0][5] = -(OQd_1b12b - OQd_1b21b) *
+                                         std::sqrt(0.2e1) / 0.4e1 *
                                          std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][11][3][1][4] = std::sqrt(0.2e1) *
-                                         (OQd_1b21b + OQd_1b12b) / 0.4e1 *
+  Curvature_Quark_F2H3[5][11][3][1][4] = (OQd_1b21b + OQd_1b12b) *
+                                         std::sqrt(0.2e1) / 0.4e1 *
                                          std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][11][3][1][5] = std::sqrt(0.2e1) * II *
-                                         (OQd_1b21b + OQd_1b12b) / 0.4e1 *
+  Curvature_Quark_F2H3[5][11][3][1][5] = II * (OQd_1b21b + OQd_1b12b) *
+                                         std::sqrt(0.2e1) / 0.4e1 *
                                          std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[5][11][3][3][6] =
-      std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+      OQd_2b22b * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[5][11][3][3][7] =
-      II * std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][11][3][4][0] = std::sqrt(0.2e1) * II *
-                                         (OQd_1b12b - OQd_1b21b) / 0.4e1 *
+      II * OQd_2b22b * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[5][11][3][4][0] = II * (OQd_1b12b - OQd_1b21b) *
+                                         std::sqrt(0.2e1) / 0.4e1 *
                                          std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][11][3][4][1] = std::sqrt(0.2e1) *
-                                         (OQd_1b21b + OQd_1b12b) / 0.4e1 *
+  Curvature_Quark_F2H3[5][11][3][4][1] = (OQd_1b21b + OQd_1b12b) *
+                                         std::sqrt(0.2e1) / 0.4e1 *
                                          std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][11][3][5][0] = -std::sqrt(0.2e1) *
-                                         (OQd_1b12b - OQd_1b21b) / 0.4e1 *
+  Curvature_Quark_F2H3[5][11][3][5][0] = -(OQd_1b12b - OQd_1b21b) *
+                                         std::sqrt(0.2e1) / 0.4e1 *
                                          std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][11][3][5][1] = std::sqrt(0.2e1) * II *
-                                         (OQd_1b21b + OQd_1b12b) / 0.4e1 *
+  Curvature_Quark_F2H3[5][11][3][5][1] = II * (OQd_1b21b + OQd_1b12b) *
+                                         std::sqrt(0.2e1) / 0.4e1 *
                                          std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[5][11][3][6][3] =
-      std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+      OQd_2b22b * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[5][11][3][7][3] =
-      II * std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][11][4][0][2] = std::sqrt(0.2e1) *
-                                         (OQd_1b21b + OQd_1b12b) / 0.4e1 *
+      II * OQd_2b22b * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[5][11][4][0][2] = (OQd_1b21b + OQd_1b12b) *
+                                         std::sqrt(0.2e1) / 0.4e1 *
                                          std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][11][4][0][3] = std::sqrt(0.2e1) * II *
-                                         (OQd_1b12b - OQd_1b21b) / 0.4e1 *
+  Curvature_Quark_F2H3[5][11][4][0][3] = II * (OQd_1b12b - OQd_1b21b) *
+                                         std::sqrt(0.2e1) / 0.4e1 *
                                          std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][11][4][1][2] = -std::sqrt(0.2e1) * II *
-                                         (OQd_1b12b - OQd_1b21b) / 0.4e1 *
+  Curvature_Quark_F2H3[5][11][4][1][2] = -II * (OQd_1b12b - OQd_1b21b) *
+                                         std::sqrt(0.2e1) / 0.4e1 *
                                          std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][11][4][1][3] = std::sqrt(0.2e1) *
-                                         (OQd_1b21b + OQd_1b12b) / 0.4e1 *
+  Curvature_Quark_F2H3[5][11][4][1][3] = (OQd_1b21b + OQd_1b12b) *
+                                         std::sqrt(0.2e1) / 0.4e1 *
                                          std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][11][4][2][0] = std::sqrt(0.2e1) *
-                                         (OQd_1b21b + OQd_1b12b) / 0.4e1 *
+  Curvature_Quark_F2H3[5][11][4][2][0] = (OQd_1b21b + OQd_1b12b) *
+                                         std::sqrt(0.2e1) / 0.4e1 *
                                          std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][11][4][2][1] = -std::sqrt(0.2e1) * II *
-                                         (OQd_1b12b - OQd_1b21b) / 0.4e1 *
+  Curvature_Quark_F2H3[5][11][4][2][1] = -II * (OQd_1b12b - OQd_1b21b) *
+                                         std::sqrt(0.2e1) / 0.4e1 *
                                          std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][11][4][3][0] = std::sqrt(0.2e1) * II *
-                                         (OQd_1b12b - OQd_1b21b) / 0.4e1 *
+  Curvature_Quark_F2H3[5][11][4][3][0] = II * (OQd_1b12b - OQd_1b21b) *
+                                         std::sqrt(0.2e1) / 0.4e1 *
                                          std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][11][4][3][1] = std::sqrt(0.2e1) *
-                                         (OQd_1b21b + OQd_1b12b) / 0.4e1 *
+  Curvature_Quark_F2H3[5][11][4][3][1] = (OQd_1b21b + OQd_1b12b) *
+                                         std::sqrt(0.2e1) / 0.4e1 *
                                          std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][11][4][4][6] = std::sqrt(0.2e1) *
-                                         (OQd_1b21b + OQd_1b12b + OQd_2b11b) /
-                                         0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][11][4][4][7] = std::sqrt(0.2e1) * II *
-                                         (OQd_1b12b - OQd_1b21b + OQd_2b11b) /
-                                         0.2e1 * std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[5][11][4][4][6] = (OQd_1b21b + OQd_1b12b + OQd_2b11b) *
+                                         std::sqrt(0.2e1) / 0.2e1 *
+                                         std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[5][11][4][4][7] =
+      II * (OQd_1b12b - OQd_1b21b + OQd_2b11b) * std::sqrt(0.2e1) / 0.2e1 *
+      std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[5][11][4][5][6] =
-      II * std::sqrt(0.2e1) * OQd_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+      II * OQd_1b21b * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[5][11][4][5][7] =
-      std::sqrt(0.2e1) * OQd_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][11][4][6][4] = std::sqrt(0.2e1) *
-                                         (OQd_1b21b + OQd_1b12b + OQd_2b11b) /
-                                         0.2e1 * std::pow(LambdaEFT, -0.2e1);
+      OQd_1b21b * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[5][11][4][6][4] = (OQd_1b21b + OQd_1b12b + OQd_2b11b) *
+                                         std::sqrt(0.2e1) / 0.2e1 *
+                                         std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[5][11][4][6][5] =
-      II * std::sqrt(0.2e1) * OQd_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][11][4][7][4] = std::sqrt(0.2e1) * II *
-                                         (OQd_1b12b - OQd_1b21b + OQd_2b11b) /
-                                         0.2e1 * std::pow(LambdaEFT, -0.2e1);
+      II * OQd_1b21b * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[5][11][4][7][4] =
+      II * (OQd_1b12b - OQd_1b21b + OQd_2b11b) * std::sqrt(0.2e1) / 0.2e1 *
+      std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[5][11][4][7][5] =
-      std::sqrt(0.2e1) * OQd_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][11][5][0][2] = std::sqrt(0.2e1) * II *
-                                         (OQd_1b21b + OQd_1b12b) / 0.4e1 *
+      OQd_1b21b * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[5][11][5][0][2] = II * (OQd_1b21b + OQd_1b12b) *
+                                         std::sqrt(0.2e1) / 0.4e1 *
                                          std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][11][5][0][3] = -std::sqrt(0.2e1) *
-                                         (OQd_1b12b - OQd_1b21b) / 0.4e1 *
+  Curvature_Quark_F2H3[5][11][5][0][3] = -(OQd_1b12b - OQd_1b21b) *
+                                         std::sqrt(0.2e1) / 0.4e1 *
                                          std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][11][5][1][2] = std::sqrt(0.2e1) *
-                                         (OQd_1b12b - OQd_1b21b) / 0.4e1 *
+  Curvature_Quark_F2H3[5][11][5][1][2] = (OQd_1b12b - OQd_1b21b) *
+                                         std::sqrt(0.2e1) / 0.4e1 *
                                          std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][11][5][1][3] = std::sqrt(0.2e1) * II *
-                                         (OQd_1b21b + OQd_1b12b) / 0.4e1 *
+  Curvature_Quark_F2H3[5][11][5][1][3] = II * (OQd_1b21b + OQd_1b12b) *
+                                         std::sqrt(0.2e1) / 0.4e1 *
                                          std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][11][5][2][0] = std::sqrt(0.2e1) * II *
-                                         (OQd_1b21b + OQd_1b12b) / 0.4e1 *
+  Curvature_Quark_F2H3[5][11][5][2][0] = II * (OQd_1b21b + OQd_1b12b) *
+                                         std::sqrt(0.2e1) / 0.4e1 *
                                          std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][11][5][2][1] = std::sqrt(0.2e1) *
-                                         (OQd_1b12b - OQd_1b21b) / 0.4e1 *
+  Curvature_Quark_F2H3[5][11][5][2][1] = (OQd_1b12b - OQd_1b21b) *
+                                         std::sqrt(0.2e1) / 0.4e1 *
                                          std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][11][5][3][0] = -std::sqrt(0.2e1) *
-                                         (OQd_1b12b - OQd_1b21b) / 0.4e1 *
+  Curvature_Quark_F2H3[5][11][5][3][0] = -(OQd_1b12b - OQd_1b21b) *
+                                         std::sqrt(0.2e1) / 0.4e1 *
                                          std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][11][5][3][1] = std::sqrt(0.2e1) * II *
-                                         (OQd_1b21b + OQd_1b12b) / 0.4e1 *
+  Curvature_Quark_F2H3[5][11][5][3][1] = II * (OQd_1b21b + OQd_1b12b) *
+                                         std::sqrt(0.2e1) / 0.4e1 *
                                          std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[5][11][5][4][6] =
-      II * std::sqrt(0.2e1) * OQd_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+      II * OQd_1b21b * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[5][11][5][4][7] =
-      std::sqrt(0.2e1) * OQd_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][11][5][5][6] = std::sqrt(0.2e1) *
-                                         (OQd_1b12b - OQd_1b21b + OQd_2b11b) /
-                                         0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][11][5][5][7] = std::sqrt(0.2e1) * II *
-                                         (OQd_1b21b + OQd_1b12b + OQd_2b11b) /
-                                         0.2e1 * std::pow(LambdaEFT, -0.2e1);
+      OQd_1b21b * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[5][11][5][5][6] = (OQd_1b12b - OQd_1b21b + OQd_2b11b) *
+                                         std::sqrt(0.2e1) / 0.2e1 *
+                                         std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[5][11][5][5][7] =
+      II * (OQd_1b21b + OQd_1b12b + OQd_2b11b) * std::sqrt(0.2e1) / 0.2e1 *
+      std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[5][11][5][6][4] =
-      II * std::sqrt(0.2e1) * OQd_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][11][5][6][5] = std::sqrt(0.2e1) *
-                                         (OQd_1b12b - OQd_1b21b + OQd_2b11b) /
-                                         0.2e1 * std::pow(LambdaEFT, -0.2e1);
+      II * OQd_1b21b * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[5][11][5][6][5] = (OQd_1b12b - OQd_1b21b + OQd_2b11b) *
+                                         std::sqrt(0.2e1) / 0.2e1 *
+                                         std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[5][11][5][7][4] =
-      std::sqrt(0.2e1) * OQd_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][11][5][7][5] = std::sqrt(0.2e1) * II *
-                                         (OQd_1b21b + OQd_1b12b + OQd_2b11b) /
-                                         0.2e1 * std::pow(LambdaEFT, -0.2e1);
+      OQd_1b21b * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[5][11][5][7][5] =
+      II * (OQd_1b21b + OQd_1b12b + OQd_2b11b) * std::sqrt(0.2e1) / 0.2e1 *
+      std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[5][11][6][0][0] =
-      std::sqrt(0.2e1) * OQd_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+      OQd_2b11b * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[5][11][6][1][1] =
-      std::sqrt(0.2e1) * OQd_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+      OQd_2b11b * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[5][11][6][2][2] =
-      std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+      OQd_2b22b * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[5][11][6][3][3] =
-      std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][11][6][4][4] = std::sqrt(0.2e1) *
-                                         (OQd_1b21b + OQd_1b12b + OQd_2b11b) /
-                                         0.2e1 * std::pow(LambdaEFT, -0.2e1);
+      OQd_2b22b * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[5][11][6][4][4] = (OQd_1b21b + OQd_1b12b + OQd_2b11b) *
+                                         std::sqrt(0.2e1) / 0.2e1 *
+                                         std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[5][11][6][4][5] =
-      II * std::sqrt(0.2e1) * OQd_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+      II * OQd_1b21b * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[5][11][6][5][4] =
-      II * std::sqrt(0.2e1) * OQd_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][11][6][5][5] = std::sqrt(0.2e1) *
-                                         (OQd_1b12b - OQd_1b21b + OQd_2b11b) /
-                                         0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][11][6][6][6] = 0.3e1 / 0.2e1 * std::sqrt(0.2e1) *
-                                         OQd_2b22b *
+      II * OQd_1b21b * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[5][11][6][5][5] = (OQd_1b12b - OQd_1b21b + OQd_2b11b) *
+                                         std::sqrt(0.2e1) / 0.2e1 *
+                                         std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[5][11][6][6][6] = 0.3e1 / 0.2e1 * OQd_2b22b *
+                                         std::sqrt(0.2e1) *
                                          std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[5][11][6][6][7] =
-      II * std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+      II * OQd_2b22b * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[5][11][6][7][6] =
-      II * std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+      II * OQd_2b22b * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[5][11][6][7][7] =
-      std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+      OQd_2b22b * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[5][11][7][0][0] =
-      II * std::sqrt(0.2e1) * OQd_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+      II * OQd_2b11b * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[5][11][7][1][1] =
-      II * std::sqrt(0.2e1) * OQd_2b11b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+      II * OQd_2b11b * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[5][11][7][2][2] =
-      II * std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+      II * OQd_2b22b * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[5][11][7][3][3] =
-      II * std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][11][7][4][4] = std::sqrt(0.2e1) * II *
-                                         (OQd_1b12b - OQd_1b21b + OQd_2b11b) /
-                                         0.2e1 * std::pow(LambdaEFT, -0.2e1);
+      II * OQd_2b22b * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[5][11][7][4][4] =
+      II * (OQd_1b12b - OQd_1b21b + OQd_2b11b) * std::sqrt(0.2e1) / 0.2e1 *
+      std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[5][11][7][4][5] =
-      std::sqrt(0.2e1) * OQd_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+      OQd_1b21b * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[5][11][7][5][4] =
-      std::sqrt(0.2e1) * OQd_1b21b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][11][7][5][5] = std::sqrt(0.2e1) * II *
-                                         (OQd_1b21b + OQd_1b12b + OQd_2b11b) /
-                                         0.2e1 * std::pow(LambdaEFT, -0.2e1);
+      OQd_1b21b * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[5][11][7][5][5] =
+      II * (OQd_1b21b + OQd_1b12b + OQd_2b11b) * std::sqrt(0.2e1) / 0.2e1 *
+      std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[5][11][7][6][6] =
-      II * std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+      II * OQd_2b22b * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[5][11][7][6][7] =
-      std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+      OQd_2b22b * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
   Curvature_Quark_F2H3[5][11][7][7][6] =
-      std::sqrt(0.2e1) * OQd_2b22b / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
-  Curvature_Quark_F2H3[5][11][7][7][7] = 0.3e1 / 0.2e1 * II * std::sqrt(0.2e1) *
-                                         OQd_2b22b *
+      OQd_2b22b * std::sqrt(0.2e1) / 0.2e1 * std::pow(LambdaEFT, -0.2e1);
+  Curvature_Quark_F2H3[5][11][7][7][7] = 0.3e1 / 0.2e1 * II * OQd_2b22b *
+                                         std::sqrt(0.2e1) *
                                          std::pow(LambdaEFT, -0.2e1);
 
   sym5Dim(Curvature_Quark_F2H3, NQuarks, NQuarks, NHiggs, NHiggs, NHiggs);
 
   SetUseTensorSymFac(true); // true for whole SymFac*Tensor input
 
-  SymFac_Higgs_OneLoop[0][0] = std::pow(LambdaEFT, -0.2e1); // rho1rho1
-  SymFac_Higgs_OneLoop[0][2] = std::pow(LambdaEFT, -0.2e1); // rho1rho2
-  SymFac_Higgs_OneLoop[1][1] = std::pow(LambdaEFT, -0.2e1); // eta1eta1
-  SymFac_Higgs_OneLoop[1][3] = std::pow(LambdaEFT, -0.2e1); // eta1eta2
-  SymFac_Higgs_OneLoop[2][0] = std::pow(LambdaEFT, -0.2e1); // rho2rho1
-  SymFac_Higgs_OneLoop[2][2] = std::pow(LambdaEFT, -0.2e1); // rho2rho2
-  SymFac_Higgs_OneLoop[3][1] = std::pow(LambdaEFT, -0.2e1); // eta2eta1
-  SymFac_Higgs_OneLoop[3][3] = std::pow(LambdaEFT, -0.2e1); // eta2eta2
-  SymFac_Higgs_OneLoop[4][4] = std::pow(LambdaEFT, -0.2e1); // zeta1zeta1
-  SymFac_Higgs_OneLoop[4][6] = std::pow(LambdaEFT, -0.2e1); // zeta1zeta2
-  SymFac_Higgs_OneLoop[5][5] = std::pow(LambdaEFT, -0.2e1); // psi1psi1
-  SymFac_Higgs_OneLoop[5][7] = std::pow(LambdaEFT, -0.2e1); // psi1psi2
-  SymFac_Higgs_OneLoop[6][4] = std::pow(LambdaEFT, -0.2e1); // zeta2zeta1
-  SymFac_Higgs_OneLoop[6][6] = std::pow(LambdaEFT, -0.2e1); // zeta2zeta2
-  SymFac_Higgs_OneLoop[7][5] = std::pow(LambdaEFT, -0.2e1); // psi2psi1
-  SymFac_Higgs_OneLoop[7][7] = std::pow(LambdaEFT, -0.2e1); // psi2psi2
+  SymFac_Higgs_OneLoop[0][0] =
+      (3 * C_vev0 * C_CosBeta *
+       (C_MassBottom * OQd_1b11b + 3 * C_MassTop * OQu_1b11b +
+        3 * C_MassTop * OQu_2b11b * TanBeta -
+        C_MassBottom * (OQd_2b12b + OQd_2b21b) * std::pow(TanBeta, 2) -
+        C_MassBottom * OQd_2b22b * std::pow(TanBeta, 3))) /
+      std::sqrt(0.2e1) * std::pow(LambdaEFT, -0.2e1); // rho1rho1
+  SymFac_Higgs_OneLoop[0][2] =
+      (C_vev0 *
+       (3 * C_MassBottom * OQd_2b22b +
+        C_MassTop * std::pow(TanBeta, -0.3e1) * OQu_1b11b +
+        std::pow(TanBeta, -0.2e1) *
+            (3 * C_MassBottom * (OQd_1b12b + OQd_1b21b + OQd_2b11b) +
+             10 * C_MassTop * (OQu_1b12b + OQu_1b21b)) +
+        std::pow(TanBeta, -0.1e1) *
+            (6 * C_MassBottom * (OQd_2b12b + OQd_2b21b) +
+             C_MassTop * (OQu_1b22b + 9 * (OQu_2b12b + OQu_2b21b)))) *
+       C_SinBeta * TanBeta) /
+      2. / std::sqrt(0.2e1) * std::pow(LambdaEFT, -0.2e1); // rho1rho2
+  SymFac_Higgs_OneLoop[1][1] =
+      (3 * C_vev0 * C_CosBeta *
+       (C_MassBottom * OQd_1b11b + 3 * C_MassTop * OQu_1b11b +
+        3 * C_MassTop * OQu_2b11b * TanBeta -
+        C_MassBottom * (OQd_2b12b + OQd_2b21b) * std::pow(TanBeta, 2) -
+        C_MassBottom * OQd_2b22b * std::pow(TanBeta, 3))) /
+      std::sqrt(0.2e1) * std::pow(LambdaEFT, -0.2e1); // eta1eta1
+  SymFac_Higgs_OneLoop[1][3] =
+      (C_vev0 *
+       (3 * C_MassBottom * OQd_2b22b +
+        C_MassTop * std::pow(TanBeta, -0.3e1) * OQu_1b11b +
+        std::pow(TanBeta, -0.2e1) *
+            (3 * C_MassBottom * (OQd_1b12b + OQd_1b21b + OQd_2b11b) +
+             10 * C_MassTop * (OQu_1b12b + OQu_1b21b)) +
+        std::pow(TanBeta, -0.1e1) *
+            (6 * C_MassBottom * (OQd_2b12b + OQd_2b21b) +
+             C_MassTop * (OQu_1b22b + 9 * (OQu_2b12b + OQu_2b21b)))) *
+       C_SinBeta * TanBeta) /
+      2. / std::sqrt(0.2e1) * std::pow(LambdaEFT, -0.2e1); // eta1eta2
+  SymFac_Higgs_OneLoop[2][0] =
+      (C_vev0 *
+       (3 * C_MassBottom * OQd_2b22b +
+        C_MassTop * std::pow(TanBeta, -0.3e1) * OQu_1b11b +
+        std::pow(TanBeta, -0.2e1) *
+            (3 * C_MassBottom * (OQd_1b12b + OQd_1b21b + OQd_2b11b) +
+             10 * C_MassTop * (OQu_1b12b + OQu_1b21b)) +
+        std::pow(TanBeta, -0.1e1) *
+            (6 * C_MassBottom * (OQd_2b12b + OQd_2b21b) +
+             C_MassTop * (OQu_1b22b + 9 * (OQu_2b12b + OQu_2b21b)))) *
+       C_SinBeta * TanBeta) /
+      2. / std::sqrt(0.2e1) * std::pow(LambdaEFT, -0.2e1); // rho2rho1
+  SymFac_Higgs_OneLoop[2][2] =
+      (C_vev0 *
+       (3 * C_MassBottom * OQd_2b22b -
+        C_MassTop * std::pow(TanBeta, -0.3e1) * OQu_1b11b -
+        C_MassTop * std::pow(TanBeta, -0.2e1) * (OQu_1b12b + OQu_1b21b) +
+        std::pow(TanBeta, -0.1e1) *
+            (3 * C_MassBottom * OQd_1b22b + 8 * C_MassTop * OQu_1b22b) +
+        9 * C_MassTop * OQu_2b22b) *
+       C_SinBeta) /
+      std::sqrt(0.2e1) * std::pow(LambdaEFT, -0.2e1); // rho2rho2
+  SymFac_Higgs_OneLoop[3][1] =
+      (C_vev0 *
+       (3 * C_MassBottom * OQd_2b22b +
+        C_MassTop * std::pow(TanBeta, -0.3e1) * OQu_1b11b +
+        std::pow(TanBeta, -0.2e1) *
+            (3 * C_MassBottom * (OQd_1b12b + OQd_1b21b + OQd_2b11b) +
+             10 * C_MassTop * (OQu_1b12b + OQu_1b21b)) +
+        std::pow(TanBeta, -0.1e1) *
+            (6 * C_MassBottom * (OQd_2b12b + OQd_2b21b) +
+             C_MassTop * (OQu_1b22b + 9 * (OQu_2b12b + OQu_2b21b)))) *
+       C_SinBeta * TanBeta) /
+      2. / std::sqrt(0.2e1) * std::pow(LambdaEFT, -0.2e1); // eta2eta1
+  SymFac_Higgs_OneLoop[3][3] =
+      (C_vev0 *
+       (3 * C_MassBottom * OQd_2b22b -
+        C_MassTop * std::pow(TanBeta, -0.3e1) * OQu_1b11b -
+        C_MassTop * std::pow(TanBeta, -0.2e1) * (OQu_1b12b + OQu_1b21b) +
+        std::pow(TanBeta, -0.1e1) *
+            (3 * C_MassBottom * OQd_1b22b + 8 * C_MassTop * OQu_1b22b) +
+        9 * C_MassTop * OQu_2b22b) *
+       C_SinBeta) /
+      std::sqrt(0.2e1) * std::pow(LambdaEFT, -0.2e1); // eta2eta2
+  SymFac_Higgs_OneLoop[4][4] =
+      (3 * C_vev0 * C_CosBeta *
+       (5 * C_MassBottom * OQd_1b11b + 9 * C_MassTop * OQu_1b11b +
+        (2 * C_MassBottom * (OQd_1b12b + OQd_1b21b + OQd_2b11b) +
+         3 * C_MassTop * (OQu_1b12b + OQu_1b21b + OQu_2b11b)) *
+            TanBeta -
+        C_MassBottom * OQd_2b22b * std::pow(TanBeta, 3))) /
+      std::sqrt(0.2e1) * std::pow(LambdaEFT, -0.2e1); // zeta1zeta1
+  SymFac_Higgs_OneLoop[4][6] =
+      (3 * C_vev0 * C_CosBeta *
+       (3 * C_MassBottom * (OQd_1b12b + OQd_1b21b + OQd_2b11b) +
+        9 * C_MassTop * std::pow(TanBeta, -0.1e1) * OQu_1b11b +
+        12 * C_MassTop * (OQu_1b12b + OQu_1b21b + OQu_2b11b) +
+        4 * C_MassBottom * (OQd_1b22b + OQd_2b12b + OQd_2b21b) * TanBeta +
+        9 * C_MassTop * (OQu_1b22b + OQu_2b12b + OQu_2b21b) * TanBeta +
+        3 * C_MassBottom * OQd_2b22b * std::pow(TanBeta, 2))) /
+      2. / std::sqrt(0.2e1) * std::pow(LambdaEFT, -0.2e1); // zeta1zeta2
+  SymFac_Higgs_OneLoop[5][5] =
+      (-3 * C_vev0 * C_CosBeta *
+       (-(C_MassBottom * OQd_1b11b) - 3 * C_MassTop * OQu_1b11b +
+        3 * C_MassTop * (OQu_1b12b - OQu_1b21b - OQu_2b11b) * TanBeta +
+        2 * C_MassBottom * OQd_2b12b * std::pow(TanBeta, 2) +
+        C_MassBottom * OQd_2b22b * std::pow(TanBeta, 3))) /
+      std::sqrt(0.2e1) * std::pow(LambdaEFT, -0.2e1); // psi1psi1
+  SymFac_Higgs_OneLoop[5][7] =
+      (3 * C_vev0 * C_CosBeta *
+       (C_MassBottom * OQd_1b12b + C_MassBottom * OQd_1b21b +
+        C_MassBottom * OQd_2b11b +
+        3 * C_MassTop * std::pow(TanBeta, -0.1e1) * OQu_1b11b +
+        12 * C_MassTop * OQu_1b12b +
+        (4 * C_MassBottom * OQd_2b12b +
+         3 * C_MassTop * (OQu_1b22b + OQu_2b12b + OQu_2b21b)) *
+            TanBeta +
+        C_MassBottom * OQd_2b22b * std::pow(TanBeta, 2))) /
+      2. / std::sqrt(0.2e1) * std::pow(LambdaEFT, -0.2e1); // psi1psi2
+  SymFac_Higgs_OneLoop[6][4] =
+      (3 * C_vev0 * C_CosBeta *
+       (3 * C_MassBottom * (OQd_1b12b + OQd_1b21b + OQd_2b11b) +
+        9 * C_MassTop * std::pow(TanBeta, -0.1e1) * OQu_1b11b +
+        12 * C_MassTop * (OQu_1b12b + OQu_1b21b + OQu_2b11b) +
+        4 * C_MassBottom * (OQd_1b22b + OQd_2b12b + OQd_2b21b) * TanBeta +
+        9 * C_MassTop * (OQu_1b22b + OQu_2b12b + OQu_2b21b) * TanBeta +
+        3 * C_MassBottom * OQd_2b22b * std::pow(TanBeta, 2))) /
+      2. / std::sqrt(0.2e1) * std::pow(LambdaEFT, -0.2e1); // zeta2zeta1
+  SymFac_Higgs_OneLoop[6][6] =
+      (3 * C_vev0 *
+       (-3 * C_MassTop * std::pow(TanBeta, -0.3e1) * OQu_1b11b +
+        std::pow(TanBeta, -0.1e1) *
+            (C_MassBottom * (OQd_1b22b + OQd_2b12b + OQd_2b21b) +
+             6 * C_MassTop * (OQu_1b22b + OQu_2b12b + OQu_2b21b)) +
+        3 * (C_MassBottom * OQd_2b22b + 5 * C_MassTop * OQu_2b22b)) *
+       C_SinBeta) /
+      std::sqrt(0.2e1) * std::pow(LambdaEFT, -0.2e1); // zeta2zeta2
+  SymFac_Higgs_OneLoop[7][5] =
+      (3 * C_vev0 * C_CosBeta *
+       (C_MassBottom * OQd_1b12b + C_MassBottom * OQd_1b21b +
+        C_MassBottom * OQd_2b11b +
+        3 * C_MassTop * std::pow(TanBeta, -0.1e1) * OQu_1b11b +
+        12 * C_MassTop * OQu_1b12b +
+        (4 * C_MassBottom * OQd_2b12b +
+         3 * C_MassTop * (OQu_1b22b + OQu_2b12b + OQu_2b21b)) *
+            TanBeta +
+        C_MassBottom * OQd_2b22b * std::pow(TanBeta, 2))) /
+      2. / std::sqrt(0.2e1) * std::pow(LambdaEFT, -0.2e1); // psi2psi1
+  SymFac_Higgs_OneLoop[7][7] =
+      (3 * C_vev0 *
+       (C_MassBottom * OQd_2b22b +
+        C_MassBottom * (OQd_1b22b - OQd_2b12b + OQd_2b21b) *
+            std::pow(TanBeta, -0.1e1) -
+        3 * C_MassTop * std::pow(TanBeta, -0.3e1) * OQu_1b11b -
+        6 * C_MassTop * std::pow(TanBeta, -0.2e1) * OQu_1b12b +
+        3 * C_MassTop * OQu_2b22b) *
+       C_SinBeta) /
+      std::sqrt(0.2e1) * std::pow(LambdaEFT, -0.2e1); // psi2psi2
 
   SymFac_Higgs_TwoLoop[0][0] =
       std::pow(LambdaEFT, -0.2e1) *
-      (-2 * (6 * Op6_111111 + 2 * Op6_111122 + Op6_112222 + Op6_122111) -
-       Op6_122122) /
-      48.; // rho1rho1
+          (-2 * (6 * Op6_111111 + 2 * Op6_111122 + Op6_112222 + Op6_122111) -
+           Op6_122122) /
+          48. +
+      (-3 * C_MassBottom * (3 * OQd_1b11b + 2 * OQd_1b22b + OQd_2b21b) *
+       std::pow(C_CosBeta, -0.1e1)) *
+          0.5 / std::sqrt(2) * std::pow(LambdaEFT, -0.2e1) / C_vev0; // rho1rho1
   SymFac_Higgs_TwoLoop[0][2] =
       std::pow(LambdaEFT, -0.2e1) *
-      (-4 * Op6_111112 - 3 * Op6_112212 - 2 * (Op6_121221 + 2 * Op6_122222)) /
-      48.; // rho1rho2
+          (-4 * Op6_111112 - 3 * Op6_112212 -
+           2 * (Op6_121221 + 2 * Op6_122222)) /
+          48. -
+      ((3 * C_MassBottom * (OQd_1b12b + 2 * OQd_2b11b + 3 * OQd_2b22b) +
+        C_MassTop * std::pow(TanBeta, -0.1e1) *
+            (3 * OQu_1b11b + 2 * OQu_1b22b + OQu_2b12b)) *
+       std::pow(C_CosBeta, -0.1e1)) *
+          0.25 / std::sqrt(2) * std::pow(LambdaEFT, -0.2e1) /
+          C_vev0; // rho1rho2
   SymFac_Higgs_TwoLoop[1][1] =
       std::pow(LambdaEFT, -0.2e1) *
-      (-2 * (6 * Op6_111111 + 2 * Op6_111122 + Op6_112222 + Op6_122111) -
-       Op6_122122) /
-      48.; // eta1eta1
+          (-2 * (6 * Op6_111111 + 2 * Op6_111122 + Op6_112222 + Op6_122111) -
+           Op6_122122) /
+          48. +
+      (-3 * C_MassBottom * (3 * OQd_1b11b + 2 * OQd_1b22b + OQd_2b21b) *
+       std::pow(C_CosBeta, -0.1e1)) *
+          0.5 / std::sqrt(2) * std::pow(LambdaEFT, -0.2e1) / C_vev0; // eta1eta1
   SymFac_Higgs_TwoLoop[1][3] =
       std::pow(LambdaEFT, -0.2e1) *
-      (-4 * Op6_111112 - 3 * Op6_112212 - 2 * (Op6_121221 + 2 * Op6_122222)) /
-      48.; // eta1eta2
+          (-4 * Op6_111112 - 3 * Op6_112212 -
+           2 * (Op6_121221 + 2 * Op6_122222)) /
+          48. -
+      ((3 * C_MassBottom * (OQd_1b12b + 2 * OQd_2b11b + 3 * OQd_2b22b) +
+        C_MassTop * std::pow(TanBeta, -0.1e1) *
+            (3 * OQu_1b11b + 2 * OQu_1b22b + OQu_2b12b)) *
+       std::pow(C_CosBeta, -0.1e1)) *
+          0.25 / std::sqrt(2) * std::pow(LambdaEFT, -0.2e1) /
+          C_vev0; // eta1eta2
   SymFac_Higgs_TwoLoop[2][0] =
       std::pow(LambdaEFT, -0.2e1) *
-      (-4 * Op6_111112 - 3 * Op6_112212 - 2 * (Op6_121221 + 2 * Op6_122222)) /
-      48.; // rho2rho1
-  SymFac_Higgs_TwoLoop[2][2] = std::pow(LambdaEFT, -0.2e1) *
-                               (-2 * Op6_111122 - 4 * Op6_112222 - Op6_122111 -
-                                2 * (Op6_122122 + 6 * Op6_222222)) /
-                               48.; // rho2rho2
+          (-4 * Op6_111112 - 3 * Op6_112212 -
+           2 * (Op6_121221 + 2 * Op6_122222)) /
+          48. -
+      ((3 * C_MassBottom * (OQd_1b12b + 2 * OQd_2b11b + 3 * OQd_2b22b) +
+        C_MassTop * std::pow(TanBeta, -0.1e1) *
+            (3 * OQu_1b11b + 2 * OQu_1b22b + OQu_2b12b)) *
+       std::pow(C_CosBeta, -0.1e1)) *
+          0.25 / std::sqrt(2) * std::pow(LambdaEFT, -0.2e1) /
+          C_vev0; // rho2rho1
+  SymFac_Higgs_TwoLoop[2][2] =
+      std::pow(LambdaEFT, -0.2e1) *
+          (-2 * Op6_111122 - 4 * Op6_112222 - Op6_122111 -
+           2 * (Op6_122122 + 6 * Op6_222222)) /
+          48. -
+      (C_MassTop * std::pow(C_SinBeta, -0.1e1) *
+       (OQu_1b21b + 2 * OQu_2b11b + 3 * OQu_2b22b)) *
+          0.5 / std::sqrt(2) * std::pow(LambdaEFT, -0.2e1) / C_vev0; // rho2rho2
   SymFac_Higgs_TwoLoop[3][1] =
       std::pow(LambdaEFT, -0.2e1) *
-      (-4 * Op6_111112 - 3 * Op6_112212 - 2 * (Op6_121221 + 2 * Op6_122222)) /
-      48.; // eta2eta1
-  SymFac_Higgs_TwoLoop[3][3] = std::pow(LambdaEFT, -0.2e1) *
-                               (-2 * Op6_111122 - 4 * Op6_112222 - Op6_122111 -
-                                2 * (Op6_122122 + 6 * Op6_222222)) /
-                               48.; // eta2eta2
+          (-4 * Op6_111112 - 3 * Op6_112212 -
+           2 * (Op6_121221 + 2 * Op6_122222)) /
+          48. -
+      ((3 * C_MassBottom * (OQd_1b12b + 2 * OQd_2b11b + 3 * OQd_2b22b) +
+        C_MassTop * std::pow(TanBeta, -0.1e1) *
+            (3 * OQu_1b11b + 2 * OQu_1b22b + OQu_2b12b)) *
+       std::pow(C_CosBeta, -0.1e1)) *
+          0.25 / std::sqrt(2) * std::pow(LambdaEFT, -0.2e1) /
+          C_vev0; // eta2eta1
+  SymFac_Higgs_TwoLoop[3][3] =
+      std::pow(LambdaEFT, -0.2e1) *
+          (-2 * Op6_111122 - 4 * Op6_112222 - Op6_122111 -
+           2 * (Op6_122122 + 6 * Op6_222222)) /
+          48. -
+      (C_MassTop * std::pow(C_SinBeta, -0.1e1) *
+       (OQu_1b21b + 2 * OQu_2b11b + 3 * OQu_2b22b)) *
+          0.5 / std::sqrt(2) * std::pow(LambdaEFT, -0.2e1) / C_vev0; // eta2eta2
 
   SymFac_Higgs_TwoLoop[4][4] =
       std::pow(LambdaEFT, -0.2e1) *
-      (-2 * (6 * Op6_111111 + 2 * Op6_111122 + Op6_112222 + Op6_122111) -
-       Op6_122122) /
-      48.; // zeta1zeta1
+          (-2 * (6 * Op6_111111 + 2 * Op6_111122 + Op6_112222 + Op6_122111) -
+           Op6_122122) /
+          48. -
+      (C_MassBottom * (3 * OQd_1b11b + 2 * OQd_1b22b + OQd_2b21b) *
+       std::pow(C_CosBeta, -0.1e1)) *
+          0.5 / std::sqrt(2) * std::pow(LambdaEFT, -0.2e1) /
+          C_vev0; // zeta1zeta1
   SymFac_Higgs_TwoLoop[4][6] =
       std::pow(LambdaEFT, -0.2e1) *
-      (-4 * Op6_111112 - 3 * Op6_112212 - 2 * (Op6_121221 + 2 * Op6_122222)) /
-      48.; // zeta1zeta2
+          (-4 * Op6_111112 - 3 * Op6_112212 -
+           2 * (Op6_121221 + 2 * Op6_122222)) /
+          48. -
+      ((C_MassBottom * (OQd_1b12b + 2 * OQd_2b11b + 3 * OQd_2b22b) +
+        3 * C_MassTop * std::pow(TanBeta, -0.1e1) *
+            (3 * OQu_1b11b + 2 * OQu_1b22b + OQu_2b12b)) *
+       std::pow(C_CosBeta, -0.1e1)) *
+          0.25 / std::sqrt(2) * std::pow(LambdaEFT, -0.2e1) /
+          C_vev0; // zeta1zeta2
   SymFac_Higgs_TwoLoop[5][5] =
       std::pow(LambdaEFT, -0.2e1) *
-      (-2 * (6 * Op6_111111 + 2 * Op6_111122 + Op6_112222 + Op6_122111) -
-       Op6_122122) /
-      48.; // psi1psi1
+          (-2 * (6 * Op6_111111 + 2 * Op6_111122 + Op6_112222 + Op6_122111) -
+           Op6_122122) /
+          48. -
+      (C_MassBottom * (3 * OQd_1b11b + 2 * OQd_1b22b + OQd_2b21b) *
+       std::pow(C_CosBeta, -0.1e1)) *
+          0.5 / std::sqrt(2) * std::pow(LambdaEFT, -0.2e1) / C_vev0; // psi1psi1
   SymFac_Higgs_TwoLoop[5][7] =
       std::pow(LambdaEFT, -0.2e1) *
-      (-4 * Op6_111112 - 3 * Op6_112212 - 2 * (Op6_121221 + 2 * Op6_122222)) /
-      48.; // psi1psi2
+          (-4 * Op6_111112 - 3 * Op6_112212 -
+           2 * (Op6_121221 + 2 * Op6_122222)) /
+          48. -
+      ((C_MassBottom * (OQd_1b12b + 2 * OQd_2b11b + 3 * OQd_2b22b) +
+        3 * C_MassTop * std::pow(TanBeta, -0.1e1) *
+            (3 * OQu_1b11b + 2 * OQu_1b22b + OQu_2b12b)) *
+       std::pow(C_CosBeta, -0.1e1)) *
+          0.25 / std::sqrt(2) * std::pow(LambdaEFT, -0.2e1) /
+          C_vev0; // psi1psi2
   SymFac_Higgs_TwoLoop[6][4] =
       std::pow(LambdaEFT, -0.2e1) *
-      (-4 * Op6_111112 - 3 * Op6_112212 - 2 * (Op6_121221 + 2 * Op6_122222)) /
-      48.; // zeta2zeta1
-  SymFac_Higgs_TwoLoop[6][6] = std::pow(LambdaEFT, -0.2e1) *
-                               (-2 * Op6_111122 - 4 * Op6_112222 - Op6_122111 -
-                                2 * (Op6_122122 + 6 * Op6_222222)) /
-                               48.; // zeta2zeta2
+          (-4 * Op6_111112 - 3 * Op6_112212 -
+           2 * (Op6_121221 + 2 * Op6_122222)) /
+          48. -
+      ((C_MassBottom * (OQd_1b12b + 2 * OQd_2b11b + 3 * OQd_2b22b) +
+        3 * C_MassTop * std::pow(TanBeta, -0.1e1) *
+            (3 * OQu_1b11b + 2 * OQu_1b22b + OQu_2b12b)) *
+       std::pow(C_CosBeta, -0.1e1)) *
+          0.25 / std::sqrt(2) * std::pow(LambdaEFT, -0.2e1) /
+          C_vev0; // zeta2zeta1
+  SymFac_Higgs_TwoLoop[6][6] =
+      std::pow(LambdaEFT, -0.2e1) *
+          (-2 * Op6_111122 - 4 * Op6_112222 - Op6_122111 -
+           2 * (Op6_122122 + 6 * Op6_222222)) /
+          48. +
+      (-3 * C_MassTop * std::pow(C_SinBeta, -0.1e1) *
+       (OQu_1b21b + 2 * OQu_2b11b + 3 * OQu_2b22b)) *
+          0.5 / std::sqrt(2) * std::pow(LambdaEFT, -0.2e1) /
+          C_vev0; // zeta2zeta2
   SymFac_Higgs_TwoLoop[7][5] =
       std::pow(LambdaEFT, -0.2e1) *
-      (-4 * Op6_111112 - 3 * Op6_112212 - 2 * (Op6_121221 + 2 * Op6_122222)) /
-      48.; // psi2psi1
-  SymFac_Higgs_TwoLoop[7][7] = std::pow(LambdaEFT, -0.2e1) *
-                               (-2 * Op6_111122 - 4 * Op6_112222 - Op6_122111 -
-                                2 * (Op6_122122 + 6 * Op6_222222)) /
-                               48.; // psi2psi2
+          (-4 * Op6_111112 - 3 * Op6_112212 -
+           2 * (Op6_121221 + 2 * Op6_122222)) /
+          48. -
+      ((C_MassBottom * (OQd_1b12b + 2 * OQd_2b11b + 3 * OQd_2b22b) +
+        3 * C_MassTop * std::pow(TanBeta, -0.1e1) *
+            (3 * OQu_1b11b + 2 * OQu_1b22b + OQu_2b12b)) *
+       std::pow(C_CosBeta, -0.1e1)) *
+          0.25 / std::sqrt(2) * std::pow(LambdaEFT, -0.2e1) /
+          C_vev0; // psi2psi1
+  SymFac_Higgs_TwoLoop[7][7] =
+      std::pow(LambdaEFT, -0.2e1) *
+          (-2 * Op6_111122 - 4 * Op6_112222 - Op6_122111 -
+           2 * (Op6_122122 + 6 * Op6_222222)) /
+          48. +
+      (-3 * C_MassTop * std::pow(C_SinBeta, -0.1e1) *
+       (OQu_1b21b + 2 * OQu_2b11b + 3 * OQu_2b22b)) *
+          0.5 / std::sqrt(2) * std::pow(LambdaEFT, -0.2e1) / C_vev0; // psi2psi2
 
-  // SymFac_Gauge is independent of Op6
+  // SymFac_Gauge is independent of Op6 and OQu, OQd, OQl
 
   SetCurvatureDone = true;
 }
