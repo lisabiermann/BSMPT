@@ -14,8 +14,6 @@
 
 #include <BSMPT/minimizer/Minimizer.h>
 #include <BSMPT/models/ClassPotentialOrigin.h> // for Class_Potential_Origin
-#include <BSMPT/models/ClassPotentialR2HDMEFTPHI6.h> // for Class_Potential_R2HDMEFTPHI6
-#include <BSMPT/models/ClassPotentialR2HDMEFTPHI6_PHI2PSI3.h> // for Class_Potential_R2HDMEFTPHI2PSI3
 #include <BSMPT/models/IncludeAllModels.h>
 #include <BSMPT/utility/Logger.h>
 #include <BSMPT/utility/utility.h>
@@ -219,106 +217,6 @@ CLIOptions::CLIOptions(int argc, char *argv[])
   std::vector<std::string> args;
   for (int i{1}; i < argc; ++i)
     args.push_back(argv[i]);
-
-  if (argc == 14)
-  {
-    BSMPT::Models::Class_Potential_R2HDMEFTPHI6::Op6_111111 =
-        std::stod(args.at(5));
-    BSMPT::Models::Class_Potential_R2HDMEFTPHI6::Op6_111122 =
-        std::stod(args.at(6));
-    BSMPT::Models::Class_Potential_R2HDMEFTPHI6::Op6_122111 =
-        std::stod(args.at(7));
-    BSMPT::Models::Class_Potential_R2HDMEFTPHI6::Op6_121211 =
-        std::stod(args.at(8));
-    BSMPT::Models::Class_Potential_R2HDMEFTPHI6::Op6_222222 =
-        std::stod(args.at(9));
-    BSMPT::Models::Class_Potential_R2HDMEFTPHI6::Op6_112222 =
-        std::stod(args.at(10));
-    BSMPT::Models::Class_Potential_R2HDMEFTPHI6::Op6_122122 =
-        std::stod(args.at(11));
-    BSMPT::Models::Class_Potential_R2HDMEFTPHI6::Op6_121222 =
-        std::stod(args.at(12));
-  }
-  else
-  {
-    BSMPT::Models::Class_Potential_R2HDMEFTPHI6::Op6_111111 = 0;
-    BSMPT::Models::Class_Potential_R2HDMEFTPHI6::Op6_111122 = 0;
-    BSMPT::Models::Class_Potential_R2HDMEFTPHI6::Op6_122111 = 0;
-    BSMPT::Models::Class_Potential_R2HDMEFTPHI6::Op6_121211 = 0;
-    BSMPT::Models::Class_Potential_R2HDMEFTPHI6::Op6_222222 = 0;
-    BSMPT::Models::Class_Potential_R2HDMEFTPHI6::Op6_112222 = 0;
-    BSMPT::Models::Class_Potential_R2HDMEFTPHI6::Op6_122122 = 0;
-    BSMPT::Models::Class_Potential_R2HDMEFTPHI6::Op6_121222 = 0;
-  }
-
-  if (argc == 26)
-  {
-    BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::Op6_111111 =
-        std::stod(args.at(5));
-    BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::Op6_111122 =
-        std::stod(args.at(6));
-    BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::Op6_122111 =
-        std::stod(args.at(7));
-    BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::Op6_121211 =
-        std::stod(args.at(8));
-    BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::Op6_222222 =
-        std::stod(args.at(9));
-    BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::Op6_112222 =
-        std::stod(args.at(10));
-    BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::Op6_122122 =
-        std::stod(args.at(11));
-    BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::Op6_121222 =
-        std::stod(args.at(12));
-
-    BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::OL_1b12b =
-        std::stod(args.at(13));
-    BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::OL_1b21b =
-        std::stod(args.at(14));
-    BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::OL_2b11b =
-        std::stod(args.at(15));
-    BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::OL_2b22b =
-        std::stod(args.at(16));
-    BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::OQu_1b12b =
-        std::stod(args.at(17));
-    BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::OQu_1b21b =
-        std::stod(args.at(18));
-    BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::OQu_2b11b =
-        std::stod(args.at(19));
-    BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::OQu_2b22b =
-        std::stod(args.at(20));
-    BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::OQd_1b12b =
-        std::stod(args.at(21));
-    BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::OQd_1b21b =
-        std::stod(args.at(22));
-    BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::OQd_2b11b =
-        std::stod(args.at(23));
-    BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::OQd_2b22b =
-        std::stod(args.at(24));
-  }
-  else
-  {
-    BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::Op6_111111 = 0;
-    BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::Op6_111122 = 0;
-    BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::Op6_122111 = 0;
-    BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::Op6_121211 = 0;
-    BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::Op6_222222 = 0;
-    BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::Op6_112222 = 0;
-    BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::Op6_122122 = 0;
-    BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::Op6_121222 = 0;
-
-    BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::OL_1b12b  = 0;
-    BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::OL_1b21b  = 0;
-    BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::OL_2b11b  = 0;
-    BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::OL_2b22b  = 0;
-    BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::OQu_1b12b = 0;
-    BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::OQu_1b21b = 0;
-    BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::OQu_2b11b = 0;
-    BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::OQu_2b22b = 0;
-    BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::OQd_1b12b = 0;
-    BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::OQd_1b21b = 0;
-    BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::OQd_2b11b = 0;
-    BSMPT::Models::Class_Potential_R2HDMEFTPHI6_PHI2PSI3::OQd_2b22b = 0;
-  }
 
   if (argc < 6 or args.at(0) == "--help")
   {
