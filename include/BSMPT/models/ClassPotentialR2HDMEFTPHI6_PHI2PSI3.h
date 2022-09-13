@@ -80,12 +80,11 @@ public:
   Class_Potential_R2HDMEFTPHI6_PHI2PSI3();
   virtual ~Class_Potential_R2HDMEFTPHI6_PHI2PSI3();
 
-  double L1 = 0, L2 = 0, L3 = 0, L4 = 0, L5 = 0, m12Sq = 0, m11Sq = 0,
-         m22Sq = 0;
-  double L1tmp = 0, L2tmp = 0, L4tmp = 0, L5tmp = 0,
-         m12Sqtmp = 0; // storage of unshifted parameters
-  double dL1 = 0, dL2 = 0, dL3 = 0, dL4 = 0, dL5 = 0, dm11Sq = 0, dm22Sq = 0,
-         dm12Sq = 0, dT1 = 0, dT2 = 0, dTCP = 0, dTCB = 0;
+  double L1 = 0, L2 = 0, L3 = 0, L4 = 0, L5 = 0, L6 = 0, L7 = 0, m12Sq = 0,
+         m11Sq = 0, m22Sq = 0;
+  double dL1 = 0, dL2 = 0, dL3 = 0, dL4 = 0, dL5 = 0, dL6 = 0, dL7 = 0,
+         dm11Sq = 0, dm22Sq = 0, dm12Sq = 0, dT1 = 0, dT2 = 0, dTCP = 0,
+         dTCB    = 0;
   double TanBeta = 0, C_CosBeta = 0, C_SinBeta = 0, C_CosBetaSquared = 0,
          C_SinBetaSquared = 0;
   double beta             = 0;
@@ -103,7 +102,9 @@ public:
          Op6_112222 = 0, Op6_122122 = 0, Op6_121222 = 0, Op6_122222 = 0,
          Op6_121212  = 0;
   double dOp6_111111 = 0, dOp6_111122 = 0, dOp6_122111 = 0, dOp6_121211 = 0,
-         dOp6_222222 = 0, dOp6_112222 = 0, dOp6_122122 = 0, dOp6_121222 = 0;
+         dOp6_111112 = 0, dOp6_121221 = 0, dOp6_112212 = 0, dOp6_222222 = 0,
+         dOp6_112222 = 0, dOp6_122122 = 0, dOp6_121222 = 0, dOp6_122222 = 0,
+         dOp6_121212 = 0;
 
   double OQu_1b11b = 0, OQu_1b12b = 0, OQu_1b21b = 0, OQu_1b22b = 0,
          OQu_2b11b = 0, OQu_2b12b = 0, OQu_2b21b = 0, OQu_2b22b = 0,
