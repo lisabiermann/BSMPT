@@ -38,7 +38,6 @@ var annotated_dup =
       [ "Models", null, [
         [ "Class_CxSM", "classBSMPT_1_1Models_1_1Class__CxSM.html", "classBSMPT_1_1Models_1_1Class__CxSM" ],
         [ "Class_Potential_C2HDM", "classBSMPT_1_1Models_1_1Class__Potential__C2HDM.html", "classBSMPT_1_1Models_1_1Class__Potential__C2HDM" ],
-        [ "Class_Potential_CN2HDM", "classBSMPT_1_1Models_1_1Class__Potential__CN2HDM.html", "classBSMPT_1_1Models_1_1Class__Potential__CN2HDM" ],
         [ "Class_Potential_CPintheDark", "classBSMPT_1_1Models_1_1Class__Potential__CPintheDark.html", "classBSMPT_1_1Models_1_1Class__Potential__CPintheDark" ],
         [ "Class_Potential_R2HDM", "classBSMPT_1_1Models_1_1Class__Potential__R2HDM.html", "classBSMPT_1_1Models_1_1Class__Potential__R2HDM" ],
         [ "Class_Potential_RN2HDM", "classBSMPT_1_1Models_1_1Class__Potential__RN2HDM.html", "classBSMPT_1_1Models_1_1Class__Potential__RN2HDM" ],

@@ -1,8 +1,5 @@
 var NAVTREEINDEX1 =
 {
-"Minimizer_8h.html#a050cc791e09c5756a2a6a8328bc69c77":[3,0,0,0,2,4,6],
-"Minimizer_8h.html#a211218e6b6deed7426dc1db2fe9c2851":[3,0,0,0,2,4,9],
-"Minimizer_8h.html#a21ca763ce1943f7345b2869ed58bb4ef":[3,0,0,0,2,4,4],
 "Minimizer_8h.html#a3ac152f5d63263e90befeadbea1c14d0":[3,0,0,0,2,4,5],
 "Minimizer_8h.html#a4c2e16cbb0844539d8304dbc6ea500ef":[3,0,0,0,2,4,8],
 "Minimizer_8h.html#a5577cfcbd4168906c1208442e7eb389f":[3,0,0,0,2,4,10],
@@ -20,7 +17,7 @@ var NAVTREEINDEX1 =
 "Minimizer_8h.html#af3175c2bdc228d061d1d2f85eb9086f9ad0749aaba8b833466dfcbb0428e4f89c":[3,0,0,0,2,4,2,0],
 "Minimizer_8h.html#af3175c2bdc228d061d1d2f85eb9086f9ade50b656b4576690a5aead36d9aaf5c9":[3,0,0,0,2,4,2,2],
 "Minimizer_8h_source.html":[3,0,0,0,2,4],
-"ModelTestfunctions_8h_source.html":[3,0,0,0,3,9],
+"ModelTestfunctions_8h_source.html":[3,0,0,0,3,8],
 "NLOVEV_8cpp.html":[3,0,1,4,5],
 "NLOVEV_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97":[3,0,1,4,5,1],
 "NegativeBosonSpline_8h.html":[3,0,0,0,4,0],
@@ -249,5 +246,8 @@ var NAVTREEINDEX1 =
 "classBSMPT_1_1Baryo_1_1gen__fluid.html#af7c434f45d4c56c14aaf43f56fa09eee":[2,0,0,0,7,9],
 "classBSMPT_1_1Baryo_1_1gen__fluid.html#af81cf1c7335dbfe556e0193b854e3a3e":[2,0,0,0,7,50],
 "classBSMPT_1_1Baryo_1_1gen__fluid.html#afb5a6d59a49b58f1b027a94f4a34a453":[2,0,0,0,7,12],
-"classBSMPT_1_1Baryo_1_1tau__source.html":[2,0,0,0,11]
+"classBSMPT_1_1Baryo_1_1tau__source.html":[2,0,0,0,11],
+"classBSMPT_1_1Baryo_1_1tau__source.html#a1f9fb6bf41bfa8edd2192c89196d6d13":[2,0,0,0,11,0],
+"classBSMPT_1_1Baryo_1_1tau__source.html#af2b601a886180158d1300e1761b631bc":[2,0,0,0,11,1],
+"classBSMPT_1_1Baryo_1_1top__source.html":[2,0,0,0,12]
 };

@@ -7,7 +7,6 @@ var IncludeAllModels_8h =
       [ "RN2HDM", "IncludeAllModels_8h.html#a5f777ff3c379602f5d554d87edc7dc3aa76738686a8688faf4cecdc2ef4770496", null ],
       [ "CXSM", "IncludeAllModels_8h.html#a5f777ff3c379602f5d554d87edc7dc3aa5050c24a4083c18f5a43d8b0c97c62ac", null ],
       [ "CPINTHEDARK", "IncludeAllModels_8h.html#a5f777ff3c379602f5d554d87edc7dc3aa037338d48cb78bf582349354f0bda85b", null ],
-      [ "CN2HDM", "IncludeAllModels_8h.html#a5f777ff3c379602f5d554d87edc7dc3aa16bfaafd4c72ede3b4c89fd61c1d0102", null ],
       [ "TEMPLATE", "IncludeAllModels_8h.html#a5f777ff3c379602f5d554d87edc7dc3aa9208fdeb4912b59451a5aa9c4a66aba1", null ],
       [ "stop", "IncludeAllModels_8h.html#a5f777ff3c379602f5d554d87edc7dc3aaef399b2d446bb37b7c32ad2cc1b6045b", null ]
     ] ],

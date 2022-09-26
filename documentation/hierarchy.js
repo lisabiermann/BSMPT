@@ -10,7 +10,6 @@ var hierarchy =
     [ "BSMPT::Class_Potential_Origin", "classBSMPT_1_1Class__Potential__Origin.html", [
       [ "BSMPT::Models::Class_CxSM", "classBSMPT_1_1Models_1_1Class__CxSM.html", null ],
       [ "BSMPT::Models::Class_Potential_C2HDM", "classBSMPT_1_1Models_1_1Class__Potential__C2HDM.html", null ],
-      [ "BSMPT::Models::Class_Potential_CN2HDM", "classBSMPT_1_1Models_1_1Class__Potential__CN2HDM.html", null ],
       [ "BSMPT::Models::Class_Potential_CPintheDark", "classBSMPT_1_1Models_1_1Class__Potential__CPintheDark.html", null ],
       [ "BSMPT::Models::Class_Potential_R2HDM", "classBSMPT_1_1Models_1_1Class__Potential__R2HDM.html", null ],
       [ "BSMPT::Models::Class_Potential_RN2HDM", "classBSMPT_1_1Models_1_1Class__Potential__RN2HDM.html", null ],
@@ -26,8 +25,8 @@ var hierarchy =
     [ "BSMPT::Kfactors::GSL_integration", "structBSMPT_1_1Kfactors_1_1GSL__integration.html", null ],
     [ "BSMPT::Baryo::GSL_integration_mubl", "structBSMPT_1_1Baryo_1_1GSL__integration__mubl.html", null ],
     [ "BSMPT::Baryo::GSL_mubl_interpolation", "structBSMPT_1_1Baryo_1_1GSL__mubl__interpolation.html", null ],
-    [ "BSMPT::Minimizer::GSL_params", "structBSMPT_1_1Minimizer_1_1GSL__params.html", null ],
     [ "BSMPT::Wall::GSL_params", "structBSMPT_1_1Wall_1_1GSL__params.html", null ],
+    [ "BSMPT::Minimizer::GSL_params", "structBSMPT_1_1Minimizer_1_1GSL__params.html", null ],
     [ "BSMPT::Minimizer::GSLPlaneReturn", "structBSMPT_1_1Minimizer_1_1GSLPlaneReturn.html", null ],
     [ "BSMPT::Minimizer::LibCMAES::LibCMAESReturn", "structBSMPT_1_1Minimizer_1_1LibCMAES_1_1LibCMAESReturn.html", null ],
     [ "BSMPT::Logger", "classBSMPT_1_1Logger.html", null ],
