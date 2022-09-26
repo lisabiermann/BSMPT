@@ -82,6 +82,8 @@ var classBSMPT_1_1Class__Potential__Origin =
     [ "SetCurvatureArrays", "classBSMPT_1_1Class__Potential__Origin.html#ac39b156f75e04c068784a4c42333e592", null ],
     [ "setUseIndexCol", "classBSMPT_1_1Class__Potential__Origin.html#a5165934f71bbfa1fcb000c7122996299", null ],
     [ "SetUseTreeLevel", "classBSMPT_1_1Class__Potential__Origin.html#aadbdf149f3e53426a12a1bbe4aafadf7", null ],
+    [ "sym2Dim", "classBSMPT_1_1Class__Potential__Origin.html#a0740b032b9366ffdf45b531e31b0f2d6", null ],
+    [ "sym3Dim", "classBSMPT_1_1Class__Potential__Origin.html#a22740d0c7d9fe76688d51390fe91bb28", null ],
     [ "sym4Dim", "classBSMPT_1_1Class__Potential__Origin.html#a8eccf97f1c19c5d90d8cee0b20d9c2f0", null ],
     [ "TripleHiggsCouplings", "classBSMPT_1_1Class__Potential__Origin.html#a6cff61e0fef77c66d91e7637e0e88fec", null ],
     [ "V1Loop", "classBSMPT_1_1Class__Potential__Origin.html#ac6aea41746e763bb71a3ba8f9087c5c3", null ],

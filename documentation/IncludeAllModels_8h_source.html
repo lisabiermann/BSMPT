@@ -125,42 +125,44 @@ $(document).ready(function(){initNavTree('IncludeAllModels_8h_source.html',''); 
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;  RN2HDM,</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;  CXSM,</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;  CPINTHEDARK,</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;  <span class="comment">// Here you start adding your models</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;  TEMPLATE,</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;  <span class="comment">// DO NOT EDIT the part below</span></div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;  stop</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;};</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
-<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="namespaceBSMPT_1_1ModelID.html#a4f42e82b2d78653c1131f114830ce98d">   50</a></span>&#160;<span class="keyword">const</span> std::unordered_map&lt;std::string, ModelIDs&gt; <a class="code" href="namespaceBSMPT_1_1ModelID.html#a4f42e82b2d78653c1131f114830ce98d">ModelNames</a>{</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    {<span class="stringliteral">&quot;c2hdm&quot;</span>, ModelIDs::C2HDM},</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    {<span class="stringliteral">&quot;r2hdm&quot;</span>, ModelIDs::R2HDM},</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    {<span class="stringliteral">&quot;n2hdm&quot;</span>, ModelIDs::RN2HDM},</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    {<span class="stringliteral">&quot;cxsm&quot;</span>, ModelIDs::CXSM},</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    {<span class="stringliteral">&quot;cpinthedark&quot;</span>, ModelIDs::CPINTHEDARK},</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    {<span class="stringliteral">&quot;template&quot;</span>, ModelIDs::TEMPLATE},</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;};</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;std::unordered_map&lt;ModelIDs, std::string&gt; <a class="code" href="namespaceBSMPT_1_1ModelID.html#afb726c44374beb9ef62018b4d84dd872">InvertModelNames</a>();</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;std::unique_ptr&lt;Class_Potential_Origin&gt; <a class="code" href="namespaceBSMPT_1_1ModelID.html#a9c0e4a151de955f3cddeb1eaf0b0324f">FChoose</a>(<a class="code" href="namespaceBSMPT_1_1ModelID.html#a5f777ff3c379602f5d554d87edc7dc3a">ModelIDs</a> choice);</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<a class="code" href="namespaceBSMPT_1_1ModelID.html#a5f777ff3c379602f5d554d87edc7dc3a">ModelIDs</a> <a class="code" href="namespaceBSMPT_1_1ModelID.html#aed5df8b1a3e3690f96116edadafa7614">getModel</a>(<span class="keyword">const</span> std::string &amp;s);</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;} <span class="comment">// namespace ModelID</span></div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="keywordtype">void</span> ShowInputError();</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;} <span class="comment">// namespace BSMPT</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;  CN2HDM,</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;  <span class="comment">// Here you start adding your models</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;  TEMPLATE,</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;  <span class="comment">// DO NOT EDIT the part below</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;  stop</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;};</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
+<div class="line"><a name="l00051"></a><span class="lineno"><a class="line" href="namespaceBSMPT_1_1ModelID.html#a4f42e82b2d78653c1131f114830ce98d">   51</a></span>&#160;<span class="keyword">const</span> std::unordered_map&lt;std::string, ModelIDs&gt; <a class="code" href="namespaceBSMPT_1_1ModelID.html#a4f42e82b2d78653c1131f114830ce98d">ModelNames</a>{</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    {<span class="stringliteral">&quot;c2hdm&quot;</span>, ModelIDs::C2HDM},</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    {<span class="stringliteral">&quot;r2hdm&quot;</span>, ModelIDs::R2HDM},</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    {<span class="stringliteral">&quot;rn2hdm&quot;</span>, ModelIDs::RN2HDM},</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    {<span class="stringliteral">&quot;cxsm&quot;</span>, ModelIDs::CXSM},</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    {<span class="stringliteral">&quot;cpinthedark&quot;</span>, ModelIDs::CPINTHEDARK},</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    {<span class="stringliteral">&quot;cn2hdm&quot;</span>, ModelIDs::CN2HDM},</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    {<span class="stringliteral">&quot;template&quot;</span>, ModelIDs::TEMPLATE},</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;};</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;std::unordered_map&lt;ModelIDs, std::string&gt; <a class="code" href="namespaceBSMPT_1_1ModelID.html#afb726c44374beb9ef62018b4d84dd872">InvertModelNames</a>();</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;std::unique_ptr&lt;Class_Potential_Origin&gt; <a class="code" href="namespaceBSMPT_1_1ModelID.html#a9c0e4a151de955f3cddeb1eaf0b0324f">FChoose</a>(<a class="code" href="namespaceBSMPT_1_1ModelID.html#a5f777ff3c379602f5d554d87edc7dc3a">ModelIDs</a> choice);</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<a class="code" href="namespaceBSMPT_1_1ModelID.html#a5f777ff3c379602f5d554d87edc7dc3a">ModelIDs</a> <a class="code" href="namespaceBSMPT_1_1ModelID.html#aed5df8b1a3e3690f96116edadafa7614">getModel</a>(<span class="keyword">const</span> std::string &amp;s);</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;} <span class="comment">// namespace ModelID</span></div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160; </div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="keywordtype">void</span> ShowInputError();</div>
 <div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160; </div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="comment">//#endif /* INCLUDEALLMODELS_H_ */</span></div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;} <span class="comment">// namespace BSMPT</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160; </div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="comment">//#endif /* INCLUDEALLMODELS_H_ */</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="anamespaceBSMPT_1_1ModelID_html_aed5df8b1a3e3690f96116edadafa7614"><div class="ttname"><a href="namespaceBSMPT_1_1ModelID.html#aed5df8b1a3e3690f96116edadafa7614">BSMPT::ModelID::getModel</a></div><div class="ttdeci">ModelIDs getModel(const std::string &amp;s)</div><div class="ttdef"><b>Definition:</b> IncludeAllModels.cpp:46</div></div>
+<div class="ttc" id="anamespaceBSMPT_1_1ModelID_html_aed5df8b1a3e3690f96116edadafa7614"><div class="ttname"><a href="namespaceBSMPT_1_1ModelID.html#aed5df8b1a3e3690f96116edadafa7614">BSMPT::ModelID::getModel</a></div><div class="ttdeci">ModelIDs getModel(const std::string &amp;s)</div><div class="ttdef"><b>Definition:</b> IncludeAllModels.cpp:50</div></div>
 <div class="ttc" id="anamespaceBSMPT_1_1ModelID_html_a5f777ff3c379602f5d554d87edc7dc3a"><div class="ttname"><a href="namespaceBSMPT_1_1ModelID.html#a5f777ff3c379602f5d554d87edc7dc3a">BSMPT::ModelID::ModelIDs</a></div><div class="ttdeci">ModelIDs</div><div class="ttdoc">The ModelIDs enum containing all IDs for identifying the Models.</div><div class="ttdef"><b>Definition:</b> IncludeAllModels.h:30</div></div>
-<div class="ttc" id="anamespaceBSMPT_1_1ModelID_html_afb726c44374beb9ef62018b4d84dd872"><div class="ttname"><a href="namespaceBSMPT_1_1ModelID.html#afb726c44374beb9ef62018b4d84dd872">BSMPT::ModelID::InvertModelNames</a></div><div class="ttdeci">std::unordered_map&lt; ModelIDs, std::string &gt; InvertModelNames()</div><div class="ttdoc">InvertModelNames.</div><div class="ttdef"><b>Definition:</b> IncludeAllModels.cpp:63</div></div>
-<div class="ttc" id="anamespaceBSMPT_1_1ModelID_html_a4f42e82b2d78653c1131f114830ce98d"><div class="ttname"><a href="namespaceBSMPT_1_1ModelID.html#a4f42e82b2d78653c1131f114830ce98d">BSMPT::ModelID::ModelNames</a></div><div class="ttdeci">const std::unordered_map&lt; std::string, ModelIDs &gt; ModelNames</div><div class="ttdoc">Mapping between the model name which is given as the first argument to the binary and the ModelIDs el...</div><div class="ttdef"><b>Definition:</b> IncludeAllModels.h:50</div></div>
-<div class="ttc" id="anamespaceBSMPT_1_1ModelID_html_a9c0e4a151de955f3cddeb1eaf0b0324f"><div class="ttname"><a href="namespaceBSMPT_1_1ModelID.html#a9c0e4a151de955f3cddeb1eaf0b0324f">BSMPT::ModelID::FChoose</a></div><div class="ttdeci">std::unique_ptr&lt; Class_Potential_Origin &gt; FChoose(ModelIDs choice)</div><div class="ttdef"><b>Definition:</b> IncludeAllModels.cpp:27</div></div>
+<div class="ttc" id="anamespaceBSMPT_1_1ModelID_html_afb726c44374beb9ef62018b4d84dd872"><div class="ttname"><a href="namespaceBSMPT_1_1ModelID.html#afb726c44374beb9ef62018b4d84dd872">BSMPT::ModelID::InvertModelNames</a></div><div class="ttdeci">std::unordered_map&lt; ModelIDs, std::string &gt; InvertModelNames()</div><div class="ttdoc">InvertModelNames.</div><div class="ttdef"><b>Definition:</b> IncludeAllModels.cpp:67</div></div>
+<div class="ttc" id="anamespaceBSMPT_1_1ModelID_html_a4f42e82b2d78653c1131f114830ce98d"><div class="ttname"><a href="namespaceBSMPT_1_1ModelID.html#a4f42e82b2d78653c1131f114830ce98d">BSMPT::ModelID::ModelNames</a></div><div class="ttdeci">const std::unordered_map&lt; std::string, ModelIDs &gt; ModelNames</div><div class="ttdoc">Mapping between the model name which is given as the first argument to the binary and the ModelIDs el...</div><div class="ttdef"><b>Definition:</b> IncludeAllModels.h:51</div></div>
+<div class="ttc" id="anamespaceBSMPT_1_1ModelID_html_a9c0e4a151de955f3cddeb1eaf0b0324f"><div class="ttname"><a href="namespaceBSMPT_1_1ModelID.html#a9c0e4a151de955f3cddeb1eaf0b0324f">BSMPT::ModelID::FChoose</a></div><div class="ttdeci">std::unique_ptr&lt; Class_Potential_Origin &gt; FChoose(ModelIDs choice)</div><div class="ttdef"><b>Definition:</b> IncludeAllModels.cpp:28</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
