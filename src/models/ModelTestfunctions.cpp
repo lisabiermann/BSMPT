@@ -915,13 +915,16 @@ TestResults CheckSymmetricTensorLeptonsThird(
 
   const auto nHiggs = Tensor.at(0).at(0).size();
 
+  double numeric_precision = 1e-19; // needed for cn2hdm quark tensor
+
   for (std::size_t i{0}; i < nDim; ++i)
   {
     for (std::size_t j{0}; j < nDim; ++j)
     {
       for (std::size_t k{0}; k < nHiggs; ++k)
       {
-        if (Tensor.at(i).at(j).at(k) != Tensor.at(j).at(i).at(k))
+        if (std::abs(Tensor.at(i).at(j).at(k) - Tensor.at(j).at(i).at(k)) >
+            numeric_precision)
         {
           return TestResults::Fail;
         }

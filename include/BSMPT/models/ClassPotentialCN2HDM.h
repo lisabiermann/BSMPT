@@ -1,37 +1,21 @@
-/*
- * ClassPotentialCN2HDM.h
- *
- *  Copyright (C) 2018  Philipp Basler and Margarete Mühlleitner
-
-		This program is free software: you can redistribute it and/or modify
-		it under the terms of the GNU General Public License as published by
-		the Free Software Foundation, either version 3 of the License, or
-		(at your option) any later version.
-
-		This program is distributed in the hope that it will be useful,
-		but WITHOUT ANY WARRANTY; without even the implied warranty of
-		MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-		GNU General Public License for more details.
-
-		You should have received a copy of the GNU General Public License
-		along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (C) 2018  Philipp Basler and Margarete Mühlleitner
+// SPDX-FileCopyrightText: 2021 Philipp Basler, Margarete Mühlleitner and Jonas
+// Müller
+//
+// SPDX-License-Identifier: GPL-3.0-or-later
 
 /**
-  * @file
-  * Model file for the CP-violating 2HDM + complex singlet
+ * @file
  */
 
-#ifndef SRC_CLASSCN2HDM_H_
-#define SRC_CLASSCN2HDM_H_
-
-
+#ifndef SRC_CLASSPOTENTIALCN2HDM_H_
+#define SRC_CLASSPOTENTIALCN2HDM_H_
 
 #include <BSMPT/models/ClassPotentialOrigin.h>
-
-namespace BSMPT {
-namespace Models {
-
+namespace BSMPT
+{
+namespace Models
+{
 
 /**
  * @brief The Class_Potential_CN2HDM class
@@ -75,55 +59,43 @@ namespace Models {
 class Class_Potential_CN2HDM : public Class_Potential_Origin
 {
 public:
-	Class_Potential_CN2HDM ();
-  virtual
-  ~Class_Potential_CN2HDM ();
+  Class_Potential_CN2HDM();
+  virtual ~Class_Potential_CN2HDM();
 
+  // parameters
+  double TanBeta = 0, C_CosBeta = 0, C_SinBeta = 0, C_CosBetaSquared = 0,
+         C_SinBetaSquared = 0;
+  double Type, v1, v2, vs;
+  double m11Sq, m22Sq, Rem12Sq, Imm12Sq, msSq, Rebs, L1, L2, L3, L4, ReL5, ImL5,
+      L8, L9, LS;
+  // counterterms
+  double dm11Sq, dm22Sq, dRem12Sq, dImm12Sq, dmsSq, dRebs, dImbs, dL1, dL2, dL3,
+      dL4, dReL5, dImL5, dImL7, dL8, dL9, dImL10, dImL11, dImL12, dReL13, dLS,
+      dTCB, dT1, dT2, dTCP, dTS, dTDM;
 
-
-  double Rem122=0,Imm122=0,L1=0,L2=0,L3=0,L4=0,ReL5=0,ImL5=0,L6=0,L7=0,L8=0,ms2=0,m112=0,m222=0,mds=0,vs=0,TanBeta=0, mDM2=0;
-  int Type = 0;
-
-  std::vector<std::string>
-  paramsName{"Rem122","Imm122","m112","m222","ms2","mds","L1","L2","L3","L4","ReL5","ImL5","L6","L7","L8"};
-
-  double v1=0,v2=0;
-
-  double C_CosBetaSquared = 0, C_CosBeta = 0, C_SinBetaSquared = 0, C_SinBeta = 0;
-
-  double
-  dRem122=0,dImm122=0,dL1=0,dL2=0,dL3=0,dL4=0,dReL5=0,dImL5=0,dL6=0,dL7=0,dL8=0,dms2=0,dm112=0,dm222=0,dmDM2=0;
-  double dT1=0,dT2=0,dT3=0,dT4=0,dT5=0,dT6=0,dT7=0,dT8=0,dT9=0,dT10=0;
-
-  const bool UseDMVEV = true; //Allow the DM candidate to develop a VEV
-
-
-
-
-
-  void ReadAndSet(const std::string& linestr, std::vector<double>& par) override;
+  void ReadAndSet(const std::string &linestr,
+                  std::vector<double> &par) override;
   std::vector<std::string> addLegendCT() const override;
   std::vector<std::string> addLegendTemp() const override;
   std::vector<std::string> addLegendTripleCouplings() const override;
   std::vector<std::string> addLegendVEV() const override;
 
-
-  void set_gen(const std::vector<double>& par) override;
-  void set_CT_Pot_Par(const std::vector<double>& par) override;
+  void set_gen(const std::vector<double> &par) override;
+  void set_CT_Pot_Par(const std::vector<double> &par) override;
   void write() const override;
 
   void TripleHiggsCouplings() override;
   std::vector<double> calc_CT() const override;
 
-
   void SetCurvatureArrays() override;
   bool CalculateDebyeSimplified() override;
   bool CalculateDebyeGaugeSimplified() override;
-  double VTreeSimplified(const std::vector<double>& v) const override;
-  double VCounterSimplified(const std::vector<double>& v) const override;
-  void Debugging(const std::vector<double>& input, std::vector<double>& output) const override;
+  double VTreeSimplified(const std::vector<double> &v) const override;
+  double VCounterSimplified(const std::vector<double> &v) const override;
+  void Debugging(const std::vector<double> &input,
+                 std::vector<double> &output) const override;
 };
 
-}
-}
-#endif /* SRC_CLASSCN2HDM_H_ */
+} // namespace Models
+} // namespace BSMPT
+#endif /* SRC_CLASSPOTENTIALCN2HDM_H_ */

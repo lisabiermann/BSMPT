@@ -576,6 +576,28 @@ public:
   void initVectors();
 
   /**
+   * @brief sym2Dim Symmetrize scalar 2-dim tensor
+   * @param Tensor2Dim 2-dim scalar tensor
+   * @param Nk1 number of first indices
+   * @param Nk2 number of second indices
+   */
+  void sym2Dim(std::vector<std::vector<double>> &Tensor2Dim,
+               std::size_t Nk1,
+               std::size_t Nk2);
+
+  /**
+   * @brief sym3Dim Symmetrize scalar 3-dim tensor
+   * @param Tensor3Dim 4-dim scalar tensor
+   * @param Nk1 number of first indices
+   * @param Nk2 number of second indices
+   * @param Nk3 number of third indices
+   */
+  void sym3Dim(std::vector<std::vector<std::vector<double>>> &Tensor3Dim,
+               std::size_t Nk1,
+               std::size_t Nk2,
+               std::size_t Nk3);
+
+  /**
    * @brief sym4Dim Symmetrize scalar 4-dim tensor
    * @param Tensor4Dim 4-dim scalar tensor
    * @param Nk1 number of first indices

@@ -51,7 +51,7 @@ enum class ModelIDs
 const std::unordered_map<std::string, ModelIDs> ModelNames{
     {"c2hdm", ModelIDs::C2HDM},
     {"r2hdm", ModelIDs::R2HDM},
-    {"n2hdm", ModelIDs::RN2HDM},
+    {"rn2hdm", ModelIDs::RN2HDM},
     {"cxsm", ModelIDs::CXSM},
     {"cpinthedark", ModelIDs::CPINTHEDARK},
     {"cn2hdm", ModelIDs::CN2HDM},

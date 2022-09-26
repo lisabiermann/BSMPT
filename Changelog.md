@@ -35,7 +35,7 @@ SPDX-License-Identifier: GPL-3.0-or-later
 - CP in the Dark is now added as a model. The implementation follows the conventions of [1807.10322], for further details on the chosen renormalization scheme we refer to our respective publication.
 
 # 2021/05/06: Release of v2.2 
-- Unit tests are provided for the models 'ch2dm', 'n2hdm' and 'r2hdm'
+- Unit tests are provided for the models 'ch2dm', 'rn2hdm' and 'r2hdm'
 - Fixed the renormalisation scheme for the C2HDM 
 - Added the option to turn off the multithreading in the minimization
 - Removed the following binaries: 'RenormScale' and 'EWBGRenormScale'
@@ -93,7 +93,7 @@ Cleaned up the interface of the minimisation functions, this changed nothing at 
 Introduced the initModel function which will handle ReadAndSet from the line, setting the parameters, calculating the Counterterm parameters and setting them as well as preparing everything necessary in the background. This was cleanup of the interface and did not change the numerics. 
 
 # 2019/10/07: Release of v1.1
-It is now possible to call the models with the names 'ch2dm', 'n2hdm', 'r2hdm' instead of the numbers. Additionally added the Test binary which provides a possibility to check the implemented models.
+It is now possible to call the models with the names 'ch2dm', 'rn2hdm', 'r2hdm' instead of the numbers. Additionally added the Test binary which provides a possibility to check the implemented models.
 
 # 2019/09/27
 Fixed a bug introduced with the changes of 2019/08/15

@@ -3390,6 +3390,42 @@ void Class_Potential_Origin::initVectors()
   HiggsVev = std::vector<double>(NHiggs, 0);
 }
 
+void Class_Potential_Origin::sym2Dim(
+    std::vector<std::vector<double>> &Tensor2Dim,
+    std::size_t Nk1,
+    std::size_t Nk2)
+{
+  for (std::size_t k1 = 0; k1 < Nk1; k1++)
+  {
+    for (std::size_t k2 = k1; k2 < Nk2; k2++)
+    {
+      Tensor2Dim[k2][k1] = Tensor2Dim[k1][k2];
+    }
+  }
+}
+
+void Class_Potential_Origin::sym3Dim(
+    std::vector<std::vector<std::vector<double>>> &Tensor3Dim,
+    std::size_t Nk1,
+    std::size_t Nk2,
+    std::size_t Nk3)
+{
+  for (std::size_t k1 = 0; k1 < Nk1; k1++)
+  {
+    for (std::size_t k2 = k1; k2 < Nk2; k2++)
+    {
+      for (std::size_t k3 = k2; k3 < Nk3; k3++)
+      {
+        Tensor3Dim[k1][k3][k2] = Tensor3Dim[k1][k2][k3];
+        Tensor3Dim[k2][k1][k3] = Tensor3Dim[k1][k2][k3];
+        Tensor3Dim[k2][k3][k1] = Tensor3Dim[k1][k2][k3];
+        Tensor3Dim[k3][k1][k2] = Tensor3Dim[k1][k2][k3];
+        Tensor3Dim[k3][k2][k1] = Tensor3Dim[k1][k2][k3];
+      }
+    }
+  }
+}
+
 void Class_Potential_Origin::sym4Dim(
     std::vector<std::vector<std::vector<std::vector<double>>>> &Tensor4Dim,
     std::size_t Nk1,
