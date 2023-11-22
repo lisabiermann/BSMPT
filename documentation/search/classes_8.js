@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['pointercontainerminplane_594',['PointerContainerMinPlane',['../structBSMPT_1_1Minimizer_1_1PointerContainerMinPlane.html',1,'BSMPT::Minimizer']]],
-  ['push_5fback_5fstate_5fand_5ftime_595',['push_back_state_and_time',['../structBSMPT_1_1Baryo_1_1push__back__state__and__time.html',1,'BSMPT::Baryo']]]
+  ['minimizeplanereturn_629',['MinimizePlaneReturn',['../structBSMPT_1_1Minimizer_1_1MinimizePlaneReturn.html',1,'BSMPT::Minimizer']]],
+  ['minimizerstouse_630',['MinimizersToUse',['../structBSMPT_1_1Minimizer_1_1MinimizersToUse.html',1,'BSMPT::Minimizer']]],
+  ['mylistener_631',['MyListener',['../structMyListener.html',1,'']]]
 ];

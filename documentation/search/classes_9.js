@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['shareinformationnlopt_596',['ShareInformationNLOPT',['../structBSMPT_1_1Minimizer_1_1LibNLOPT_1_1ShareInformationNLOPT.html',1,'BSMPT::Minimizer::LibNLOPT']]]
+  ['nloptreturntype_632',['NLOPTReturnType',['../structBSMPT_1_1Minimizer_1_1LibNLOPT_1_1NLOPTReturnType.html',1,'BSMPT::Minimizer::LibNLOPT']]]
 ];
