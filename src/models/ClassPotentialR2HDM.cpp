@@ -855,7 +855,7 @@ void Class_Potential_R2HDM::AdjustRotationMatrix()
 
   if (HiggsRotSort(7, 6) < 0) // h zeta2 element = + cos(alpha) > 0
   {
-    // if negative, rotate h and A
+    // if negative, rotate h
     HiggsRotSort.row(7) *= -1; // h
   }
   if (HiggsRotSort(6, 4) < 0) // H zeta1 element = + cos(alpha) > 0
