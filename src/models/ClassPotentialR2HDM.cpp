@@ -642,7 +642,7 @@ std::vector<double> Class_Potential_R2HDM::calc_CT() const
     retmes += " was called before SetCurvatureArrays()!\n";
     throw std::runtime_error(retmes);
   }
-  if (!CalcCouplingsdone)
+  if (!CalcCouplingsDone)
   {
     std::string retmes = __func__;
     retmes += " was called before CalculatePhysicalCouplings()!\n";
@@ -743,31 +743,17 @@ std::vector<double> Class_Potential_R2HDM::calc_CT() const
 }
 
 /**
- * Calculates the corrections to the Triple higgs couplings in the mass basis.
- *
- * Use the vector TripleHiggsCorrectionsCWPhysical to save your couplings and
- * set the nTripleCouplings to the number of couplings you want as output.
+ * Ensures the correct rotation matrix convention
  */
-void Class_Potential_R2HDM::TripleHiggsCouplings()
+void Class_Potential_R2HDM::AdjustRotationMatrix()
 {
   if (!SetCurvatureDone) SetCurvatureArrays();
-  if (!CalcCouplingsdone) CalculatePhysicalCouplings();
+  if (!CalcCouplingsDone) CalculatePhysicalCouplings();
 
-  std::vector<double> TripleDeriv;
-  TripleDeriv = WeinbergThirdDerivative();
-  std::vector<std::vector<std::vector<double>>> GaugeBasis(
-      NHiggs,
-      std::vector<std::vector<double>>(NHiggs, std::vector<double>(NHiggs)));
-  for (std::size_t i = 0; i < NHiggs; i++)
+  if (!CheckRotationMatrix()) // Check whether generically generated rotation
+                              // matrix is proper rotation matrix
   {
-    for (std::size_t j = 0; j < NHiggs; j++)
-    {
-      for (std::size_t k = 0; k < NHiggs; k++)
-      {
-        GaugeBasis[i][j][k] =
-            TripleDeriv.at(i + j * NHiggs + k * NHiggs * NHiggs);
-      }
-    }
+    throw std::runtime_error("Error in rotation matrix.");
   }
 
   MatrixXd HiggsRot(NHiggs, NHiggs);
@@ -816,18 +802,111 @@ void Class_Potential_R2HDM::TripleHiggsCouplings()
   posH = posN[1];
 
   std::vector<double> HiggsOrder(NHiggs);
+
   HiggsOrder[0] = posG1;
   HiggsOrder[1] = posG2;
   HiggsOrder[2] = posMHCS1;
   HiggsOrder[3] = posMHCS2;
   HiggsOrder[4] = posG0;
   HiggsOrder[5] = posA;
-  HiggsOrder[6] = posh;
-  HiggsOrder[7] = posH;
+  HiggsOrder[6] = posH;
+  HiggsOrder[7] = posh;
 
   for (std::size_t i = 0; i < NHiggs; i++)
   {
     HiggsRotSort.row(i) = HiggsRot.row(HiggsOrder[i]);
+  }
+
+  // interaction basis
+  // rho1, rho2, eta1, eta2, zeta1, psi1, zeta2, psi2
+  // mass basis
+  // G1, G2, HCS1, HCS2, G0, A, H, h
+
+  // charged submatrix
+  if (HiggsRotSort(0, 0) < 0) // G1
+  {
+    HiggsRotSort.row(0) *= -1;
+  }
+  if (HiggsRotSort(1, 1) < 0) // G2
+  {
+    HiggsRotSort.row(1) *= -1;
+  }
+  if (HiggsRotSort(2, 2) < 0) // HCS1
+  {
+    HiggsRotSort.row(2) *= -1;
+  }
+  if (HiggsRotSort(3, 3) < 0) // HCS2
+  {
+    HiggsRotSort.row(3) *= -1;
+  }
+
+  // check neutral, CP-odd submatrix
+  if (HiggsRotSort(4, 5) < 0) // G0 psi1 (+ cos(beta))
+  {
+    HiggsRotSort.row(4) *= -1; // G0
+  }
+  if (HiggsRotSort(5, 7) < 0) // A psi2 (+ cos(beta))
+  {
+    HiggsRotSort.row(5) *= -1; // A
+  }
+
+  // check neutral, CP-even submatrix
+  alpha = std::asin(HiggsRotSort(6, 6)); // H zeta2 (+ sin(alpha))
+
+  if (HiggsRotSort(7, 6) < 0) // h zeta2 element = + cos(alpha) > 0
+  {
+    // if negative, rotate h and A
+    HiggsRotSort.row(7) *= -1; // h
+  }
+  if (HiggsRotSort(6, 4) < 0) // H zeta1 element = + cos(alpha) > 0
+  {
+    // if negative, rotate H
+    HiggsRotSort.row(6) *= -1; // H
+  }
+
+  for (std::size_t i = 0; i < NHiggs; i++)
+  {
+    for (std::size_t j = 0; j < NHiggs; j++)
+    {
+      HiggsRotationMatrixSort[i][j] = HiggsRotSort(i, j);
+    }
+  }
+}
+
+/**
+ * Calculates the corrections to the Triple higgs couplings in the mass basis.
+ *
+ * Use the vector TripleHiggsCorrectionsCWPhysical to save your couplings and
+ * set the nTripleCouplings to the number of couplings you want as output.
+ */
+void Class_Potential_R2HDM::TripleHiggsCouplings()
+{
+  AdjustRotationMatrix();
+
+  std::vector<double> TripleDeriv;
+  TripleDeriv = WeinbergThirdDerivative();
+  std::vector<std::vector<std::vector<double>>> GaugeBasis(
+      NHiggs,
+      std::vector<std::vector<double>>(NHiggs, std::vector<double>(NHiggs)));
+  for (std::size_t i = 0; i < NHiggs; i++)
+  {
+    for (std::size_t j = 0; j < NHiggs; j++)
+    {
+      for (std::size_t k = 0; k < NHiggs; k++)
+      {
+        GaugeBasis[i][j][k] =
+            TripleDeriv.at(i + j * NHiggs + k * NHiggs * NHiggs);
+      }
+    }
+  }
+
+  MatrixXd HiggsRotSort(NHiggs, NHiggs);
+  for (std::size_t i = 0; i < NHiggs; i++)
+  {
+    for (std::size_t j = 0; j < NHiggs; j++)
+    {
+      HiggsRotSort(i, j) = HiggsRotationMatrixSort[i][j];
+    }
   }
 
   TripleHiggsCorrectionsCWPhysical.resize(NHiggs);

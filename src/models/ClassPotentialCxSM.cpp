@@ -589,7 +589,7 @@ std::vector<double> Class_CxSM::calc_CT() const
     retmes += " was called before SetCurvatureArrays()!\n";
     throw std::runtime_error(retmes);
   }
-  if (!CalcCouplingsdone)
+  if (!CalcCouplingsDone)
   {
     std::string retmes = __func__;
     retmes += " was called before CalculatePhysicalCouplings()!\n";
@@ -765,10 +765,20 @@ std::vector<double> Class_CxSM::calc_CT() const
   return parCT;
 }
 
+/**
+ * Ensures the correct rotation matrix convention
+ */
+void Class_CxSM::AdjustRotationMatrix()
+{
+  // Here you implement the rotation matrix convention of your model
+  // and define HiggsRotationMatrixSort, use then HiggsRotationMatrixSort in
+  // TripleHiggsCouplings
+}
+
 void Class_CxSM::TripleHiggsCouplings()
 {
   if (!SetCurvatureDone) SetCurvatureArrays();
-  if (!CalcCouplingsdone) CalculatePhysicalCouplings();
+  if (!CalcCouplingsDone) CalculatePhysicalCouplings();
 
   std::vector<double> HiggsOrder(NHiggs);
   // Here you have to set the vector HiggsOrder. By telling e.g. HiggsOrder[0] =
@@ -1305,7 +1315,7 @@ void Class_CxSM::Debugging(const std::vector<double> &input,
     retmes += " was called before SetCurvatureArrays()!\n";
     throw std::runtime_error(retmes);
   }
-  if (!CalcCouplingsdone)
+  if (!CalcCouplingsDone)
   {
     std::string retmes = __func__;
     retmes += " was called before CalculatePhysicalCouplings()!\n";

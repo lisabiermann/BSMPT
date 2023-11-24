@@ -959,6 +959,55 @@ Class_Potential_Origin::SecondDerivativeOfEigenvaluesNonRepeated(
   return res;
 }
 
+bool Class_Potential_Origin::almost_the_same(double a,
+                                             double b,
+                                             double rel_precision)
+{
+  if (std::abs(a) < 1e-10 and std::abs(b) < 1e-10)
+  {
+    return true;
+  }
+  return std::abs(a - b) < std::abs(a + b) / 2 * rel_precision;
+}
+
+bool Class_Potential_Origin::CheckRotationMatrix()
+{
+  MatrixXd mat(NHiggs, NHiggs);
+  for (std::size_t i = 0; i < NHiggs; i++)
+  {
+    for (std::size_t j = 0; j < NHiggs; j++)
+    {
+      mat(i, j) = HiggsRotationMatrix[i][j];
+    }
+  }
+
+  double precision = 1e-10;
+
+  bool DetIsOne   = almost_the_same(mat.determinant(), 1., precision);
+  bool InvEqTrans = true;
+
+  auto inv    = mat.inverse();
+  auto transp = mat.transpose();
+
+  for (std::size_t i = 0; i < NHiggs; i++)
+  {
+    for (std::size_t j = 0; j < NHiggs; j++)
+    {
+      if (!almost_the_same(inv(i, j), transp(i, j), precision))
+      {
+        InvEqTrans = false;
+        break;
+      }
+    }
+  }
+
+  if (DetIsOne and InvEqTrans)
+  {
+    return true;
+  }
+  return false;
+}
+
 void Class_Potential_Origin::CalculatePhysicalCouplings()
 {
   if (!SetCurvatureDone) SetCurvatureArrays();
@@ -1039,6 +1088,28 @@ void Class_Potential_Origin::CalculatePhysicalCouplings()
   {
     MassSquaredHiggs[i] = es.eigenvalues()[i];
     if (std::abs(MassSquaredHiggs[i]) < ZeroMass) MassSquaredHiggs[i] = 0;
+  }
+
+  if (HiggsRot.determinant() < 0) // caught improper rotation
+  {
+    for (size_t i = 0; i < NHiggs - 1; i++)
+    {
+      if (almost_the_same(MassSquaredHiggs[i],
+                          MassSquaredHiggs[i + 1],
+                          1e-10)) // interchange two rows in case of
+                                  // degenerate masses
+      {
+        for (size_t j = 0; j < NHiggs; j++)
+        {
+          std::swap(HiggsRot(i, j), HiggsRot(i + 1, j));
+        }
+        break;
+      }
+    }
+  }
+  if (HiggsRot.determinant() < 0)
+  {
+    throw std::runtime_error("Failed to fix the rotation matrix.");
   }
 
   es.compute(MassGauge);
@@ -1395,7 +1466,7 @@ void Class_Potential_Origin::CalculatePhysicalCouplings()
     }
   }
 
-  CalcCouplingsdone = true;
+  CalcCouplingsDone = true;
 
   return;
 }
@@ -1403,7 +1474,7 @@ void Class_Potential_Origin::CalculatePhysicalCouplings()
 std::vector<double> Class_Potential_Origin::WeinbergFirstDerivative() const
 {
   std::vector<double> res;
-  if (!CalcCouplingsdone)
+  if (!CalcCouplingsDone)
   {
     //        CalculatePhysicalCouplings();
     std::string retmes = __func__;
@@ -1497,7 +1568,7 @@ std::vector<double> Class_Potential_Origin::WeinbergFirstDerivative() const
 Eigen::MatrixXd
 Class_Potential_Origin::WeinbergSecondDerivativeAsMatrixXd() const
 {
-  if (!CalcCouplingsdone)
+  if (!CalcCouplingsDone)
   {
     //        CalculatePhysicalCouplings();
     std::string retmes = __func__;
@@ -1656,7 +1727,7 @@ std::vector<double> Class_Potential_Origin::WeinbergSecondDerivative() const
 std::vector<double> Class_Potential_Origin::WeinbergThirdDerivative() const
 {
 
-  if (not CalcCouplingsdone)
+  if (not CalcCouplingsDone)
   {
     std::string retmes = __func__;
     retmes += " tries to use Physical couplings but they are not initialised.";
@@ -1902,7 +1973,7 @@ std::vector<double> Class_Potential_Origin::WeinbergThirdDerivative() const
 std::vector<double> Class_Potential_Origin::WeinbergForthDerivative() const
 {
 
-  if (not CalcCouplingsdone)
+  if (not CalcCouplingsDone)
   {
     std::string retmes = __func__;
     retmes += " tries to use Physical couplings but they are not initialised.";
@@ -3393,6 +3464,9 @@ void Class_Potential_Origin::initVectors()
       vec3Complex{NQuarks, vec2Complex{NHiggs, vec1Complex(NHiggs, 0)}}};
 
   HiggsVev = std::vector<double>(NHiggs, 0);
+
+  HiggsRotationMatrixSort =
+      std::vector<std::vector<double>>{NHiggs, std::vector<double>(NHiggs, 0)};
 }
 
 void Class_Potential_Origin::sym4Dim(
@@ -3442,7 +3516,7 @@ void Class_Potential_Origin::sym4Dim(
 void Class_Potential_Origin::resetbools()
 {
   SetCurvatureDone          = false;
-  CalcCouplingsdone         = false;
+  CalcCouplingsDone         = false;
   CalculatedTripleCopulings = false;
   parStored.clear();
   parCTStored.clear();

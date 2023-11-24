@@ -629,7 +629,7 @@ std::vector<double> Class_Potential_RN2HDM::calc_CT() const
     retmes += " was called before SetCurvatureArrays()!\n";
     throw std::runtime_error(retmes);
   }
-  if (!CalcCouplingsdone)
+  if (!CalcCouplingsDone)
   {
     std::string retmes = __func__;
     retmes += " was called before CalculatePhysicalCouplings()!\n";
@@ -778,10 +778,20 @@ std::vector<double> Class_Potential_RN2HDM::calc_CT() const
   return parCT;
 }
 
+/**
+ * Ensures the correct rotation matrix convention
+ */
+void Class_Potential_RN2HDM::AdjustRotationMatrix()
+{
+  // Here you implement the rotation matrix convention of your model
+  // and define HiggsRotationMatrixSort, use then HiggsRotationMatrixSort in
+  // TripleHiggsCouplings
+}
+
 void Class_Potential_RN2HDM::TripleHiggsCouplings()
 {
   if (!SetCurvatureDone) SetCurvatureArrays();
-  if (!CalcCouplingsdone) CalculatePhysicalCouplings();
+  if (!CalcCouplingsDone) CalculatePhysicalCouplings();
 
   std::vector<double> TripleDeriv;
   TripleDeriv = WeinbergThirdDerivative();

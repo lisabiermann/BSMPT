@@ -1258,7 +1258,7 @@ std::vector<double> Class_Potential_CPintheDark::calc_CT() const
     retmes += " was called before SetCurvatureArrays()!\n";
     throw std::runtime_error(retmes);
   }
-  if (!CalcCouplingsdone)
+  if (!CalcCouplingsDone)
   {
     std::string retmes = __func__;
     retmes += " was called before CalculatePhysicalCouplings()!\n";
@@ -1314,11 +1314,21 @@ std::vector<double> Class_Potential_CPintheDark::calc_CT() const
   return parCT;
 }
 
+/**
+ * Ensures the correct rotation matrix convention
+ */
+void Class_Potential_CPintheDark::AdjustRotationMatrix()
+{
+  // Here you implement the rotation matrix convention of your model
+  // and define HiggsRotationMatrixSort, use then HiggsRotationMatrixSort in
+  // TripleHiggsCouplings
+}
+
 // mass basis triple couplings
 void Class_Potential_CPintheDark::TripleHiggsCouplings()
 {
   if (!SetCurvatureDone) SetCurvatureArrays();
-  if (!CalcCouplingsdone) CalculatePhysicalCouplings();
+  if (!CalcCouplingsDone) CalculatePhysicalCouplings();
 
   // position indices store the position of the physical fields
   std::size_t posGp  = 0;

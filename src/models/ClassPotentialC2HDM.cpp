@@ -2128,7 +2128,7 @@ void Class_Potential_C2HDM::write() const
   ss << "DT3:= " << DT3 << ";\n";
   ss << "DIL6:= " << DIL6CT << ";\n";
 
-  if (CalcCouplingsdone)
+  if (CalcCouplingsDone)
   {
     MatrixXd HiggsRot(NHiggs, NHiggs);
     for (std::size_t i = 0; i < NHiggs; i++)
@@ -2294,7 +2294,7 @@ std::vector<double> Class_Potential_C2HDM::calc_CT() const
     retmes += " was called before SetCurvatureArrays()!\n";
     throw std::runtime_error(retmes);
   }
-  if (!CalcCouplingsdone)
+  if (!CalcCouplingsDone)
   {
     std::string retmes = __func__;
     retmes += " was called before CalculatePhysicalCouplings()!\n";
@@ -2396,10 +2396,20 @@ std::vector<double> Class_Potential_C2HDM::calc_CT() const
   return parCT;
 }
 
+/**
+ * Ensures the correct rotation matrix convention
+ */
+void Class_Potential_C2HDM::AdjustRotationMatrix()
+{
+  // Here you implement the rotation matrix convention of your model
+  // and define HiggsRotationMatrixSort, use then HiggsRotationMatrixSort in
+  // TripleHiggsCouplings
+}
+
 void Class_Potential_C2HDM::TripleHiggsCouplings()
 {
   if (!SetCurvatureDone) SetCurvatureArrays();
-  if (!CalcCouplingsdone) CalculatePhysicalCouplings();
+  if (!CalcCouplingsDone) CalculatePhysicalCouplings();
 
   if (CalculatedTripleCopulings) return;
   CalculatedTripleCopulings = true;
