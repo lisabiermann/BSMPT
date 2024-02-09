@@ -81,7 +81,8 @@ public:
   Class_Potential_C2HDM(const ISMConstants &smConstants);
   virtual ~Class_Potential_C2HDM() override;
 
-  bool UseHsmNotationInTripleHiggs = false;
+  bool UseHsmNotationInTripleHiggs  = false;
+  bool UseHsmNotationInQuarticHiggs = false;
 
   double L1 = 0, L2 = 0, L3 = 0, L4 = 0, RL5 = 0, RealMMix = 0, u1 = 0, u2 = 0;
   double IL5 = 0, Iu3 = 0;
@@ -104,6 +105,7 @@ public:
   std::vector<std::string> addLegendCT() const override;
   std::vector<std::string> addLegendTemp() const override;
   std::vector<std::string> addLegendTripleCouplings() const override;
+  std::vector<std::string> addLegendQuarticCouplings() const override;
   std::vector<std::string> addLegendVEV() const override;
 
   /**
@@ -123,6 +125,7 @@ public:
   void write() const override;
 
   void TripleHiggsCouplings() override;
+  void QuarticHiggsCouplings() override;
   std::vector<double> calc_CT() const override;
 
   void SetCurvatureArrays() override;

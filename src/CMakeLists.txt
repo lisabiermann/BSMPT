@@ -38,6 +38,10 @@ add_executable(TripleHiggsCouplingsNLO prog/TripleHiggsNLO.cpp)
 target_link_libraries(TripleHiggsCouplingsNLO Models Utility)
 target_compile_features(TripleHiggsCouplingsNLO PUBLIC cxx_std_14)
 
+add_executable(QuarticHiggsCouplingsNLO prog/QuarticHiggsNLO.cpp)
+target_link_libraries(QuarticHiggsCouplingsNLO Models Utility)
+target_compile_features(QuarticHiggsCouplingsNLO PUBLIC cxx_std_14)
+
 add_executable(Test prog/Test.cpp)
 target_link_libraries(Test Minimizer Models Utility)
 target_compile_features(Test PUBLIC cxx_std_14)
