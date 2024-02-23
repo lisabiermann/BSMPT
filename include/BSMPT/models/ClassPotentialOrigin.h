@@ -291,7 +291,7 @@ protected:
    * Storage of the model-specific Higgs rotation matrix for the Higgs mass
    * matrix at the tree-level Vacuum
    */
-  std::vector<std::vector<double>> HiggsRotationMatrixSort;
+  std::vector<std::vector<double>> HiggsRotationMatrixEnsuredConvention;
   /**
    * @brief Couplings_Higgs_Quartic Stores the quartic Higgs couplings in the
    * mass base

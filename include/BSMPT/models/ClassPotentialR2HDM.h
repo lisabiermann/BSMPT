@@ -90,6 +90,9 @@ public:
   int Type       = 0;
   double CTempC1 = 0, CTempC2 = 0, CTempCS = 0;
 
+  int posGp, posGm, posHp, posHm, posG0, posA, posH, posh;
+  const double ZeroThreshold = 1e-5;
+
   void ReadAndSet(const std::string &linestr,
                   std::vector<double> &par) override;
   std::vector<std::string> addLegendCT() const override;

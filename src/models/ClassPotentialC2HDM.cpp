@@ -2402,7 +2402,7 @@ std::vector<double> Class_Potential_C2HDM::calc_CT() const
 void Class_Potential_C2HDM::AdjustRotationMatrix()
 {
   // Here you implement the rotation matrix convention of your model
-  // and define HiggsRotationMatrixSort, use then HiggsRotationMatrixSort in
+  // and define HiggsRotationMatrixEnsuredConvention, use then HiggsRotationMatrixEnsuredConvention in
   // TripleHiggsCouplings
 }
 

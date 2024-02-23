@@ -3465,7 +3465,7 @@ void Class_Potential_Origin::initVectors()
 
   HiggsVev = std::vector<double>(NHiggs, 0);
 
-  HiggsRotationMatrixSort =
+  HiggsRotationMatrixEnsuredConvention =
       std::vector<std::vector<double>>{NHiggs, std::vector<double>(NHiggs, 0)};
 }
 
@@ -3798,6 +3798,8 @@ Class_Potential_Origin::initModel(const std::vector<double> &par)
   set_CT_Pot_Par(parCT);
   CalculateDebye();
   CalculateDebyeGauge();
+
+  AdjustRotationMatrix();
 
   parStored   = par;
   parCTStored = parCT;

@@ -122,8 +122,8 @@ std::vector<std::string> Class_Potential_R2HDM::addLegendTripleCouplings() const
   particles.push_back("H^-");
   particles.push_back("G^0");
   particles.push_back("A");
-  particles.push_back("h");
   particles.push_back("H");
+  particles.push_back("h");
 
   for (std::size_t i = 0; i < NHiggs; i++)
   {
@@ -558,73 +558,18 @@ void Class_Potential_R2HDM::write() const
   ss << "DT2 := " << DT2 << ";\n";
   ss << "DT3:= " << DT3 << ";" << std::endl;
 
-  MatrixXd HiggsRot(NHiggs, NHiggs);
-  for (std::size_t i = 0; i < NHiggs; i++)
-  {
-    for (std::size_t j = 0; j < NHiggs; j++)
-    {
-      HiggsRot(i, j) = HiggsRotationMatrix[i][j];
-    }
-  }
-
-  int posMHCS1 = 0;
-  int posN[2];
-  int countposN = 0;
-  int posA      = 0;
-  int posG1 = 0, posG0 = 0;
-  double testsum             = 0;
-  const double ZeroThreshold = 1e-5;
-  for (std::size_t i = 0; i < 3; i++)
-  {
-    testsum = std::abs(HiggsRot(i, 0)) + std::abs(HiggsRot(i, 2));
-    if (testsum > ZeroThreshold) posG1 = i;
-    //		testsum = std::abs(HiggsRot(i,1)) + std::abs(HiggsRot(i,3));
-    //		if(testsum > ZeroThreshold) posG2 = i;
-    testsum = std::abs(HiggsRot(i, 5)) + std::abs(HiggsRot(i, 7));
-    if (testsum > ZeroThreshold) posG0 = i;
-  }
-  for (std::size_t i = 3; i < NHiggs; i++)
-  {
-    testsum = std::abs(HiggsRot(i, 0)) + std::abs(HiggsRot(i, 2));
-    if (testsum > ZeroThreshold) posMHCS1 = i;
-    //		testsum = std::abs(HiggsRot(i,1)) + std::abs(HiggsRot(i,3));
-    //		if(testsum > ZeroThreshold) posMHCS2 = i;
-    testsum = std::abs(HiggsRot(i, 4)) + std::abs(HiggsRot(i, 6));
-    if (testsum > ZeroThreshold)
-    {
-      posN[countposN] = i;
-      countposN++;
-    }
-    testsum = std::abs(HiggsRot(i, 5)) + std::abs(HiggsRot(i, 7));
-    if (testsum > ZeroThreshold) posA = i;
-  }
-
   std::vector<double> HiggsMasses;
   HiggsMasses = HiggsMassesSquared(vevTree, 0);
 
-  ss << "The mass spectrum is given by :\n";
-  ss << "m_{G^+}^2 = " << HiggsMasses[posG1] << " GeV^2 \n";
-  ss << "m_{G^0}^2 = " << HiggsMasses[posG0] << " GeV^2 \n";
-  ss << "m_{H^+} = " << std::sqrt(HiggsMasses[posMHCS1]) << " GeV \n"
-     << "m_h = " << std::sqrt(HiggsMasses[posN[0]]) << " GeV \n"
-     << "m_H = " << std::sqrt(HiggsMasses[posN[1]]) << " GeV \n"
-     << "m_A = " << std::sqrt(HiggsMasses[posA]) << " GeV \n";
-
-  ss << "The neutral mixing Matrix is given by :\n";
-  ss << "h = " << HiggsRot(posN[0], 4) << " zeta_1 ";
-  bool IsNegative = HiggsRot(posN[0], 6) < 0;
-  if (IsNegative)
-    ss << "-";
-  else
-    ss << "+";
-  ss << std::abs(HiggsRot(posN[0], 6)) << " zeta_2\n"
-     << "H = " << HiggsRot(posN[1], 4) << " zeta_1 ";
-  IsNegative = HiggsRot(posN[1], 6) < 0;
-  if (IsNegative)
-    ss << "-";
-  else
-    ss << "+";
-  ss << std::abs(HiggsRot(posN[1], 6)) << " zeta_2" << std::endl;
+  ss << "The mass spectrum is given by :\n"
+     << "m_{G^+} = " << std::sqrt(HiggsMasses[posGp]) << " GeV \n"
+     << "m_{G^-} = " << std::sqrt(HiggsMasses[posGm]) << " GeV \n"
+     << "m_{H^+} = " << std::sqrt(HiggsMasses[posHp]) << " GeV \n"
+     << "m_{H^-} = " << std::sqrt(HiggsMasses[posHm]) << " GeV \n"
+     << "m_{G^0} = " << std::sqrt(HiggsMasses[posG0]) << " GeV \n"
+     << "m_A = " << std::sqrt(HiggsMasses[posA]) << " GeV \n"
+     << "m_H = " << std::sqrt(HiggsMasses[posH]) << " GeV \n"
+     << "m_h = " << std::sqrt(HiggsMasses[posh]) << " GeV \n";
 
   Logger::Write(LoggingLevel::Default, ss.str());
 }
@@ -765,110 +710,150 @@ void Class_Potential_R2HDM::AdjustRotationMatrix()
     }
   }
 
-  MatrixXd HiggsRotSort(NHiggs, NHiggs);
-  int posMHCS1 = 0, posMHCS2 = 0;
-  int posN[2]   = {-1, -1};
-  int countposN = 0;
-  int posG1 = 0, posG2 = 0, posG0 = 0;
-  int posA = 0, posh = 0, posH = 0;
-  double testsum             = 0;
-  const double ZeroThreshold = 1e-5;
-  for (std::size_t i = 0; i < 3; i++)
+  // std::cout << HiggsRot << std::endl;
+
+  // initialize position indices (new initialization for each point in multiline
+  // files)
+  posGp = -1, posGm = -1, posHp = -1, posHm = -1, posG0 = -1, posA = -1,
+  posH = -1, posh = -1;
+
+  // interaction basis
+  // rho1, eta1, rho2, eta2, zeta1, psi1, zeta2, psi2
+  int pos_rho1 = 0, pos_eta1 = 1, pos_rho2 = 2, pos_eta2 = 3, pos_zeta1 = 4,
+      pos_psi1 = 5, pos_zeta2 = 6, pos_psi2 = 7;
+
+  // higgsbasis = {rho1, eta1, rho2, eta2, zeta1, psi1, zeta2, psi2}
+  for (std::size_t i = 0; i < NHiggs;
+       i++) // mass base index i corresponds to mass vector sorted in ascending
+            // mass
   {
-    testsum = std::abs(HiggsRot(i, 0)) + std::abs(HiggsRot(i, 2));
-    if (testsum > ZeroThreshold) posG1 = i;
-    testsum = std::abs(HiggsRot(i, 1)) + std::abs(HiggsRot(i, 3));
-    if (testsum > ZeroThreshold) posG2 = i;
-    testsum = std::abs(HiggsRot(i, 5)) + std::abs(HiggsRot(i, 7));
-    if (testsum > ZeroThreshold) posG0 = i;
-  }
-  for (std::size_t i = 3; i < NHiggs; i++)
-  {
-    testsum = std::abs(HiggsRot(i, 0)) + std::abs(HiggsRot(i, 2));
-    if (testsum > ZeroThreshold) posMHCS1 = i;
-    testsum = std::abs(HiggsRot(i, 1)) + std::abs(HiggsRot(i, 3));
-    if (testsum > ZeroThreshold) posMHCS2 = i;
-    testsum = std::abs(HiggsRot(i, 5)) + std::abs(HiggsRot(i, 7));
-    if (testsum > ZeroThreshold) posA = i;
-    testsum = std::abs(HiggsRot(i, 4)) + std::abs(HiggsRot(i, 6));
-    if (testsum > ZeroThreshold)
+    // charged submatrices
+    if (std::abs(HiggsRot(i, pos_rho1)) + std::abs(HiggsRot(i, pos_rho2)) >
+        ZeroThreshold)
     {
-      posN[countposN] = i;
-      countposN++;
+      if (posGm == -1)
+      {
+        posGm = i;
+      }
+      else
+      {
+        posHp = i;
+      }
+    }
+    if (std::abs(HiggsRot(i, pos_eta1)) + std::abs(HiggsRot(i, pos_eta2)) >
+        ZeroThreshold)
+    {
+      if (posGp == -1)
+      {
+        posGp = i;
+      }
+      else
+      {
+        posHm = i;
+      }
+    }
+    if (std::abs(HiggsRot(i, pos_zeta1)) + std::abs(HiggsRot(i, pos_zeta2)) >
+        ZeroThreshold) // use that mh < mH
+    {
+      if (posh == -1)
+      {
+        posh = i;
+      }
+      else
+      {
+        posH = i;
+      }
+    }
+    if (std::abs(HiggsRot(i, pos_psi1)) + std::abs(HiggsRot(i, pos_psi2)) >
+        ZeroThreshold) // use that 0 = mG0 < mA
+    {
+      if (posG0 == -1)
+      {
+        posG0 = i;
+      }
+      else
+      {
+        posA = i;
+      }
     }
   }
 
-  posh = posN[0];
-  posH = posN[1];
-
-  std::vector<double> HiggsOrder(NHiggs);
-
-  HiggsOrder[0] = posG1;
-  HiggsOrder[1] = posG2;
-  HiggsOrder[2] = posMHCS1;
-  HiggsOrder[3] = posMHCS2;
-  HiggsOrder[4] = posG0;
-  HiggsOrder[5] = posA;
-  HiggsOrder[6] = posH;
-  HiggsOrder[7] = posh;
-
+  MatrixXd HiggsRotFixed(NHiggs, NHiggs);
   for (std::size_t i = 0; i < NHiggs; i++)
   {
-    HiggsRotSort.row(i) = HiggsRot.row(HiggsOrder[i]);
+    HiggsRotFixed.row(i) = HiggsRot.row(i);
   }
-
-  // interaction basis
-  // rho1, rho2, eta1, eta2, zeta1, psi1, zeta2, psi2
-  // mass basis
-  // G1, G2, HCS1, HCS2, G0, A, H, h
 
   // charged submatrix
-  if (HiggsRotSort(0, 0) < 0) // G1
+  if (HiggsRotFixed(posGp, pos_eta1) < 0) // Gp eta1 (+ cos(beta))
   {
-    HiggsRotSort.row(0) *= -1;
+    HiggsRotFixed.row(posGp) *= -1;
   }
-  if (HiggsRotSort(1, 1) < 0) // G2
+  if (HiggsRotFixed(posGm, pos_rho1) < 0) // Gm rho1 (+ cos(beta))
   {
-    HiggsRotSort.row(1) *= -1;
+    HiggsRotFixed.row(posGm) *= -1;
   }
-  if (HiggsRotSort(2, 2) < 0) // HCS1
+  if (HiggsRotFixed(posHp, pos_rho2) < 0) // Hp rho2 (+ cos(beta))
   {
-    HiggsRotSort.row(2) *= -1;
+    HiggsRotFixed.row(posHp) *= -1;
   }
-  if (HiggsRotSort(3, 3) < 0) // HCS2
+  if (HiggsRotFixed(posHm, pos_eta2) < 0) // Hm eta2 (+ cos(beta))
   {
-    HiggsRotSort.row(3) *= -1;
+    HiggsRotFixed.row(posHm) *= -1;
   }
 
   // check neutral, CP-odd submatrix
-  if (HiggsRotSort(4, 5) < 0) // G0 psi1 (+ cos(beta))
+  if (HiggsRotFixed(posG0, pos_psi1) < 0) // G0 psi1 (+ cos(beta))
   {
-    HiggsRotSort.row(4) *= -1; // G0
+    HiggsRotFixed.row(posG0) *= -1; // G0
   }
-  if (HiggsRotSort(5, 7) < 0) // A psi2 (+ cos(beta))
+  if (HiggsRotFixed(posA, pos_psi2) < 0) // A psi2 (+ cos(beta))
   {
-    HiggsRotSort.row(5) *= -1; // A
+    HiggsRotFixed.row(posA) *= -1; // A
   }
 
-  // check neutral, CP-even submatrix
-  alpha = std::asin(HiggsRotSort(6, 6)); // H zeta2 (+ sin(alpha))
-
-  if (HiggsRotSort(7, 6) < 0) // h zeta2 element = + cos(alpha) > 0
-  {
-    // if negative, rotate h
-    HiggsRotSort.row(7) *= -1; // h
-  }
-  if (HiggsRotSort(6, 4) < 0) // H zeta1 element = + cos(alpha) > 0
+  // // check neutral, CP-even submatrix
+  if (HiggsRotFixed(posH, pos_zeta1) < 0) // H zeta1 (+ cos(alpha))
   {
     // if negative, rotate H
-    HiggsRotSort.row(6) *= -1; // H
+    HiggsRotFixed.row(posH) *= -1; // H
   }
+  if (HiggsRotFixed(posh, pos_zeta2) < 0) // h zeta2 (+ cos(alpha))
+  {
+    // if negative, rotate h
+    HiggsRotFixed.row(posh) *= -1; // h
+  }
+
+  std::vector<double> HiggsMasses;
+  HiggsMasses = HiggsMassesSquared(vevTree, 0);
+
+  // std::cout << HiggsMasses << std::endl;
+
+  alpha = std::asin(HiggsRotFixed(posH, pos_zeta2)); // H zeta2 (+ sin(alpha))
+
+  // std::cout << posGp << "," << posGm << "," << posHp << "," << posHm << ","
+  //           << posG0 << "," << posA << "," << posH << "," << posh << std::endl;
+
+  // // G0Ah
+  // std::cout << "alpha = " << alpha << ", beta - alpha = " << beta - alpha
+  //           << ", cos(beta - alpha) = " << std::cos(beta - alpha) << ", G0Ah:
+  //           "
+  //           << std::cos(beta - alpha) *
+  //                  (HiggsMasses[posA] - HiggsMasses[posh]) / scale
+  //           << " <-----> ";
+
+  // GpHmh
+  std::cout << "alpha = " << alpha << ", beta - alpha = " << beta - alpha
+            << ", cos(beta - alpha) = " << std::cos(beta - alpha) << ", GpHmh: "
+            << -std::cos(beta - alpha) *
+                   (HiggsMasses[posh] - HiggsMasses[posHp]) / scale
+            << " <-----> ";
 
   for (std::size_t i = 0; i < NHiggs; i++)
   {
     for (std::size_t j = 0; j < NHiggs; j++)
     {
-      HiggsRotationMatrixSort[i][j] = HiggsRotSort(i, j);
+      HiggsRotationMatrixEnsuredConvention[i][j] = HiggsRotFixed(i, j);
     }
   }
 }
@@ -881,8 +866,6 @@ void Class_Potential_R2HDM::AdjustRotationMatrix()
  */
 void Class_Potential_R2HDM::TripleHiggsCouplings()
 {
-  AdjustRotationMatrix();
-
   std::vector<double> TripleDeriv;
   TripleDeriv = WeinbergThirdDerivative();
   std::vector<std::vector<std::vector<double>>> GaugeBasis(
@@ -900,13 +883,30 @@ void Class_Potential_R2HDM::TripleHiggsCouplings()
     }
   }
 
-  MatrixXd HiggsRotSort(NHiggs, NHiggs);
+  std::vector<double> HiggsOrder(NHiggs);
+
+  HiggsOrder[0] = posGp;
+  HiggsOrder[1] = posGm;
+  HiggsOrder[2] = posHp;
+  HiggsOrder[3] = posHm;
+  HiggsOrder[4] = posG0;
+  HiggsOrder[5] = posA;
+  HiggsOrder[6] = posH;
+  HiggsOrder[7] = posh;
+
+  MatrixXd HiggsRot(NHiggs, NHiggs);
   for (std::size_t i = 0; i < NHiggs; i++)
   {
     for (std::size_t j = 0; j < NHiggs; j++)
     {
-      HiggsRotSort(i, j) = HiggsRotationMatrixSort[i][j];
+      HiggsRot(i, j) = HiggsRotationMatrixEnsuredConvention[i][j];
     }
+  }
+
+  MatrixXd HiggsRotSort(NHiggs, NHiggs);
+  for (std::size_t i = 0; i < NHiggs; i++)
+  {
+    HiggsRotSort.row(i) = HiggsRot.row(HiggsOrder[i]);
   }
 
   TripleHiggsCorrectionsCWPhysical.resize(NHiggs);
@@ -956,6 +956,9 @@ void Class_Potential_R2HDM::TripleHiggsCouplings()
       }
     }
   }
+
+  std::cout << "GpHmh_BSMPT = " << -TripleHiggsCorrectionsTreePhysical[0][3][7]
+            << std::endl;
 }
 
 void Class_Potential_R2HDM::SetCurvatureArrays()
