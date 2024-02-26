@@ -126,6 +126,8 @@ public:
   double VCounterSimplified(const std::vector<double> &v) const override;
   void Debugging(const std::vector<double> &input,
                  std::vector<double> &output) const override;
+
+  void CheckTrilinearTreeCouplings();
 };
 
 } // namespace Models
