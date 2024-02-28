@@ -162,19 +162,19 @@ protected:
    * Storage of the contributions of the Coleman-Weinberg potential to the
    * triple Higgs couplings in the mass basis
    */
-  std::vector<std::vector<std::vector<double>>>
+  std::vector<std::vector<std::vector<std::complex<double>>>>
       TripleHiggsCorrectionsCWPhysical;
   /**
    * Storage of the contributions of the tree-level potential to the triple
    * Higgs couplings in the mass basis
    */
-  std::vector<std::vector<std::vector<double>>>
+  std::vector<std::vector<std::vector<std::complex<double>>>>
       TripleHiggsCorrectionsTreePhysical;
   /**
    * Storage of the contributions of the counterterm potential to the triple
    * Higgs couplings in the mass basis
    */
-  std::vector<std::vector<std::vector<double>>>
+  std::vector<std::vector<std::vector<std::complex<double>>>>
       TripleHiggsCorrectionsCTPhysical;
 
   /**
@@ -559,9 +559,10 @@ public:
    * @param k
    * @return TripleHiggsCorrectionsTreePhysical[i][j][k]
    */
-  double get_TripleHiggsCorrectionsTreePhysical(std::size_t i,
-                                                std::size_t j,
-                                                std::size_t k) const
+  std::complex<double>
+  get_TripleHiggsCorrectionsTreePhysical(std::size_t i,
+                                         std::size_t j,
+                                         std::size_t k) const
   {
     return TripleHiggsCorrectionsTreePhysical.at(i).at(j).at(k);
   }
@@ -572,9 +573,9 @@ public:
    * @param k
    * @return TripleHiggsCorrectionsCTPhysical[i][j][k]
    */
-  double get_TripleHiggsCorrectionsCTPhysical(std::size_t i,
-                                              std::size_t j,
-                                              std::size_t k) const
+  std::complex<double> get_TripleHiggsCorrectionsCTPhysical(std::size_t i,
+                                                            std::size_t j,
+                                                            std::size_t k) const
   {
     return TripleHiggsCorrectionsCTPhysical.at(i).at(j).at(k);
   }
@@ -585,9 +586,9 @@ public:
    * @param k
    * @return TripleHiggsCorrectionsCWPhysical[i][j][k]
    */
-  double get_TripleHiggsCorrectionsCWPhysical(std::size_t i,
-                                              std::size_t j,
-                                              std::size_t k) const
+  std::complex<double> get_TripleHiggsCorrectionsCWPhysical(std::size_t i,
+                                                            std::size_t j,
+                                                            std::size_t k) const
   {
     return TripleHiggsCorrectionsCWPhysical.at(i).at(j).at(k);
   }
@@ -928,6 +929,9 @@ public:
    * Returns true if two values are the same given some relative precision
    */
   bool almost_the_same(double a, double b, double rel_precision = 0.01);
+  bool almost_the_same(std::complex<double> a,
+                       std::complex<double> b,
+                       double rel_precision = 0.01);
   /**
    * Checks whether rotation matrix is properly set after implying conventions
    */

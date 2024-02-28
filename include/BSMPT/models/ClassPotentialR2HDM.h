@@ -90,7 +90,7 @@ public:
   int Type       = 0;
   double CTempC1 = 0, CTempC2 = 0, CTempCS = 0;
 
-  int posGp, posGm, posHp, posHm, posG0, posA, posH, posh;
+  int posG1, posG2, posH1, posH2, posG0, posA, posH, posh;
   const double ZeroThreshold = 1e-5;
 
   void ReadAndSet(const std::string &linestr,

@@ -970,6 +970,15 @@ bool Class_Potential_Origin::almost_the_same(double a,
   return std::abs(a - b) < std::abs(a + b) / 2 * rel_precision;
 }
 
+bool Class_Potential_Origin::almost_the_same(std::complex<double> a,
+                                             std::complex<double> b,
+                                             double rel_precision)
+{
+  bool real_part = almost_the_same(a.real(), b.real(), rel_precision);
+  bool imag_part = almost_the_same(a.imag(), b.imag(), rel_precision);
+  return (real_part and imag_part);
+}
+
 bool Class_Potential_Origin::CheckRotationMatrix()
 {
   MatrixXd mat(NHiggs, NHiggs);

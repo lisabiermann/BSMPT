@@ -562,10 +562,10 @@ void Class_Potential_R2HDM::write() const
   HiggsMasses = HiggsMassesSquared(vevTree, 0);
 
   ss << "The mass spectrum is given by :\n"
-     << "m_{G^+} = " << std::sqrt(HiggsMasses[posGp]) << " GeV \n"
-     << "m_{G^-} = " << std::sqrt(HiggsMasses[posGm]) << " GeV \n"
-     << "m_{H^+} = " << std::sqrt(HiggsMasses[posHp]) << " GeV \n"
-     << "m_{H^-} = " << std::sqrt(HiggsMasses[posHm]) << " GeV \n"
+     << "m_{G^+} = " << std::sqrt(HiggsMasses[posG1]) << " GeV \n"
+     << "m_{G^-} = " << std::sqrt(HiggsMasses[posG2]) << " GeV \n"
+     << "m_{H^+} = " << std::sqrt(HiggsMasses[posH1]) << " GeV \n"
+     << "m_{H^-} = " << std::sqrt(HiggsMasses[posH2]) << " GeV \n"
      << "m_{G^0} = " << std::sqrt(HiggsMasses[posG0]) << " GeV \n"
      << "m_A = " << std::sqrt(HiggsMasses[posA]) << " GeV \n"
      << "m_H = " << std::sqrt(HiggsMasses[posH]) << " GeV \n"
@@ -710,11 +710,9 @@ void Class_Potential_R2HDM::AdjustRotationMatrix()
     }
   }
 
-  // std::cout << HiggsRot << "\n";
-
   // initialize position indices (new initialization for each point in multiline
   // files)
-  posGp = -1, posGm = -1, posHp = -1, posHm = -1, posG0 = -1, posA = -1,
+  posG1 = -1, posG2 = -1, posH1 = -1, posH2 = -1, posG0 = -1, posA = -1,
   posH = -1, posh = -1;
 
   // interaction basis
@@ -729,27 +727,27 @@ void Class_Potential_R2HDM::AdjustRotationMatrix()
   {
     // charged submatrices
     if (std::abs(HiggsRot(i, pos_rho1)) + std::abs(HiggsRot(i, pos_rho2)) >
-        ZeroThreshold)
+        ZeroThreshold) // use that mGpm < mHpm
     {
-      if (posGm == -1)
+      if (posG1 == -1)
       {
-        posGm = i;
+        posG1 = i;
       }
       else
       {
-        posHp = i;
+        posH1 = i;
       }
     }
     if (std::abs(HiggsRot(i, pos_eta1)) + std::abs(HiggsRot(i, pos_eta2)) >
-        ZeroThreshold)
+        ZeroThreshold) // use that mGpm < mHpm
     {
-      if (posGp == -1)
+      if (posG2 == -1)
       {
-        posGp = i;
+        posG2 = i;
       }
       else
       {
-        posHm = i;
+        posH2 = i;
       }
     }
     if (std::abs(HiggsRot(i, pos_zeta1)) + std::abs(HiggsRot(i, pos_zeta2)) >
@@ -778,6 +776,40 @@ void Class_Potential_R2HDM::AdjustRotationMatrix()
     }
   }
 
+  // check if all position indices are set
+  if (posG1 == -1 or posG2 == -1 or posH1 == -1 or posH2 == -1 or posG0 == -1 or
+      posA == -1 or posH == -1 or posh == -1)
+  {
+    throw std::runtime_error("Error. Not all position indices are set.");
+  }
+
+  // check if all other elements of rotation matrix are zero
+  bool zero_element = false;
+  for (std::size_t i = 0; i < NHiggs; i++)
+  {
+    for (std::size_t j = 0; j < NHiggs; j++)
+    {
+      int ii = int(i);
+      int jj = int(j);
+      if (not((jj == pos_rho1 and (ii == posG1 or ii == posH1)) or
+              (jj == pos_eta1 and (ii == posG2 or ii == posH2)) or
+              (jj == pos_zeta1 and (ii == posh or ii == posH)) or
+              (jj == pos_psi1 and (ii == posG0 or ii == posA)) or
+              (jj == pos_rho2 and (ii == posG1 or ii == posH1)) or
+              (jj == pos_eta2 and (ii == posG2 or ii == posH2)) or
+              (jj == pos_zeta2 and (ii == posh or ii == posH)) or
+              (jj == pos_psi2 and (ii == posG0 or ii == posA))))
+      {
+        zero_element = true;
+      }
+      if (zero_element and std::abs(HiggsRot(i, j)) > 0)
+      {
+        throw std::runtime_error("Error. Invalid rotation matrix detected.");
+      }
+      zero_element = false;
+    }
+  }
+
   MatrixXd HiggsRotFixed(NHiggs, NHiggs);
   for (std::size_t i = 0; i < NHiggs; i++)
   {
@@ -785,21 +817,21 @@ void Class_Potential_R2HDM::AdjustRotationMatrix()
   }
 
   // charged submatrix
-  if (HiggsRotFixed(posGp, pos_eta1) < 0) // Gp eta1 (+ cos(beta))
+  if (HiggsRotFixed(posG1, pos_rho1) < 0) // G1 rho1 (+ cos(beta))
   {
-    HiggsRotFixed.row(posGp) *= -1;
+    HiggsRotFixed.row(posG1) *= -1;
   }
-  if (HiggsRotFixed(posGm, pos_rho1) < 0) // Gm rho1 (+ cos(beta))
+  if (HiggsRotFixed(posG2, pos_eta1) < 0) // G2 eta1 (+ cos(beta))
   {
-    HiggsRotFixed.row(posGm) *= -1;
+    HiggsRotFixed.row(posG2) *= -1;
   }
-  if (HiggsRotFixed(posHp, pos_rho2) < 0) // Hp rho2 (+ cos(beta))
+  if (HiggsRotFixed(posH1, pos_rho2) < 0) // H1 rho2 (+ cos(beta))
   {
-    HiggsRotFixed.row(posHp) *= -1;
+    HiggsRotFixed.row(posH1) *= -1;
   }
-  if (HiggsRotFixed(posHm, pos_eta2) < 0) // Hm eta2 (+ cos(beta))
+  if (HiggsRotFixed(posH2, pos_eta2) < 0) // H2 eta2 (+ cos(beta))
   {
-    HiggsRotFixed.row(posHm) *= -1;
+    HiggsRotFixed.row(posH2) *= -1;
   }
 
   // check neutral, CP-odd submatrix
@@ -826,6 +858,8 @@ void Class_Potential_R2HDM::AdjustRotationMatrix()
 
   alpha = std::asin(HiggsRotFixed(posH, pos_zeta2)); // H zeta2 (+ sin(alpha))
 
+  // check beta's and other entries
+
   for (std::size_t i = 0; i < NHiggs; i++)
   {
     for (std::size_t j = 0; j < NHiggs; j++)
@@ -833,6 +867,8 @@ void Class_Potential_R2HDM::AdjustRotationMatrix()
       HiggsRotationMatrixEnsuredConvention[i][j] = HiggsRotFixed(i, j);
     }
   }
+
+  return;
 }
 
 /**
@@ -862,10 +898,10 @@ void Class_Potential_R2HDM::TripleHiggsCouplings()
 
   std::vector<double> HiggsOrder(NHiggs);
 
-  HiggsOrder[0] = posGp;
-  HiggsOrder[1] = posGm;
-  HiggsOrder[2] = posHp;
-  HiggsOrder[3] = posHm;
+  HiggsOrder[0] = posG1;
+  HiggsOrder[1] = posG2;
+  HiggsOrder[2] = posH1;
+  HiggsOrder[3] = posH2;
   HiggsOrder[4] = posG0;
   HiggsOrder[5] = posA;
   HiggsOrder[6] = posH;
@@ -886,50 +922,186 @@ void Class_Potential_R2HDM::TripleHiggsCouplings()
     HiggsRotSort.row(i) = HiggsRot.row(HiggsOrder[i]);
   }
 
-  TripleHiggsCorrectionsCWPhysical.resize(NHiggs);
-  TripleHiggsCorrectionsTreePhysical.resize(NHiggs);
-  TripleHiggsCorrectionsCTPhysical.resize(NHiggs);
-  for (std::size_t i = 0; i < NHiggs; i++)
-  {
-    TripleHiggsCorrectionsTreePhysical[i].resize(NHiggs);
-    TripleHiggsCorrectionsCWPhysical[i].resize(NHiggs);
-    TripleHiggsCorrectionsCTPhysical[i].resize(NHiggs);
-    for (std::size_t j = 0; j < NHiggs; j++)
-    {
-      TripleHiggsCorrectionsCWPhysical[i][j].resize(NHiggs);
-      TripleHiggsCorrectionsTreePhysical[i][j].resize(NHiggs);
-      TripleHiggsCorrectionsCTPhysical[i][j].resize(NHiggs);
-    }
-  }
+  using vec1Complex = std::vector<std::complex<double>>;
+  using vec2Complex = std::vector<std::vector<std::complex<double>>>;
+  using vec3Complex =
+      std::vector<std::vector<std::vector<std::complex<double>>>>;
 
-  for (std::size_t i = 0; i < NHiggs; i++)
+  // rotation from (i,j,k) to (a,b,c)
+  // a,b,c: indices in mass basis with G1,G2,H1,H2
+  // i,j,k: indices in interaction basis
+
+  vec3Complex TripleTree_ajk =
+      vec3Complex{NHiggs, vec2Complex{NHiggs, vec1Complex(NHiggs, 0)}};
+  vec3Complex TripleCW_ajk =
+      vec3Complex{NHiggs, vec2Complex{NHiggs, vec1Complex(NHiggs, 0)}};
+  vec3Complex TripleCT_ajk =
+      vec3Complex{NHiggs, vec2Complex{NHiggs, vec1Complex(NHiggs, 0)}};
+
+  for (std::size_t a = 0; a < NHiggs; a++)
   {
     for (std::size_t j = 0; j < NHiggs; j++)
     {
       for (std::size_t k = 0; k < NHiggs; k++)
       {
-        TripleHiggsCorrectionsCWPhysical[i][j][k]   = 0;
-        TripleHiggsCorrectionsTreePhysical[i][j][k] = 0;
-        TripleHiggsCorrectionsCTPhysical[i][j][k]   = 0;
-        for (std::size_t l = 0; l < NHiggs; l++)
+        for (std::size_t i = 0; i < NHiggs; i++)
         {
-          for (std::size_t m = 0; m < NHiggs; m++)
-          {
-            for (std::size_t n = 0; n < NHiggs; n++)
-            {
-              //  			  double RotFac =
-              //  (HiggsRot(i,l)*HiggsRot(j,m)*HiggsRot(k,n)).real();
-              double RotFac =
-                  HiggsRotSort(i, l) * HiggsRotSort(j, m) * HiggsRotSort(k, n);
-              TripleHiggsCorrectionsCWPhysical[i][j][k] +=
-                  RotFac * GaugeBasis[l][m][n];
-              TripleHiggsCorrectionsTreePhysical[i][j][k] +=
-                  RotFac * LambdaHiggs_3[l][m][n];
-              TripleHiggsCorrectionsCTPhysical[i][j][k] +=
-                  RotFac * LambdaHiggs_3_CT[l][m][n];
-            }
-          }
+          TripleTree_ajk[a][j][k] +=
+              HiggsRotSort(a, i) * LambdaHiggs_3[i][j][k];
+          TripleCW_ajk[a][j][k] += HiggsRotSort(a, i) * GaugeBasis[i][j][k];
+          TripleCT_ajk[a][j][k] +=
+              HiggsRotSort(a, i) * LambdaHiggs_3_CT[i][j][k];
         }
+      }
+    }
+  }
+
+  vec3Complex TripleTree_abk =
+      vec3Complex{NHiggs, vec2Complex{NHiggs, vec1Complex(NHiggs, 0)}};
+  vec3Complex TripleCW_abk =
+      vec3Complex{NHiggs, vec2Complex{NHiggs, vec1Complex(NHiggs, 0)}};
+  vec3Complex TripleCT_abk =
+      vec3Complex{NHiggs, vec2Complex{NHiggs, vec1Complex(NHiggs, 0)}};
+
+  for (std::size_t a = 0; a < NHiggs; a++)
+  {
+    for (std::size_t b = 0; b < NHiggs; b++)
+    {
+      for (std::size_t k = 0; k < NHiggs; k++)
+      {
+        for (std::size_t j = 0; j < NHiggs; j++)
+        {
+          TripleTree_abk[a][b][k] +=
+              HiggsRotSort(b, j) * TripleTree_ajk[a][j][k];
+          TripleCW_abk[a][b][k] += HiggsRotSort(b, j) * TripleCW_ajk[a][j][k];
+          TripleCT_abk[a][b][k] += HiggsRotSort(b, j) * TripleCT_ajk[a][j][k];
+        }
+      }
+    }
+  }
+
+  vec3Complex TripleTree_abc =
+      vec3Complex{NHiggs, vec2Complex{NHiggs, vec1Complex(NHiggs, 0)}};
+  vec3Complex TripleCW_abc =
+      vec3Complex{NHiggs, vec2Complex{NHiggs, vec1Complex(NHiggs, 0)}};
+  vec3Complex TripleCT_abc =
+      vec3Complex{NHiggs, vec2Complex{NHiggs, vec1Complex(NHiggs, 0)}};
+
+  for (std::size_t a = 0; a < NHiggs; a++)
+  {
+    for (std::size_t b = 0; b < NHiggs; b++)
+    {
+      for (std::size_t c = 0; c < NHiggs; c++)
+      {
+        for (std::size_t k = 0; k < NHiggs; k++)
+        {
+          TripleTree_abc[a][b][c] +=
+              HiggsRotSort(c, k) * TripleTree_abk[a][b][k];
+          TripleCW_abc[a][b][c] += HiggsRotSort(c, k) * TripleCW_abk[a][b][k];
+          TripleCT_abc[a][b][c] += HiggsRotSort(c, k) * TripleCT_abk[a][b][k];
+        }
+      }
+    }
+  }
+
+  // rotation from (a,b,c) to (d,e,f)
+  // (a,b,c): mass basis with G1,G2,H1,H2
+  // (d,e,f): mass basis with G^+,G^-,H^+,H^-
+  MatrixXcd ChargeHiggsRot = MatrixXcd::Zero(NHiggs, NHiggs);
+  // G^+ and G^-
+  ChargeHiggsRot(0, 0) = 1. / std::sqrt(2);
+  ChargeHiggsRot(0, 1) = II / std::sqrt(2);
+  ChargeHiggsRot(1, 0) = 1. / std::sqrt(2);
+  ChargeHiggsRot(1, 1) = -II / std::sqrt(2);
+  // H^+ and H^-
+  ChargeHiggsRot(2, 2) = 1. / std::sqrt(2);
+  ChargeHiggsRot(2, 3) = II / std::sqrt(2);
+  ChargeHiggsRot(3, 2) = 1. / std::sqrt(2);
+  ChargeHiggsRot(3, 3) = -II / std::sqrt(2);
+  ChargeHiggsRot(4, 4) = 1; // G0
+  ChargeHiggsRot(5, 5) = 1; // A
+  ChargeHiggsRot(6, 6) = 1; // H
+  ChargeHiggsRot(7, 7) = 1; // h
+
+  // final mass-base order: G^+,G^-,H^+,H^-,G0,A,H,h
+
+  vec3Complex TripleTree_dbc =
+      vec3Complex{NHiggs, vec2Complex{NHiggs, vec1Complex(NHiggs, 0)}};
+  vec3Complex TripleCW_dbc =
+      vec3Complex{NHiggs, vec2Complex{NHiggs, vec1Complex(NHiggs, 0)}};
+  vec3Complex TripleCT_dbc =
+      vec3Complex{NHiggs, vec2Complex{NHiggs, vec1Complex(NHiggs, 0)}};
+
+  for (std::size_t d = 0; d < NHiggs; d++)
+  {
+    for (std::size_t b = 0; b < NHiggs; b++)
+    {
+      for (std::size_t c = 0; c < NHiggs; c++)
+      {
+        for (std::size_t a = 0; a < NHiggs; a++)
+        {
+          TripleTree_dbc[d][b][c] +=
+              ChargeHiggsRot(d, a) * TripleTree_abc[a][b][c];
+          TripleCW_dbc[d][b][c] += ChargeHiggsRot(d, a) * TripleCW_abc[a][b][c];
+          TripleCT_dbc[d][b][c] += ChargeHiggsRot(d, a) * TripleCT_abc[a][b][c];
+        }
+      }
+    }
+  }
+
+  vec3Complex TripleTree_dec =
+      vec3Complex{NHiggs, vec2Complex{NHiggs, vec1Complex(NHiggs, 0)}};
+  vec3Complex TripleCW_dec =
+      vec3Complex{NHiggs, vec2Complex{NHiggs, vec1Complex(NHiggs, 0)}};
+  vec3Complex TripleCT_dec =
+      vec3Complex{NHiggs, vec2Complex{NHiggs, vec1Complex(NHiggs, 0)}};
+
+  for (std::size_t d = 0; d < NHiggs; d++)
+  {
+    for (std::size_t e = 0; e < NHiggs; e++)
+    {
+      for (std::size_t c = 0; c < NHiggs; c++)
+      {
+        for (std::size_t b = 0; b < NHiggs; b++)
+        {
+          TripleTree_dec[d][e][c] +=
+              ChargeHiggsRot(e, b) * TripleTree_dbc[d][b][c];
+          TripleCW_dec[d][e][c] += ChargeHiggsRot(e, b) * TripleCW_dbc[d][b][c];
+          TripleCT_dec[d][e][c] += ChargeHiggsRot(e, b) * TripleCT_dbc[d][b][c];
+        }
+      }
+    }
+  }
+
+  TripleHiggsCorrectionsTreePhysical =
+      vec3Complex{NHiggs, vec2Complex{NHiggs, vec1Complex(NHiggs, 0)}};
+  TripleHiggsCorrectionsCWPhysical =
+      vec3Complex{NHiggs, vec2Complex{NHiggs, vec1Complex(NHiggs, 0)}};
+  TripleHiggsCorrectionsCTPhysical =
+      vec3Complex{NHiggs, vec2Complex{NHiggs, vec1Complex(NHiggs, 0)}};
+
+  for (std::size_t d = 0; d < NHiggs; d++)
+  {
+    for (std::size_t e = 0; e < NHiggs; e++)
+    {
+      for (std::size_t f = 0; f < NHiggs; f++)
+      {
+        for (std::size_t c = 0; c < NHiggs; c++)
+        {
+          TripleHiggsCorrectionsTreePhysical[d][e][f] +=
+              ChargeHiggsRot(f, c) * TripleTree_dec[d][e][c];
+          TripleHiggsCorrectionsCWPhysical[d][e][f] +=
+              ChargeHiggsRot(f, c) * TripleCW_dec[d][e][c];
+          TripleHiggsCorrectionsCTPhysical[d][e][f] +=
+              ChargeHiggsRot(f, c) * TripleCT_dec[d][e][c];
+        }
+
+        TripleHiggsCorrectionsTreePhysical[d][e][f] =
+            -II * std::conj(TripleHiggsCorrectionsTreePhysical[d][e][f]);
+        TripleHiggsCorrectionsCWPhysical[d][e][f] =
+            -II * std::conj(TripleHiggsCorrectionsCWPhysical[d][e][f]);
+        TripleHiggsCorrectionsCTPhysical[d][e][f] =
+            -II * std::conj(TripleHiggsCorrectionsCTPhysical[d][e][f]);
       }
     }
   }
@@ -945,12 +1117,6 @@ void Class_Potential_R2HDM::CheckTrilinearTreeCouplings()
   std::vector<double> HiggsMasses;
   HiggsMasses = HiggsMassesSquared(vevTree, 0);
 
-  // std::cout << HiggsMasses << "\n";
-
-  // std::cout << posGp << "," << posGm << "," << posHp << "," << posHm << ","
-  //           << posG0 << "," << posA << "," << posH << "," << posh <<
-  //           "\n";
-
   double bma    = beta - alpha;
   double cbma   = std::cos(bma);
   double sbma   = std::sin(bma);
@@ -958,57 +1124,69 @@ void Class_Potential_R2HDM::CheckTrilinearTreeCouplings()
   double mhsq   = HiggsMasses[posh];
   double mHsq   = HiggsMasses[posH];
   double mAsq   = HiggsMasses[posA];
-  double mHpmsq = HiggsMasses[posHp];
+  double mHpmsq = HiggsMasses[posH1];
 
   double mbarsq = RealMMix / (C_CosBeta * C_SinBeta);
 
-  double tree_hhh = -3 / scale *
-                    (sbma * sbma * sbma * mhsq +
-                     sbma * cbma * cbma * (3 * mhsq - 2 * mbarsq) +
-                     2 * cbma * cbma * cbma * cot2b * (mhsq - mbarsq));
-  double tree_hhH = cbma / scale *
-                    (sbma * sbma * (2 * mhsq + mHsq - 4 * mbarsq) +
-                     2 * sbma * cbma * cot2b * (2 * mhsq + mHsq - 3 * mbarsq) -
-                     cbma * cbma * (2 * mhsq + mHsq - 2 * mbarsq));
-  double tree_hHH = -sbma / scale *
-                    (sbma * sbma * (mhsq + 2 * mHsq - 2 * mbarsq) +
-                     2 * sbma * cbma * cot2b * (mhsq + 2 * mHsq - 3 * mbarsq) -
-                     cbma * cbma * (mhsq + 2 * mHsq - 4 * mbarsq));
-  double tree_HHH = -3 / scale *
-                    (cbma * cbma * cbma * mHsq +
-                     sbma * sbma * cbma * (3 * mHsq - 2 * mbarsq) -
-                     2 * sbma * sbma * sbma * cot2b * (mHsq - mbarsq));
-  double tree_hAA = -1. / scale *
-                    (sbma * (2 * mAsq + mhsq - 2 * mbarsq) +
-                     2 * cbma * cot2b * (mhsq - mbarsq));
-  double tree_HAA = -1. / scale *
-                    (cbma * (2 * mAsq + mHsq - 2 * mbarsq) -
-                     2 * sbma * cot2b * (mHsq - mbarsq));
-  double tree_hHpHm = -1. / scale *
-                      (sbma * (mhsq + 2 * mHpmsq - 2 * mbarsq) +
-                       2 * cbma * cot2b * (mhsq - mbarsq));
-  double tree_HHpHm = -1. / scale *
-                      (cbma * (mHsq + 2 * mHpmsq - 2 * mbarsq) -
-                       2 * sbma * cot2b * (mHsq - mbarsq));
-  double tree_hAG0    = cbma / scale * (mAsq - mhsq);
-  double tree_HAG0    = -sbma / scale * (mAsq - mHsq);
-  double tree_hHpmGmp = -cbma / scale * (mhsq - mHpmsq);
-  double tree_HHpmGmp = sbma / scale * (mHsq - mHpmsq);
-  double tree_AHpGm   = (mHpmsq - mAsq) / scale;
-  double tree_AHmGp   = -tree_AHpGm;
-  double tree_hG0G0   = -sbma / scale * mhsq;
-  double tree_HG0G0   = -cbma / scale * mHsq;
-  double tree_hGpmGmp = -sbma / scale * mhsq;
-  double tree_HGpmGmp = -cbma / scale * mHsq;
+  std::complex<double> tree_hhh =
+      -3 / scale *
+      (sbma * sbma * sbma * mhsq +
+       sbma * cbma * cbma * (3 * mhsq - 2 * mbarsq) +
+       2 * cbma * cbma * cbma * cot2b * (mhsq - mbarsq)) *
+      II;
+  std::complex<double> tree_hhH =
+      cbma / scale *
+      (sbma * sbma * (2 * mhsq + mHsq - 4 * mbarsq) +
+       2 * sbma * cbma * cot2b * (2 * mhsq + mHsq - 3 * mbarsq) -
+       cbma * cbma * (2 * mhsq + mHsq - 2 * mbarsq)) *
+      II;
+  std::complex<double> tree_hHH =
+      -sbma / scale *
+      (sbma * sbma * (mhsq + 2 * mHsq - 2 * mbarsq) +
+       2 * sbma * cbma * cot2b * (mhsq + 2 * mHsq - 3 * mbarsq) -
+       cbma * cbma * (mhsq + 2 * mHsq - 4 * mbarsq)) *
+      II;
+  std::complex<double> tree_HHH =
+      -3 / scale *
+      (cbma * cbma * cbma * mHsq +
+       sbma * sbma * cbma * (3 * mHsq - 2 * mbarsq) -
+       2 * sbma * sbma * sbma * cot2b * (mHsq - mbarsq)) *
+      II;
+  std::complex<double> tree_hAA = -1. / scale *
+                                  (sbma * (2 * mAsq + mhsq - 2 * mbarsq) +
+                                   2 * cbma * cot2b * (mhsq - mbarsq)) *
+                                  II;
+  std::complex<double> tree_HAA = -1. / scale *
+                                  (cbma * (2 * mAsq + mHsq - 2 * mbarsq) -
+                                   2 * sbma * cot2b * (mHsq - mbarsq)) *
+                                  II;
+  std::complex<double> tree_hHpHm = -1. / scale *
+                                    (sbma * (mhsq + 2 * mHpmsq - 2 * mbarsq) +
+                                     2 * cbma * cot2b * (mhsq - mbarsq)) *
+                                    II;
+  std::complex<double> tree_HHpHm = -1. / scale *
+                                    (cbma * (mHsq + 2 * mHpmsq - 2 * mbarsq) -
+                                     2 * sbma * cot2b * (mHsq - mbarsq)) *
+                                    II;
+  std::complex<double> tree_hAG0    = cbma / scale * (mAsq - mhsq) * II;
+  std::complex<double> tree_HAG0    = -sbma / scale * (mAsq - mHsq) * II;
+  std::complex<double> tree_hHpmGmp = -cbma / scale * (mhsq - mHpmsq) * II;
+  std::complex<double> tree_HHpmGmp = sbma / scale * (mHsq - mHpmsq) * II;
+  std::complex<double> tree_AHpGm   = (mHpmsq - mAsq) / scale;
+  std::complex<double> tree_AHmGp   = -tree_AHpGm;
+  std::complex<double> tree_hG0G0   = -sbma / scale * mhsq * II;
+  std::complex<double> tree_HG0G0   = -cbma / scale * mHsq * II;
+  std::complex<double> tree_hGpmGmp = -sbma / scale * mhsq * II;
+  std::complex<double> tree_HGpmGmp = -cbma / scale * mHsq * II;
 
-  // HiggsOrder: 0:Gp, 1:Gm, 2:Hp, 3:Hm, 4:G0, 5:A, 6:H, 7:h
+  // HiggsOrder: 0:G1, 1:G2, 2:H1, 3:H2, 4:G0, 5:A, 6:H, 7:h
 
   ss << "------ Checking Trilinear Tree Couplings ------\n";
   ss << "The mass spectrum is given by :\n"
-     << "m_{G^+} = " << std::sqrt(HiggsMasses[posGp]) << " GeV \n"
-     << "m_{G^-} = " << std::sqrt(HiggsMasses[posGm]) << " GeV \n"
-     << "m_{H^+} = " << std::sqrt(HiggsMasses[posHp]) << " GeV \n"
-     << "m_{H^-} = " << std::sqrt(HiggsMasses[posHm]) << " GeV \n"
+     << "m_{G^+} = " << std::sqrt(HiggsMasses[posG1]) << " GeV \n"
+     << "m_{G^-} = " << std::sqrt(HiggsMasses[posG2]) << " GeV \n"
+     << "m_{H^+} = " << std::sqrt(HiggsMasses[posH1]) << " GeV \n"
+     << "m_{H^-} = " << std::sqrt(HiggsMasses[posH2]) << " GeV \n"
      << "m_{G^0} = " << std::sqrt(HiggsMasses[posG0]) << " GeV \n"
      << "m_A = " << std::sqrt(HiggsMasses[posA]) << " GeV \n"
      << "m_H = " << std::sqrt(HiggsMasses[posH]) << " GeV \n"
@@ -1016,11 +1194,13 @@ void Class_Potential_R2HDM::CheckTrilinearTreeCouplings()
   ss << "coupling: true_value | BSMPT_value\n";
   int count = 0;
 
+  // Charge-rotated mass basis: 0:Gp, 1:Gm, 2:Hp, 3:Hm, 4:G0, 5:A, 6:H, 7:h
+
   // charge-breaking trilinears (check if the vanish)
-  double GpGpG0 = TripleHiggsCorrectionsTreePhysical[0][0][4];
-  double GmGmG0 = TripleHiggsCorrectionsTreePhysical[0][0][5];
-  double HpHpG0 = TripleHiggsCorrectionsTreePhysical[0][0][6];
-  double HmHmG0 = TripleHiggsCorrectionsTreePhysical[0][0][7];
+  std::complex<double> GpGpG0 = TripleHiggsCorrectionsTreePhysical[0][0][4];
+  std::complex<double> GmGmG0 = TripleHiggsCorrectionsTreePhysical[0][0][5];
+  std::complex<double> HpHpG0 = TripleHiggsCorrectionsTreePhysical[0][0][6];
+  std::complex<double> HmHmG0 = TripleHiggsCorrectionsTreePhysical[0][0][7];
 
   if (not almost_the_same(0, GpGpG0))
   {
@@ -1043,10 +1223,10 @@ void Class_Potential_R2HDM::CheckTrilinearTreeCouplings()
     ss << "HmHmG0 : 0 | " << HmHmG0 << "\n";
   }
 
-  double GpGpA = TripleHiggsCorrectionsTreePhysical[1][1][4];
-  double GmGmA = TripleHiggsCorrectionsTreePhysical[1][1][5];
-  double HpHpA = TripleHiggsCorrectionsTreePhysical[1][1][6];
-  double HmHmA = TripleHiggsCorrectionsTreePhysical[1][1][7];
+  std::complex<double> GpGpA = TripleHiggsCorrectionsTreePhysical[1][1][4];
+  std::complex<double> GmGmA = TripleHiggsCorrectionsTreePhysical[1][1][5];
+  std::complex<double> HpHpA = TripleHiggsCorrectionsTreePhysical[1][1][6];
+  std::complex<double> HmHmA = TripleHiggsCorrectionsTreePhysical[1][1][7];
 
   if (not almost_the_same(0, GpGpA))
   {
@@ -1069,10 +1249,10 @@ void Class_Potential_R2HDM::CheckTrilinearTreeCouplings()
     ss << "HmHmA : 0 | " << HmHmA << "\n";
   }
 
-  double GpGpH = TripleHiggsCorrectionsTreePhysical[2][2][4];
-  double GmGmH = TripleHiggsCorrectionsTreePhysical[2][2][5];
-  double HpHpH = TripleHiggsCorrectionsTreePhysical[2][2][6];
-  double HmHmH = TripleHiggsCorrectionsTreePhysical[2][2][7];
+  std::complex<double> GpGpH = TripleHiggsCorrectionsTreePhysical[2][2][4];
+  std::complex<double> GmGmH = TripleHiggsCorrectionsTreePhysical[2][2][5];
+  std::complex<double> HpHpH = TripleHiggsCorrectionsTreePhysical[2][2][6];
+  std::complex<double> HmHmH = TripleHiggsCorrectionsTreePhysical[2][2][7];
 
   if (not almost_the_same(0, GpGpH))
   {
@@ -1095,10 +1275,10 @@ void Class_Potential_R2HDM::CheckTrilinearTreeCouplings()
     ss << "HmHmH : 0 | " << HmHmH << "\n";
   }
 
-  double GpGph = TripleHiggsCorrectionsTreePhysical[3][3][4];
-  double GmGmh = TripleHiggsCorrectionsTreePhysical[3][3][5];
-  double HpHph = TripleHiggsCorrectionsTreePhysical[3][3][6];
-  double HmHmh = TripleHiggsCorrectionsTreePhysical[3][3][7];
+  std::complex<double> GpGph = TripleHiggsCorrectionsTreePhysical[3][3][4];
+  std::complex<double> GmGmh = TripleHiggsCorrectionsTreePhysical[3][3][5];
+  std::complex<double> HpHph = TripleHiggsCorrectionsTreePhysical[3][3][6];
+  std::complex<double> HmHmh = TripleHiggsCorrectionsTreePhysical[3][3][7];
 
   if (not almost_the_same(0, GpGph))
   {
@@ -1123,160 +1303,160 @@ void Class_Potential_R2HDM::CheckTrilinearTreeCouplings()
 
   // hhh
   if (not almost_the_same(tree_hhh,
-                          -TripleHiggsCorrectionsTreePhysical[7][7][7]))
+                          TripleHiggsCorrectionsTreePhysical[7][7][7]))
   {
     count += 1;
     ss << "hhh: " << tree_hhh << " | "
-       << -TripleHiggsCorrectionsTreePhysical[7][7][7] << "\n";
+       << TripleHiggsCorrectionsTreePhysical[7][7][7] << "\n";
   }
   // hhH
   if (not almost_the_same(tree_hhH,
-                          -TripleHiggsCorrectionsTreePhysical[7][7][6]))
+                          TripleHiggsCorrectionsTreePhysical[7][7][6]))
   {
     count += 1;
     ss << "hhH: " << tree_hhH << " | "
-       << -TripleHiggsCorrectionsTreePhysical[7][7][6] << "\n";
+       << TripleHiggsCorrectionsTreePhysical[7][7][6] << "\n";
     ;
   }
   // hHH
   if (not almost_the_same(tree_hHH,
-                          -TripleHiggsCorrectionsTreePhysical[7][6][6]))
+                          TripleHiggsCorrectionsTreePhysical[7][6][6]))
   {
     count += 1;
     ss << "hHH: " << tree_hHH << " | "
-       << -TripleHiggsCorrectionsTreePhysical[7][6][6] << "\n";
+       << TripleHiggsCorrectionsTreePhysical[7][6][6] << "\n";
   }
   // HHH
   if (not almost_the_same(tree_HHH,
-                          -TripleHiggsCorrectionsTreePhysical[6][6][6]))
+                          TripleHiggsCorrectionsTreePhysical[6][6][6]))
   {
     count += 1;
     ss << "HHH: " << tree_HHH << " | "
-       << -TripleHiggsCorrectionsTreePhysical[6][6][6] << "\n";
+       << TripleHiggsCorrectionsTreePhysical[6][6][6] << "\n";
   }
   // hAA
   if (not almost_the_same(tree_hAA,
-                          -TripleHiggsCorrectionsTreePhysical[7][5][5]))
+                          TripleHiggsCorrectionsTreePhysical[7][5][5]))
   {
     count += 1;
     ss << "hAA: " << tree_hAA << " | "
-       << -TripleHiggsCorrectionsTreePhysical[7][5][5] << "\n";
+       << TripleHiggsCorrectionsTreePhysical[7][5][5] << "\n";
   }
   // HAA
   if (not almost_the_same(tree_HAA,
-                          -TripleHiggsCorrectionsTreePhysical[6][5][5]))
+                          TripleHiggsCorrectionsTreePhysical[6][5][5]))
   {
     count += 1;
     ss << "HAA: " << tree_HAA << " | "
-       << -TripleHiggsCorrectionsTreePhysical[6][5][5] << "\n";
+       << TripleHiggsCorrectionsTreePhysical[6][5][5] << "\n";
   }
   // hHpHm
   if (not almost_the_same(tree_hHpHm,
-                          -TripleHiggsCorrectionsTreePhysical[7][2][3]))
+                          TripleHiggsCorrectionsTreePhysical[7][2][3]))
   {
     count += 1;
     ss << "hHpHm: " << tree_hHpHm << " | "
-       << -TripleHiggsCorrectionsTreePhysical[7][2][3] << "\n";
+       << TripleHiggsCorrectionsTreePhysical[7][2][3] << "\n";
   }
   // HHpHm
   if (not almost_the_same(tree_HHpHm,
-                          -TripleHiggsCorrectionsTreePhysical[6][2][3]))
+                          TripleHiggsCorrectionsTreePhysical[6][2][3]))
   {
     count += 1;
     ss << "HHpHm: " << tree_HHpHm << " | "
-       << -TripleHiggsCorrectionsTreePhysical[6][2][3] << "\n";
+       << TripleHiggsCorrectionsTreePhysical[6][2][3] << "\n";
   }
   // hAG0
   if (not almost_the_same(tree_hAG0,
-                          -TripleHiggsCorrectionsTreePhysical[7][5][4]))
+                          TripleHiggsCorrectionsTreePhysical[7][5][4]))
   {
     count += 1;
     ss << "hAG0: " << tree_hAG0 << " | "
-       << -TripleHiggsCorrectionsTreePhysical[7][5][4] << "\n";
+       << TripleHiggsCorrectionsTreePhysical[7][5][4] << "\n";
   }
   // HAG0
   if (not almost_the_same(tree_HAG0,
-                          -TripleHiggsCorrectionsTreePhysical[6][5][4]))
+                          TripleHiggsCorrectionsTreePhysical[6][5][4]))
   {
     count += 1;
     ss << "HAG0: " << tree_HAG0 << " | "
-       << -TripleHiggsCorrectionsTreePhysical[6][5][4] << "\n";
+       << TripleHiggsCorrectionsTreePhysical[6][5][4] << "\n";
   }
   // hHpmGmp
   if (not almost_the_same(tree_hHpmGmp,
-                          -TripleHiggsCorrectionsTreePhysical[7][2][1]) or
+                          TripleHiggsCorrectionsTreePhysical[7][2][1]) or
       not almost_the_same(tree_hHpmGmp,
-                          -TripleHiggsCorrectionsTreePhysical[7][3][0]))
+                          TripleHiggsCorrectionsTreePhysical[7][3][0]))
   {
     count += 1;
     ss << "hHpmGmp: " << tree_hHpmGmp << " | "
-       << -TripleHiggsCorrectionsTreePhysical[7][2][1] << ","
-       << -TripleHiggsCorrectionsTreePhysical[7][3][0] << "\n";
+       << TripleHiggsCorrectionsTreePhysical[7][2][1] << ","
+       << TripleHiggsCorrectionsTreePhysical[7][3][0] << "\n";
   }
   // HHpmGmp
   if (not almost_the_same(tree_HHpmGmp,
-                          -TripleHiggsCorrectionsTreePhysical[6][2][1]) or
+                          TripleHiggsCorrectionsTreePhysical[6][2][1]) or
       not almost_the_same(tree_HHpmGmp,
-                          -TripleHiggsCorrectionsTreePhysical[6][3][0]))
+                          TripleHiggsCorrectionsTreePhysical[6][3][0]))
   {
     count += 1;
     ss << "HHpmGmp: " << tree_HHpmGmp << " | "
-       << -TripleHiggsCorrectionsTreePhysical[6][2][1] << ","
-       << -TripleHiggsCorrectionsTreePhysical[6][3][0] << "\n";
+       << TripleHiggsCorrectionsTreePhysical[6][2][1] << ","
+       << TripleHiggsCorrectionsTreePhysical[6][3][0] << "\n";
   }
   // AHpGm
   if (not almost_the_same(tree_AHpGm,
-                          -TripleHiggsCorrectionsTreePhysical[5][2][1]))
+                          TripleHiggsCorrectionsTreePhysical[5][2][1]))
   {
     count += 1;
     ss << "AHpGm: " << tree_AHpGm << " | "
-       << -TripleHiggsCorrectionsTreePhysical[5][2][1] << "\n";
+       << TripleHiggsCorrectionsTreePhysical[5][2][1] << "\n";
   }
   // AHmGp
   if (not almost_the_same(tree_AHmGp,
-                          -TripleHiggsCorrectionsTreePhysical[5][3][0]))
+                          TripleHiggsCorrectionsTreePhysical[5][3][0]))
   {
     count += 1;
-    ss << "AHpGm: " << tree_AHmGp << " | "
-       << -TripleHiggsCorrectionsTreePhysical[5][3][0] << "\n";
+    ss << "AHmGp: " << tree_AHmGp << " | "
+       << TripleHiggsCorrectionsTreePhysical[5][3][0] << "\n";
   }
   // hG0G0
   if (not almost_the_same(tree_hG0G0,
-                          -TripleHiggsCorrectionsTreePhysical[7][4][4]))
+                          TripleHiggsCorrectionsTreePhysical[7][4][4]))
   {
     count += 1;
     ss << "hG0G0: " << tree_hG0G0 << " | "
-       << -TripleHiggsCorrectionsTreePhysical[7][4][4] << "\n";
+       << TripleHiggsCorrectionsTreePhysical[7][4][4] << "\n";
   }
   // HG0G0
   if (not almost_the_same(tree_HG0G0,
-                          -TripleHiggsCorrectionsTreePhysical[6][4][4]))
+                          TripleHiggsCorrectionsTreePhysical[6][4][4]))
   {
     count += 1;
     ss << "HG0G0: " << tree_HG0G0 << " | "
-       << -TripleHiggsCorrectionsTreePhysical[6][4][4] << "\n";
+       << TripleHiggsCorrectionsTreePhysical[6][4][4] << "\n";
   }
   // hGpmGmp
   if (not almost_the_same(tree_hGpmGmp,
-                          -TripleHiggsCorrectionsTreePhysical[7][0][1]) or
+                          TripleHiggsCorrectionsTreePhysical[7][0][1]) or
       not almost_the_same(tree_hGpmGmp,
-                          -TripleHiggsCorrectionsTreePhysical[7][1][0]))
+                          TripleHiggsCorrectionsTreePhysical[7][1][0]))
   {
     count += 1;
     ss << "hGpmGmp: " << tree_hGpmGmp << " | "
-       << -TripleHiggsCorrectionsTreePhysical[7][0][1] << ","
-       << -TripleHiggsCorrectionsTreePhysical[7][1][0] << "\n";
+       << TripleHiggsCorrectionsTreePhysical[7][0][1] << ","
+       << TripleHiggsCorrectionsTreePhysical[7][1][0] << "\n";
   }
   // HGpmGmp
   if (not almost_the_same(tree_HGpmGmp,
-                          -TripleHiggsCorrectionsTreePhysical[6][0][1]) or
+                          TripleHiggsCorrectionsTreePhysical[6][0][1]) or
       not almost_the_same(tree_HGpmGmp,
-                          -TripleHiggsCorrectionsTreePhysical[6][1][0]))
+                          TripleHiggsCorrectionsTreePhysical[6][1][0]))
   {
     count += 1;
     ss << "HGpmGmp: " << tree_HGpmGmp << " | "
-       << -TripleHiggsCorrectionsTreePhysical[6][0][1] << ","
-       << -TripleHiggsCorrectionsTreePhysical[6][1][0] << "\n";
+       << TripleHiggsCorrectionsTreePhysical[6][0][1] << ","
+       << TripleHiggsCorrectionsTreePhysical[6][1][0] << "\n";
   }
 
   if (count == 0)

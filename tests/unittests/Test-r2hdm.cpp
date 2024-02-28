@@ -328,12 +328,15 @@ TEST_CASE("Checking triple higgs NLO couplings in the R2HDM", "[r2hdm]")
     {
       for (std::size_t k{0}; k < NHiggs; ++k)
       {
-        Check(modelPointer->get_TripleHiggsCorrectionsTreePhysical(i, j, k),
+        Check(modelPointer->get_TripleHiggsCorrectionsTreePhysical(i, j, k)
+                  .real(),
               Expected.CheckTripleTree.at(i).at(j).at(k));
-        Check(modelPointer->get_TripleHiggsCorrectionsCTPhysical(i, j, k),
-              Expected.CheckTripleCT.at(i).at(j).at(k));
-        Check(modelPointer->get_TripleHiggsCorrectionsCWPhysical(i, j, k),
-              Expected.CheckTripleCW.at(i).at(j).at(k));
+        Check(
+            modelPointer->get_TripleHiggsCorrectionsCTPhysical(i, j, k).real(),
+            Expected.CheckTripleCT.at(i).at(j).at(k));
+        Check(
+            modelPointer->get_TripleHiggsCorrectionsCWPhysical(i, j, k).real(),
+            Expected.CheckTripleCW.at(i).at(j).at(k));
       }
     }
   }

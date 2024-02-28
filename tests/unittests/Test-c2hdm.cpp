@@ -301,20 +301,23 @@ TEST_CASE("Checking triple higgs NLO couplings in the C2HDM", "[c2hdm]")
         //      << modelPointer->get_TripleHiggsCorrectionsTreePhysical(i, j, k)
         //      << "\tExpextec:\t" <<
         //      Expected.CheckTripleTree.at(i).at(j).at(k));
-        Check(modelPointer->get_TripleHiggsCorrectionsTreePhysical(i, j, k),
+        Check(modelPointer->get_TripleHiggsCorrectionsTreePhysical(i, j, k)
+                  .real(),
               Expected.CheckTripleTree.at(i).at(j).at(k));
         // INFO("Failed at CT-Coupling ("
         //      << i << "," << j << "," << k << ")\tFound:\t"
         //      << modelPointer->get_TripleHiggsCorrectionsCTPhysical(i, j, k)
         //      << "\tExpextec:\t" << Expected.CheckTripleCT.at(i).at(j).at(k));
-        Check(modelPointer->get_TripleHiggsCorrectionsCTPhysical(i, j, k),
-              Expected.CheckTripleCT.at(i).at(j).at(k));
+        Check(
+            modelPointer->get_TripleHiggsCorrectionsCTPhysical(i, j, k).real(),
+            Expected.CheckTripleCT.at(i).at(j).at(k));
         // INFO("Failed at CW-Coupling ("
         //      << i << "," << j << "," << k << ")\tFound:\t"
         //      << modelPointer->get_TripleHiggsCorrectionsCWPhysical(i, j, k)
         //      << "\tExpextec:\t" << Expected.CheckTripleCW.at(i).at(j).at(k));
-        Check(modelPointer->get_TripleHiggsCorrectionsCWPhysical(i, j, k),
-              Expected.CheckTripleCW.at(i).at(j).at(k));
+        Check(
+            modelPointer->get_TripleHiggsCorrectionsCWPhysical(i, j, k).real(),
+            Expected.CheckTripleCW.at(i).at(j).at(k));
       }
     }
   }
