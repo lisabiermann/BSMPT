@@ -131,6 +131,42 @@ std::vector<std::string> Class_Template::addLegendTripleCouplings() const
 }
 
 /**
+ * returns a string which tells the user the chronological order of the Quartic
+ * Higgs couplings. Use this to complement the legend of the given input file
+ *
+ */
+std::vector<std::string> Class_Template::addLegendQuarticCouplings() const
+{
+  std::vector<std::string> labels;
+  std::vector<std::string> particles;
+  particles.resize(NHiggs);
+  // here you have to define the particle names in the vector particles
+
+  particles[0] = "H";
+
+  for (std::size_t i = 0; i < NHiggs; i++)
+  {
+    for (std::size_t j = i; j < NHiggs; j++)
+    {
+      for (std::size_t k = j; k < NHiggs; k++)
+      {
+        for (std::size_t l = k; l < NHiggs; l++)
+        {
+          labels.push_back("Tree_" + particles.at(i) + particles.at(j) +
+                           particles.at(k) + particles.at(l));
+          labels.push_back("CT_" + particles.at(i) + particles.at(j) +
+                           particles.at(k) + particles.at(l));
+          labels.push_back("CW_" + particles.at(i) + particles.at(j) +
+                           particles.at(k) + particles.at(l));
+        }
+      }
+    }
+  }
+
+  return labels;
+}
+
+/**
  * returns a string which tells the user the chronological order of the VEVs.
  * Use this to complement the legend of the given input file
  */
@@ -294,6 +330,9 @@ void Class_Template::TripleHiggsCouplings()
   if (!SetCurvatureDone) SetCurvatureArrays();
   if (!CalcCouplingsDone) CalculatePhysicalCouplings();
 
+  if (CalculatedTripleCouplings) return;
+  CalculatedTripleCouplings = true;
+
   std::vector<double> HiggsOrder(NHiggs);
   // Here you have to set the vector HiggsOrder. By telling e.g. HiggsOrder[0] =
   // 5 you always want your 6th lightest particle to be the first particle in
@@ -377,6 +416,125 @@ void Class_Template::TripleHiggsCouplings()
                   RotFac * LambdaHiggs_3[l][m][n];
               TripleHiggsCorrectionsCTPhysical[i][j][k] +=
                   RotFac * LambdaHiggs_3_CT[l][m][n];
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+void Class_Template::QuarticHiggsCouplings()
+{
+  if (!SetCurvatureDone) SetCurvatureArrays();
+  if (!CalcCouplingsdone) CalculatePhysicalCouplings();
+
+  if (CalculatedQuarticCouplings) return;
+  CalculatedQuarticCouplings = true;
+
+  std::vector<double> HiggsOrder(NHiggs);
+  // Here you have to set the vector HiggsOrder. By telling e.g. HiggsOrder[0] =
+  // 5 you always want your 6th lightest particle to be the first particle in
+  // the vector (which has the index 5 because they are sorted by mass)
+
+  // example for keeping the mass order
+  for (std::size_t i = 0; i < NHiggs; i++)
+  {
+    HiggsOrder[i] = i;
+  }
+
+  std::vector<double> QuarticDeriv;
+  QuarticDeriv = WeinbergForthDerivative();
+  std::vector<std::vector<std::vector<std::vector<double>>>> GaugeBasis(
+      NHiggs,
+      std::vector<std::vector<std::vector<double>>>(
+          NHiggs,
+          std::vector<std::vector<double>>(NHiggs,
+                                           std::vector<double>(NHiggs))));
+  for (std::size_t i = 0; i < NHiggs; i++)
+  {
+    for (std::size_t j = 0; j < NHiggs; j++)
+    {
+      for (std::size_t k = 0; k < NHiggs; k++)
+      {
+        for (std::size_t l = 0; l < NHiggs; l++)
+        {
+          GaugeBasis[i][j][k][l] =
+              QuarticDeriv.at(i + j * NHiggs + k * NHiggs * NHiggs +
+                              l * NHiggs * NHiggs * NHiggs);
+        }
+      }
+    }
+  }
+
+  MatrixXd HiggsRot(NHiggs, NHiggs);
+  for (std::size_t i = 0; i < NHiggs; i++)
+  {
+    for (std::size_t j = 0; j < NHiggs; j++)
+    {
+      HiggsRot(i, j) = HiggsRotationMatrix[i][j];
+    }
+  }
+
+  MatrixXd HiggsRotSort(NHiggs, NHiggs);
+
+  for (std::size_t i = 0; i < NHiggs; i++)
+  {
+    HiggsRotSort.row(i) = HiggsRot.row(HiggsOrder[i]);
+  }
+
+  QuarticHiggsCorrectionsCWPhysical.resize(NHiggs);
+  QuarticHiggsCorrectionsTreePhysical.resize(NHiggs);
+  QuarticHiggsCorrectionsCTPhysical.resize(NHiggs);
+  for (std::size_t i = 0; i < NHiggs; i++)
+  {
+    QuarticHiggsCorrectionsTreePhysical[i].resize(NHiggs);
+    QuarticHiggsCorrectionsCWPhysical[i].resize(NHiggs);
+    QuarticHiggsCorrectionsCTPhysical[i].resize(NHiggs);
+    for (std::size_t j = 0; j < NHiggs; j++)
+    {
+      QuarticHiggsCorrectionsCWPhysical[i][j].resize(NHiggs);
+      QuarticHiggsCorrectionsTreePhysical[i][j].resize(NHiggs);
+      QuarticHiggsCorrectionsCTPhysical[i][j].resize(NHiggs);
+      for (std::size_t k = 0; k < NHiggs; k++)
+      {
+        QuarticHiggsCorrectionsCWPhysical[i][j][k].resize(NHiggs);
+        QuarticHiggsCorrectionsTreePhysical[i][j][k].resize(NHiggs);
+        QuarticHiggsCorrectionsCTPhysical[i][j][k].resize(NHiggs);
+      }
+    }
+  }
+
+  for (std::size_t i = 0; i < NHiggs; i++)
+  {
+    for (std::size_t j = 0; j < NHiggs; j++)
+    {
+      for (std::size_t k = 0; k < NHiggs; k++)
+      {
+        for (std::size_t l = 0; l < NHiggs; l++)
+        {
+          QuarticHiggsCorrectionsCWPhysical[i][j][k][l]   = 0;
+          QuarticHiggsCorrectionsTreePhysical[i][j][k][l] = 0;
+          QuarticHiggsCorrectionsCTPhysical[i][j][k][l]   = 0;
+
+          for (std::size_t m = 0; m < NHiggs; m++)
+          {
+            for (std::size_t n = 0; n < NHiggs; n++)
+            {
+              for (std::size_t o = 0; o < NHiggs; o++)
+              {
+                for (std::size_t p = 0; p < NHiggs; p++)
+                {
+                  double RotFac = HiggsRotSort(i, m) * HiggsRotSort(j, n) *
+                                  HiggsRotSort(k, o) * HiggsRotSort(l, p);
+                  QuarticHiggsCorrectionsCWPhysical[i][j][k][l] +=
+                      RotFac * GaugeBasis[m][n][o][p];
+                  QuarticHiggsCorrectionsTreePhysical[i][j][k][l] +=
+                      RotFac * LambdaHiggs_4[m][n][o][p];
+                  QuarticHiggsCorrectionsCTPhysical[i][j][k][l] +=
+                      RotFac * LambdaHiggs_4_CT[m][n][o][p];
+                }
+              }
             }
           }
         }

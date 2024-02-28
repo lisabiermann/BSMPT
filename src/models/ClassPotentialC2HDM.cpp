@@ -154,6 +154,58 @@ std::vector<std::string> Class_Potential_C2HDM::addLegendTripleCouplings() const
 }
 
 /**
+ * returns a string which tells the user the chronological order of the Quartic
+ * higgs couplings. Use this to complement the legend of the given inputfile
+ *
+ *
+ */
+std::vector<std::string>
+Class_Potential_C2HDM::addLegendQuarticCouplings() const
+{
+  std::vector<std::string> labels;
+  std::vector<std::string> particles;
+  particles.resize(NHiggs);
+  particles[0] = ("G^+");
+  particles[1] = ("G^-");
+  particles[2] = ("H^+");
+  particles[3] = ("H^-");
+  particles[4] = ("G^0");
+  if (UseHsmNotationInQuarticHiggs)
+  {
+    particles[5] = ("h_SM");
+    particles[6] = ("h_l");
+    particles[7] = ("h_H");
+  }
+  else
+  {
+    particles[5] = ("h_1");
+    particles[6] = ("h_2");
+    particles[7] = ("h_3");
+  }
+
+  for (std::size_t i = 0; i < NHiggs; i++)
+  {
+    for (std::size_t j = i; j < NHiggs; j++)
+    {
+      for (std::size_t k = j; k < NHiggs; k++)
+      {
+        for (std::size_t l = k; l < NHiggs; l++)
+        {
+          labels.push_back("Tree_" + particles.at(i) + particles.at(j) +
+                           particles.at(k) + particles.at(l));
+          labels.push_back("CT_" + particles.at(i) + particles.at(j) +
+                           particles.at(k) + particles.at(l));
+          labels.push_back("CW_" + particles.at(i) + particles.at(j) +
+                           particles.at(k) + particles.at(l));
+        }
+      }
+    }
+  }
+
+  return labels;
+}
+
+/**
  * returns a list of labels which tells the user the chronological order of the
  * VEVs. Use this to complement the legend of the given inputfile
  */
@@ -2411,8 +2463,8 @@ void Class_Potential_C2HDM::TripleHiggsCouplings()
   if (!SetCurvatureDone) SetCurvatureArrays();
   if (!CalcCouplingsDone) CalculatePhysicalCouplings();
 
-  if (CalculatedTripleCopulings) return;
-  CalculatedTripleCopulings = true;
+  if (CalculatedTripleCouplings) return;
+  CalculatedTripleCouplings = true;
 
   std::vector<double> TripleDeriv;
   TripleDeriv = WeinbergThirdDerivative();
@@ -2575,6 +2627,200 @@ void Class_Potential_C2HDM::TripleHiggsCouplings()
                   RotFac * LambdaHiggs_3[l][m][n];
               TripleHiggsCorrectionsCTPhysical[i][j][k] +=
                   RotFac * LambdaHiggs_3_CT[l][m][n];
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+void Class_Potential_C2HDM::QuarticHiggsCouplings()
+{
+  if (!SetCurvatureDone) SetCurvatureArrays();
+  if (!CalcCouplingsdone) CalculatePhysicalCouplings();
+
+  if (CalculatedQuarticCouplings) return;
+  CalculatedQuarticCouplings = true;
+
+  std::vector<double> QuarticDeriv;
+  QuarticDeriv = WeinbergForthDerivative();
+  std::vector<std::vector<std::vector<std::vector<double>>>> GaugeBasis(
+      NHiggs,
+      std::vector<std::vector<std::vector<double>>>(
+          NHiggs,
+          std::vector<std::vector<double>>(NHiggs,
+                                           std::vector<double>(NHiggs))));
+  for (std::size_t i = 0; i < NHiggs; i++)
+  {
+    for (std::size_t j = 0; j < NHiggs; j++)
+    {
+      for (std::size_t k = 0; k < NHiggs; k++)
+      {
+        for (std::size_t l = 0; l < NHiggs; l++)
+        {
+          GaugeBasis[i][j][k][l] =
+              QuarticDeriv.at(i + j * NHiggs + k * NHiggs * NHiggs +
+                              l * NHiggs * NHiggs * NHiggs);
+        }
+      }
+    }
+  }
+
+  MatrixXd HiggsRot(NHiggs, NHiggs);
+  for (std::size_t i = 0; i < NHiggs; i++)
+  {
+    for (std::size_t j = 0; j < NHiggs; j++)
+    {
+      HiggsRot(i, j) = HiggsRotationMatrix[i][j];
+    }
+  }
+  MatrixXd HiggsRotSort(NHiggs, NHiggs);
+  int posMHCS1 = 0, posMHCS2 = 0;
+  std::vector<std::size_t> posN(3);
+  std::size_t countposN = 0;
+  std::size_t posG1 = 0, posG2 = 0, posG0 = 0;
+  double testsum             = 0;
+  const double ZeroThreshold = 1e-5;
+  for (int i = 0; i < 3; i++)
+  {
+    testsum = std::abs(HiggsRot(i, 0)) + std::abs(HiggsRot(i, 2));
+    if (testsum > ZeroThreshold) posG1 = i;
+    testsum = std::abs(HiggsRot(i, 1)) + std::abs(HiggsRot(i, 3));
+    if (testsum > ZeroThreshold) posG2 = i;
+    testsum = std::abs(HiggsRot(i, 5)) + std::abs(HiggsRot(i, 7));
+    if (testsum > ZeroThreshold) posG0 = i;
+  }
+  for (std::size_t i = 3; i < NHiggs; i++)
+  {
+    testsum = std::abs(HiggsRot(i, 0)) + std::abs(HiggsRot(i, 2));
+    if (testsum > ZeroThreshold) posMHCS1 = i;
+    testsum = std::abs(HiggsRot(i, 1)) + std::abs(HiggsRot(i, 3));
+    if (testsum > ZeroThreshold) posMHCS2 = i;
+    testsum = 0;
+    for (int k = 4; k < 8; k++)
+      testsum += std::abs(HiggsRot(i, k));
+    if (testsum > ZeroThreshold)
+    {
+      posN.at(countposN) = i;
+      countposN++;
+    }
+  }
+
+  if (UseHsmNotationInQuarticHiggs)
+  {
+    std::vector<double> HiggsMasses;
+    double MhUp = 0, MhDown = 0, MSM = 0;
+    HiggsMasses = HiggsMassesSquared(vevTree, 0);
+
+    double NeutralHiggs[3];
+    for (int i = 0; i < 3; i++)
+    {
+      NeutralHiggs[i] = HiggsMasses[posN.at(i)];
+    }
+    for (int i = 0; i < 3; i++)
+    {
+      if (std::sqrt(NeutralHiggs[i]) < 126 and std::sqrt(NeutralHiggs[i]) > 124)
+        MSM = std::sqrt(NeutralHiggs[i]);
+    }
+    if (std::sqrt(NeutralHiggs[0]) == MSM)
+    {
+      MhUp   = std::sqrt(NeutralHiggs[2]);
+      MhDown = std::sqrt(NeutralHiggs[1]);
+    }
+    else if (std::sqrt(NeutralHiggs[1]) == MSM)
+    {
+      MhUp   = std::sqrt(NeutralHiggs[2]);
+      MhDown = std::sqrt(NeutralHiggs[0]);
+    }
+    else
+    {
+      MhUp   = std::sqrt(NeutralHiggs[1]);
+      MhDown = std::sqrt(NeutralHiggs[0]);
+    }
+
+    if (MSM > MhUp)
+    {
+      double tmp = posN[1];
+      posN[1]    = posN[2];
+      posN[2]    = tmp;
+    }
+    if (MSM > MhDown)
+    {
+      double tmp = posN[0];
+      posN[0]    = posN[1];
+      posN[1]    = tmp;
+    }
+  }
+
+  std::vector<double> HiggsOrder(NHiggs);
+  HiggsOrder[0] = posG1;
+  HiggsOrder[1] = posG2;
+  HiggsOrder[2] = posMHCS1;
+  HiggsOrder[3] = posMHCS2;
+  HiggsOrder[4] = posG0;
+  for (int i = 5; i < 8; i++)
+    HiggsOrder[i] = posN[i - 5];
+
+  for (std::size_t i = 0; i < NHiggs; i++)
+  {
+    HiggsRotSort.row(i) = HiggsRot.row(HiggsOrder[i]);
+  }
+
+  PosSM = 5;
+
+  QuarticHiggsCorrectionsCWPhysical.resize(NHiggs);
+  QuarticHiggsCorrectionsTreePhysical.resize(NHiggs);
+  QuarticHiggsCorrectionsCTPhysical.resize(NHiggs);
+  for (std::size_t i = 0; i < NHiggs; i++)
+  {
+    QuarticHiggsCorrectionsTreePhysical[i].resize(NHiggs);
+    QuarticHiggsCorrectionsCWPhysical[i].resize(NHiggs);
+    QuarticHiggsCorrectionsCTPhysical[i].resize(NHiggs);
+    for (std::size_t j = 0; j < NHiggs; j++)
+    {
+      QuarticHiggsCorrectionsCWPhysical[i][j].resize(NHiggs);
+      QuarticHiggsCorrectionsTreePhysical[i][j].resize(NHiggs);
+      QuarticHiggsCorrectionsCTPhysical[i][j].resize(NHiggs);
+      for (std::size_t k = 0; k < NHiggs; k++)
+      {
+        QuarticHiggsCorrectionsCWPhysical[i][j][k].resize(NHiggs);
+        QuarticHiggsCorrectionsTreePhysical[i][j][k].resize(NHiggs);
+        QuarticHiggsCorrectionsCTPhysical[i][j][k].resize(NHiggs);
+      }
+    }
+  }
+
+  for (std::size_t i = 0; i < NHiggs; i++)
+  {
+    for (std::size_t j = 0; j < NHiggs; j++)
+    {
+      for (std::size_t k = 0; k < NHiggs; k++)
+      {
+        for (std::size_t l = 0; l < NHiggs; l++)
+        {
+          QuarticHiggsCorrectionsCWPhysical[i][j][k][l]   = 0;
+          QuarticHiggsCorrectionsTreePhysical[i][j][k][l] = 0;
+          QuarticHiggsCorrectionsCTPhysical[i][j][k][l]   = 0;
+
+          for (std::size_t m = 0; m < NHiggs; m++)
+          {
+            for (std::size_t n = 0; n < NHiggs; n++)
+            {
+              for (std::size_t o = 0; o < NHiggs; o++)
+              {
+                for (std::size_t p = 0; p < NHiggs; p++)
+                {
+                  double RotFac = HiggsRotSort(i, m) * HiggsRotSort(j, n) *
+                                  HiggsRotSort(k, o) * HiggsRotSort(l, p);
+                  QuarticHiggsCorrectionsCWPhysical[i][j][k][l] +=
+                      RotFac * GaugeBasis[m][n][o][p];
+                  QuarticHiggsCorrectionsTreePhysical[i][j][k][l] +=
+                      RotFac * LambdaHiggs_4[m][n][o][p];
+                  QuarticHiggsCorrectionsCTPhysical[i][j][k][l] +=
+                      RotFac * LambdaHiggs_4_CT[m][n][o][p];
+                }
+              }
             }
           }
         }

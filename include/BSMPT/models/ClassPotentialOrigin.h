@@ -176,6 +176,29 @@ protected:
    */
   std::vector<std::vector<std::vector<std::complex<double>>>>
       TripleHiggsCorrectionsCTPhysical;
+  /**
+   * Storage of the contributions of the Coleman-Weinberg potential to the
+   * quartic Higgs couplings in the gauge basis
+   */
+  std::vector<double> QuarticHiggsCorrectionsCW;
+  /**
+   * Storage of the contributions of the Coleman-Weinberg potential to the
+   * quartic Higgs couplings in the mass basis
+   */
+  std::vector<std::vector<std::vector<std::vector<double>>>>
+      QuarticHiggsCorrectionsCWPhysical;
+  /**
+   * Storage of the contributions of the tree-level potential to the quartic
+   * Higgs couplings in the mass basis
+   */
+  std::vector<std::vector<std::vector<std::vector<double>>>>
+      QuarticHiggsCorrectionsTreePhysical;
+  /**
+   * Storage of the contributions of the counterterm potential to the quartic
+   * Higgs couplings in the mass basis
+   */
+  std::vector<std::vector<std::vector<std::vector<double>>>>
+      QuarticHiggsCorrectionsCTPhysical;
 
   /**
    * @brief SetCurvatureDone Used to check if the tensors are set
@@ -187,10 +210,15 @@ protected:
    */
   bool CalcCouplingsDone = false;
   /**
-   * @brief CalculatedTripleCopulings Used to check if TripleHiggsCouplings has
+   * @brief CalculatedTripleCouplings Used to check if TripleHiggsCouplings has
    * already been called
    */
-  bool CalculatedTripleCopulings = false;
+  bool CalculatedTripleCouplings = false;
+  /**
+   * @brief CalculatedQuarticCopulings Used to check if QuarticHiggsCouplings
+   * has already been called
+   */
+  bool CalculatedQuarticCouplings = false;
 
   /**
    * @brief InputLineNumber Used for the error message in fbaseTri
@@ -358,10 +386,19 @@ protected:
    */
   std::vector<std::vector<std::vector<std::complex<double>>>> LambdaQuark_3;
   /**
-   * @brief LambdaLepton_3 Stores the Lambda_{(F)}^{IJk} tensor for leptons ,
+   * @brief LambdaLepton_3_CT Stores the Lambda_{(F)}^{IJk} tensor for leptons ,
    * describing the derivative of Lambda_{(F)}^{IJ} w.r.t. the Higgs field k
    */
   std::vector<std::vector<std::vector<std::complex<double>>>> LambdaLepton_3;
+  /**
+   * @brief LambdaHiggs_4 Stores the Lambda_{(S)}^{ijkl} tensor
+   */
+  std::vector<std::vector<std::vector<std::vector<double>>>> LambdaHiggs_4;
+  /**
+   * @brief LambdaHiggs_4_CT Stores the Lambda_{(S)}^{ijkl} tensor for the
+   * counterterm parameters
+   */
+  std::vector<std::vector<std::vector<std::vector<double>>>> LambdaHiggs_4_CT;
   /**
    * @brief LambdaQuark_4 Stores the Lambda_{(F)}^{IJkm} tensor for quarks ,
    * describing the derivative of Lambda_{(F)}^{IJ} w.r.t. the Higgs fields k
@@ -552,6 +589,7 @@ public:
   {
     InputLineNumber = InputLineNumber_in;
   }
+
   /**
    * @brief get_TripleHiggsCorrectionsTreePhysical
    * @param i
@@ -566,6 +604,7 @@ public:
   {
     return TripleHiggsCorrectionsTreePhysical.at(i).at(j).at(k);
   }
+
   /**
    * @brief get_TripleHiggsCorrectionsCTPhysical
    * @param i
@@ -579,6 +618,7 @@ public:
   {
     return TripleHiggsCorrectionsCTPhysical.at(i).at(j).at(k);
   }
+
   /**
    * @brief get_TripleHiggsCorrectionsCWPhysical
    * @param i
@@ -591,6 +631,52 @@ public:
                                                             std::size_t k) const
   {
     return TripleHiggsCorrectionsCWPhysical.at(i).at(j).at(k);
+  }
+
+  /**
+   * @brief get_QuarticHiggsCorrectionsTreePhysical
+   * @param i
+   * @param j
+   * @param k
+   * @param l
+   * @return QuarticHiggsCorrectionsTreePhysical[i][j][k]
+   */
+  double get_QuarticHiggsCorrectionsTreePhysical(std::size_t i,
+                                                 std::size_t j,
+                                                 std::size_t k,
+                                                 std::size_t l) const
+  {
+    return QuarticHiggsCorrectionsTreePhysical.at(i).at(j).at(k).at(l);
+  }
+  /**
+   * @brief get_QuarticHiggsCorrectionsCTPhysical
+   * @param i
+   * @param j
+   * @param k
+   * @param l
+   * @return QuarticHiggsCorrectionsCTPhysical[i][j][k]
+   */
+  double get_QuarticHiggsCorrectionsCTPhysical(std::size_t i,
+                                               std::size_t j,
+                                               std::size_t k,
+                                               std::size_t l) const
+  {
+    return QuarticHiggsCorrectionsCTPhysical.at(i).at(j).at(k).at(l);
+  }
+  /**
+   * @brief get_QuarticHiggsCorrectionsCWPhysical
+   * @param i
+   * @param j
+   * @param k
+   * @param l
+   * @return QuarticHiggsCorrectionsCWPhysical[i][j][k]
+   */
+  double get_QuarticHiggsCorrectionsCWPhysical(std::size_t i,
+                                               std::size_t j,
+                                               std::size_t k,
+                                               std::size_t l) const
+  {
+    return QuarticHiggsCorrectionsCWPhysical.at(i).at(j).at(k).at(l);
   }
 
   /**
@@ -694,6 +780,11 @@ public:
    */
   virtual std::vector<std::string> addLegendTripleCouplings() const = 0;
   /**
+   * Adds the name of the quartic Higgs couplings at T=0 to the legend of the
+   * output file. This has to be specified in the model file.
+   */
+  virtual std::vector<std::string> addLegendQuarticCouplings() const = 0;
+  /**
    * Adds the name of the VEVs to the legend of the output file. This has to be
    * specified in the model file.
    */
@@ -775,6 +866,11 @@ public:
    * potential to the triple Higgs couplings.
    */
   void Prepare_Triple();
+  /**
+   * Sets a tensor needed to calculate the contribution of the counterterm
+   * potential to the quartic Higgs couplings.
+   */
+  void Prepare_Quartic();
 
   /**
    * You can give the explicit Debye corrections to the Higgs mass matrix with
@@ -943,6 +1039,13 @@ public:
    * set the nTripleCouplings to the number of couplings you want as output.
    */
   virtual void TripleHiggsCouplings() = 0;
+  /**
+   * Calculates the quartic Higgs couplings at NLO in the mass basis.
+   *
+   * Use the vector QuarticHiggsCorrectionsCWPhysical to save your couplings and
+   * set the nQuarticCouplings to the number of couplings you want as output.
+   */
+  virtual void QuarticHiggsCouplings() = 0;
   /**
    * Calculates the function f_{ab}^{(1)} (see https://arxiv.org/abs/1606.07069
    * eq 3.9) needed for the derivatives of the Coleman Weinberg potential.

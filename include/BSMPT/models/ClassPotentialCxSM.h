@@ -88,6 +88,7 @@ public:
   std::vector<std::string> addLegendCT() const override;
   std::vector<std::string> addLegendTemp() const override;
   std::vector<std::string> addLegendTripleCouplings() const override;
+  std::vector<std::string> addLegendQuarticCouplings() const override;
   std::vector<std::string> addLegendVEV() const override;
 
   /**
@@ -111,6 +112,7 @@ public:
 
   void AdjustRotationMatrix() override;
   void TripleHiggsCouplings() override;
+  void QuarticHiggsCouplings() override;
   std::vector<double> calc_CT() const override;
 
   void SetCurvatureArrays() override;

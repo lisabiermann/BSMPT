@@ -77,6 +77,23 @@ void Class_Potential_Origin::Prepare_Triple()
   }
 }
 
+void Class_Potential_Origin::Prepare_Quartic()
+{
+  for (std::size_t a = 0; a < NHiggs; a++)
+  {
+    for (std::size_t b = 0; b < NHiggs; b++)
+    {
+      for (std::size_t i = 0; i < NHiggs; i++)
+      {
+        for (std::size_t j = 0; j < NHiggs; j++)
+        {
+          LambdaHiggs_4_CT[a][b][i][j] += Curvature_Higgs_CT_L4[a][b][i][j];
+        }
+      }
+    }
+  }
+}
+
 double Class_Potential_Origin::FCW(double MassSquared) const
 {
   double res = 0;
@@ -431,25 +448,29 @@ double Class_Potential_Origin::fbaseFour(double MassSquaredA,
   {
     C = 2;
     // fa000
-    res = LogA / (mas * mas);
+    res = (2 * LogA - 3) / (2 * mas);
+    // res = LogA / (mas * mas);
   }
   else if (mas == 0 and mbs != 0 and mcs == 0 and mds == 0)
   {
     C = 3;
     // f0b00
-    res = LogB / (mbs * mbs);
+    res = (2 * LogB - 3) / (2 * mbs);
+    // res = LogB / (mbs * mbs);
   }
   else if (mas == 0 and mbs == 0 and mcs != 0 and mds == 0)
   {
     C = 4;
     // f00c0
-    res = LogC / (mcs * mcs);
+    res = (2 * LogC - 3) / (2 * mcs);
+    // res = LogC / (mcs * mcs);
   }
   else if (mas == 0 and mbs == 0 and mcs == 0 and mds != 0)
   {
     C = 5;
     // f000d
-    res = LogD / (mds * mds);
+    res = (2 * LogD - 3) / (2 * mds);
+    // res = LogD / (mds * mds);
   }
 
   // two masses are non-zero, the other masses are zero
@@ -3449,6 +3470,11 @@ void Class_Potential_Origin::initVectors()
   LambdaHiggs_3    = vec3{NHiggs, vec2{NHiggs, std::vector<double>(NHiggs, 0)}};
   LambdaHiggs_3_CT = vec3{NHiggs, vec2{NHiggs, std::vector<double>(NHiggs, 0)}};
 
+  LambdaHiggs_4 =
+      vec4{NHiggs, vec3{NHiggs, vec2{NHiggs, std::vector<double>(NHiggs, 0)}}};
+  LambdaHiggs_4_CT =
+      vec4{NHiggs, vec3{NHiggs, vec2{NHiggs, std::vector<double>(NHiggs, 0)}}};
+
   Curvature_Gauge_G2H2 =
       vec4{NGauge, vec3{NGauge, vec2{NHiggs, std::vector<double>(NHiggs, 0)}}};
   DebyeGauge    = vec2{NGauge, std::vector<double>(NGauge, 0)};
@@ -3525,8 +3551,8 @@ void Class_Potential_Origin::sym4Dim(
 void Class_Potential_Origin::resetbools()
 {
   SetCurvatureDone          = false;
-  CalcCouplingsDone         = false;
-  CalculatedTripleCopulings = false;
+  CalcCouplingsdone         = false;
+  CalculatedTripleCouplings = false;
   parStored.clear();
   parCTStored.clear();
 }
