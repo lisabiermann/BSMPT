@@ -1913,7 +1913,7 @@ void Class_Potential_R2HDM::CheckQuarticTreeCouplings()
        3 * sbma4 * cbma2 * (mhsq + (-3 + 4 * cot2b2) * mHsq) +
        4 * sbma2 * cbma2 * (2 - 3 * cot2b2) * mbarsq -
        2 * sbma * cbma3 * cot2b * (5 * mhsq + mHsq - 6 * mbarsq) +
-       3 * sbma3 * cbma * cot2b * (mhsq + 5 * mHsq - 6 * mbarsq) +
+       2 * sbma3 * cbma * cot2b * (mhsq + 5 * mHsq - 6 * mbarsq) +
        cbma4 * (2 * mhsq + mHsq - 2 * mbarsq) +
        sbma4 * (mhsq + 2 * mHsq - 2 * mbarsq)) *
       II;
@@ -2129,7 +2129,7 @@ void Class_Potential_R2HDM::CheckQuarticTreeCouplings()
       II;
   std::complex<double> tree_AAGpmGmp =
       -1 / scale / scale *
-      (sbma2 * mhsq + cbma2 * mHsq + 2 * cbma * cbma * cot2b * (mhsq - mHsq) +
+      (sbma2 * mhsq + cbma2 * mHsq + 2 * sbma * cbma * cot2b * (mhsq - mHsq) +
        2 * (mHpmsq - mbarsq)) *
       II;
   std::complex<double> tree_hG0HpGm = cbma / scale / scale * (mAsq - mHpmsq);
