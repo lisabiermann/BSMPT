@@ -130,6 +130,7 @@ public:
                  std::vector<double> &output) const override;
 
   void CheckTrilinearTreeCouplings();
+  void CheckQuarticTreeCouplings();
 };
 
 } // namespace Models

@@ -1518,7 +1518,7 @@ void Class_Potential_CPintheDark::TripleHiggsCouplings()
 void Class_Potential_CPintheDark::QuarticHiggsCouplings()
 {
   if (!SetCurvatureDone) SetCurvatureArrays();
-  if (!CalcCouplingsdone) CalculatePhysicalCouplings();
+  if (!CalcCouplingsDone) CalculatePhysicalCouplings();
 
   if (CalculatedQuarticCouplings) return;
   CalculatedQuarticCouplings = true;

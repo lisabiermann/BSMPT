@@ -427,7 +427,7 @@ void Class_Template::TripleHiggsCouplings()
 void Class_Template::QuarticHiggsCouplings()
 {
   if (!SetCurvatureDone) SetCurvatureArrays();
-  if (!CalcCouplingsdone) CalculatePhysicalCouplings();
+  if (!CalcCouplingsDone) CalculatePhysicalCouplings();
 
   if (CalculatedQuarticCouplings) return;
   CalculatedQuarticCouplings = true;

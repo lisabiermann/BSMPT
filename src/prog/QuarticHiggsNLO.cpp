@@ -126,13 +126,13 @@ try
             for (std::size_t l = k; l < NHiggs; l++)
             {
               outfile << sep
-                      << -modelPointer->get_QuarticHiggsCorrectionsTreePhysical(
+                      << modelPointer->get_QuarticHiggsCorrectionsTreePhysical(
                              i, j, k, l);
               outfile << sep
-                      << -modelPointer->get_QuarticHiggsCorrectionsCTPhysical(
+                      << modelPointer->get_QuarticHiggsCorrectionsCTPhysical(
                              i, j, k, l);
               outfile << sep
-                      << -modelPointer->get_QuarticHiggsCorrectionsCWPhysical(
+                      << modelPointer->get_QuarticHiggsCorrectionsCWPhysical(
                              i, j, k, l);
             }
           }

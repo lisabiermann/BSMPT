@@ -83,11 +83,11 @@ void Class_Potential_Origin::Prepare_Quartic()
   {
     for (std::size_t b = 0; b < NHiggs; b++)
     {
-      for (std::size_t i = 0; i < NHiggs; i++)
+      for (std::size_t c = 0; c < NHiggs; c++)
       {
-        for (std::size_t j = 0; j < NHiggs; j++)
+        for (std::size_t d = 0; d < NHiggs; d++)
         {
-          LambdaHiggs_4_CT[a][b][i][j] += Curvature_Higgs_CT_L4[a][b][i][j];
+          LambdaHiggs_4_CT[a][b][c][d] += Curvature_Higgs_CT_L4[a][b][c][d];
         }
       }
     }
@@ -1186,6 +1186,20 @@ void Class_Potential_Origin::CalculatePhysicalCouplings()
         {
           LambdaHiggs_3[a][b][i] +=
               Curvature_Higgs_L4[a][b][i][j] * HiggsVev[j];
+        }
+      }
+    }
+  }
+
+  for (std::size_t a = 0; a < NHiggs; a++)
+  {
+    for (std::size_t b = 0; b < NHiggs; b++)
+    {
+      for (std::size_t c = 0; c < NHiggs; c++)
+      {
+        for (std::size_t d = 0; d < NHiggs; d++)
+        {
+          LambdaHiggs_4[a][b][c][d] += Curvature_Higgs_L4[a][b][c][d];
         }
       }
     }
@@ -3551,7 +3565,7 @@ void Class_Potential_Origin::sym4Dim(
 void Class_Potential_Origin::resetbools()
 {
   SetCurvatureDone          = false;
-  CalcCouplingsdone         = false;
+  CalcCouplingsDone         = false;
   CalculatedTripleCouplings = false;
   parStored.clear();
   parCTStored.clear();

@@ -161,8 +161,8 @@ Class_Potential_R2HDM::addLegendQuarticCouplings() const
   particles.push_back("H^-");
   particles.push_back("G^0");
   particles.push_back("A");
-  particles.push_back("h");
   particles.push_back("H");
+  particles.push_back("h");
 
   for (std::size_t i = 0; i < NHiggs; i++)
   {
@@ -922,7 +922,7 @@ void Class_Potential_R2HDM::AdjustRotationMatrix()
 void Class_Potential_R2HDM::TripleHiggsCouplings()
 {
   if (!SetCurvatureDone) SetCurvatureArrays();
-  if (!CalcCouplingsdone) CalculatePhysicalCouplings();
+  if (!CalcCouplingsDone) CalculatePhysicalCouplings();
 
   if (CalculatedTripleCouplings) return;
   CalculatedTripleCouplings = true;
@@ -1155,6 +1155,346 @@ void Class_Potential_R2HDM::TripleHiggsCouplings()
   }
 
   CheckTrilinearTreeCouplings();
+}
+
+/**
+ * Calculates the corrections to the Quartic higgs couplings in the mass basis.
+ *
+ * Use the vector QuarticHiggsCorrectionsCWPhysical to save your couplings and
+ * set the nQuarticCouplings to the number of couplings you want as output.
+ */
+void Class_Potential_R2HDM::QuarticHiggsCouplings()
+{
+  if (!SetCurvatureDone) SetCurvatureArrays();
+  if (!CalcCouplingsDone) CalculatePhysicalCouplings();
+
+  if (CalculatedQuarticCouplings) return;
+  CalculatedQuarticCouplings = true;
+
+  std::vector<double> QuarticDeriv;
+  QuarticDeriv = WeinbergForthDerivative();
+  std::vector<std::vector<std::vector<std::vector<double>>>> GaugeBasis(
+      NHiggs,
+      std::vector<std::vector<std::vector<double>>>(
+          NHiggs,
+          std::vector<std::vector<double>>(NHiggs,
+                                           std::vector<double>(NHiggs))));
+  for (std::size_t i = 0; i < NHiggs; i++)
+  {
+    for (std::size_t j = 0; j < NHiggs; j++)
+    {
+      for (std::size_t k = 0; k < NHiggs; k++)
+      {
+        for (std::size_t l = 0; l < NHiggs; l++)
+        {
+          GaugeBasis[i][j][k][l] =
+              QuarticDeriv.at(i + j * NHiggs + k * NHiggs * NHiggs +
+                              l * NHiggs * NHiggs * NHiggs);
+        }
+      }
+    }
+  }
+
+  MatrixXd HiggsRot(NHiggs, NHiggs);
+  for (std::size_t i = 0; i < NHiggs; i++)
+  {
+    for (std::size_t j = 0; j < NHiggs; j++)
+    {
+      HiggsRot(i, j) = HiggsRotationMatrixEnsuredConvention[i][j];
+    }
+  }
+
+  std::vector<double> HiggsOrder(NHiggs);
+  HiggsOrder[0] = posG1;
+  HiggsOrder[1] = posG2;
+  HiggsOrder[2] = posH1;
+  HiggsOrder[3] = posH2;
+  HiggsOrder[4] = posG0;
+  HiggsOrder[5] = posA;
+  HiggsOrder[6] = posH;
+  HiggsOrder[7] = posh;
+
+  MatrixXd HiggsRotSort(NHiggs, NHiggs);
+  for (std::size_t i = 0; i < NHiggs; i++)
+  {
+    HiggsRotSort.row(i) = HiggsRot.row(HiggsOrder[i]);
+  }
+
+  using vec1Complex = std::vector<std::complex<double>>;
+  using vec2Complex = std::vector<std::vector<std::complex<double>>>;
+  using vec3Complex =
+      std::vector<std::vector<std::vector<std::complex<double>>>>;
+  using vec4Complex =
+      std::vector<std::vector<std::vector<std::vector<std::complex<double>>>>>;
+
+  // rotation from (i,j,k,l) to (a,b,c,d)
+  // a,b,c,d: indices in mass basis with G1,G2,H1,H2
+  // i,j,k,l: indices in interaction basis
+
+  vec4Complex QuarticTree_ajkl = vec4Complex{
+      NHiggs, vec3Complex{NHiggs, vec2Complex{NHiggs, vec1Complex(NHiggs, 0)}}};
+  vec4Complex QuarticCW_ajkl = vec4Complex{
+      NHiggs, vec3Complex{NHiggs, vec2Complex{NHiggs, vec1Complex(NHiggs, 0)}}};
+  vec4Complex QuarticCT_ajkl = vec4Complex{
+      NHiggs, vec3Complex{NHiggs, vec2Complex{NHiggs, vec1Complex(NHiggs, 0)}}};
+
+  for (std::size_t a = 0; a < NHiggs; a++)
+  {
+    for (std::size_t j = 0; j < NHiggs; j++)
+    {
+      for (std::size_t k = 0; k < NHiggs; k++)
+      {
+        for (std::size_t l = 0; l < NHiggs; l++)
+        {
+          for (std::size_t i = 0; i < NHiggs; i++)
+          {
+            QuarticTree_ajkl[a][j][k][l] +=
+                HiggsRotSort(a, i) * LambdaHiggs_4[i][j][k][l];
+            QuarticCW_ajkl[a][j][k][l] +=
+                HiggsRotSort(a, i) * GaugeBasis[i][j][k][l];
+            QuarticCT_ajkl[a][j][k][l] +=
+                HiggsRotSort(a, i) * LambdaHiggs_4_CT[i][j][k][l];
+          }
+        }
+      }
+    }
+  }
+
+  vec4Complex QuarticTree_abkl = vec4Complex{
+      NHiggs, vec3Complex{NHiggs, vec2Complex{NHiggs, vec1Complex(NHiggs, 0)}}};
+  vec4Complex QuarticCW_abkl = vec4Complex{
+      NHiggs, vec3Complex{NHiggs, vec2Complex{NHiggs, vec1Complex(NHiggs, 0)}}};
+  vec4Complex QuarticCT_abkl = vec4Complex{
+      NHiggs, vec3Complex{NHiggs, vec2Complex{NHiggs, vec1Complex(NHiggs, 0)}}};
+
+  for (std::size_t a = 0; a < NHiggs; a++)
+  {
+    for (std::size_t b = 0; b < NHiggs; b++)
+    {
+      for (std::size_t k = 0; k < NHiggs; k++)
+      {
+        for (std::size_t l = 0; l < NHiggs; l++)
+        {
+          for (std::size_t j = 0; j < NHiggs; j++)
+          {
+            QuarticTree_abkl[a][b][k][l] +=
+                HiggsRotSort(b, j) * QuarticTree_ajkl[a][j][k][l];
+            QuarticCW_abkl[a][b][k][l] +=
+                HiggsRotSort(b, j) * QuarticCW_ajkl[a][j][k][l];
+            QuarticCT_abkl[a][b][k][l] +=
+                HiggsRotSort(b, j) * QuarticCT_ajkl[a][j][k][l];
+          }
+        }
+      }
+    }
+  }
+
+  vec4Complex QuarticTree_abcl = vec4Complex{
+      NHiggs, vec3Complex{NHiggs, vec2Complex{NHiggs, vec1Complex(NHiggs, 0)}}};
+  vec4Complex QuarticCW_abcl = vec4Complex{
+      NHiggs, vec3Complex{NHiggs, vec2Complex{NHiggs, vec1Complex(NHiggs, 0)}}};
+  vec4Complex QuarticCT_abcl = vec4Complex{
+      NHiggs, vec3Complex{NHiggs, vec2Complex{NHiggs, vec1Complex(NHiggs, 0)}}};
+
+  for (std::size_t a = 0; a < NHiggs; a++)
+  {
+    for (std::size_t b = 0; b < NHiggs; b++)
+    {
+      for (std::size_t c = 0; c < NHiggs; c++)
+      {
+        for (std::size_t l = 0; l < NHiggs; l++)
+        {
+          for (std::size_t k = 0; k < NHiggs; k++)
+          {
+            QuarticTree_abcl[a][b][c][l] +=
+                HiggsRotSort(c, k) * QuarticTree_abkl[a][b][k][l];
+            QuarticCW_abcl[a][b][c][l] +=
+                HiggsRotSort(c, k) * QuarticCW_abkl[a][b][k][l];
+            QuarticCT_abcl[a][b][c][l] +=
+                HiggsRotSort(c, k) * QuarticCT_abkl[a][b][k][l];
+          }
+        }
+      }
+    }
+  }
+
+  vec4Complex QuarticTree_abcd = vec4Complex{
+      NHiggs, vec3Complex{NHiggs, vec2Complex{NHiggs, vec1Complex(NHiggs, 0)}}};
+  vec4Complex QuarticCW_abcd = vec4Complex{
+      NHiggs, vec3Complex{NHiggs, vec2Complex{NHiggs, vec1Complex(NHiggs, 0)}}};
+  vec4Complex QuarticCT_abcd = vec4Complex{
+      NHiggs, vec3Complex{NHiggs, vec2Complex{NHiggs, vec1Complex(NHiggs, 0)}}};
+
+  for (std::size_t a = 0; a < NHiggs; a++)
+  {
+    for (std::size_t b = 0; b < NHiggs; b++)
+    {
+      for (std::size_t c = 0; c < NHiggs; c++)
+      {
+        for (std::size_t d = 0; d < NHiggs; d++)
+        {
+          for (std::size_t l = 0; l < NHiggs; l++)
+          {
+            QuarticTree_abcd[a][b][c][d] +=
+                HiggsRotSort(d, l) * QuarticTree_abcl[a][b][c][l];
+            QuarticCW_abcd[a][b][c][d] +=
+                HiggsRotSort(d, l) * QuarticCW_abcl[a][b][c][l];
+            QuarticCT_abcd[a][b][c][d] +=
+                HiggsRotSort(d, l) * QuarticCT_abcl[a][b][c][l];
+          }
+        }
+      }
+    }
+  }
+
+  // rotation from (a,b,c,d) to (aa,bb,cc,dd)
+  // (a,b,c,d): mass basis with G1,G2,H1,H2
+  // (aa,bb,cc,dd): mass basis with G^+,G^-,H^+,H^-
+  MatrixXcd ChargeHiggsRot = MatrixXcd::Zero(NHiggs, NHiggs);
+  // G^+ and G^-
+  ChargeHiggsRot(0, 0) = 1. / std::sqrt(2);
+  ChargeHiggsRot(0, 1) = II / std::sqrt(2);
+  ChargeHiggsRot(1, 0) = 1. / std::sqrt(2);
+  ChargeHiggsRot(1, 1) = -II / std::sqrt(2);
+  // H^+ and H^-
+  ChargeHiggsRot(2, 2) = 1. / std::sqrt(2);
+  ChargeHiggsRot(2, 3) = II / std::sqrt(2);
+  ChargeHiggsRot(3, 2) = 1. / std::sqrt(2);
+  ChargeHiggsRot(3, 3) = -II / std::sqrt(2);
+  ChargeHiggsRot(4, 4) = 1; // G0
+  ChargeHiggsRot(5, 5) = 1; // A
+  ChargeHiggsRot(6, 6) = 1; // H
+  ChargeHiggsRot(7, 7) = 1; // h
+
+  // final mass-base order: G^+,G^-,H^+,H^-,G0,A,H,h
+
+  vec4Complex QuarticTree_aabcd = vec4Complex{
+      NHiggs, vec3Complex{NHiggs, vec2Complex{NHiggs, vec1Complex(NHiggs, 0)}}};
+  vec4Complex QuarticCW_aabcd = vec4Complex{
+      NHiggs, vec3Complex{NHiggs, vec2Complex{NHiggs, vec1Complex(NHiggs, 0)}}};
+  vec4Complex QuarticCT_aabcd = vec4Complex{
+      NHiggs, vec3Complex{NHiggs, vec2Complex{NHiggs, vec1Complex(NHiggs, 0)}}};
+
+  for (std::size_t aa = 0; aa < NHiggs; aa++)
+  {
+    for (std::size_t b = 0; b < NHiggs; b++)
+    {
+      for (std::size_t c = 0; c < NHiggs; c++)
+      {
+        for (std::size_t d = 0; d < NHiggs; d++)
+        {
+          for (std::size_t a = 0; a < NHiggs; a++)
+          {
+            QuarticTree_aabcd[aa][b][c][d] +=
+                ChargeHiggsRot(aa, a) * QuarticTree_abcd[a][b][c][d];
+            QuarticCW_aabcd[aa][b][c][d] +=
+                ChargeHiggsRot(aa, a) * QuarticCW_abcd[a][b][c][d];
+            QuarticCT_aabcd[aa][b][c][d] +=
+                ChargeHiggsRot(aa, a) * QuarticCT_abcd[a][b][c][d];
+          }
+        }
+      }
+    }
+  }
+
+  vec4Complex QuarticTree_aabbcd = vec4Complex{
+      NHiggs, vec3Complex{NHiggs, vec2Complex{NHiggs, vec1Complex(NHiggs, 0)}}};
+  vec4Complex QuarticCW_aabbcd = vec4Complex{
+      NHiggs, vec3Complex{NHiggs, vec2Complex{NHiggs, vec1Complex(NHiggs, 0)}}};
+  vec4Complex QuarticCT_aabbcd = vec4Complex{
+      NHiggs, vec3Complex{NHiggs, vec2Complex{NHiggs, vec1Complex(NHiggs, 0)}}};
+
+  for (std::size_t aa = 0; aa < NHiggs; aa++)
+  {
+    for (std::size_t bb = 0; bb < NHiggs; bb++)
+    {
+      for (std::size_t c = 0; c < NHiggs; c++)
+      {
+        for (std::size_t d = 0; d < NHiggs; d++)
+        {
+          for (std::size_t b = 0; b < NHiggs; b++)
+          {
+            QuarticTree_aabbcd[aa][bb][c][d] +=
+                ChargeHiggsRot(bb, b) * QuarticTree_aabcd[aa][b][c][d];
+            QuarticCW_aabbcd[aa][bb][c][d] +=
+                ChargeHiggsRot(bb, b) * QuarticCW_aabcd[aa][b][c][d];
+            QuarticCT_aabbcd[aa][bb][c][d] +=
+                ChargeHiggsRot(bb, b) * QuarticCT_aabcd[aa][b][c][d];
+          }
+        }
+      }
+    }
+  }
+
+  vec4Complex QuarticTree_aabbccd = vec4Complex{
+      NHiggs, vec3Complex{NHiggs, vec2Complex{NHiggs, vec1Complex(NHiggs, 0)}}};
+  vec4Complex QuarticCW_aabbccd = vec4Complex{
+      NHiggs, vec3Complex{NHiggs, vec2Complex{NHiggs, vec1Complex(NHiggs, 0)}}};
+  vec4Complex QuarticCT_aabbccd = vec4Complex{
+      NHiggs, vec3Complex{NHiggs, vec2Complex{NHiggs, vec1Complex(NHiggs, 0)}}};
+
+  for (std::size_t aa = 0; aa < NHiggs; aa++)
+  {
+    for (std::size_t bb = 0; bb < NHiggs; bb++)
+    {
+      for (std::size_t cc = 0; cc < NHiggs; cc++)
+      {
+        for (std::size_t d = 0; d < NHiggs; d++)
+        {
+          for (std::size_t c = 0; c < NHiggs; c++)
+          {
+            QuarticTree_aabbccd[aa][bb][cc][d] +=
+                ChargeHiggsRot(cc, c) * QuarticTree_aabbcd[aa][bb][c][d];
+            QuarticCW_aabbccd[aa][bb][cc][d] +=
+                ChargeHiggsRot(cc, c) * QuarticCW_aabbcd[aa][bb][c][d];
+            QuarticCT_aabbccd[aa][bb][cc][d] +=
+                ChargeHiggsRot(cc, c) * QuarticCT_aabbcd[aa][bb][c][d];
+          }
+        }
+      }
+    }
+  }
+
+  QuarticHiggsCorrectionsTreePhysical = vec4Complex{
+      NHiggs, vec3Complex{NHiggs, vec2Complex{NHiggs, vec1Complex(NHiggs, 0)}}};
+  QuarticHiggsCorrectionsCWPhysical = vec4Complex{
+      NHiggs, vec3Complex{NHiggs, vec2Complex{NHiggs, vec1Complex(NHiggs, 0)}}};
+  QuarticHiggsCorrectionsCTPhysical = vec4Complex{
+      NHiggs, vec3Complex{NHiggs, vec2Complex{NHiggs, vec1Complex(NHiggs, 0)}}};
+
+  for (std::size_t aa = 0; aa < NHiggs; aa++)
+  {
+    for (std::size_t bb = 0; bb < NHiggs; bb++)
+    {
+      for (std::size_t cc = 0; cc < NHiggs; cc++)
+      {
+        for (std::size_t dd = 0; dd < NHiggs; dd++)
+        {
+          for (std::size_t d = 0; d < NHiggs; d++)
+          {
+            QuarticHiggsCorrectionsTreePhysical[aa][bb][cc][dd] +=
+                ChargeHiggsRot(dd, d) * QuarticTree_aabbccd[aa][bb][cc][d];
+            QuarticHiggsCorrectionsCWPhysical[aa][bb][cc][dd] +=
+                ChargeHiggsRot(dd, d) * QuarticCW_aabbccd[aa][bb][cc][d];
+            QuarticHiggsCorrectionsCTPhysical[aa][bb][cc][dd] +=
+                ChargeHiggsRot(dd, d) * QuarticCT_aabbccd[aa][bb][cc][d];
+          }
+
+          QuarticHiggsCorrectionsTreePhysical[aa][bb][cc][dd] =
+              -II *
+              std::conj(QuarticHiggsCorrectionsTreePhysical[aa][bb][cc][dd]);
+          QuarticHiggsCorrectionsCWPhysical[aa][bb][cc][dd] =
+              -II *
+              std::conj(QuarticHiggsCorrectionsCWPhysical[aa][bb][cc][dd]);
+          QuarticHiggsCorrectionsCTPhysical[aa][bb][cc][dd] =
+              -II *
+              std::conj(QuarticHiggsCorrectionsCTPhysical[aa][bb][cc][dd]);
+        }
+      }
+    }
+  }
+
+  CheckQuarticTreeCouplings();
 }
 
 void Class_Potential_R2HDM::CheckTrilinearTreeCouplings()
@@ -1519,162 +1859,766 @@ void Class_Potential_R2HDM::CheckTrilinearTreeCouplings()
   Logger::Write(LoggingLevel::Default, ss.str());
 }
 
-/**
- * Calculates the corrections to the Quartic higgs couplings in the mass basis.
- *
- * Use the vector QuarticHiggsCorrectionsCWPhysical to save your couplings and
- * set the nQuarticCouplings to the number of couplings you want as output.
- */
-void Class_Potential_R2HDM::QuarticHiggsCouplings()
+void Class_Potential_R2HDM::CheckQuarticTreeCouplings()
 {
-  if (!SetCurvatureDone) SetCurvatureArrays();
-  if (!CalcCouplingsdone) CalculatePhysicalCouplings();
+  std::stringstream ss;
+  typedef std::numeric_limits<double> dbl;
+  ss.precision(dbl::max_digits10);
+  std::vector<double> HiggsMasses;
+  HiggsMasses = HiggsMassesSquared(vevTree, 0);
 
-  if (CalculatedQuarticCouplings) return;
-  CalculatedQuarticCouplings = true;
+  double bma    = beta - alpha;
+  double cbma   = std::cos(bma);
+  double cbma2  = cbma * cbma;
+  double cbma3  = cbma2 * cbma;
+  double cbma4  = cbma3 * cbma;
+  double sbma   = std::sin(bma);
+  double sbma2  = sbma * sbma;
+  double sbma3  = sbma * sbma * sbma;
+  double sbma4  = sbma3 * sbma;
+  double cot2b  = 1. / std::tan(2 * beta);
+  double cot2b2 = cot2b * cot2b;
+  double mhsq   = HiggsMasses[posh];
+  double mHsq   = HiggsMasses[posH];
+  double mAsq   = HiggsMasses[posA];
+  double mHpmsq = HiggsMasses[posH1];
 
-  std::vector<double> QuarticDeriv;
-  QuarticDeriv = WeinbergForthDerivative();
-  std::vector<std::vector<std::vector<std::vector<double>>>> GaugeBasis(
-      NHiggs,
-      std::vector<std::vector<std::vector<double>>>(
-          NHiggs,
-          std::vector<std::vector<double>>(NHiggs,
-                                           std::vector<double>(NHiggs))));
-  for (std::size_t i = 0; i < NHiggs; i++)
+  double mbarsq = RealMMix / (C_CosBeta * C_SinBeta);
+
+  std::complex<double> tree_hhhh =
+      -3 / scale / scale *
+      (sbma4 * mhsq - 8 * sbma3 * cbma3 * cot2b * (mhsq - mHsq) +
+       sbma4 * cbma2 * (5 * mhsq + mHsq) +
+       sbma2 * cbma4 * ((9 - 4 * cot2b2) * mhsq + (-3 + 4 * cot2b2) * mHsq) -
+       4 * sbma2 * cbma2 * mbarsq +
+       4 * sbma * cbma3 * cot2b * (3 * mhsq - mHsq - 2 * mbarsq) +
+       cbma4 * (mHsq + 4 * cot2b2 * (mhsq - mbarsq))) *
+      II;
+
+  std::complex<double> tree_hhhH =
+      3 * cbma / scale / scale *
+      (2 * sbma2 * cbma3 * cot2b * (5 * mhsq - 2 * mHsq) -
+       4 * sbma3 * cbma2 * (-1 + cot2b2) * (mhsq - mHsq) +
+       2 * sbma4 * cbma * cot2b * (mhsq + 2 * mHsq) -
+       6 * sbma2 * cbma * cot2b * mbarsq + sbma3 * (mhsq + mHsq - 2 * mbarsq) -
+       2 * cbma3 * cot2b * (mhsq - mbarsq) +
+       sbma * cbma2 *
+           ((-3 + 4 * cot2b2) * mhsq + mHsq + 2 * (1 - 2 * cot2b2) * mbarsq)) *
+      II;
+
+  std::complex<double> tree_hhHH =
+      -1 / scale / scale *
+      (24 * sbma3 * cbma3 * cot2b * (mhsq - mHsq) +
+       3 * sbma2 * cbma4 * ((-3 + 4 * cot2b2) * mhsq + mHsq) +
+       3 * sbma4 * cbma2 * (mhsq + (-3 + 4 * cot2b2) * mHsq) +
+       4 * sbma2 * cbma2 * (2 - 3 * cot2b2) * mbarsq -
+       2 * sbma * cbma3 * cot2b * (5 * mhsq + mHsq - 6 * mbarsq) +
+       3 * sbma3 * cbma * cot2b * (mhsq + 5 * mHsq - 6 * mbarsq) +
+       cbma4 * (2 * mhsq + mHsq - 2 * mbarsq) +
+       sbma4 * (mhsq + 2 * mHsq - 2 * mbarsq)) *
+      II;
+
+  std::complex<double> tree_hHHH =
+      3 * sbma / scale / scale *
+      (2 * sbma3 * cbma2 * cot2b * (2 * mhsq - 5 * mHsq) +
+       4 * sbma2 * cbma3 * (-1 + cot2b2) * (mhsq - mHsq) -
+       2 * sbma * cbma4 * cot2b * (2 * mhsq + mHsq) +
+       6 * sbma * cbma2 * cot2b * mbarsq + cbma3 * (mhsq + mHsq - 2 * mbarsq) +
+       2 * sbma3 * cot2b * (mHsq - mbarsq) +
+       sbma2 * cbma *
+           (mhsq + (-3 + 4 * cot2b2) * mHsq + 2 * (1 - 2 * cot2b2) * mbarsq)) *
+      II;
+
+  std::complex<double> tree_HHHH =
+      3 / scale / scale *
+      (-cbma4 * mHsq + 8 * sbma3 * cbma3 * cot2b * (mhsq - mHsq) -
+       sbma2 * cbma4 * (mhsq + 5 * mHsq) +
+       sbma4 * cbma2 * ((3 - 4 * cot2b2) * mhsq + (-9 + 4 * cot2b2) * mHsq) +
+       4 * sbma2 * cbma2 * mbarsq -
+       4 * sbma3 * cbma * cot2b * (mhsq - 3 * mHsq + 2 * mbarsq) -
+       sbma4 * (mhsq + 4 * cot2b2 * (mHsq - mbarsq))) *
+      II;
+
+  std::complex<double> tree_hhAA =
+      -1 / scale / scale *
+      (sbma2 * (mhsq + 2 * mAsq - 2 * mbarsq) +
+       2 * sbma3 * cbma * cot2b * (mhsq + mHsq) -
+       2 * sbma2 * cbma2 * (2 * cot2b2 - 1) * (mhsq - mHsq) +
+       sbma * cbma3 * cot2b * (8 * mhsq - 4 * mHsq) -
+       4 * sbma * cbma * cot2b * mbarsq +
+       cbma2 * (4 * cot2b2 * (mhsq - mbarsq) + mHsq)) *
+      II;
+
+  std::complex<double> tree_hHAA =
+      1 / scale / scale *
+      (-2 * sbma * cbma * (mAsq + (2 * cot2b2 - 1) * mbarsq) +
+       sbma3 * cbma * ((4 * cot2b2 - 1) * mHsq + mhsq) +
+       6 * sbma2 * cbma2 * cot2b * (mhsq - mHsq) +
+       2 * sbma2 * cot2b * (mHsq - mbarsq) +
+       sbma * cbma3 * ((4 * cot2b2 - 1) * mhsq + mHsq) -
+       2 * cbma2 * cot2b * (mhsq - mbarsq)) *
+      II;
+
+  std::complex<double> tree_HHAA =
+      -1 / scale / scale *
+      (cbma2 * (2 * mAsq + mHsq - 2 * mbarsq) +
+       4 * sbma3 * cbma * cot2b * (mhsq - 2 * mHsq) +
+       2 * sbma2 * cbma2 * (2 * cot2b2 - 1) * (mhsq - mHsq) +
+       sbma2 * (4 * cot2b2 * (mHsq - mbarsq) + mhsq) -
+       2 * sbma * cbma3 * cot2b * (mhsq + mHsq) +
+       4 * sbma * cbma * cot2b * mbarsq) *
+      II;
+
+  std::complex<double> tree_AAAA =
+      -3 / scale / scale *
+      (mhsq + 4 * cot2b2 * mHsq + 4 * sbma * cbma * cot2b * (mhsq - mHsq) +
+       cbma2 * (-1 + 4 * cot2b2) * (mhsq - mHsq) - 4 * cot2b2 * mbarsq) *
+      II;
+
+  std::complex<double> tree_hhHpmHmp =
+      -1 / scale / scale *
+      (sbma2 * (mhsq + 2 * mHpmsq - 2 * mbarsq) +
+       2 * sbma3 * cbma * cot2b * (mhsq + mHsq) -
+       2 * sbma2 * cbma2 * (2 * cot2b2 - 1) * (mhsq - mHsq) +
+       sbma * cbma3 * cot2b * (8 * mhsq - 4 * mHsq) -
+       4 * sbma * cbma * cot2b * mbarsq +
+       cbma2 * (4 * cot2b2 * (mhsq - mbarsq) + mHsq)) *
+      II;
+
+  std::complex<double> tree_hHHpmHmp =
+      1 / scale / scale *
+      (-2 * sbma * cbma * (mHpmsq + (2 * cot2b2 - 1) * mbarsq) +
+       sbma3 * cbma * ((4 * cot2b2 - 1) * mHsq + mhsq) +
+       6 * sbma2 * cbma2 * cot2b * (mhsq - mHsq) +
+       2 * sbma2 * cot2b * (mHsq - mbarsq) +
+       sbma * cbma3 * ((4 * cot2b2 - 1) * mhsq + mHsq) -
+       2 * cbma2 * cot2b * (mhsq - mbarsq)) *
+      II;
+
+  std::complex<double> tree_HHHpmHmp =
+      -1 / scale / scale *
+      (cbma2 * (2 * mHpmsq + mHsq - 2 * mbarsq) +
+       4 * sbma3 * cbma * cot2b * (mhsq - 2 * mHsq) +
+       2 * sbma2 * cbma2 * (2 * cot2b2 - 1) * (mhsq - mHsq) +
+       sbma2 * (4 * cot2b2 * (mHsq - mbarsq) + mhsq) -
+       2 * sbma * cbma3 * cot2b * (mhsq + mHsq) +
+       4 * sbma * cbma * cot2b * mbarsq) *
+      II;
+
+  std::complex<double> tree_AAHpmHmp =
+      -1 / scale / scale *
+      (mhsq + 4 * cot2b2 * mHsq - 4 * cot2b2 * mbarsq +
+       4 * sbma * cbma * cot2b * (mhsq - mHsq) +
+       cbma2 * (-1 + 4 * cot2b2) * (mhsq - mHsq)) *
+      II;
+
+  std::complex<double> tree_HpmHmpHpmHmp =
+      -2 / scale / scale *
+      (mhsq + 4 * cot2b2 * mHsq - 4 * cot2b2 * mbarsq +
+       4 * sbma * cbma * cot2b * (mhsq - mHsq) +
+       cbma2 * (-1 + 4 * cot2b2) * (mhsq - mHsq)) *
+      II;
+
+  std::complex<double> tree_hhG0A =
+      -1 / scale / scale *
+      (cbma *
+       (-2 * sbma * mAsq + sbma3 * (mhsq + mHsq) +
+        2 * sbma2 * cbma * cot2b * mHsq + sbma * cbma2 * (3 * mhsq - mHsq) +
+        2 * cbma3 * cot2b * mhsq - 2 * cbma * cot2b * mbarsq)) *
+      II;
+  std::complex<double> tree_hHG0A =
+      1 / scale / scale *
+      (sbma2 * (mHsq - mAsq) - cbma2 * (mhsq - mAsq) +
+       2 * sbma3 * cbma * cot2b * mHsq + 2 * sbma2 * cbma2 * (mhsq - mHsq) +
+       2 * sbma * cbma3 * cot2b * mhsq - 2 * sbma * cbma * cot2b * mbarsq) *
+      II;
+  std::complex<double> tree_HHG0A =
+      -1 / scale / scale *
+      (sbma *
+       (2 * cbma * mAsq + 2 * sbma3 * cot2b * mHsq +
+        sbma2 * cbma * (mhsq - 3 * mHsq) + 2 * sbma * cbma2 * cot2b * mhsq -
+        2 * sbma * cot2b * mbarsq - cbma3 * (mhsq + mHsq))) *
+      II;
+  std::complex<double> tree_AAG0A =
+      -3 / scale / scale *
+      (2 * sbma2 * cot2b * mHsq + sbma * cbma * (mhsq - mHsq) +
+       2 * cbma2 * cot2b * mhsq - 2 * cot2b * mbarsq) *
+      II;
+  std::complex<double> tree_hhHpmGmp =
+      -1 / scale / scale *
+      (cbma * (-2 * sbma * mHpmsq + sbma3 * (mhsq + mHsq) +
+               2 * sbma2 * cbma * cot2b * (mHsq - mhsq) +
+               sbma * cbma2 * (3 * mhsq - mHsq) +
+               2 * cbma * cot2b * (mhsq - mbarsq))) *
+      II;
+  std::complex<double> tree_hHHpmGmp =
+      1 / scale / scale *
+      (sbma2 * (mHsq - mHpmsq) - cbma2 * (mhsq - mHpmsq) +
+       2 * sbma3 * cbma * cot2b * mHsq + 2 * sbma2 * cbma2 * (mhsq - mHsq) +
+       2 * sbma * cbma3 * cot2b * mhsq - 2 * sbma * cbma * cot2b * mbarsq) *
+      II;
+  std::complex<double> tree_HHHpmGmp =
+      -1 / scale / scale *
+      (sbma * (2 * cbma * mHpmsq + sbma2 * cbma * (mhsq - 3 * mHsq) +
+               2 * sbma * cbma2 * cot2b * (mhsq - mHsq) +
+               2 * sbma * cot2b * (mHsq - mbarsq) - cbma3 * (mhsq + mHsq))) *
+      II;
+  std::complex<double> tree_hAHpGm = sbma / scale / scale * (mHpmsq - mAsq);
+  std::complex<double> tree_hAHmGp = -tree_hAHpGm;
+  std::complex<double> tree_HAHpGm = cbma / scale / scale * (mHsq - mAsq);
+  std::complex<double> tree_HAHmGp = -tree_HAHpGm;
+  std::complex<double> tree_AAHpmGmp =
+      -1 / scale / scale *
+      (2 * sbma2 * cot2b * mHsq + sbma * cbma * (mhsq - mHsq) +
+       2 * cbma2 * cot2b * mhsq - 2 * cot2b * mbarsq) *
+      II;
+  std::complex<double> tree_AG0HpmHmp =
+      -1 / scale / scale *
+      (2 * sbma2 * cot2b * mHsq + sbma * cbma * (mhsq - mHsq) +
+       2 * cbma2 * cot2b * mhsq - 2 * cot2b * mbarsq);
+  std::complex<double> tree_HpmHmpHpmGmp =
+      -2 / scale / scale *
+      (2 * sbma2 * cot2b * mHsq + sbma * cbma * (mhsq - mHsq) +
+       2 * cbma2 * cot2b * mhsq - 2 * cot2b * mbarsq) *
+      II;
+
+  std::complex<double> tree_hhG0G0 =
+      -1 / scale / scale *
+      (sbma2 * mhsq + 2 * sbma2 * cbma2 * (mhsq - mHsq) +
+       2 * sbma * cbma3 * cot2b * (mhsq - mHsq) +
+       cbma2 * (2 * mAsq + mHsq - 2 * mbarsq)) *
+      II;
+  std::complex<double> tree_hHG0G0 =
+      sbma * cbma / scale / scale *
+      (sbma2 * (mhsq - mHsq) + 2 * sbma * cbma * cot2b * (mhsq - mHsq) -
+       cbma2 * (mhsq - mHsq) + 2 * (mAsq - mbarsq)) *
+      II;
+  std::complex<double> tree_HHG0G0 =
+      1 / scale / scale *
+      (-cbma2 * mHsq + 2 * sbma2 * cbma2 * (mhsq - mHsq) -
+       2 * sbma3 * cbma * cot2b * (mhsq - mHsq) -
+       sbma2 * (2 * mAsq + mhsq - 2 * mbarsq)) *
+      II;
+  std::complex<double> tree_AAG0G0 =
+      -1 / scale / scale *
+      (2 * sbma * cbma * cot2b * (mhsq - mHsq) + cbma2 * (2 * mhsq + mHsq) +
+       sbma2 * (mhsq + 2 * mHsq) - 2 * mbarsq) *
+      II;
+  std::complex<double> tree_G0G0HpmHmp =
+      -1 / scale / scale *
+      (sbma2 * mhsq + cbma2 * mHsq + 2 * sbma * cbma * cot2b * (mhsq - mHsq) +
+       2 * (mHpmsq - mbarsq)) *
+      II;
+  std::complex<double> tree_hhGpmGmp =
+      -1 / scale / scale *
+      (sbma2 * mhsq + 2 * sbma2 * cbma2 * (mhsq - mHsq) +
+       2 * sbma * cbma3 * cot2b * (mhsq - mHsq) +
+       cbma2 * (mHsq + 2 * mHpmsq - 2 * mbarsq)) *
+      II;
+  std::complex<double> tree_hHGpmGmp =
+      sbma * cbma / scale / scale *
+      (sbma2 * (mhsq - mHsq) + 2 * sbma * cbma * cot2b * (mhsq - mHsq) -
+       cbma2 * (mhsq - mHsq) + 2 * (mHpmsq - mbarsq)) *
+      II;
+  std::complex<double> tree_HHGpmGmp =
+      1 / scale / scale *
+      (-cbma2 * mHsq + 2 * sbma2 * cbma2 * (mhsq - mHsq) -
+       2 * sbma3 * cbma * cot2b * (mhsq - mHsq) -
+       sbma2 * (mhsq + 2 * mHpmsq - 2 * mbarsq)) *
+      II;
+  std::complex<double> tree_AAGpmGmp =
+      -1 / scale / scale *
+      (sbma2 * mhsq + cbma2 * mHsq + 2 * cbma * cbma * cot2b * (mhsq - mHsq) +
+       2 * (mHpmsq - mbarsq)) *
+      II;
+  std::complex<double> tree_hG0HpGm = cbma / scale / scale * (mAsq - mHpmsq);
+  std::complex<double> tree_hG0HmGp = -tree_hG0HpGm;
+  std::complex<double> tree_HG0HpGm = -sbma / scale / scale * (mAsq - mHpmsq);
+  std::complex<double> tree_HG0HmGp = -tree_HG0HpGm;
+  std::complex<double> tree_AG0HpmGmp =
+      -1 / scale / scale * (cbma2 * mhsq + sbma2 * mHsq - mHpmsq) * II;
+  std::complex<double> tree_HpmHpmGmpGmp =
+      -2 / scale / scale * (cbma2 * mhsq + sbma2 * mHsq - mAsq) * II;
+  std::complex<double> tree_HpmHmpGpmGmp =
+      -1 / scale / scale *
+      (mhsq + mHsq + mAsq - 2 * mbarsq +
+       2 * sbma * cbma * cot2b * (mhsq - mHsq)) *
+      II;
+
+  std::complex<double> tree_AG0G0G0 =
+      -3 / scale / scale * (sbma * cbma * (mhsq - mHsq)) * II;
+  std::complex<double> tree_AG0GpmGmp =
+      -1 / scale / scale * (sbma * cbma * (mhsq - mHsq)) * II;
+  std::complex<double> tree_HpmGmpG0G0 =
+      -1 / scale / scale * (sbma * cbma * (mhsq - mHsq)) * II;
+  std::complex<double> tree_HpmGpmGmpGmp =
+      -2 / scale / scale * (sbma * cbma * (mhsq - mHsq)) * II;
+
+  std::complex<double> tree_G0G0G0G0 =
+      -3 / scale / scale * (sbma2 * mhsq + cbma2 * mHsq) * II;
+  std::complex<double> tree_G0G0GpmGmp =
+      -1 / scale / scale * (sbma2 * mhsq + cbma2 * mHsq) * II;
+  std::complex<double> tree_GpmGmpGpmGmp =
+      -2 / scale / scale * (sbma2 * mhsq + cbma2 * mHsq) * II;
+
+  // HiggsOrder: 0:G1, 1:G2, 2:H1, 3:H2, 4:G0, 5:A, 6:H, 7:h
+
+  ss << "------ Checking Quartic Tree Couplings ------\n";
+  ss << "coupling: true_value | BSMPT_value\n";
+  int count = 0;
+
+  // Charge-rotated mass basis: 0:Gp, 1:Gm, 2:Hp, 3:Hm, 4:G0, 5:A, 6:H, 7:h
+
+  // hhhh
+  if (not almost_the_same(tree_hhhh,
+                          QuarticHiggsCorrectionsTreePhysical[7][7][7][7]))
   {
-    for (std::size_t j = 0; j < NHiggs; j++)
-    {
-      for (std::size_t k = 0; k < NHiggs; k++)
-      {
-        for (std::size_t l = 0; l < NHiggs; l++)
-        {
-          GaugeBasis[i][j][k][l] =
-              QuarticDeriv.at(i + j * NHiggs + k * NHiggs * NHiggs +
-                              l * NHiggs * NHiggs * NHiggs);
-        }
-      }
-    }
+    count += 1;
+    ss << "hhhh: " << tree_hhhh << " | "
+       << QuarticHiggsCorrectionsTreePhysical[7][7][7][7] << "\n";
   }
 
-  MatrixXd HiggsRot(NHiggs, NHiggs);
-  for (std::size_t i = 0; i < NHiggs; i++)
+  // hhhH
+  if (not almost_the_same(tree_hhhH,
+                          QuarticHiggsCorrectionsTreePhysical[7][7][7][6]))
   {
-    for (std::size_t j = 0; j < NHiggs; j++)
-    {
-      HiggsRot(i, j) = HiggsRotationMatrix[i][j];
-    }
+    count += 1;
+    ss << "hhhH: " << tree_hhhH << " | "
+       << QuarticHiggsCorrectionsTreePhysical[7][7][7][6] << "\n";
   }
 
-  MatrixXd HiggsRotSort(NHiggs, NHiggs);
-  int posMHCS1 = 0, posMHCS2 = 0;
-  int posN[2]   = {-1, -1};
-  int countposN = 0;
-  int posG1 = 0, posG2 = 0, posG0 = 0;
-  int posA = 0, posh = 0, posH = 0;
-  double testsum             = 0;
-  const double ZeroThreshold = 1e-5;
-  for (std::size_t i = 0; i < 3; i++)
+  // hhHH
+  if (not almost_the_same(tree_hhHH,
+                          QuarticHiggsCorrectionsTreePhysical[7][7][6][6]))
   {
-    testsum = std::abs(HiggsRot(i, 0)) + std::abs(HiggsRot(i, 2));
-    if (testsum > ZeroThreshold) posG1 = i;
-    testsum = std::abs(HiggsRot(i, 1)) + std::abs(HiggsRot(i, 3));
-    if (testsum > ZeroThreshold) posG2 = i;
-    testsum = std::abs(HiggsRot(i, 5)) + std::abs(HiggsRot(i, 7));
-    if (testsum > ZeroThreshold) posG0 = i;
-  }
-  for (std::size_t i = 3; i < NHiggs; i++)
-  {
-    testsum = std::abs(HiggsRot(i, 0)) + std::abs(HiggsRot(i, 2));
-    if (testsum > ZeroThreshold) posMHCS1 = i;
-    testsum = std::abs(HiggsRot(i, 1)) + std::abs(HiggsRot(i, 3));
-    if (testsum > ZeroThreshold) posMHCS2 = i;
-    testsum = std::abs(HiggsRot(i, 5)) + std::abs(HiggsRot(i, 7));
-    if (testsum > ZeroThreshold) posA = i;
-    testsum = std::abs(HiggsRot(i, 4)) + std::abs(HiggsRot(i, 6));
-    if (testsum > ZeroThreshold)
-    {
-      posN[countposN] = i;
-      countposN++;
-    }
+    count += 1;
+    ss << "hhHH: " << tree_hhHH << " | "
+       << QuarticHiggsCorrectionsTreePhysical[7][7][6][6] << "\n";
   }
 
-  posh = posN[0];
-  posH = posN[1];
-
-  std::vector<double> HiggsOrder(NHiggs);
-  HiggsOrder[0] = posG1;
-  HiggsOrder[1] = posG2;
-  HiggsOrder[2] = posMHCS1;
-  HiggsOrder[3] = posMHCS2;
-  HiggsOrder[4] = posG0;
-  HiggsOrder[5] = posA;
-  HiggsOrder[6] = posh;
-  HiggsOrder[7] = posH;
-
-  for (std::size_t i = 0; i < NHiggs; i++)
+  // hHHH
+  if (not almost_the_same(tree_hHHH,
+                          QuarticHiggsCorrectionsTreePhysical[7][6][6][6]))
   {
-    HiggsRotSort.row(i) = HiggsRot.row(HiggsOrder[i]);
+    count += 1;
+    ss << "hHHH: " << tree_hHHH << " | "
+       << QuarticHiggsCorrectionsTreePhysical[7][6][6][6] << "\n";
   }
 
-  QuarticHiggsCorrectionsCWPhysical.resize(NHiggs);
-  QuarticHiggsCorrectionsTreePhysical.resize(NHiggs);
-  QuarticHiggsCorrectionsCTPhysical.resize(NHiggs);
-  for (std::size_t i = 0; i < NHiggs; i++)
+  // HHHH
+  if (not almost_the_same(tree_HHHH,
+                          QuarticHiggsCorrectionsTreePhysical[6][6][6][6]))
   {
-    QuarticHiggsCorrectionsTreePhysical[i].resize(NHiggs);
-    QuarticHiggsCorrectionsCWPhysical[i].resize(NHiggs);
-    QuarticHiggsCorrectionsCTPhysical[i].resize(NHiggs);
-    for (std::size_t j = 0; j < NHiggs; j++)
-    {
-      QuarticHiggsCorrectionsCWPhysical[i][j].resize(NHiggs);
-      QuarticHiggsCorrectionsTreePhysical[i][j].resize(NHiggs);
-      QuarticHiggsCorrectionsCTPhysical[i][j].resize(NHiggs);
-      for (std::size_t k = 0; k < NHiggs; k++)
-      {
-        QuarticHiggsCorrectionsCWPhysical[i][j][k].resize(NHiggs);
-        QuarticHiggsCorrectionsTreePhysical[i][j][k].resize(NHiggs);
-        QuarticHiggsCorrectionsCTPhysical[i][j][k].resize(NHiggs);
-      }
-    }
+    count += 1;
+    ss << "HHHH: " << tree_HHHH << " | "
+       << QuarticHiggsCorrectionsTreePhysical[6][6][6][6] << "\n";
   }
 
-  for (std::size_t i = 0; i < NHiggs; i++)
-  {
-    for (std::size_t j = 0; j < NHiggs; j++)
-    {
-      for (std::size_t k = 0; k < NHiggs; k++)
-      {
-        for (std::size_t l = 0; l < NHiggs; l++)
-        {
-          QuarticHiggsCorrectionsCWPhysical[i][j][k][l]   = 0;
-          QuarticHiggsCorrectionsTreePhysical[i][j][k][l] = 0;
-          QuarticHiggsCorrectionsCTPhysical[i][j][k][l]   = 0;
+  // Charge-rotated mass basis: 0:Gp, 1:Gm, 2:Hp, 3:Hm, 4:G0, 5:A, 6:H, 7:h
 
-          for (std::size_t m = 0; m < NHiggs; m++)
-          {
-            for (std::size_t n = 0; n < NHiggs; n++)
-            {
-              for (std::size_t o = 0; o < NHiggs; o++)
-              {
-                for (std::size_t p = 0; p < NHiggs; p++)
-                {
-                  double RotFac = HiggsRotSort(i, m) * HiggsRotSort(j, n) *
-                                  HiggsRotSort(k, o) * HiggsRotSort(l, p);
-                  QuarticHiggsCorrectionsCWPhysical[i][j][k][l] +=
-                      RotFac * GaugeBasis[m][n][o][p];
-                  QuarticHiggsCorrectionsTreePhysical[i][j][k][l] +=
-                      RotFac * LambdaHiggs_4[m][n][o][p];
-                  QuarticHiggsCorrectionsCTPhysical[i][j][k][l] +=
-                      RotFac * LambdaHiggs_4_CT[m][n][o][p];
-                }
-              }
-            }
-          }
-        }
-      }
-    }
+  // hhAA
+  if (not almost_the_same(tree_hhAA,
+                          QuarticHiggsCorrectionsTreePhysical[7][7][5][5]))
+  {
+    count += 1;
+    ss << "hhAA: " << tree_hhAA << " | "
+       << QuarticHiggsCorrectionsTreePhysical[5][5][7][7] << "\n";
   }
+
+  // hHAA
+  if (not almost_the_same(tree_hHAA,
+                          QuarticHiggsCorrectionsTreePhysical[7][6][5][5]))
+  {
+    count += 1;
+    ss << "hHAA: " << tree_hHAA << " | "
+       << QuarticHiggsCorrectionsTreePhysical[7][6][5][5] << "\n";
+  }
+
+  // HHAA
+  if (not almost_the_same(tree_HHAA,
+                          QuarticHiggsCorrectionsTreePhysical[6][6][5][5]))
+  {
+    count += 1;
+    ss << "HHAA: " << tree_HHAA << " | "
+       << QuarticHiggsCorrectionsTreePhysical[5][5][6][6] << "\n";
+  }
+
+  // AAAA
+  if (not almost_the_same(tree_AAAA,
+                          QuarticHiggsCorrectionsTreePhysical[5][5][5][5]))
+  {
+    count += 1;
+    ss << "AAAA: " << tree_AAAA << " | "
+       << QuarticHiggsCorrectionsTreePhysical[5][5][5][5] << "\n";
+  }
+
+  // Charge-rotated mass basis: 0:Gp, 1:Gm, 2:Hp, 3:Hm, 4:G0, 5:A, 6:H, 7:h
+
+  // hhHpmHmp
+  if (not almost_the_same(tree_hhHpmHmp,
+                          QuarticHiggsCorrectionsTreePhysical[7][7][2][3]))
+  {
+    count += 1;
+    ss << "hhHpmHmp: " << tree_hhHpmHmp << " | "
+       << QuarticHiggsCorrectionsTreePhysical[7][7][2][3] << "\n";
+  }
+
+  // hHHpmHmp
+  if (not almost_the_same(tree_hHHpmHmp,
+                          QuarticHiggsCorrectionsTreePhysical[7][6][2][3]))
+  {
+    count += 1;
+    ss << "hHHpmHmp: " << tree_hHHpmHmp << " | "
+       << QuarticHiggsCorrectionsTreePhysical[7][6][2][3] << "\n";
+  }
+
+  // HHHpmHmp
+  if (not almost_the_same(tree_HHHpmHmp,
+                          QuarticHiggsCorrectionsTreePhysical[6][6][2][3]))
+  {
+    count += 1;
+    ss << "HHHpmHmp: " << tree_HHHpmHmp << " | "
+       << QuarticHiggsCorrectionsTreePhysical[6][6][2][3] << "\n";
+  }
+
+  // AAHpmHmp
+  if (not almost_the_same(tree_AAHpmHmp,
+                          QuarticHiggsCorrectionsTreePhysical[5][5][2][3]))
+  {
+    count += 1;
+    ss << "AAHpmHmp: " << tree_AAHpmHmp << " | "
+       << QuarticHiggsCorrectionsTreePhysical[5][5][2][3] << "\n";
+  }
+
+  // HpmHpmHmpHmp
+  if (not almost_the_same(tree_HpmHmpHpmHmp,
+                          QuarticHiggsCorrectionsTreePhysical[2][3][2][3]))
+  {
+    count += 1;
+    ss << "HpmHmpHpmHmp: " << tree_HpmHmpHpmHmp << " | "
+       << QuarticHiggsCorrectionsTreePhysical[2][3][2][3] << "\n";
+  }
+
+  // Charge-rotated mass basis: 0:Gp, 1:Gm, 2:Hp, 3:Hm, 4:G0, 5:A, 6:H, 7:h
+
+  // hhG0A
+  if (not almost_the_same(tree_hhG0A,
+                          QuarticHiggsCorrectionsTreePhysical[7][7][4][5]))
+  {
+    count += 1;
+    ss << "hhG0A: " << tree_hhG0A << " | "
+       << QuarticHiggsCorrectionsTreePhysical[7][7][4][5] << "\n";
+  }
+  // hHG0A
+  if (not almost_the_same(tree_hHG0A,
+                          QuarticHiggsCorrectionsTreePhysical[7][6][4][5]))
+  {
+    count += 1;
+    ss << "hHG0A: " << tree_hHG0A << " | "
+       << QuarticHiggsCorrectionsTreePhysical[7][6][4][5] << "\n";
+  }
+  // HHG0A
+  if (not almost_the_same(tree_HHG0A,
+                          QuarticHiggsCorrectionsTreePhysical[6][6][4][5]))
+  {
+    count += 1;
+    ss << "HHG0A: " << tree_HHG0A << " | "
+       << QuarticHiggsCorrectionsTreePhysical[6][6][4][5] << "\n";
+  }
+  // AAG0A
+  if (not almost_the_same(tree_AAG0A,
+                          QuarticHiggsCorrectionsTreePhysical[5][5][4][5]))
+  {
+    count += 1;
+    ss << "AAG0A: " << tree_AAG0A << " | "
+       << QuarticHiggsCorrectionsTreePhysical[5][5][4][5] << "\n";
+  }
+  // hhHpmGmp
+  if (not almost_the_same(tree_hhHpmGmp,
+                          QuarticHiggsCorrectionsTreePhysical[7][7][2][1]))
+  {
+    count += 1;
+    ss << "hhHpmGmp: " << tree_hhHpmGmp << " | "
+       << QuarticHiggsCorrectionsTreePhysical[7][7][2][1] << "\n";
+  }
+  // hHHpmGmp
+  if (not almost_the_same(tree_hHHpmGmp,
+                          QuarticHiggsCorrectionsTreePhysical[7][6][2][1]))
+  {
+    count += 1;
+    ss << "hHHpmGmp: " << tree_hHHpmGmp << " | "
+       << QuarticHiggsCorrectionsTreePhysical[7][6][2][1] << "\n";
+  }
+  // HHHpmGmp
+  if (not almost_the_same(tree_HHHpmGmp,
+                          QuarticHiggsCorrectionsTreePhysical[6][6][2][1]))
+  {
+    count += 1;
+    ss << "HHHpmGmp: " << tree_HHHpmGmp << " | "
+       << QuarticHiggsCorrectionsTreePhysical[6][6][2][1] << "\n";
+  }
+  // hAHpGm
+  if (not almost_the_same(tree_hAHpGm,
+                          QuarticHiggsCorrectionsTreePhysical[7][5][2][1]))
+  {
+    count += 1;
+    ss << "hAHpGm: " << tree_hAHpGm << " | "
+       << QuarticHiggsCorrectionsTreePhysical[7][5][2][1] << "\n";
+  }
+  // hAHmGp
+  if (not almost_the_same(tree_hAHmGp,
+                          QuarticHiggsCorrectionsTreePhysical[7][5][3][0]))
+  {
+    count += 1;
+    ss << "hAHmGp: " << tree_hAHmGp << " | "
+       << QuarticHiggsCorrectionsTreePhysical[7][5][3][0] << "\n";
+  }
+  // HAHpGm
+  if (not almost_the_same(tree_HAHpGm,
+                          QuarticHiggsCorrectionsTreePhysical[6][5][2][1]))
+  {
+    count += 1;
+    ss << "HAHpGm: " << tree_HAHpGm << " | "
+       << QuarticHiggsCorrectionsTreePhysical[6][5][2][1] << "\n";
+  }
+  // HAHmGp
+  if (not almost_the_same(tree_HAHmGp,
+                          QuarticHiggsCorrectionsTreePhysical[6][5][3][0]))
+  {
+    count += 1;
+    ss << "HAHmGp: " << tree_HAHmGp << " | "
+       << QuarticHiggsCorrectionsTreePhysical[6][5][3][0] << "\n";
+  }
+  // AAHpmGmp
+  if (not almost_the_same(tree_AAHpmGmp,
+                          QuarticHiggsCorrectionsTreePhysical[5][5][2][1]))
+  {
+    count += 1;
+    ss << "AAHpmGmp: " << tree_AAHpmGmp << " | "
+       << QuarticHiggsCorrectionsTreePhysical[5][5][2][1] << "\n";
+  }
+  // AG0HpmHmp
+  if (not almost_the_same(tree_AG0HpmHmp,
+                          QuarticHiggsCorrectionsTreePhysical[5][4][2][3]))
+  {
+    count += 1;
+    ss << "AG0HpmHmp: " << tree_AG0HpmHmp << " | "
+       << QuarticHiggsCorrectionsTreePhysical[5][4][2][3] << "\n";
+  }
+  // HpmHmpHpmGmp
+  if (not almost_the_same(tree_HpmHmpHpmGmp,
+                          QuarticHiggsCorrectionsTreePhysical[2][3][2][1]))
+  {
+    count += 1;
+    ss << "HpmHmpHpmGmp: " << tree_HpmHmpHpmGmp << " | "
+       << QuarticHiggsCorrectionsTreePhysical[2][3][2][1] << "\n";
+  }
+
+  // Charge-rotated mass basis: 0:Gp, 1:Gm, 2:Hp, 3:Hm, 4:G0, 5:A, 6:H, 7:h
+
+  // hhG0G0
+  if (not almost_the_same(tree_hhG0G0,
+                          QuarticHiggsCorrectionsTreePhysical[7][7][4][4]))
+  {
+    count += 1;
+    ss << "hhG0G0: " << tree_hhG0G0 << " | "
+       << QuarticHiggsCorrectionsTreePhysical[7][7][4][4] << "\n";
+  }
+  // hHG0G0
+  if (not almost_the_same(tree_hHG0G0,
+                          QuarticHiggsCorrectionsTreePhysical[7][6][4][4]))
+  {
+    count += 1;
+    ss << "hHG0G0: " << tree_hHG0G0 << " | "
+       << QuarticHiggsCorrectionsTreePhysical[7][6][4][4] << "\n";
+  }
+  // HHG0G0
+  if (not almost_the_same(tree_HHG0G0,
+                          QuarticHiggsCorrectionsTreePhysical[6][6][4][4]))
+  {
+    count += 1;
+    ss << "HHG0G0: " << tree_HHG0G0 << " | "
+       << QuarticHiggsCorrectionsTreePhysical[6][6][4][4] << "\n";
+  }
+  // AAG0G0
+  if (not almost_the_same(tree_AAG0G0,
+                          QuarticHiggsCorrectionsTreePhysical[5][5][4][4]))
+  {
+    count += 1;
+    ss << "AAG0G0: " << tree_AAG0G0 << " | "
+       << QuarticHiggsCorrectionsTreePhysical[5][5][4][4] << "\n";
+  }
+  // G0G0HpmHmp
+  if (not almost_the_same(tree_G0G0HpmHmp,
+                          QuarticHiggsCorrectionsTreePhysical[4][4][2][3]))
+  {
+    count += 1;
+    ss << "G0G0HpmHmp: " << tree_G0G0HpmHmp << " | "
+       << QuarticHiggsCorrectionsTreePhysical[4][4][2][3] << "\n";
+  }
+  // hhGpmGmp
+  if (not almost_the_same(tree_hhGpmGmp,
+                          QuarticHiggsCorrectionsTreePhysical[7][7][0][1]))
+  {
+    count += 1;
+    ss << "hhGpmGmp: " << tree_hhGpmGmp << " | "
+       << QuarticHiggsCorrectionsTreePhysical[7][7][0][1] << "\n";
+  }
+  // hHGpmGmp
+  if (not almost_the_same(tree_hHGpmGmp,
+                          QuarticHiggsCorrectionsTreePhysical[7][6][0][1]))
+  {
+    count += 1;
+    ss << "hHGpmGmp: " << tree_hHGpmGmp << " | "
+       << QuarticHiggsCorrectionsTreePhysical[7][6][0][1] << "\n";
+  }
+  // HHGpmGmp
+  if (not almost_the_same(tree_HHGpmGmp,
+                          QuarticHiggsCorrectionsTreePhysical[6][6][0][1]))
+  {
+    count += 1;
+    ss << "HHGpmGmp: " << tree_HHGpmGmp << " | "
+       << QuarticHiggsCorrectionsTreePhysical[6][6][0][1] << "\n";
+  }
+  // AAGpmGmp
+  if (not almost_the_same(tree_AAGpmGmp,
+                          QuarticHiggsCorrectionsTreePhysical[5][5][0][1]))
+  {
+    count += 1;
+    ss << "AAGpmGmp: " << tree_AAGpmGmp << " | "
+       << QuarticHiggsCorrectionsTreePhysical[5][5][0][1] << "\n";
+  }
+  // hG0HpGm
+  if (not almost_the_same(tree_hG0HpGm,
+                          QuarticHiggsCorrectionsTreePhysical[7][4][2][1]))
+  {
+    count += 1;
+    ss << "hG0HpGm: " << tree_hG0HpGm << " | "
+       << QuarticHiggsCorrectionsTreePhysical[7][4][2][1] << "\n";
+  }
+  // hG0HmGp
+  if (not almost_the_same(tree_hG0HmGp,
+                          QuarticHiggsCorrectionsTreePhysical[7][4][3][0]))
+  {
+    count += 1;
+    ss << "hG0HmGp: " << tree_hG0HmGp << " | "
+       << QuarticHiggsCorrectionsTreePhysical[7][4][3][0] << "\n";
+  }
+  // HG0HpGm
+  if (not almost_the_same(tree_HG0HpGm,
+                          QuarticHiggsCorrectionsTreePhysical[6][4][2][1]))
+  {
+    count += 1;
+    ss << "HG0HpGm: " << tree_HG0HpGm << " | "
+       << QuarticHiggsCorrectionsTreePhysical[6][4][2][1] << "\n";
+  }
+  // HG0HmGp
+  if (not almost_the_same(tree_HG0HmGp,
+                          QuarticHiggsCorrectionsTreePhysical[6][4][3][0]))
+  {
+    count += 1;
+    ss << "HG0HmGp: " << tree_HG0HmGp << " | "
+       << QuarticHiggsCorrectionsTreePhysical[6][4][3][0] << "\n";
+  }
+  // AG0HpmGmp
+  if (not almost_the_same(tree_AG0HpmGmp,
+                          QuarticHiggsCorrectionsTreePhysical[5][4][2][1]))
+  {
+    count += 1;
+    ss << "AG0HpmGmp: " << tree_AG0HpmGmp << " | "
+       << QuarticHiggsCorrectionsTreePhysical[5][4][2][1] << "\n";
+  }
+  // HpmHpmGmpGmp
+  if (not almost_the_same(tree_HpmHpmGmpGmp,
+                          QuarticHiggsCorrectionsTreePhysical[2][2][1][1]))
+  {
+    count += 1;
+    ss << "HpmHpmGmpGmp: " << tree_HpmHpmGmpGmp << " | "
+       << QuarticHiggsCorrectionsTreePhysical[2][2][1][1] << "\n";
+  }
+  // HpmHmpGpmGmp
+  if (not almost_the_same(tree_HpmHmpGpmGmp,
+                          QuarticHiggsCorrectionsTreePhysical[2][3][0][1]))
+  {
+    count += 1;
+    ss << "HpmHmpGpmGmp: " << tree_HpmHmpGpmGmp << " | "
+       << QuarticHiggsCorrectionsTreePhysical[2][3][0][1] << "\n";
+  }
+
+  // Charge-rotated mass basis: 0:Gp, 1:Gm, 2:Hp, 3:Hm, 4:G0, 5:A, 6:H, 7:h
+
+  // AG0G0G0
+  if (not almost_the_same(tree_AG0G0G0,
+                          QuarticHiggsCorrectionsTreePhysical[5][4][4][4]))
+  {
+    count += 1;
+    ss << "AG0G0G0: " << tree_AG0G0G0 << " | "
+       << QuarticHiggsCorrectionsTreePhysical[5][4][4][4] << "\n";
+  }
+  // AG0GpmGmp
+  if (not almost_the_same(tree_AG0GpmGmp,
+                          QuarticHiggsCorrectionsTreePhysical[5][4][0][1]))
+  {
+    count += 1;
+    ss << "AG0GpmGmp: " << tree_AG0GpmGmp << " | "
+       << QuarticHiggsCorrectionsTreePhysical[5][4][0][1] << "\n";
+  }
+  // HpmGmpG0G0
+  if (not almost_the_same(tree_HpmGmpG0G0,
+                          QuarticHiggsCorrectionsTreePhysical[2][1][4][4]))
+  {
+    count += 1;
+    ss << "HpmGmpG0G0: " << tree_HpmGmpG0G0 << " | "
+       << QuarticHiggsCorrectionsTreePhysical[2][1][4][4] << "\n";
+  }
+  // HpmGpmGmpGmp
+  if (not almost_the_same(tree_HpmGpmGmpGmp,
+                          QuarticHiggsCorrectionsTreePhysical[2][0][1][1]))
+  {
+    count += 1;
+    ss << "HpmGpmGmpGmp: " << tree_HpmGpmGmpGmp << " | "
+       << QuarticHiggsCorrectionsTreePhysical[2][0][1][1] << "\n";
+  }
+
+  // Charge-rotated mass basis: 0:Gp, 1:Gm, 2:Hp, 3:Hm, 4:G0, 5:A, 6:H, 7:h
+
+  // G0G0G0G0
+  if (not almost_the_same(tree_G0G0G0G0,
+                          QuarticHiggsCorrectionsTreePhysical[4][4][4][4]))
+  {
+    count += 1;
+    ss << "G0G0G0G0: " << tree_G0G0G0G0 << " | "
+       << QuarticHiggsCorrectionsTreePhysical[4][4][4][4] << "\n";
+  }
+  // G0G0GpmGmp
+  if (not almost_the_same(tree_G0G0GpmGmp,
+                          QuarticHiggsCorrectionsTreePhysical[4][4][0][1]))
+  {
+    count += 1;
+    ss << "G0G0GpmGmp: " << tree_G0G0GpmGmp << " | "
+       << QuarticHiggsCorrectionsTreePhysical[4][4][0][1] << "\n";
+  }
+  // GpmGmpGpmGmp
+  if (not almost_the_same(tree_GpmGmpGpmGmp,
+                          QuarticHiggsCorrectionsTreePhysical[0][1][0][1]))
+  {
+    count += 1;
+    ss << "GpmGmpGpmGmp: " << tree_GpmGmpGpmGmp << " | "
+       << QuarticHiggsCorrectionsTreePhysical[0][1][0][1] << "\n";
+  }
+
+  // charge-breaking trilinears (check if the vanish)
+
+  if (count == 0)
+  {
+    ss << "All quartics agree. Success!\n";
+  }
+  else
+  {
+    ss << count << " quartics differ. Error!\n";
+  }
+
+  Logger::Write(LoggingLevel::Default, ss.str());
 }
 
 void Class_Potential_R2HDM::SetCurvatureArrays()

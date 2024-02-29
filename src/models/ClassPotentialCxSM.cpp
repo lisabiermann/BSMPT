@@ -957,7 +957,7 @@ void Class_CxSM::TripleHiggsCouplings()
 void Class_CxSM::QuarticHiggsCouplings()
 {
   if (!SetCurvatureDone) SetCurvatureArrays();
-  if (!CalcCouplingsdone) CalculatePhysicalCouplings();
+  if (!CalcCouplingsDone) CalculatePhysicalCouplings();
 
   if (CalculatedQuarticCouplings) return;
   CalculatedQuarticCouplings = true;

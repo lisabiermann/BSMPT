@@ -185,19 +185,19 @@ protected:
    * Storage of the contributions of the Coleman-Weinberg potential to the
    * quartic Higgs couplings in the mass basis
    */
-  std::vector<std::vector<std::vector<std::vector<double>>>>
+  std::vector<std::vector<std::vector<std::vector<std::complex<double>>>>>
       QuarticHiggsCorrectionsCWPhysical;
   /**
    * Storage of the contributions of the tree-level potential to the quartic
    * Higgs couplings in the mass basis
    */
-  std::vector<std::vector<std::vector<std::vector<double>>>>
+  std::vector<std::vector<std::vector<std::vector<std::complex<double>>>>>
       QuarticHiggsCorrectionsTreePhysical;
   /**
    * Storage of the contributions of the counterterm potential to the quartic
    * Higgs couplings in the mass basis
    */
-  std::vector<std::vector<std::vector<std::vector<double>>>>
+  std::vector<std::vector<std::vector<std::vector<std::complex<double>>>>>
       QuarticHiggsCorrectionsCTPhysical;
 
   /**
@@ -641,10 +641,11 @@ public:
    * @param l
    * @return QuarticHiggsCorrectionsTreePhysical[i][j][k]
    */
-  double get_QuarticHiggsCorrectionsTreePhysical(std::size_t i,
-                                                 std::size_t j,
-                                                 std::size_t k,
-                                                 std::size_t l) const
+  std::complex<double>
+  get_QuarticHiggsCorrectionsTreePhysical(std::size_t i,
+                                          std::size_t j,
+                                          std::size_t k,
+                                          std::size_t l) const
   {
     return QuarticHiggsCorrectionsTreePhysical.at(i).at(j).at(k).at(l);
   }
@@ -656,10 +657,11 @@ public:
    * @param l
    * @return QuarticHiggsCorrectionsCTPhysical[i][j][k]
    */
-  double get_QuarticHiggsCorrectionsCTPhysical(std::size_t i,
-                                               std::size_t j,
-                                               std::size_t k,
-                                               std::size_t l) const
+  std::complex<double>
+  get_QuarticHiggsCorrectionsCTPhysical(std::size_t i,
+                                        std::size_t j,
+                                        std::size_t k,
+                                        std::size_t l) const
   {
     return QuarticHiggsCorrectionsCTPhysical.at(i).at(j).at(k).at(l);
   }
@@ -671,10 +673,11 @@ public:
    * @param l
    * @return QuarticHiggsCorrectionsCWPhysical[i][j][k]
    */
-  double get_QuarticHiggsCorrectionsCWPhysical(std::size_t i,
-                                               std::size_t j,
-                                               std::size_t k,
-                                               std::size_t l) const
+  std::complex<double>
+  get_QuarticHiggsCorrectionsCWPhysical(std::size_t i,
+                                        std::size_t j,
+                                        std::size_t k,
+                                        std::size_t l) const
   {
     return QuarticHiggsCorrectionsCWPhysical.at(i).at(j).at(k).at(l);
   }

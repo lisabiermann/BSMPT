@@ -1005,7 +1005,7 @@ void Class_Potential_RN2HDM::TripleHiggsCouplings()
 void Class_Potential_RN2HDM::QuarticHiggsCouplings()
 {
   if (!SetCurvatureDone) SetCurvatureArrays();
-  if (!CalcCouplingsdone) CalculatePhysicalCouplings();
+  if (!CalcCouplingsDone) CalculatePhysicalCouplings();
 
   if (CalculatedQuarticCouplings) return;
   CalculatedQuarticCouplings = true;
