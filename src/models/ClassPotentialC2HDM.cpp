@@ -2454,8 +2454,8 @@ std::vector<double> Class_Potential_C2HDM::calc_CT() const
 void Class_Potential_C2HDM::AdjustRotationMatrix()
 {
   // Here you implement the rotation matrix convention of your model
-  // and define HiggsRotationMatrixEnsuredConvention, use then HiggsRotationMatrixEnsuredConvention in
-  // TripleHiggsCouplings
+  // and define HiggsRotationMatrixEnsuredConvention, use then
+  // HiggsRotationMatrixEnsuredConvention in TripleHiggsCouplings
 }
 
 void Class_Potential_C2HDM::TripleHiggsCouplings()
@@ -2583,8 +2583,6 @@ void Class_Potential_C2HDM::TripleHiggsCouplings()
   {
     HiggsRotSort.row(i) = HiggsRot.row(HiggsOrder[i]);
   }
-
-  PosSM = 5;
 
   TripleHiggsCorrectionsCWPhysical.resize(NHiggs);
   TripleHiggsCorrectionsTreePhysical.resize(NHiggs);
@@ -2766,8 +2764,6 @@ void Class_Potential_C2HDM::QuarticHiggsCouplings()
   {
     HiggsRotSort.row(i) = HiggsRot.row(HiggsOrder[i]);
   }
-
-  PosSM = 5;
 
   QuarticHiggsCorrectionsCWPhysical.resize(NHiggs);
   QuarticHiggsCorrectionsTreePhysical.resize(NHiggs);
