@@ -3,6 +3,7 @@ import sys
 import os
 import shutil
 from enum import Enum
+import fileinput
 from argparse import ArgumentParser, ArgumentTypeError
 import platform
 
@@ -28,11 +29,15 @@ class BuildMode(ArgTypeEnum, Enum):
 def get_compiler():
     compiler = ""
 
-    if sys.platform != "linux":
+    if sys.platform != "linux" and sys.platform != "darwin":
         return compiler
 
-    compiler += "-gcc-"
-    compiler += get_gcc_version()
+    if (sys.platform == "linux"):
+        compiler += "-gcc-"
+
+    if (sys.platform == "darwin"):
+        compiler += "-clang-"
+    compiler += get_compiler_version()
 
     return compiler
 
@@ -60,22 +65,48 @@ def get_profile(os: str, arch: str, build_type: BuildMode):
 
     return profile
 
+def set_setting(file, setting, value):
+    for line in fileinput.input([file], inplace=True):
+        if line.strip().startswith(setting):
+            line = setting + "=" + value + "\n"
+        sys.stdout.write(line)
 
 def check_profile(profile):
     path = os.path.join("profiles", "BSMPT", profile)
     if not os.path.isfile(path):
-        raise Exception(
-            f"The desired profile {profile} does not exist in BSMPT/profiles. Please create it."
-        )
+        conan_home = subprocess.check_output("conan config home".split(), encoding="UTF-8").split("\n")[0]
+        print(f"Profile does not exist in BSMPT/profiles.\nUsing profile {profile} created from the default profile. Change it accordingly.")
+        if not os.path.isfile(conan_home + "/profiles/default"):
+            cmd = "conan profile detect".split()
+            subprocess.check_output(cmd)
+        if (sys.platform != "win32"):
+            cmd = "cp " + conan_home + "/profiles/default profiles/BSMPT/" + str(profile)
+            subprocess.check_call(cmd, shell=True)
+            set_setting(path, "compiler.cppstd", "gnu17")
+           
+        else:
+            cmd = "copy " + conan_home + "\\profiles\\default profiles\\BSMPT\\" + str(profile)
+            subprocess.check_call(cmd, shell=True)
+            set_setting(path, "compiler.cppstd", "17")
+
+        setup_profiles()
+        check_profile(profile)
 
 
-def get_gcc_version():
-    version_response = subprocess.check_output(
-        "gcc --version".split(), encoding="UTF-8"
-    ).partition("\n")[0]
-    semver_string = version_response[version_response.rfind(" ") + 1 :]
-    major = semver_string.partition(".")[0]
-    return major
+def get_compiler_version():
+    if (sys.platform == "linux"):
+        version_response = subprocess.check_output(
+            "gcc --version".split(), encoding="UTF-8"
+        ).partition("\n")[0]
+        semver_string = version_response[version_response.rfind(" ") + 1 :]
+        return semver_string.partition(".")[0]
+    if (sys.platform == "darwin"):
+        version_response = subprocess.check_output(
+            "clang --version".split(), encoding="UTF-8"
+        ).partition("\n")[0]
+        semver_string = version_response[version_response.rfind("version") + 8 :]
+        return semver_string.partition(".")[0]
+    return ""
 
 
 def get_arch():
