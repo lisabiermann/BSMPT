@@ -9,8 +9,7 @@ file(GLOB SOURCE_FILES "Test-*.cpp" CONFIURE_DEPENDS)
 add_executable(GenericTests ${SOURCE_FILES})
 target_link_libraries(
   GenericTests
-  PRIVATE GSL::gsl
-          Catch2::Catch2WithMain
+  PRIVATE Catch2::Catch2WithMain
           CatchEventListener
           Minimizer
           MinimumTracer
