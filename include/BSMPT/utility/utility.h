@@ -8,6 +8,8 @@
 
 #include <BSMPT/config.h>
 #include <algorithm>
+#include <functional>
+#include <gsl/gsl_integration.h>
 #include <iostream>
 #include <numeric>
 #include <random>
