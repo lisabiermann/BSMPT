@@ -4,11 +4,7 @@ SPDX-FileCopyrightText: 2021 Philipp Basler, Margarete Mühlleitner and Jonas M�
 SPDX-License-Identifier: GPL-3.0-or-later
 -->
 
-<<<<<<< HEAD
 Program: BSMPT version 3.0.2
-=======
-Program: BSMPT version 3.0.1
->>>>>>> parent of 64f3907 (Revert "Merge branch 'master' into VDM")
 
 Released by: Philipp Basler, Lisa Biermann, Margarete Mühlleitner, Jonas Müller, Rui Santos and João Viana
 

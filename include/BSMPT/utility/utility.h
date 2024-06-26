@@ -8,10 +8,7 @@
 
 #include <BSMPT/config.h>
 #include <algorithm>
-<<<<<<< HEAD
 #include <functional>
-=======
->>>>>>> parent of 64f3907 (Revert "Merge branch 'master' into VDM")
 #include <gsl/gsl_integration.h>
 #include <iostream>
 #include <numeric>
