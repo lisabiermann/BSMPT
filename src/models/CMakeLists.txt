@@ -14,6 +14,7 @@ set(header
     ${header_path}/ClassPotentialN2HDM.h
     ${header_path}/ClassPotentialCxSM.h
     ${header_path}/ClassPotentialSM.h
+    ${header_path}/ClassPotentialVDM.h
     ${header_path}/ClassPotentialCPintheDark.h
     # Here you can add your new model
     ${header_path}/ClassTemplate.h)
@@ -29,6 +30,7 @@ set(src
     ClassPotentialN2HDM.cpp
     ClassPotentialCxSM.cpp
     ClassPotentialSM.cpp
+    ClassPotentialVDM.cpp
     ClassPotentialCPintheDark.cpp
     # Here you can add your new model
     ClassTemplate.cpp)
