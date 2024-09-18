@@ -40,6 +40,10 @@ Class_CxSM::Class_CxSM(const ISMConstants &smConstants)
 
   NHiggs = NNeutralHiggs + NChargedHiggs;
 
+  NGaugeD = 4;
+  NGaugeS = 0;
+  NGauge  = NGaugeD + NGaugeS;
+
   VevOrder.resize(nVEV);
   // Here you have to tell which scalar field gets which VEV.
   VevOrder[0] = 3;

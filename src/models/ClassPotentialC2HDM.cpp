@@ -31,7 +31,10 @@ Class_Potential_C2HDM::Class_Potential_C2HDM(const ISMConstants &smConstants)
   NHiggs  = NNeutralHiggs + NChargedHiggs;
   NLepton = 9;
   NQuarks = 12;
-  NGauge  = 4;
+
+  NGaugeD = 4;
+  NGaugeS = 0;
+  NGauge  = NGaugeD + NGaugeS;
 
   VevOrder.resize(nVEV);
   if (IncludeChargeBreakingVEV)

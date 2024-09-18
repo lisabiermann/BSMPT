@@ -1,6 +1,6 @@
 // Copyright (C) 2018  Philipp Basler and Margarete Mühlleitner
-// SPDX-FileCopyrightText: 2021 Philipp Basler, Margarete Mühlleitner and Jonas
-// Müller
+// SPDX-FileCopyrightText: 2021 Philipp Basler, Margarete Mühlleitner, Jonas
+// Müller and Karo Erhardt
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -21,7 +21,7 @@ using namespace Eigen;
 
 /**
  * @file
- * Template for adding a new model class
+ * Implementation of the Vector Dark Matter (VDM) model
  */
 
 namespace BSMPT
@@ -47,7 +47,11 @@ Class_VDM::Class_VDM(const ISMConstants &smConstants)
   nVEV = 2; // number of VEVs to minimize the potential
 
   NHiggs = NNeutralHiggs + NChargedHiggs;
-  NGauge = 5; // overwrite number of gauge bosons as we have an additional
+
+  NGaugeD = 4; // number of gauge bosons from EW doublets
+  NGaugeS = 1; // number of gauge bosons from EW singlets (need to be put last
+               // in gauge boson basis)
+  NGauge = NGaugeD + NGaugeS; // total number of gauge bosons
 
   VevOrder.resize(nVEV);
   // Here you have to tell which scalar field gets which VEV.
@@ -173,22 +177,7 @@ void Class_VDM::ReadAndSet(const std::string &linestr, std::vector<double> &par)
 
   for (int k = 1; k < 7; k++)
   {
-    // alte zuordnung
     ss >> tmp;
-
-    // if (k == 1)
-    //   MH1 = tmp; // MH1
-    // else if (k == 2)
-    //   MH2 = tmp; // MH2
-    // else if (k == 3)
-    //   v   = tmp; // v
-    // else if (k == 4)
-    //   vs  = tmp; // vs
-    // else if (k == 5)
-    //   alpha = tmp; // alpha
-    // else if (k == 6)
-    //   MX = tmp; // MX
-
     if (k == 1)
       MH1 = tmp; //  MH1
     else if (k == 2)
@@ -200,7 +189,7 @@ void Class_VDM::ReadAndSet(const std::string &linestr, std::vector<double> &par)
     else if (k == 5)
       v = tmp; // v
     else if (k == 6)
-      C_gX = tmp; // kopplung
+      C_gX = tmp; // coupling
   }
 
   vs = MX / C_gX;
@@ -211,13 +200,6 @@ void Class_VDM::ReadAndSet(const std::string &linestr, std::vector<double> &par)
   par[3] = vs;
   par[4] = alpha;
   par[5] = MX;
-
-  // par[0] =  MH1;
-  // par[1] =  MH2;
-  // par[2] =  v;
-  // par[3] =  MX /gX; //vs
-  // par[4] =  alpha;
-  // par[5] =  MX;
 
   set_gen(par); // This you have to call so that everything will be set
   return;
@@ -244,7 +226,7 @@ void Class_VDM::set_gen(const std::vector<double> &par)
   muHsq = vs * vs * kappa / 2 + v * v * lambdaH; // tadpole conditions
   muSsq = kappa * v * v / 2 + lambdaS * vs * vs;
 
-  scale = v; // hier evtl vh
+  scale = v;
 
   vevTreeMin.resize(nVEV);
   vevTree.resize(NHiggs);

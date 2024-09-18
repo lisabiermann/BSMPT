@@ -49,6 +49,11 @@ Class_Template::Class_Template(const ISMConstants &smConstants)
 
   NHiggs = NNeutralHiggs + NChargedHiggs;
 
+  NGaugeD = 4; // number of gauge bosons from EW doublets
+  NGaugeS = 0; // number of gauge bosons from EW singlets (need to be put last
+               // in gauge boson basis)
+  NGauge = NGaugeD + NGaugeS; // total number of gauge bosons
+
   VevOrder.resize(nVEV);
   // Here you have to tell which scalar field gets which VEV.
   VevOrder[0] = 0;

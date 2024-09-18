@@ -23,7 +23,9 @@ Class_Potential_R2HDM::Class_Potential_R2HDM(const ISMConstants &smConstants)
   NChargedHiggs = 4;
 
   NHiggs  = NNeutralHiggs + NChargedHiggs;
-  NGauge  = 4;
+  NGaugeD = 4;
+  NGaugeS = 0;
+  NGauge  = NGaugeD + NGaugeS;
   NLepton = 9;
   NQuarks = 12;
 

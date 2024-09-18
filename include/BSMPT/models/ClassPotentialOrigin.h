@@ -109,9 +109,15 @@ protected:
    */
   std::size_t NHiggs = NNeutralHiggs + NChargedHiggs;
   /**
-   * Number of gauge bosons. Do not change this in the current version as we
-   * only investigate extended Higgs sectors. If you want to extend the other
-   * sectors as well the Debye corrections have to be calculated by hand.
+   *  Number of gauge bosons from EW doublets
+   */
+  std::size_t NGaugeD = 4;
+  /**
+   *  Number of gauge bosons from EW singlets
+   */
+  std::size_t NGaugeS = 0;
+  /**
+   * Number of gauge bosons.
    */
   std::size_t NGauge = 4;
   /**
@@ -515,6 +521,11 @@ public:
    * @return NGauge
    */
   std::size_t get_NGauge() const { return NGauge; }
+  /**
+   * @brief get_NGaugeD
+   * @return NGaugeD
+   */
+  std::size_t get_NGaugeD() const { return NGaugeD; }
   /**
    * @brief get_NQuarks
    * @return NQuarks

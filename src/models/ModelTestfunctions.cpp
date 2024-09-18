@@ -251,7 +251,6 @@ TestResults CheckNumberOfTripleCouplings(const Class_Potential_Origin &point)
 
 TestResults CheckGaugeBosonMasses(const Class_Potential_Origin &point)
 {
-
   std::vector<double> gaugeMassesInput;
   gaugeMassesInput.push_back(0);
   gaugeMassesInput.push_back(pow(point.SMConstants.C_MassW, 2));
@@ -260,23 +259,44 @@ TestResults CheckGaugeBosonMasses(const Class_Potential_Origin &point)
   std::sort(gaugeMassesInput.begin(), gaugeMassesInput.end());
   auto GaugeMassCalculated = point.GaugeMassesSquared(
       point.MinimizeOrderVEV(point.get_vevTreeMin()), 0, 0);
-  if (GaugeMassCalculated.size() != gaugeMassesInput.size())
+
+  if (point.get_NGaugeD() < gaugeMassesInput.size())
   {
     return TestResults::Fail;
   }
+
   double sum{0};
-  for (std::size_t i{0}; i < GaugeMassCalculated.size(); ++i)
+  std::size_t jmin = 0;
+
+  for (std::size_t i{0}; i < gaugeMassesInput.size(); ++i)
   {
     if (gaugeMassesInput.at(i) == 0)
     {
       sum += std::abs(GaugeMassCalculated.at(i));
+      jmin += 1;
     }
-    else
+    else if (point.get_NGaugeD() == 4) // four EW gauge bosons
     {
       sum += (std::abs(GaugeMassCalculated.at(i) - gaugeMassesInput.at(i))) /
              gaugeMassesInput.at(i);
     }
+    else // more than four EW gauge bosons
+    {
+      for (std::size_t j{jmin}; j < point.get_NGaugeD(); ++j)
+      {
+        auto diff =
+            (std::abs(GaugeMassCalculated.at(j) - gaugeMassesInput.at(i))) /
+            gaugeMassesInput.at(i);
+        if (diff < 1e-1)
+        {
+          sum += diff;
+          jmin += 1;
+          break;
+        }
+      }
+    }
   }
+
   auto result = sum > 1e-5 ? TestResults::Fail : TestResults::Pass;
 
   std::string prsize_tline1 = "The SM gauge boson masses squared are : ";

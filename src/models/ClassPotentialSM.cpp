@@ -34,6 +34,10 @@ Class_SM::Class_SM(const ISMConstants &smConstants)
 
   NHiggs = NNeutralHiggs + NChargedHiggs;
 
+  NGaugeD = 4;
+  NGaugeS = 0;
+  NGauge  = NGaugeD + NGaugeS;
+
   VevOrder.resize(nVEV);
   VevOrder[0] = 2;
 

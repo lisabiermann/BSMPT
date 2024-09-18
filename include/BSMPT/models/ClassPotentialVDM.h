@@ -1,11 +1,12 @@
 // Copyright (C) 2018  Philipp Basler and Margarete Mühlleitner
 // SPDX-FileCopyrightText: 2021 Philipp Basler, Margarete Mühlleitner and Jonas
-// Müller
+// Müller and Karo Erhardt
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 /**
  * @file
+ * Model file for the Vector Dark Matter model
  */
 
 #pragma once
@@ -20,8 +21,10 @@ namespace Models
 {
 
 /**
- * @brief The Class_Template class
- * Template for implementing a new model
+ * @brief The Class_VDM class
+ * Implementation of the Vector Dark Matter model
+ *
+ * **TODO: Add Lagrangian and field basis for model**
  */
 class Class_VDM : public Class_Potential_Origin
 {

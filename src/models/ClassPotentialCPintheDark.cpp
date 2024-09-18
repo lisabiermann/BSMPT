@@ -44,6 +44,10 @@ Class_Potential_CPintheDark::Class_Potential_CPintheDark(
 
   NHiggs = NNeutralHiggs + NChargedHiggs;
 
+  NGaugeD = 4;
+  NGaugeS = 0;
+  NGauge  = NGaugeD + NGaugeS;
+
   VevOrder.resize(nVEV);
   VevOrder[0] = 2; // omegaCB
   VevOrder[1] = 4; // omega1
