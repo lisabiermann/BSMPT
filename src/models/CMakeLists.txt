@@ -7,6 +7,7 @@ set(header_path "${BSMPT_SOURCE_DIR}/include/BSMPT/models")
 set(header
     ${header_path}/SMparam.h
     ${header_path}/IncludeAllModels.h
+
     ${header_path}/ClassPotentialOrigin.h
     ${header_path}/ClassPotentialC2HDM.h
     ${header_path}/ClassPotentialR2HDM.h
