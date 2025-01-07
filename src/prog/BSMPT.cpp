@@ -42,7 +42,7 @@ struct CLIOptions
   bool UseCMAES{Minimizer::UseLibCMAESDefault};
   bool UseNLopt{Minimizer::UseNLoptDefault};
   int WhichMinimizer{Minimizer::WhichMinimizerDefault};
-  bool UseMultithreading{false};
+  bool UseMultithreading{true};
 
   CLIOptions(const BSMPT::parser &argparser);
   bool good() const;
@@ -96,10 +96,8 @@ try
 
     if (linecounter == 1)
     {
-
       outfile << linestr << sep << modelPointer->addLegendCT() << sep
-              << modelPointer->addLegendTemp() << sep
-              << modelPointer->addLegendEFT() << std::endl;
+              << modelPointer->addLegendTemp() << std::endl;
 
       modelPointer->setUseIndexCol(linestr);
     }
@@ -197,12 +195,8 @@ try
                             " found.");
         }
       }
-
       if (PrintErrorLines)
       {
-        typedef std::numeric_limits<double> dbl;
-        outfile.precision(dbl::max_digits10);
-
         outfile << linestr;
         outfile << sep << parameters.second;
         outfile << sep << EWPT.Tc << sep << EWPT.vc;
@@ -212,7 +206,6 @@ try
         else
           outfile << sep << static_cast<int>(EWPT.StatusFlag);
         outfile << sep << EWPT.EWMinimum;
-        outfile << sep << modelPointer->getParamsEFT();
         outfile << std::endl;
       }
       else if (EWPT.StatusFlag == Minimizer::MinimizerStatus::SUCCESS)
@@ -223,7 +216,6 @@ try
           outfile << sep << EWPT.Tc << sep << EWPT.vc;
           outfile << sep << EWPT.vc / EWPT.Tc;
           outfile << sep << EWPT.EWMinimum;
-          outfile << sep << modelPointer->getParamsEFT();
           outfile << std::endl;
         }
       }

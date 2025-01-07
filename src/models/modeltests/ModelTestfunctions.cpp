@@ -743,6 +743,8 @@ CheckCTConditionsSecondDerivative(const Class_Potential_Origin &point)
       if (std::abs(HesseVCT(i, j) + HesseWeinberg(i, j)) > 1e-5)
       {
         std::stringstream ss;
+        typedef std::numeric_limits<double> dbl;
+        ss.precision(dbl::max_digits10);
         ss << "Failed at << (" << i << "," << j << ")"
            << " with CT = " << HesseVCT(i, j)
            << "; CW = " << HesseWeinberg(i, j)

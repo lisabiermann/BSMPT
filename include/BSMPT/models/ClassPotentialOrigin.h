@@ -68,18 +68,6 @@ protected:
   bool UseTreeLevel = false;
 
   /**
-   * @brief UseTensorSymFac = true to input the whole EFT debye mass
-   * corrections, no split-up into symmetry factor and tensor
-   */
-  bool UseTensorSymFac = false;
-
-  /**
-   * @brief UseTwoLoopThermalMass Set true to include Debye-mass corrections by
-   * the dim6 operators
-   */
-  bool UseTwoLoopThermalMass = false;
-
-  /**
    * MSBar renormalization scale
    */
   double scale;
@@ -258,6 +246,11 @@ protected:
   std::vector<std::vector<std::vector<std::vector<double>>>>
       Curvature_Higgs_CT_L4;
   /**
+   * L_{(S),CT}^{ijklm}
+   */
+  std::vector<std::vector<std::vector<std::vector<std::vector<double>>>>>
+      Curvature_Higgs_CT_L5;
+  /**
    * L_{(S),CT}^{ijklmn}
    */
   std::vector<
@@ -285,6 +278,13 @@ protected:
    */
   std::vector<std::vector<std::vector<std::complex<double>>>>
       Curvature_Quark_F2H1;
+
+  /**
+   * dim 4 Y^{IJk} for Quarks
+   */
+  std::vector<std::vector<std::vector<std::complex<double>>>>
+      Curvature_Quark_F2H1_dim4;
+
   /**
    * Y^{IJklm} for Quarks
    */
@@ -434,62 +434,10 @@ protected:
    */
   std::vector<std::vector<double>> DebyeHiggs;
   /**
-   * @brief DebyeHiggsOneDim6 stores the scalar dim-6 one-loop debye corrections
-   */
-  std::vector<std::vector<double>> DebyeHiggsOneDim6;
-  /**
-   * @brief DebyeHiggsTwoDim6 stores the scalar dim-6 two-loop debye corrections
-   */
-  std::vector<std::vector<double>> DebyeHiggsTwoDim6;
-  /**
    * @brief DebyeGauge stores the debye corrections to the mass matrix of the
    * gauge bosons
    */
   std::vector<std::vector<double>> DebyeGauge;
-  /**
-   * @brief DebyeGaugeDim6 stores the two-loop debye corrections due to dim-6
-   * operators to the mass matrix of the gauge bosons
-   */
-  std::vector<std::vector<double>> DebyeGaugeDim6;
-  /**
-   * @brief SymFac_HiggsL6 stores the prefactors stemming from the L6 two-loop
-   * scalar debye mass corrections
-   */
-  std::vector<std::vector<double>> SymFac_HiggsL6;
-  /**
-   * @brief SymFac_Higgs stores the general one-loop EFT debye scalar mass
-   * corrections (including Yukawa modifications)
-   */
-  std::vector<std::vector<double>> SymFac_Higgs_OneLoop;
-  /**
-   * @brief SymFac_Higgs stores the general two-loop EFT debye scalar mass
-   * corrections
-   */
-  std::vector<std::vector<double>> SymFac_Higgs_TwoLoop;
-  /**
-   * @brief SymFac_HiggsG2H4 stores the prefactors stemming from the G2H4
-   * two-loop scalar debye mass corrections
-   */
-  std::vector<std::vector<double>> SymFac_HiggsG2H4;
-  /**
-   * @brief SymFac_HiggsG4H2 stores the prefactors stemming from the G4H2
-   * two-loop scalar debye mass corrections
-   */
-  std::vector<std::vector<double>> SymFac_HiggsG4H2;
-  /**
-   * @brief SymFac_GaugeG4H2 stores the prefactors stemming from the G4H2
-   * two-loop gauge boson debye mass corrections
-   */
-  std::vector<std::vector<double>> SymFac_GaugeG4H2;
-  /**
-   * @brief SymFac_Gauge stores the general EFT debye gauge mass corrections
-   */
-  std::vector<std::vector<double>> SymFac_Gauge;
-  /**
-   * @brief SymFac_GaugeG2H4 stores the prefactors stemming from the G2H4
-   * two-loop gauge boson debye mass corrections
-   */
-  std::vector<std::vector<double>> SymFac_GaugeG2H4;
   /**
    * @brief VevOrder stores the matching order used in MinimizeOrderVEV, set in
    * the constructor of the model
@@ -806,6 +754,17 @@ public:
                std::size_t Nk2,
                std::size_t Nk3);
   /**
+   * Symmetrize 5-dim tensor, purely scalar
+   */
+  void sym5Dim(
+      std::vector<std::vector<std::vector<std::vector<std::vector<double>>>>>
+          &Tensor5Dim,
+      std::size_t Nk1,
+      std::size_t Nk2,
+      std::size_t Nk3,
+      std::size_t Nk4,
+      std::size_t Nk5);
+  /**
    * Symmetrize 6-dim tensor
    */
   void sym6Dim(std::vector<std::vector<
@@ -817,6 +776,16 @@ public:
                std::size_t Nk4,
                std::size_t Nk5,
                std::size_t Nk6);
+
+  /**
+   * Absorb Dim6 mass shift of the leptons into yukawa-coupling modifier
+   */
+  void CorrectLeptonTensorsDim6();
+
+  /**
+   * Absorb Dim6 mass shift of the quarks into yukawa-coupling modifier
+   */
+  void CorrectQuarkTensorsDim6();
 
   /**
    * Calculates the effective potential and its derivatives.
@@ -880,6 +849,14 @@ public:
    * @return sol with EWVEV dirs set to zero
    */
   virtual void SetEWVEVZero(std::vector<double> &sol) const;
+
+  /**
+   * @brief SetEWVEVZero Set all VEV directions in sol-vector to zero that
+   * contibute to EW VEV
+   * @param sol solution in nVEV-space
+   * @return sol with EWVEV dirs set to zero
+   */
+  void SetEWVEVZero(std::vector<double> &sol) const;
 
   /**
    * Reads the string linestr and sets the parameter point
@@ -947,10 +924,100 @@ public:
    * This has to be specified in the model file.
    */
   virtual void SetCurvatureArrays() = 0;
+
+  /**
+   * Defines the one-loop temperature and background field dependent dim6-Debye
+   * corrections
+   */
+  virtual double
+  SymFac_Higgs_OneLoop(const int &i,
+                       const int &j,
+                       const std::vector<double> &point) const = 0;
+
+  /**
+   * Defines the two-loop temperature dependent debye corrections
+   */
+  virtual double SymFac_Higgs_TwoLoop(const int &i, const int &j) const = 0;
+
   /**
     Calculates all triple and quartic couplings in the physical basis
  */
   void CalculatePhysicalCouplings();
+
+  /**
+   * @brief VaryVEVsDir takes position in field space and varies this in a
+   * specified individual VEV direction
+   * @param start initial field point
+   * @param numdir field direction index
+   * @param size size of variation
+   * @return varied field point
+   */
+  std::vector<double> VaryVEVsDir(const std::vector<double> &start,
+                                  const size_t &numdir,
+                                  const double &size = 0.001) const;
+
+  /**
+   * @brief get nabla of coleman weinberg potential
+   * @param vev vev configuration at which potential should be evaluated
+   * @param Temp temperature
+   * @param field field direction index
+   * @param step step size
+   */
+  double GetV1LoopNabla(const std::vector<double> &vev,
+                        const double &Temp,
+                        const int &field,
+                        const double &step) const;
+
+  /**
+   * @brief get nabla vector of coleman weinberg potential
+   * @param vev vev configuration at which potential should be evaluated
+   * @param Temp temperature
+   * @param step step size vector
+   * @return vector of first derivative of V1Loop
+   */
+  std::vector<double> GetV1LoopNabla(const std::vector<double> &vev,
+                                     const double &Temp,
+                                     const std::vector<double> &step) const;
+
+  /**
+   * @brief get second derivative of coleman weinberg potential
+   * @param vev vev configuration at which potential should be evaluated
+   * @param Temp temperature
+   * @param field1 first field direction
+   * @param field2 second field direction
+   * @param step1 step size in first field direction
+   * @param step2 step size in second field direction
+   * @return second derivative of V1Loop in specified field direction
+   */
+  double GetV1LoopHesse(const std::vector<double> &vev,
+                        const double &Temp,
+                        const int &field1,
+                        const int &field2,
+                        const double &step1,
+                        const double &step2) const;
+
+  /**
+   * @brief get Hesse matrix for coleman weinberg potential
+   * @param vev vev configuration at which potential should be evaluated
+   * @param Temp temperature
+   * @param step step size vector
+   * @return second derivative of V1Loop matrix
+   */
+  Eigen::MatrixXd GetV1LoopHesse(const std::vector<double> &vev,
+                                 const double &Temp,
+                                 const std::vector<double> &step) const;
+  /**
+   * Numerically calculates the first derivative of the Coleman-Weinberg
+   * potential at the tree-level minimum.
+   */
+  Eigen::VectorXd WeinbergFirstDerivativeNumerical() const;
+
+  /**
+   * Numerically calculates the second derivative of the Coleman-Weinberg
+   * potential at the tree-level minimum.
+   */
+  Eigen::MatrixXd WeinbergSecondDerivativeNumerical() const;
+
   /**
    * Calculates the first derivative of the Coleman-Weinberg potential evaluated
    * at the tree-level minimum.
@@ -1092,6 +1159,19 @@ public:
    */
   std::vector<double> QuarkMassesSquared(const std::vector<double> &v,
                                          const int &diff = 0) const;
+
+  /**
+   * Calculates the dim4 quark mass matrix and saves all eigenvalues, this
+   * assumes the same masses for different colours.
+   * @param v the configuration of all VEVs at which the eigenvalues should be
+   * evaluated
+   * @param diff 0 returns the masses and i!=0 returns the derivative of m^2
+   * w.r.t v_i
+   * @return Vector in which the eigenvalues m^2 of the mass matrix will be
+   * stored
+   */
+  std::vector<double> QuarkMassesSquaredDim4(const std::vector<double> &v,
+                                             const int &diff = 0) const;
   /**
    * Calculates the lepton mass matrix and saves all eigenvalues
    * @param v the configuration of all VEVs at which the eigenvalues should be
@@ -1114,6 +1194,18 @@ public:
    */
   std::vector<std::complex<double>>
   QuarkMasses(const std::vector<double> &v) const;
+
+  /**
+   * Calculates the dim4 quark mass matrix and saves all eigenvalues, this
+   * assumes the same masses for different colours.
+   * @param v the configuration of all VEVs at which the eigenvalues should be
+   * evaluated
+   * @return Vector in which the complex eigenvalues m of the mass matrix will
+   * be stored
+   */
+  std::vector<std::complex<double>>
+  QuarkMassesDim4(const std::vector<double> &v) const;
+
   /**
    * @brief QuarkMassMatrix calculates the Mass Matrix for the Quarks of the
    * form $ M^{IJ} = Y^{IJ} + Y^{IJk} v_k $
@@ -1123,6 +1215,17 @@ public:
    * Y^{IJk} v_k $
    */
   Eigen::MatrixXcd QuarkMassMatrix(const std::vector<double> &v) const;
+
+  /**
+   * @brief QuarkMassMatrix calculates the dim4 Mass Matrix for the Quarks of
+   * the form $ M^{IJ} = Y^{IJ} + Y^{IJk} v_k $
+   * @param v the configuration of all VEVs at which the matrix should be
+   * calculated
+   * @return the Mass Matrix for the Quarks of the form $ M^{IJ} = Y^{IJ} +
+   * Y^{IJk} v_k $
+   */
+  Eigen::MatrixXcd QuarkMassMatrixDim4(const std::vector<double> &v) const;
+
   /**
    * Calculates the quark mass matrix and saves all eigenvalues, this assumes
    * the same masses for different colours.
@@ -1133,6 +1236,7 @@ public:
    */
   std::vector<std::complex<double>>
   LeptonMasses(const std::vector<double> &v) const;
+
   /**
    * @brief LeptonMassMatrix calculates the Mass Matrix for the Leptons of the
    * form $ M^{IJ} = Y^{IJ} + Y^{IJk} v_k $
@@ -1144,10 +1248,19 @@ public:
   Eigen::MatrixXcd LeptonMassMatrix(const std::vector<double> &v) const;
 
   /**
+   * @brief GetYukawaModifier returns a vector of all dim6 Quark-Yukawa
+   * Modifiers for masses evaluated at the tree-level minimum
+   * @param alpha neutral scalar CP-even mixing angle
+   * @return vector of Yukawa modifiers
+   */
+  std::vector<double> GetYukawaModifier(const double &alpha) const;
+
+  /**
    * Calculates the triple Higgs couplings at NLO in the mass basis.
    *
-   * Use the vector TripleHiggsCorrectionsCWPhysical to save your couplings and
-   * set the nTripleCouplings to the number of couplings you want as output.
+   * Use the vector TripleHiggsCorrectionsCWPhysical to save your couplings
+   * and set the nTripleCouplings to the number of couplings you want as
+   * output.
    */
   virtual void TripleHiggsCouplings() = 0;
   /**
@@ -1317,6 +1430,11 @@ public:
   bool CheckNLOVEV(const std::vector<double> &v) const;
 
   /**
+   * This is a possible shift function for the counterterm potential.
+   */
+  virtual void PerformVCTShift() = 0;
+
+  /**
    * This is a possible debugging function.
    */
   virtual void Debugging(const std::vector<double> &input,
@@ -1337,16 +1455,6 @@ public:
    * Set the parameter UseTreeLevel to the input
    */
   void SetUseTreeLevel(bool val);
-
-  /**
-   * Set the parameter UseTensorSymFac to the input
-   */
-  void SetUseTensorSymFac(bool val);
-
-  /**
-   * Set the parameter UseTwoLoopThermalMass to the input
-   */
-  void SetUseTwoLoopThermalMass(bool val);
 
   /**
    * Gets the parameter line as an Input and calls

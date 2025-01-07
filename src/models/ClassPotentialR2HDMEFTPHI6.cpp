@@ -43,10 +43,6 @@ Class_Potential_R2HDMEFTPHI6::Class_Potential_R2HDMEFTPHI6()
   // Set UseVCounterSimplified to use the counterterm potential defined in
   // VCounterSimplified
   UseVCounterSimplified = false;
-
-  // Set UseTwoLoopThermalMass to include two-loop thermal mass corrections
-  // propto T^4
-  SetUseTwoLoopThermalMass(true);
 }
 
 Class_Potential_R2HDMEFTPHI6::~Class_Potential_R2HDMEFTPHI6()
@@ -257,24 +253,24 @@ void Class_Potential_R2HDMEFTPHI6::ReadAndSet(const std::string &linestr,
       Op6_122111 = tmp;
     else if (k == 14)
       Op6_121211 = tmp;
+    // else if (k == 15)
+    //   Op6_111112 = tmp;
+    // else if (k == 16)
+    //   Op6_121221 = tmp;
+    // else if (k == 17)
+    //   Op6_112212 = tmp;
     else if (k == 15)
-      Op6_111112 = tmp;
-    else if (k == 16)
-      Op6_121221 = tmp;
-    else if (k == 17)
-      Op6_112212 = tmp;
-    else if (k == 18)
       Op6_222222 = tmp;
-    else if (k == 19)
+    else if (k == 16)
       Op6_112222 = tmp;
-    else if (k == 20)
+    else if (k == 17)
       Op6_122122 = tmp;
-    else if (k == 21)
+    else if (k == 18)
       Op6_121222 = tmp;
-    else if (k == 22)
-      Op6_122222 = tmp;
-    else if (k == 23)
-      Op6_121212 = tmp;
+    // else if (k == 22)
+    //   Op6_122222 = tmp;
+    // else if (k == 23)
+    //   Op6_121212 = tmp;
   }
 
   par[0] = lType;
@@ -1123,22 +1119,6 @@ void Class_Potential_R2HDMEFTPHI6::write() const
     ss << "+";
   ss << std::abs(HiggsRot(posN[1], 6)) << " zeta_2\n";
 
-  if (UseTwoLoopThermalMass)
-  {
-    ss << "Dim-6 two-loop corrections to thermal masses are taken into "
-          "account.\n";
-  }
-  else
-  {
-    ss << "Note that NO Dim-6 two-loop corrections to thermal masses are taken "
-          "into "
-          "account!\n";
-  }
-  if (UseTensorSymFac)
-  {
-    ss << "Usage of combined c-factor * tensor structure!\n";
-  }
-
   ss << "The dim-6 operator are set to:"
      << "\n";
   ss << "Op6_111111 = " << Op6_111111 << "\n";
@@ -1284,10 +1264,26 @@ std::vector<double> Class_Potential_R2HDMEFTPHI6::calc_CT() const
       HesseWeinberg(1, 3) * v2 + HesseWeinberg(0, 0) * v1 - NablaWeinberg(4);
   if (std::abs(tmp) < 1e-9) tmp = 0;
   parCT.push_back(tmp);
+  std::cout << std::cout.precision(20)
+            << "HesseWeinberg(1, 3) = " << HesseWeinberg(1, 3) << std::endl;
+  std::cout << "HesseWeinberg(0, 0) = " << HesseWeinberg(0, 0) << std::endl;
+  std::cout << "NablaWeinberg(4) = " << NablaWeinberg(4) << std::endl;
+  std::cout << "dT1 = "
+            << HesseWeinberg(1, 3) * v2 + HesseWeinberg(0, 0) * v1 -
+                   NablaWeinberg(4)
+            << std::endl;
   // dT2
   tmp = HesseWeinberg(1, 3) * v1 + HesseWeinberg(3, 3) * v2 - NablaWeinberg(6);
   if (std::abs(tmp) < 1e-9) tmp = 0;
   parCT.push_back(tmp);
+  std::cout << std::cout.precision(20)
+            << "HesseWeinberg(1, 3) = " << HesseWeinberg(1, 3) << std::endl;
+  std::cout << "HesseWeinberg(3, 3) = " << HesseWeinberg(3, 3) << std::endl;
+  std::cout << "NablaWeinberg(6) = " << NablaWeinberg(6) << std::endl;
+  std::cout << "dT2 = "
+            << HesseWeinberg(1, 3) * v1 + HesseWeinberg(3, 3) * v2 -
+                   NablaWeinberg(6)
+            << std::endl;
   // dTCP
   tmp = -NablaWeinberg(7);
   if (std::abs(tmp) < 1e-9) tmp = 0;
@@ -2243,81 +2239,111 @@ void Class_Potential_R2HDMEFTPHI6::SetCurvatureArrays()
     }
   }
 
-  SetUseTensorSymFac(true); // true for whole SymFac*Tensor input
-
-  SymFac_Higgs_TwoLoop[0][0] =
-      std::pow(LambdaEFT, -0.2e1) *
-      (-2 * (6 * Op6_111111 + 2 * Op6_111122 + Op6_112222 + Op6_122111) -
-       Op6_122122) /
-      48.; // rho1rho1
-  SymFac_Higgs_TwoLoop[0][2] =
-      std::pow(LambdaEFT, -0.2e1) *
-      (-4 * Op6_111112 - 3 * Op6_112212 - 2 * (Op6_121221 + 2 * Op6_122222)) /
-      48.; // rho1rho2
-  SymFac_Higgs_TwoLoop[1][1] =
-      std::pow(LambdaEFT, -0.2e1) *
-      (-2 * (6 * Op6_111111 + 2 * Op6_111122 + Op6_112222 + Op6_122111) -
-       Op6_122122) /
-      48.; // eta1eta1
-  SymFac_Higgs_TwoLoop[1][3] =
-      std::pow(LambdaEFT, -0.2e1) *
-      (-4 * Op6_111112 - 3 * Op6_112212 - 2 * (Op6_121221 + 2 * Op6_122222)) /
-      48.; // eta1eta2
-  SymFac_Higgs_TwoLoop[2][0] =
-      std::pow(LambdaEFT, -0.2e1) *
-      (-4 * Op6_111112 - 3 * Op6_112212 - 2 * (Op6_121221 + 2 * Op6_122222)) /
-      48.; // rho2rho1
-  SymFac_Higgs_TwoLoop[2][2] = std::pow(LambdaEFT, -0.2e1) *
-                               (-2 * Op6_111122 - 4 * Op6_112222 - Op6_122111 -
-                                2 * (Op6_122122 + 6 * Op6_222222)) /
-                               48.; // rho2rho2
-  SymFac_Higgs_TwoLoop[3][1] =
-      std::pow(LambdaEFT, -0.2e1) *
-      (-4 * Op6_111112 - 3 * Op6_112212 - 2 * (Op6_121221 + 2 * Op6_122222)) /
-      48.; // eta2eta1
-  SymFac_Higgs_TwoLoop[3][3] = std::pow(LambdaEFT, -0.2e1) *
-                               (-2 * Op6_111122 - 4 * Op6_112222 - Op6_122111 -
-                                2 * (Op6_122122 + 6 * Op6_222222)) /
-                               48.; // eta2eta2
-
-  SymFac_Higgs_TwoLoop[4][4] =
-      std::pow(LambdaEFT, -0.2e1) *
-      (-2 * (6 * Op6_111111 + 2 * Op6_111122 + Op6_112222 + Op6_122111) -
-       Op6_122122) /
-      48.; // zeta1zeta1
-  SymFac_Higgs_TwoLoop[4][6] =
-      std::pow(LambdaEFT, -0.2e1) *
-      (-4 * Op6_111112 - 3 * Op6_112212 - 2 * (Op6_121221 + 2 * Op6_122222)) /
-      48.; // zeta1zeta2
-  SymFac_Higgs_TwoLoop[5][5] =
-      std::pow(LambdaEFT, -0.2e1) *
-      (-2 * (6 * Op6_111111 + 2 * Op6_111122 + Op6_112222 + Op6_122111) -
-       Op6_122122) /
-      48.; // psi1psi1
-  SymFac_Higgs_TwoLoop[5][7] =
-      std::pow(LambdaEFT, -0.2e1) *
-      (-4 * Op6_111112 - 3 * Op6_112212 - 2 * (Op6_121221 + 2 * Op6_122222)) /
-      48.; // psi1psi2
-  SymFac_Higgs_TwoLoop[6][4] =
-      std::pow(LambdaEFT, -0.2e1) *
-      (-4 * Op6_111112 - 3 * Op6_112212 - 2 * (Op6_121221 + 2 * Op6_122222)) /
-      48.; // zeta2zeta1
-  SymFac_Higgs_TwoLoop[6][6] = std::pow(LambdaEFT, -0.2e1) *
-                               (-2 * Op6_111122 - 4 * Op6_112222 - Op6_122111 -
-                                2 * (Op6_122122 + 6 * Op6_222222)) /
-                               48.; // zeta2zeta2
-  SymFac_Higgs_TwoLoop[7][5] =
-      std::pow(LambdaEFT, -0.2e1) *
-      (-4 * Op6_111112 - 3 * Op6_112212 - 2 * (Op6_121221 + 2 * Op6_122222)) /
-      48.; // psi2psi1
-  SymFac_Higgs_TwoLoop[7][7] = std::pow(LambdaEFT, -0.2e1) *
-                               (-2 * Op6_111122 - 4 * Op6_112222 - Op6_122111 -
-                                2 * (Op6_122122 + 6 * Op6_222222)) /
-                               48.; // psi2psi2
-
-  // SymFac_Gauge is independent of Op6
-
   SetCurvatureDone = true;
+}
+
+double Class_Potential_R2HDMEFTPHI6::SymFac_Higgs_OneLoop(
+    const int &i,
+    const int &j,
+    const std::vector<double> &point) const
+{
+  (void)i;
+  (void)j;
+  (void)point;
+  return 0;
+}
+
+double Class_Potential_R2HDMEFTPHI6::SymFac_Higgs_TwoLoop(const int &i,
+                                                          const int &j) const
+{
+  if (i == 0 and j == 0) // rho1rho1
+  {
+    return std::pow(LambdaEFT, -0.2e1) *
+           (-2 * (6 * Op6_111111 + 2 * Op6_111122 + Op6_112222 + Op6_122111) -
+            Op6_122122) /
+           48.;
+  }
+  else if ((i == 0 and j == 2) or (i == 2 and j == 0)) // rho1rho2
+  {
+    return std::pow(LambdaEFT, -0.2e1) *
+           (-4 * Op6_111112 - 3 * Op6_112212 -
+            2 * (Op6_121221 + 2 * Op6_122222)) /
+           48.;
+  }
+  else if (i == 2 and j == 2) // rho2rho2
+  {
+    return std::pow(LambdaEFT, -0.2e1) *
+           (-2 * Op6_111122 - 4 * Op6_112222 - Op6_122111 -
+            2 * (Op6_122122 + 6 * Op6_222222)) /
+           48.;
+  }
+  else if (i == 1 and j == 1) // eta1eta1
+  {
+    return std::pow(LambdaEFT, -0.2e1) *
+           (-2 * (6 * Op6_111111 + 2 * Op6_111122 + Op6_112222 + Op6_122111) -
+            Op6_122122) /
+           48.;
+  }
+  else if ((i == 1 and j == 3) or (i == 3 and j == 1)) // eta1eta2
+  {
+    return std::pow(LambdaEFT, -0.2e1) *
+           (-4 * Op6_111112 - 3 * Op6_112212 -
+            2 * (Op6_121221 + 2 * Op6_122222)) /
+           48.;
+  }
+  else if (i == 3 and j == 3) // eta2eta2
+  {
+    return std::pow(LambdaEFT, -0.2e1) *
+           (-2 * Op6_111122 - 4 * Op6_112222 - Op6_122111 -
+            2 * (Op6_122122 + 6 * Op6_222222)) /
+           48.;
+  }
+  else if (i == 4 and j == 4) // zeta1zeta1
+  {
+    return std::pow(LambdaEFT, -0.2e1) *
+           (-2 * (6 * Op6_111111 + 2 * Op6_111122 + Op6_112222 + Op6_122111) -
+            Op6_122122) /
+           48.;
+  }
+  else if ((i == 4 and j == 6) or (i == 6 and j == 4)) // zeta1zeta2
+  {
+    return std::pow(LambdaEFT, -0.2e1) *
+           (-4 * Op6_111112 - 3 * Op6_112212 -
+            2 * (Op6_121221 + 2 * Op6_122222)) /
+           48.;
+  }
+  else if (i == 6 and j == 6) // zeta2zeta2
+  {
+    return std::pow(LambdaEFT, -0.2e1) *
+           (-2 * Op6_111122 - 4 * Op6_112222 - Op6_122111 -
+            2 * (Op6_122122 + 6 * Op6_222222)) /
+           48.;
+  }
+  else if (i == 5 and j == 5) // psi1psi1
+  {
+    return std::pow(LambdaEFT, -0.2e1) *
+           (-2 * (6 * Op6_111111 + 2 * Op6_111122 + Op6_112222 + Op6_122111) -
+            Op6_122122) /
+           48.;
+  }
+  else if ((i == 5 and j == 7) or (i == 7 and j == 5)) // psi1psi2
+  {
+    return std::pow(LambdaEFT, -0.2e1) *
+           (-4 * Op6_111112 - 3 * Op6_112212 -
+            2 * (Op6_121221 + 2 * Op6_122222)) /
+           48.;
+  }
+  else if (i == 7 and j == 7)
+  {
+    return std::pow(LambdaEFT, -0.2e1) *
+           (-2 * Op6_111122 - 4 * Op6_112222 - Op6_122111 -
+            2 * (Op6_122122 + 6 * Op6_222222)) /
+           48.;
+  }
+  else
+  {
+    return 0;
+  }
 }
 
 bool Class_Potential_R2HDMEFTPHI6::CalculateDebyeSimplified()
@@ -2349,6 +2375,11 @@ double Class_Potential_R2HDMEFTPHI6::VCounterSimplified(
   double res = 0;
   // not implemented
   return res;
+}
+
+void Class_Potential_R2HDMEFTPHI6::PerformVCTShift()
+{
+  // not implemented
 }
 
 void Class_Potential_R2HDMEFTPHI6::Debugging(const std::vector<double> &input,

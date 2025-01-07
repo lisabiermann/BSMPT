@@ -2288,6 +2288,25 @@ void Class_Potential_CPintheDark::SetCurvatureArrays()
   Curvature_Lepton_F2H1[8][5][1] = II / v1 * SMConstants.C_MassTau;
 }
 
+double Class_Potential_CPintheDark::SymFac_Higgs_OneLoop(
+    const int &i,
+    const int &j,
+    const std::vector<double> &point) const
+{
+  (void)i;
+  (void)j;
+  (void)point;
+  return 0;
+}
+
+double Class_Potential_CPintheDark::SymFac_Higgs_TwoLoop(const int &i,
+                                                         const int &j) const
+{
+  (void)i;
+  (void)j;
+  return 0;
+}
+
 bool Class_Potential_CPintheDark::CalculateDebyeSimplified()
 {
   return false;
@@ -2381,6 +2400,11 @@ double Class_Potential_CPintheDark::VCounterSimplified(
   res += -0.5 * dImL5 * std::pow(v_1, 2) * v_2 * vcp;
 
   return res;
+}
+
+void Class_Potential_CPintheDark::PerformVCTShift()
+{
+  // not implemented
 }
 
 void Class_Potential_CPintheDark::Debugging(const std::vector<double> &input,

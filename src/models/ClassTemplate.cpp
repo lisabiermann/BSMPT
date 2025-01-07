@@ -399,6 +399,24 @@ void Class_Template::SetCurvatureArrays()
   Curvature_Quark_F2H1[0][1][0] = yt;
 }
 
+double
+Class_Template::SymFac_Higgs_OneLoop(const int &i,
+                                     const int &j,
+                                     const std::vector<double> &point) const
+{
+  (void)i;
+  (void)j;
+  (void)point;
+  return 0;
+}
+
+double Class_Template::SymFac_Higgs_TwoLoop(const int &i, const int &j) const
+{
+  (void)i;
+  (void)j;
+  return 0;
+}
+
 bool Class_Template::CalculateDebyeSimplified()
 {
   return false;
@@ -438,6 +456,11 @@ double Class_Template::VCounterSimplified(const std::vector<double> &v) const
   res = 0.5 * dms * std::pow(vIn, 2) + 1.0 / 24.0 * dlambda * std::pow(vIn, 4) +
         dT * vIn;
   return res;
+}
+
+void Class_Template::PerformVCTShift()
+{
+  // not implemented
 }
 
 void Class_Template::Debugging(const std::vector<double> &input,

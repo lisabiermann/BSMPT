@@ -1273,6 +1273,23 @@ void Class_CxSM::SetCurvatureArrays()
   SetCurvatureDone = true;
 }
 
+double Class_CxSM::SymFac_Higgs_OneLoop(const int &i,
+                                        const int &j,
+                                        const std::vector<double> &point) const
+{
+  (void)i;
+  (void)j;
+  (void)point;
+  return 0;
+}
+
+double Class_CxSM::SymFac_Higgs_TwoLoop(const int &i, const int &j) const
+{
+  (void)i;
+  (void)j;
+  return 0;
+}
+
 bool Class_CxSM::CalculateDebyeSimplified()
 {
   return false;
@@ -1305,6 +1322,11 @@ double Class_CxSM::VCounterSimplified(const std::vector<double> &v) const
   (void)v;
   if (not UseVCounterSimplified) return 0;
   return 0;
+}
+
+void Class_CxSM::PerformVCTShift()
+{
+  // not implemented
 }
 
 void Class_CxSM::Debugging(const std::vector<double> &input,

@@ -50,7 +50,6 @@ Class_Potential_Origin::~Class_Potential_Origin()
 void Class_Potential_Origin::set_All(const std::vector<double> &par,
                                      const std::vector<double> &parCT)
 {
-
   set_gen(par);
   if (!SetCurvatureDone) SetCurvatureArrays();
   set_CT_Pot_Par(parCT);
@@ -1170,46 +1169,45 @@ void Class_Potential_Origin::CalculatePhysicalCouplings()
           LambdaQuark_4[i][j][k][m] = 0;
           for (std::size_t l = 0; l < NQuarks; l++)
           {
+            // F2H1 * F2H1 term
             LambdaQuark_4[i][j][k][m] += conj(Curvature_Quark_F2H1[i][l][k]) *
                                          Curvature_Quark_F2H1[l][j][m];
             LambdaQuark_4[i][j][k][m] += conj(Curvature_Quark_F2H1[i][l][m]) *
                                          Curvature_Quark_F2H1[l][j][k];
             for (std::size_t n = 0; n < NHiggs; n++)
             {
+              // F2H3 * MIJ term
               LambdaQuark_4[i][j][k][m] +=
-                  conj(Curvature_Quark_F2H3[i][l][k][m][n]) * MIJQuarks(l, j) *
+                  (conj(Curvature_Quark_F2H3[i][l][k][m][n]) * MIJQuarks(l, j) +
+                   conj(MIJQuarks(i, l)) *
+                       Curvature_Quark_F2H3[l][j][k][m][n]) *
                   HiggsVev[n];
-              LambdaQuark_4[i][j][k][m] += conj(MIJQuarks(i, l)) *
-                                           Curvature_Quark_F2H3[l][j][k][m][n] *
-                                           HiggsVev[n];
               for (std::size_t o = 0; o < NHiggs; o++)
               {
+                // F2H1 * F2H3 term
                 LambdaQuark_4[i][j][k][m] +=
-                    0.5 * conj(Curvature_Quark_F2H1[i][l][k]) *
-                    Curvature_Quark_F2H3[l][j][m][n][o] * HiggsVev[n] *
-                    HiggsVev[o];
-                LambdaQuark_4[i][j][k][m] +=
-                    0.5 * conj(Curvature_Quark_F2H3[i][l][k][n][o]) *
-                    Curvature_Quark_F2H1[l][j][m] * HiggsVev[n] * HiggsVev[o];
-                LambdaQuark_4[i][j][k][m] +=
-                    0.5 * conj(Curvature_Quark_F2H1[i][l][m]) *
-                    Curvature_Quark_F2H3[l][j][k][n][o] * HiggsVev[n] *
-                    HiggsVev[o];
-                LambdaQuark_4[i][j][k][m] +=
-                    0.5 * conj(Curvature_Quark_F2H3[i][l][m][n][o]) *
-                    Curvature_Quark_F2H1[l][j][k] * HiggsVev[n] * HiggsVev[o];
+                    0.5 *
+                    (conj(Curvature_Quark_F2H1[i][l][k]) *
+                         Curvature_Quark_F2H3[l][j][m][n][o] +
+                     conj(Curvature_Quark_F2H3[i][l][k][n][o]) *
+                         Curvature_Quark_F2H1[l][j][m] +
+                     conj(Curvature_Quark_F2H1[i][l][m]) *
+                         Curvature_Quark_F2H3[l][j][k][n][o] +
+                     conj(Curvature_Quark_F2H3[i][l][m][n][o]) *
+                         Curvature_Quark_F2H1[l][j][k]) *
+                    HiggsVev[n] * HiggsVev[o];
                 for (std::size_t p = 0; p < NHiggs; p++)
                 {
                   for (std::size_t q = 0; q < NHiggs; q++)
                   {
+                    // F2H3 * F2H3 term
                     LambdaQuark_4[i][j][k][m] +=
-                        0.25 * conj(Curvature_Quark_F2H3[i][l][k][n][o]) *
-                        Curvature_Quark_F2H3[l][j][m][p][q] * HiggsVev[n] *
-                        HiggsVev[o] * HiggsVev[p] * HiggsVev[q];
-                    LambdaQuark_4[i][j][k][m] +=
-                        0.25 * conj(Curvature_Quark_F2H3[i][l][m][n][o]) *
-                        Curvature_Quark_F2H3[l][j][k][p][q] * HiggsVev[n] *
-                        HiggsVev[o] * HiggsVev[p] * HiggsVev[q];
+                        0.25 *
+                        (conj(Curvature_Quark_F2H3[i][l][k][n][o]) *
+                             Curvature_Quark_F2H3[l][j][m][p][q] +
+                         conj(Curvature_Quark_F2H3[i][l][m][n][o]) *
+                             Curvature_Quark_F2H3[l][j][k][p][q]) *
+                        HiggsVev[n] * HiggsVev[o] * HiggsVev[p] * HiggsVev[q];
                   }
                 }
               }
@@ -1238,11 +1236,12 @@ void Class_Potential_Origin::CalculatePhysicalCouplings()
             for (std::size_t n = 0; n < NHiggs; n++)
             {
               LambdaLepton_3[i][j][k] +=
-                  0.5 * conj(Curvature_Lepton_F2H3[i][l][k][m][n]) *
-                  MIJLeptons(l, j) * HiggsVev[m] * HiggsVev[n];
-              LambdaLepton_3[i][j][k] += 0.5 * conj(MIJLeptons(i, l)) *
-                                         Curvature_Lepton_F2H3[l][j][k][m][n] *
-                                         HiggsVev[m] * HiggsVev[n];
+                  0.5 *
+                  (conj(Curvature_Lepton_F2H3[i][l][k][m][n]) *
+                       MIJLeptons(l, j) +
+                   conj(MIJLeptons(i, l)) *
+                       Curvature_Lepton_F2H3[l][j][k][m][n]) *
+                  HiggsVev[m] * HiggsVev[n];
             }
           }
         }
@@ -1266,31 +1265,27 @@ void Class_Potential_Origin::CalculatePhysicalCouplings()
               for (std::size_t o = 0; o < NHiggs; o++)
               {
                 LambdaLepton_4[i][j][k][m] +=
-                    0.5 * conj(Curvature_Lepton_F2H1[i][l][k]) *
-                    Curvature_Lepton_F2H3[l][j][m][n][o] * HiggsVev[n] *
-                    HiggsVev[o];
-                LambdaLepton_4[i][j][k][m] +=
-                    0.5 * conj(Curvature_Lepton_F2H3[i][l][k][n][o]) *
-                    Curvature_Lepton_F2H1[l][j][m] * HiggsVev[n] * HiggsVev[o];
-                LambdaLepton_4[i][j][k][m] +=
-                    0.5 * conj(Curvature_Lepton_F2H1[i][l][m]) *
-                    Curvature_Lepton_F2H3[l][j][k][n][o] * HiggsVev[n] *
-                    HiggsVev[o];
-                LambdaLepton_4[i][j][k][m] +=
-                    0.5 * conj(Curvature_Lepton_F2H3[i][l][m][n][o]) *
-                    Curvature_Lepton_F2H1[l][j][k] * HiggsVev[n] * HiggsVev[o];
+                    0.5 *
+                    (conj(Curvature_Lepton_F2H1[i][l][k]) *
+                         Curvature_Lepton_F2H3[l][j][m][n][o] +
+                     conj(Curvature_Lepton_F2H3[i][l][k][n][o]) *
+                         Curvature_Lepton_F2H1[l][j][m] +
+                     conj(Curvature_Lepton_F2H1[i][l][m]) *
+                         Curvature_Lepton_F2H3[l][j][k][n][o] +
+                     conj(Curvature_Lepton_F2H3[i][l][m][n][o]) *
+                         Curvature_Lepton_F2H1[l][j][k]) *
+                    HiggsVev[n] * HiggsVev[o];
                 for (std::size_t p = 0; p < NHiggs; p++)
                 {
                   for (std::size_t q = 0; q < NHiggs; q++)
                   {
                     LambdaLepton_4[i][j][k][m] +=
-                        0.25 * conj(Curvature_Lepton_F2H3[i][l][k][n][o]) *
-                        Curvature_Lepton_F2H3[l][j][m][p][q] * HiggsVev[n] *
-                        HiggsVev[o] * HiggsVev[p] * HiggsVev[q];
-                    LambdaLepton_4[i][j][k][m] +=
-                        0.25 * conj(Curvature_Lepton_F2H3[i][l][m][n][o]) *
-                        Curvature_Lepton_F2H3[l][j][k][p][q] * HiggsVev[n] *
-                        HiggsVev[o] * HiggsVev[p] * HiggsVev[q];
+                        0.25 *
+                        (conj(Curvature_Lepton_F2H3[i][l][k][n][o]) *
+                             Curvature_Lepton_F2H3[l][j][m][p][q] +
+                         conj(Curvature_Lepton_F2H3[i][l][m][n][o]) *
+                             Curvature_Lepton_F2H3[l][j][k][p][q]) *
+                        HiggsVev[n] * HiggsVev[o] * HiggsVev[p] * HiggsVev[q];
                   }
                 }
               }
@@ -1553,6 +1548,132 @@ void Class_Potential_Origin::CalculatePhysicalCouplings()
   return;
 }
 
+std::vector<double>
+Class_Potential_Origin::VaryVEVsDir(const std::vector<double> &start,
+                                    const std::size_t &numdir,
+                                    const double &size) const
+{
+  std::vector<double> end = start;
+  end.at(numdir) += size; // counting starts at 0
+  return end;
+}
+
+double Class_Potential_Origin::GetV1LoopNabla(const std::vector<double> &vev,
+                                              const double &Temp,
+                                              const int &field,
+                                              const double &step) const
+{
+  if (step == 0)
+  {
+    return 0;
+  }
+  else
+  {
+    return 1. / step *
+           (1. / 60. *
+                (V1Loop(VaryVEVsDir(vev, field, 3 * step), Temp, 0) -
+                 V1Loop(VaryVEVsDir(vev, field, -3 * step), Temp, 0)) +
+            3. / 20. *
+                (V1Loop(VaryVEVsDir(vev, field, -2 * step), Temp, 0) -
+                 V1Loop(VaryVEVsDir(vev, field, 2 * step), Temp, 0)) +
+            3. / 4. *
+                (V1Loop(VaryVEVsDir(vev, field, step), Temp, 0) -
+                 V1Loop(VaryVEVsDir(vev, field, -step), Temp, 0)));
+  }
+}
+
+std::vector<double>
+Class_Potential_Origin::GetV1LoopNabla(const std::vector<double> &vev,
+                                       const double &Temp,
+                                       const std::vector<double> &step) const
+{
+  std::vector<double> res;
+  for (std::size_t i = 0; i < NHiggs; i++)
+  {
+    res.push_back(GetV1LoopNabla(vev, Temp, i, step.at(i)));
+  }
+  return res;
+}
+
+double Class_Potential_Origin::GetV1LoopHesse(const std::vector<double> &vev,
+                                              const double &Temp,
+                                              const int &field1,
+                                              const int &field2,
+                                              const double &step1,
+                                              const double &step2) const
+{
+  if (step2 == 0)
+  {
+    return 0;
+  }
+  else
+  {
+    return 1. / step2 *
+           (1. / 60. *
+                (GetV1LoopNabla(
+                     VaryVEVsDir(vev, field2, 3 * step2), Temp, field1, step1) -
+                 GetV1LoopNabla(VaryVEVsDir(vev, field2, -3 * step2),
+                                Temp,
+                                field1,
+                                step1)) +
+            3. / 20. *
+                (GetV1LoopNabla(VaryVEVsDir(vev, field2, -2 * step2),
+                                Temp,
+                                field1,
+                                step1) -
+                 GetV1LoopNabla(VaryVEVsDir(vev, field2, 2 * step2),
+                                Temp,
+                                field1,
+                                step1)) -
+            3. / 4. *
+                (GetV1LoopNabla(
+                     VaryVEVsDir(vev, field2, -step2), Temp, field1, step1) -
+                 GetV1LoopNabla(
+                     VaryVEVsDir(vev, field2, step2), Temp, field1, step1)));
+  }
+}
+
+Eigen::MatrixXd
+Class_Potential_Origin::GetV1LoopHesse(const std::vector<double> &vev,
+                                       const double &Temp,
+                                       const std::vector<double> &step) const
+{
+  Eigen::MatrixXd res(NHiggs, NHiggs);
+
+  for (std::size_t i = 0; i < NHiggs; i++)
+  {
+    for (std::size_t j = 0; j < NHiggs; j++)
+    {
+      res(i, j) = GetV1LoopHesse(vev, Temp, i, j, step.at(i), step.at(j));
+    }
+  }
+
+  return res;
+}
+
+Eigen::VectorXd Class_Potential_Origin::WeinbergFirstDerivativeNumerical() const
+{
+  Eigen::VectorXd res(NHiggs);
+  double temp = 0;
+  std::vector<double> step =
+      std::vector<double>(NHiggs, 1e-3); // TODO: how to choose stepsize?
+  std::vector<double> vec_res = GetV1LoopNabla(HiggsVev, temp, step);
+  for (std::size_t i = 0; i < NHiggs; i++)
+  {
+    res(i) = vec_res[i];
+  }
+  return res;
+}
+
+Eigen::MatrixXd
+Class_Potential_Origin::WeinbergSecondDerivativeNumerical() const
+{
+  double temp = 0;
+  std::vector<double> step =
+      std::vector<double>(NHiggs, 1e-3); // TODO: how to choose stepsize?
+  return GetV1LoopHesse(HiggsVev, temp, step);
+}
+
 std::vector<double> Class_Potential_Origin::WeinbergFirstDerivative() const
 {
   std::vector<double> res;
@@ -1590,7 +1711,6 @@ std::vector<double> Class_Potential_Origin::WeinbergFirstDerivative() const
     {
       if (MassSquaredHiggs[a] != 0)
       {
-
         FirstDerivHiggs[i] +=
             MassSquaredHiggs[a] * Couplings_Higgs_Triple[a][a][i] *
             (std::log(MassSquaredHiggs[a] / std::pow(scale, 2)) - C_CWcbHiggs +
@@ -2538,9 +2658,11 @@ MatrixXd Class_Potential_Origin::HiggsMassMatrix(const std::vector<double> &v,
 
         if (Temp != 0)
         {
-          res(i, j) += DebyeHiggs[i][j] * std::pow(Temp, 2) +
-                       DebyeHiggsOneDim6[i][j] * std::pow(Temp, 2) +
-                       DebyeHiggsTwoDim6[i][j] * std::pow(Temp, 4);
+          res(i, j) +=
+              DebyeHiggs[i][j] * std::pow(Temp, 2) +
+              SymFac_Higgs_OneLoop(i, j, v) *
+                  std::pow(Temp, 2) + // explicit background field dependence
+              SymFac_Higgs_TwoLoop(i, j) * std::pow(Temp, 4);
         }
       }
     }
@@ -2582,8 +2704,8 @@ MatrixXd Class_Potential_Origin::HiggsMassMatrix(const std::vector<double> &v,
       for (std::size_t j = 0; j < NHiggs; j++)
       {
         res(i, j) = 2 * DebyeHiggs[i][j] * Temp +
-                    2 * DebyeHiggsOneDim6[i][j] * Temp +
-                    4 * DebyeHiggsTwoDim6[i][j] * std::pow(Temp, 3);
+                    2 * SymFac_Higgs_OneLoop(i, j, v) * Temp +
+                    4 * SymFac_Higgs_TwoLoop(i, j) * std::pow(Temp, 3);
       }
     }
   }
@@ -2674,8 +2796,8 @@ Class_Potential_Origin::HiggsMassesSquared(const std::vector<double> &v,
       for (std::size_t j = 0; j < NHiggs; j++)
       {
         Diff(i, j) = 2 * DebyeHiggs[i][j] * Temp +
-                     2 * DebyeHiggsOneDim6[i][j] * Temp +
-                     4 * DebyeHiggsTwoDim6[i][j] * std::pow(Temp, 3);
+                     2 * SymFac_Higgs_OneLoop(i, j, v) * Temp +
+                     4 * SymFac_Higgs_TwoLoop(i, j) * std::pow(Temp, 3);
       }
     }
 
@@ -2755,8 +2877,7 @@ Class_Potential_Origin::GaugeMassesSquared(const std::vector<double> &v,
 
       if (Temp != 0)
       {
-        MassMatrix(a, b) += DebyeGauge[a][b] * std::pow(Temp, 2) +
-                            DebyeGaugeDim6[a][b] * std::pow(Temp, 4);
+        MassMatrix(a, b) += DebyeGauge[a][b] * std::pow(Temp, 2);
       }
     }
   }
@@ -2818,8 +2939,7 @@ Class_Potential_Origin::GaugeMassesSquared(const std::vector<double> &v,
     {
       for (std::size_t j = 0; j < NGauge; j++)
       {
-        Diff(i, j) = 2 * DebyeGauge[i][j] * Temp +
-                     4 * DebyeGaugeDim6[i][j] * std::pow(Temp, 3);
+        Diff(i, j) = 2 * DebyeGauge[i][j] * Temp;
       }
     }
 
@@ -2918,6 +3038,82 @@ Class_Potential_Origin::QuarkMassesSquared(const std::vector<double> &v,
     }
   }
 
+  return res;
+}
+
+std::vector<double>
+Class_Potential_Origin::QuarkMassesSquaredDim4(const std::vector<double> &v,
+                                               const int &diff) const
+{
+  std::vector<double> res;
+  MatrixXcd MassMatrix(NQuarks, NQuarks), MIJ(NQuarks, NQuarks);
+  MIJ             = QuarkMassMatrixDim4(v);
+  double ZeroMass = std::pow(10, -10);
+
+  MassMatrix = MIJ.conjugate() * MIJ;
+
+  if (diff <= 0) // No temperature dependent part here
+  {
+    SelfAdjointEigenSolver<MatrixXcd> es(MassMatrix, EigenvaluesOnly);
+    for (std::size_t i = 0; i < NQuarks; i++)
+    {
+      double tmp = es.eigenvalues().real()[i];
+      if (std::abs(tmp) < ZeroMass)
+        res.push_back(0);
+      else
+        res.push_back(tmp);
+    }
+  }
+  else if (diff > 0 and static_cast<size_t>(diff) <= NHiggs)
+  {
+    std::size_t m = diff - 1;
+    MatrixXcd Diff(NQuarks, NQuarks);
+    Diff = MatrixXcd::Zero(NQuarks, NQuarks);
+    for (std::size_t a = 0; a < NQuarks; a++)
+    {
+      for (std::size_t b = 0; b < NQuarks; b++)
+      {
+        for (std::size_t i = 0; i < NQuarks; i++)
+        {
+          Diff(a, b) +=
+              std::conj(Curvature_Quark_F2H1_dim4[a][i][m]) * MIJ(i, b);
+          Diff(a, b) +=
+              std::conj(MIJ(a, i)) * (Curvature_Quark_F2H1_dim4[i][b][m]);
+        }
+      }
+    }
+
+    res = FirstDerivativeOfEigenvalues(MassMatrix, Diff);
+
+    for (std::size_t j = 0; j < res.size(); j++)
+    {
+      if (std::isnan(res.at(j)))
+      {
+        std::stringstream ss;
+        ss << "MassMatrix = \n"
+           << MassMatrix << "\nDiff = \n"
+           << Diff << std::endl;
+        ss << "Fermion Masses : ";
+        for (std::size_t i = 0; i < NQuarks; i++)
+          ss << std::sqrt(std::abs(res.at(i))) << sep;
+        ss << std::endl;
+        ss << "VEV fields : ";
+        for (std::size_t i = 0; i < v.size(); i++)
+          ss << v.at(i) << sep;
+        ss << std::endl;
+
+        Logger::Write(LoggingLevel::Debug, ss.str());
+
+        std::string retmessage = "Nan found in ";
+        retmessage += __func__;
+        retmessage += " at deriv number ";
+        retmessage += std::to_string(j);
+        retmessage += " and m = ";
+        retmessage += std::to_string(m);
+        throw std::runtime_error(retmessage);
+      }
+    }
+  }
   return res;
 }
 
@@ -3122,6 +3318,8 @@ double Class_Potential_Origin::CounterTerm(const std::vector<double> &v,
                    v[j] * v[k] * v[l];
             for (std::size_t m = 0; m < NHiggs; m++)
             {
+              res += 1.0 / 120.0 * Curvature_Higgs_CT_L5[i][j][k][l][m] * v[i] *
+                     v[j] * v[k] * v[l] * v[m];
               for (std::size_t n = 0; n < NHiggs; n++)
               {
                 res += 1.0 / 720.0 * Curvature_Higgs_CT_L6[i][j][k][l][m][n] *
@@ -3149,6 +3347,8 @@ double Class_Potential_Origin::CounterTerm(const std::vector<double> &v,
                  v[l];
           for (std::size_t m = 0; m < NHiggs; m++)
           {
+            res += 1.0 / 24.0 * Curvature_Higgs_CT_L5[i][j][k][l][m] * v[j] *
+                   v[k] * v[l] * v[m];
             for (std::size_t n = 0; n < NHiggs; n++)
             {
               res += 1.0 / 120.0 * Curvature_Higgs_CT_L6[i][j][k][l][m][n] *
@@ -3449,164 +3649,19 @@ void Class_Potential_Origin::CalculateDebye(bool forceCalculation)
     {
       for (std::size_t j = i; j < NHiggs; j++)
       {
-        double HiggsFacdim6L6 = 0, HiggsFacdim6G2H4 = 0, HiggsFacdim6G4H2 = 0;
         // scalar diagrams
         for (std::size_t k = 0; k < NHiggs; k++)
         {
           DebyeHiggs[i][j] += 0.5 * Curvature_Higgs_L4[i][j][k][k] / 12.0;
-          for (std::size_t l = 0; l < NHiggs; l++)
-          {
-            HiggsFacdim6L6 += Curvature_Higgs_L6[i][j][k][k][l][l] +
-                              Curvature_Higgs_L6[i][j][k][l][k][l] +
-                              Curvature_Higgs_L6[i][j][k][l][l][k] +
-                              Curvature_Higgs_L6[i][j][l][k][k][l] +
-                              Curvature_Higgs_L6[i][j][l][k][l][k] +
-                              Curvature_Higgs_L6[i][j][l][l][k][k] +
-
-                              Curvature_Higgs_L6[i][k][j][k][l][l] +
-                              Curvature_Higgs_L6[i][k][j][l][k][l] +
-                              Curvature_Higgs_L6[i][k][j][l][l][k] +
-                              Curvature_Higgs_L6[i][l][j][k][k][l] +
-                              Curvature_Higgs_L6[i][l][j][k][l][k] +
-                              Curvature_Higgs_L6[i][l][j][l][k][k] +
-
-                              Curvature_Higgs_L6[k][i][j][k][l][l] +
-                              Curvature_Higgs_L6[k][i][j][l][k][l] +
-                              Curvature_Higgs_L6[k][i][j][l][l][k] +
-                              Curvature_Higgs_L6[l][i][j][k][k][l] +
-                              Curvature_Higgs_L6[l][i][j][k][l][k] +
-                              Curvature_Higgs_L6[l][i][j][l][k][k] +
-
-                              Curvature_Higgs_L6[i][k][k][j][l][l] +
-                              Curvature_Higgs_L6[i][k][l][j][k][l] +
-                              Curvature_Higgs_L6[i][k][l][j][l][k] +
-                              Curvature_Higgs_L6[i][l][k][j][k][l] +
-                              Curvature_Higgs_L6[i][l][k][j][l][k] +
-                              Curvature_Higgs_L6[i][l][l][j][k][k] +
-
-                              Curvature_Higgs_L6[k][i][k][j][l][l] +
-                              Curvature_Higgs_L6[k][i][l][j][k][l] +
-                              Curvature_Higgs_L6[k][i][l][j][l][k] +
-                              Curvature_Higgs_L6[l][i][k][j][k][l] +
-                              Curvature_Higgs_L6[l][i][k][j][l][k] +
-                              Curvature_Higgs_L6[l][i][l][j][k][k] +
-
-                              Curvature_Higgs_L6[k][k][i][j][l][l] +
-                              Curvature_Higgs_L6[k][l][i][j][k][l] +
-                              Curvature_Higgs_L6[k][l][i][j][l][k] +
-                              Curvature_Higgs_L6[l][k][i][j][k][l] +
-                              Curvature_Higgs_L6[l][k][i][j][l][k] +
-                              Curvature_Higgs_L6[l][l][i][j][k][k] +
-
-                              Curvature_Higgs_L6[i][k][k][l][j][l] +
-                              Curvature_Higgs_L6[i][k][l][k][j][l] +
-                              Curvature_Higgs_L6[i][k][l][l][j][k] +
-                              Curvature_Higgs_L6[i][l][k][k][j][l] +
-                              Curvature_Higgs_L6[i][l][k][l][j][k] +
-                              Curvature_Higgs_L6[i][l][l][k][j][k] +
-
-                              Curvature_Higgs_L6[k][i][k][l][j][l] +
-                              Curvature_Higgs_L6[k][i][l][k][j][l] +
-                              Curvature_Higgs_L6[k][i][l][l][j][k] +
-                              Curvature_Higgs_L6[l][i][k][k][j][l] +
-                              Curvature_Higgs_L6[l][i][k][l][j][k] +
-                              Curvature_Higgs_L6[l][i][l][k][j][k] +
-
-                              Curvature_Higgs_L6[k][k][i][l][j][l] +
-                              Curvature_Higgs_L6[k][l][i][k][j][l] +
-                              Curvature_Higgs_L6[k][l][i][l][j][k] +
-                              Curvature_Higgs_L6[l][k][i][k][j][l] +
-                              Curvature_Higgs_L6[l][k][i][l][j][k] +
-                              Curvature_Higgs_L6[l][l][i][k][j][k] +
-
-                              Curvature_Higgs_L6[k][k][l][i][j][l] +
-                              Curvature_Higgs_L6[k][l][k][i][j][l] +
-                              Curvature_Higgs_L6[k][l][l][i][j][k] +
-                              Curvature_Higgs_L6[l][k][k][i][j][l] +
-                              Curvature_Higgs_L6[l][k][l][i][j][k] +
-                              Curvature_Higgs_L6[l][l][k][i][j][k] +
-
-                              Curvature_Higgs_L6[i][k][k][l][l][j] +
-                              Curvature_Higgs_L6[i][k][l][k][l][j] +
-                              Curvature_Higgs_L6[i][k][l][l][k][j] +
-                              Curvature_Higgs_L6[i][l][k][k][l][j] +
-                              Curvature_Higgs_L6[i][l][k][l][k][j] +
-                              Curvature_Higgs_L6[i][l][l][k][k][j] +
-
-                              Curvature_Higgs_L6[k][i][k][l][l][j] +
-                              Curvature_Higgs_L6[k][i][l][k][l][j] +
-                              Curvature_Higgs_L6[k][i][l][l][k][j] +
-                              Curvature_Higgs_L6[l][i][k][k][l][j] +
-                              Curvature_Higgs_L6[l][i][k][l][k][j] +
-                              Curvature_Higgs_L6[l][i][l][k][k][j] +
-
-                              Curvature_Higgs_L6[k][k][i][l][l][j] +
-                              Curvature_Higgs_L6[k][l][i][k][l][j] +
-                              Curvature_Higgs_L6[k][l][i][l][k][j] +
-                              Curvature_Higgs_L6[l][k][i][k][l][j] +
-                              Curvature_Higgs_L6[l][k][i][l][k][j] +
-                              Curvature_Higgs_L6[l][l][i][k][k][j] +
-
-                              Curvature_Higgs_L6[k][k][l][i][l][j] +
-                              Curvature_Higgs_L6[k][l][k][i][l][j] +
-                              Curvature_Higgs_L6[k][l][l][i][k][j] +
-                              Curvature_Higgs_L6[l][k][k][i][l][j] +
-                              Curvature_Higgs_L6[l][k][l][i][k][j] +
-                              Curvature_Higgs_L6[l][l][k][i][k][j] +
-
-                              Curvature_Higgs_L6[k][k][l][l][i][j] +
-                              Curvature_Higgs_L6[k][l][k][l][i][j] +
-                              Curvature_Higgs_L6[k][l][l][k][i][j] +
-                              Curvature_Higgs_L6[l][k][k][l][i][j] +
-                              Curvature_Higgs_L6[l][k][l][k][i][j] +
-                              Curvature_Higgs_L6[l][l][k][k][i][j];
-          }
-        }
-        if (!UseTensorSymFac and UseTwoLoopThermalMass)
-        {
-          DebyeHiggsTwoDim6[i][j] += SymFac_HiggsL6[i][j] * HiggsFacdim6L6;
         }
 
         // gauge boson diagrams
         for (std::size_t a = 0; a < NGauge; a++)
         {
           DebyeHiggs[i][j] += 3 * 0.5 * Curvature_Gauge_G2H2[a][a][i][j] / 12.0;
-          for (std::size_t k = 0; k < NHiggs; k++)
-          {
-            HiggsFacdim6G2H4 += Curvature_Gauge_G2H4[a][a][i][j][k][k] +
-                                Curvature_Gauge_G2H4[a][a][i][k][j][k] +
-                                Curvature_Gauge_G2H4[a][a][i][k][k][j];
-          }
-          if (!UseTensorSymFac and UseTwoLoopThermalMass)
-          {
-            DebyeHiggsTwoDim6[i][j] +=
-                SymFac_HiggsG2H4[i][j] * HiggsFacdim6G2H4;
-          }
-          for (std::size_t b = 0; b < NGauge; b++)
-          {
-            HiggsFacdim6G4H2 += Curvature_Gauge_G4H2[a][a][b][b][i][j] +
-                                Curvature_Gauge_G4H2[a][b][a][b][i][j] +
-                                Curvature_Gauge_G4H2[a][a][b][b][i][j];
-          }
-        }
-        if (UseTwoLoopThermalMass)
-        {
-          if (!UseTensorSymFac)
-          {
-            DebyeHiggsTwoDim6[i][j] +=
-                SymFac_HiggsG4H2[i][j] * HiggsFacdim6G4H2;
-          }
-          else
-          {
-            DebyeHiggsTwoDim6[i][j] +=
-                SymFac_Higgs_TwoLoop[i]
-                                    [j]; // includes scalar, gauge boson and
-                                         // fermion two-loop dim-6 corrections
-          }
         }
 
         // fermion diagrams
-        double HiggsFacdim6QuarkF2H3 = 0, HiggsFacdim6LeptonF2H3 = 0;
         for (std::size_t a = 0; a < NQuarks; a++)
         {
           for (std::size_t b = 0; b < NQuarks; b++)
@@ -3617,40 +3672,6 @@ void Class_Potential_Origin::CalculateDebye(bool forceCalculation)
                                     Curvature_Quark_F2H1[a][b][j])
                                    .real();
             DebyeHiggs[i][j] += 6.0 / 24.0 * tmp;
-            for (std::size_t k = 0; k < NHiggs; k++)
-            {
-              HiggsFacdim6QuarkF2H3 +=
-                  (std::conj(Curvature_Quark_F2H3[a][b][i][k][k]) *
-                       Curvature_Quark_F2H1[a][b][j] +
-                   std::conj(Curvature_Quark_F2H1[a][b][j]) *
-                       Curvature_Quark_F2H3[a][b][i][k][k])
-                      .real() +
-                  (std::conj(Curvature_Quark_F2H3[a][b][k][i][k]) *
-                       Curvature_Quark_F2H1[a][b][j] +
-                   std::conj(Curvature_Quark_F2H1[a][b][j]) *
-                       Curvature_Quark_F2H3[a][b][k][i][k])
-                      .real() +
-                  (std::conj(Curvature_Quark_F2H3[a][b][k][k][i]) *
-                       Curvature_Quark_F2H1[a][b][j] +
-                   std::conj(Curvature_Quark_F2H1[a][b][j]) *
-                       Curvature_Quark_F2H3[a][b][k][k][i])
-                      .real() +
-                  (std::conj(Curvature_Quark_F2H3[a][b][j][k][k]) *
-                       Curvature_Quark_F2H1[a][b][i] +
-                   std::conj(Curvature_Quark_F2H1[a][b][i]) *
-                       Curvature_Quark_F2H3[a][b][j][k][k])
-                      .real() +
-                  (std::conj(Curvature_Quark_F2H3[a][b][k][j][k]) *
-                       Curvature_Quark_F2H1[a][b][i] +
-                   std::conj(Curvature_Quark_F2H1[a][b][i]) *
-                       Curvature_Quark_F2H3[a][b][k][j][k])
-                      .real() +
-                  (std::conj(Curvature_Quark_F2H3[a][b][k][k][j]) *
-                       Curvature_Quark_F2H1[a][b][i] +
-                   std::conj(Curvature_Quark_F2H1[a][b][i]) *
-                       Curvature_Quark_F2H3[a][b][k][k][j])
-                      .real();
-            }
           }
         }
 
@@ -3664,55 +3685,7 @@ void Class_Potential_Origin::CalculateDebye(bool forceCalculation)
                                     Curvature_Lepton_F2H1[a][b][j])
                                    .real();
             DebyeHiggs[i][j] += 2.0 / 24.0 * tmp;
-            for (std::size_t k = 0; k < NHiggs; k++)
-            {
-              HiggsFacdim6LeptonF2H3 +=
-                  (std::conj(Curvature_Lepton_F2H3[a][b][i][k][k]) *
-                       Curvature_Lepton_F2H1[a][b][j] +
-                   std::conj(Curvature_Lepton_F2H1[a][b][j]) *
-                       Curvature_Lepton_F2H3[a][b][i][k][k])
-                      .real() +
-                  (std::conj(Curvature_Lepton_F2H3[a][b][k][i][k]) *
-                       Curvature_Lepton_F2H1[a][b][j] +
-                   std::conj(Curvature_Lepton_F2H1[a][b][j]) *
-                       Curvature_Lepton_F2H3[a][b][k][i][k])
-                      .real() +
-                  (std::conj(Curvature_Lepton_F2H3[a][b][k][k][i]) *
-                       Curvature_Lepton_F2H1[a][b][j] +
-                   std::conj(Curvature_Lepton_F2H1[a][b][j]) *
-                       Curvature_Lepton_F2H3[a][b][k][k][i])
-                      .real() +
-                  (std::conj(Curvature_Lepton_F2H3[a][b][j][k][k]) *
-                       Curvature_Lepton_F2H1[a][b][i] +
-                   std::conj(Curvature_Lepton_F2H1[a][b][i]) *
-                       Curvature_Lepton_F2H3[a][b][j][k][k])
-                      .real() +
-                  (std::conj(Curvature_Lepton_F2H3[a][b][k][j][k]) *
-                       Curvature_Lepton_F2H1[a][b][i] +
-                   std::conj(Curvature_Lepton_F2H1[a][b][i]) *
-                       Curvature_Lepton_F2H3[a][b][k][j][k])
-                      .real() +
-                  (std::conj(Curvature_Lepton_F2H3[a][b][k][k][j]) *
-                       Curvature_Lepton_F2H1[a][b][i] +
-                   std::conj(Curvature_Lepton_F2H1[a][b][i]) *
-                       Curvature_Lepton_F2H3[a][b][k][k][j])
-                      .real();
-            }
           }
-        }
-
-        if (!UseTensorSymFac)
-        {
-          DebyeHiggsOneDim6[i][j] +=
-              SymFac_Higgs_OneLoop[i][j] *
-              (HiggsFacdim6QuarkF2H3 + HiggsFacdim6LeptonF2H3);
-        }
-        else
-        {
-          DebyeHiggsOneDim6[i][j] +=
-              SymFac_Higgs_OneLoop[i][j]; // one-loop dim-6 diagrams with closed
-                                          // fermion loops or with Yukawa
-                                          // modifications
         }
 
         //	            if(i==j) DebyeHiggs[i][j] *= 0.5;
@@ -3724,10 +3697,6 @@ void Class_Potential_Origin::CalculateDebye(bool forceCalculation)
       for (std::size_t j = i; j < NHiggs; j++)
       {
         if (std::abs(DebyeHiggs[i][j]) <= 1e-5) DebyeHiggs[i][j] = 0;
-        if (std::abs(DebyeHiggsOneDim6[i][j]) <= 1e-5)
-          DebyeHiggsOneDim6[i][j] = 0;
-        if (std::abs(DebyeHiggsTwoDim6[i][j]) <= 1e-5)
-          DebyeHiggsTwoDim6[i][j] = 0;
       }
     }
 
@@ -3735,9 +3704,7 @@ void Class_Potential_Origin::CalculateDebye(bool forceCalculation)
     {
       for (std::size_t j = 0; j < i; j++)
       {
-        DebyeHiggs[i][j]        = DebyeHiggs[j][i];
-        DebyeHiggsOneDim6[i][j] = DebyeHiggsOneDim6[j][i];
-        DebyeHiggsTwoDim6[i][j] = DebyeHiggsTwoDim6[j][i];
+        DebyeHiggs[i][j] = DebyeHiggs[j][i];
       }
     }
   }
@@ -3759,38 +3726,13 @@ void Class_Potential_Origin::CalculateDebyeGauge()
   }
   for (std::size_t a = 0; a < NGauge; a++)
   {
-    double GaugeFac         = 0;
-    double GaugeFacdim6G4H2 = 0, GaugeFacdim6G2H4 = 0;
+    double GaugeFac = 0;
     for (std::size_t i = 0; i < NHiggs; i++)
     {
       GaugeFac += Curvature_Gauge_G2H2[a][a][i][i];
-      for (std::size_t b = 0; b < NGauge; b++)
-      {
-        GaugeFacdim6G4H2 += Curvature_Gauge_G4H2[a][a][b][b][i][i] +
-                            Curvature_Gauge_G4H2[a][b][a][b][i][i] +
-                            Curvature_Gauge_G4H2[a][b][b][a][i][i];
-      }
-      for (std::size_t j = 0; j < NHiggs; j++)
-      {
-        GaugeFacdim6G2H4 += Curvature_Gauge_G2H4[a][a][i][i][j][j] +
-                            Curvature_Gauge_G2H4[a][a][i][j][i][j] +
-                            Curvature_Gauge_G2H4[a][a][i][j][j][i];
-      }
     }
     GaugeFac *= 1.0 / nGaugeHiggs;
     DebyeGauge[a][a] = 2.0 / 3.0 * (nGaugeHiggs / 8.0 + 5) * GaugeFac;
-    if (UseTwoLoopThermalMass)
-    {
-      if (UseTensorSymFac)
-      {
-        DebyeGaugeDim6[a][a] = SymFac_Gauge[a][a];
-      }
-      else
-      {
-        DebyeGaugeDim6[a][a] = SymFac_GaugeG4H2[a][a] * GaugeFacdim6G4H2 +
-                               SymFac_GaugeG2H4[a][a] * GaugeFacdim6G2H4;
-      }
-    }
   }
 
   for (std::size_t i = 0; i < NGauge; i++)
@@ -3798,7 +3740,6 @@ void Class_Potential_Origin::CalculateDebyeGauge()
     for (std::size_t j = 0; j < NGauge; j++)
     {
       if (std::abs(DebyeGauge[i][j]) <= 1e-5) DebyeGauge[i][j] = 0;
-      if (std::abs(DebyeGaugeDim6[i][j]) <= 1e-5) DebyeGaugeDim6[i][j] = 0;
     }
   }
 }
@@ -3840,6 +3781,9 @@ void Class_Potential_Origin::initVectors()
       vec3{NHiggs, vec2{NHiggs, std::vector<double>(NHiggs, 0)}};
   Curvature_Higgs_CT_L4 =
       vec4{NHiggs, vec3{NHiggs, vec2{NHiggs, std::vector<double>(NHiggs, 0)}}};
+  Curvature_Higgs_CT_L5 = vec5{
+      NHiggs,
+      vec4{NHiggs, vec3{NHiggs, vec2{NHiggs, std::vector<double>(NHiggs, 0)}}}};
   Curvature_Higgs_CT_L6 = vec6{
       NHiggs,
       vec5{NHiggs,
@@ -3848,15 +3792,7 @@ void Class_Potential_Origin::initVectors()
 
   VEVSymmetric = std::vector<double>(NHiggs, 0);
 
-  DebyeHiggs        = vec2{NHiggs, std::vector<double>(NHiggs, 0)};
-  DebyeHiggsOneDim6 = vec2{NHiggs, std::vector<double>(NHiggs, 0)};
-  DebyeHiggsTwoDim6 = vec2{NHiggs, std::vector<double>(NHiggs, 0)};
-
-  SymFac_HiggsL6       = vec2{NHiggs, std::vector<double>(NHiggs, 0)};
-  SymFac_Higgs_OneLoop = vec2{NHiggs, std::vector<double>(NHiggs, 0)};
-  SymFac_Higgs_TwoLoop = vec2{NHiggs, std::vector<double>(NHiggs, 0)};
-  SymFac_HiggsG2H4     = vec2{NHiggs, std::vector<double>(NHiggs, 0)};
-  SymFac_HiggsG4H2     = vec2{NHiggs, std::vector<double>(NHiggs, 0)};
+  DebyeHiggs = vec2{NHiggs, std::vector<double>(NHiggs, 0)};
 
   LambdaHiggs_3    = vec3{NHiggs, vec2{NHiggs, std::vector<double>(NHiggs, 0)}};
   LambdaHiggs_3_CT = vec3{NHiggs, vec2{NHiggs, std::vector<double>(NHiggs, 0)}};
@@ -3877,15 +3813,7 @@ void Class_Potential_Origin::initVectors()
            vec4{NGauge,
                 vec3{NGauge, vec2{NHiggs, std::vector<double>(NHiggs, 0)}}}}};
 
-  DebyeGauge     = vec2{NGauge, std::vector<double>(NGauge, 0)};
-  DebyeGaugeDim6 = vec2{NGauge, std::vector<double>(NGauge, 0)};
-
-  SymFac_Gauge = vec2{NGauge, std::vector<double>(NGauge, 0)};
-  ;
-  SymFac_GaugeG4H2 = vec2{NGauge, std::vector<double>(NGauge, 0)};
-  ;
-  SymFac_GaugeG2H4 = vec2{NGauge, std::vector<double>(NGauge, 0)};
-  ;
+  DebyeGauge = vec2{NGauge, std::vector<double>(NGauge, 0)};
 
   LambdaGauge_3 = vec3{NGauge, vec2{NGauge, std::vector<double>(NHiggs, 0)}};
   LambdaGauge_4 =
@@ -3907,6 +3835,8 @@ void Class_Potential_Origin::initVectors()
 
   Curvature_Quark_F2 = vec2Complex{NQuarks, vec1Complex(NQuarks, 0)};
   Curvature_Quark_F2H1 =
+      vec3Complex{NQuarks, vec2Complex{NQuarks, vec1Complex(NHiggs, 0)}};
+  Curvature_Quark_F2H1_dim4 =
       vec3Complex{NQuarks, vec2Complex{NQuarks, vec1Complex(NHiggs, 0)}};
   Curvature_Quark_F2H3 = vec5Complex{
       NQuarks,
@@ -4033,6 +3963,151 @@ void Class_Potential_Origin::sym5Dim(
             Tensor5Dim[a2][a1][k2][k3][k1] = Tensor5Dim[a1][a2][k1][k2][k3];
             Tensor5Dim[a2][a1][k3][k1][k2] = Tensor5Dim[a1][a2][k1][k2][k3];
             Tensor5Dim[a2][a1][k3][k2][k1] = Tensor5Dim[a1][a2][k1][k2][k3];
+          }
+        }
+      }
+    }
+  }
+}
+
+void Class_Potential_Origin::sym5Dim(
+    std::vector<std::vector<std::vector<std::vector<std::vector<double>>>>>
+        &Tensor5Dim,
+    std::size_t Nk1,
+    std::size_t Nk2,
+    std::size_t Nk3,
+    std::size_t Nk4,
+    std::size_t Nk5)
+{
+  for (std::size_t k1 = 0; k1 < Nk1; k1++)
+  {
+    for (std::size_t k2 = k1; k2 < Nk2; k2++)
+    {
+      for (std::size_t k3 = k2; k3 < Nk3; k3++)
+      {
+        for (std::size_t k4 = k3; k4 < Nk4; k4++)
+        {
+          for (std::size_t k5 = k4; k5 < Nk5; k5++)
+          {
+            Tensor5Dim[k1][k2][k3][k5][k4] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k1][k2][k4][k3][k5] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k1][k2][k4][k5][k3] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k1][k2][k5][k3][k4] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k1][k2][k5][k4][k3] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k1][k3][k2][k4][k5] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k1][k3][k2][k5][k4] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k1][k3][k4][k2][k5] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k1][k3][k4][k5][k2] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k1][k3][k5][k2][k4] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k1][k3][k5][k4][k2] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k1][k4][k2][k3][k5] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k1][k4][k2][k5][k3] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k1][k4][k3][k2][k5] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k1][k4][k3][k5][k2] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k1][k4][k5][k2][k3] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k1][k4][k5][k3][k2] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k1][k5][k2][k3][k4] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k1][k5][k2][k4][k3] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k1][k5][k3][k2][k4] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k1][k5][k3][k4][k2] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k1][k5][k4][k2][k3] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k1][k5][k4][k3][k2] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k2][k1][k3][k4][k5] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k2][k1][k3][k5][k4] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k2][k1][k4][k3][k5] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k2][k1][k4][k5][k3] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k2][k1][k5][k3][k4] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k2][k1][k5][k4][k3] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k2][k3][k1][k4][k5] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k2][k3][k1][k5][k4] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k2][k3][k4][k1][k5] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k2][k3][k4][k5][k1] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k2][k3][k5][k1][k4] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k2][k3][k5][k4][k1] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k2][k4][k1][k3][k5] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k2][k4][k1][k5][k3] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k2][k4][k3][k1][k5] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k2][k4][k3][k5][k1] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k2][k4][k5][k1][k3] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k2][k4][k5][k3][k1] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k2][k5][k1][k3][k4] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k2][k5][k1][k4][k3] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k2][k5][k3][k1][k4] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k2][k5][k3][k4][k1] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k2][k5][k4][k1][k3] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k2][k5][k4][k3][k1] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k3][k1][k2][k4][k5] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k3][k1][k2][k5][k4] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k3][k1][k4][k2][k5] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k3][k1][k4][k5][k2] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k3][k1][k5][k2][k4] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k3][k1][k5][k4][k2] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k3][k2][k1][k4][k5] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k3][k2][k1][k5][k4] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k3][k2][k4][k1][k5] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k3][k2][k4][k5][k1] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k3][k2][k5][k1][k4] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k3][k2][k5][k4][k1] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k3][k4][k1][k2][k5] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k3][k4][k1][k5][k2] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k3][k4][k2][k1][k5] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k3][k4][k2][k5][k1] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k3][k4][k5][k1][k2] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k3][k4][k5][k2][k1] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k3][k5][k1][k2][k4] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k3][k5][k1][k4][k2] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k3][k5][k2][k1][k4] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k3][k5][k2][k4][k1] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k3][k5][k4][k1][k2] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k3][k5][k4][k2][k1] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k4][k1][k2][k3][k5] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k4][k1][k2][k5][k3] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k4][k1][k3][k2][k5] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k4][k1][k3][k5][k2] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k4][k1][k5][k2][k3] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k4][k1][k5][k3][k2] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k4][k2][k1][k3][k5] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k4][k2][k1][k5][k3] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k4][k2][k3][k1][k5] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k4][k2][k3][k5][k1] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k4][k2][k5][k1][k3] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k4][k2][k5][k3][k1] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k4][k3][k1][k2][k5] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k4][k3][k1][k5][k2] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k4][k3][k2][k1][k5] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k4][k3][k2][k5][k1] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k4][k3][k5][k1][k2] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k4][k3][k5][k2][k1] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k4][k5][k1][k2][k3] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k4][k5][k1][k3][k2] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k4][k5][k2][k1][k3] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k4][k5][k2][k3][k1] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k4][k5][k3][k1][k2] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k4][k5][k3][k2][k1] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k5][k1][k2][k3][k4] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k5][k1][k2][k4][k3] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k5][k1][k3][k2][k4] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k5][k1][k3][k4][k2] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k5][k1][k4][k2][k3] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k5][k1][k4][k3][k2] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k5][k2][k1][k3][k4] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k5][k2][k1][k4][k3] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k5][k2][k3][k1][k4] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k5][k2][k3][k4][k1] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k5][k2][k4][k1][k3] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k5][k2][k4][k3][k1] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k5][k3][k1][k2][k4] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k5][k3][k1][k4][k2] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k5][k3][k2][k1][k4] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k5][k3][k2][k4][k1] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k5][k3][k4][k1][k2] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k5][k3][k4][k2][k1] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k5][k4][k1][k2][k3] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k5][k4][k1][k3][k2] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k5][k4][k2][k1][k3] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k5][k4][k2][k3][k1] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k5][k4][k3][k1][k2] = Tensor5Dim[k1][k2][k3][k4][k5];
+            Tensor5Dim[k5][k4][k3][k2][k1] = Tensor5Dim[k1][k2][k3][k4][k5];
           }
         }
       }
@@ -5509,6 +5584,80 @@ void Class_Potential_Origin::sym6Dim(
   }
 }
 
+void Class_Potential_Origin::CorrectLeptonTensorsDim6()
+{
+  std::stringstream ss;
+  typedef std::numeric_limits<double> dbl;
+  ss.precision(dbl::max_digits10);
+
+  for (std::size_t i = 0; i < NLepton; i++)
+  {
+    for (std::size_t j = 0; j < NLepton; j++)
+    {
+      for (std::size_t k = 0; k < NHiggs; k++)
+      {
+        for (std::size_t l = 0; l < NHiggs; l++)
+        {
+          for (std::size_t m = 0; m < NHiggs; m++)
+          {
+            if (abs(Curvature_Lepton_F2H3[i][j][k][l][m] * HiggsVev[l] *
+                    HiggsVev[m]) > 0)
+            {
+              ss << "Curvature_Lepton_F2H1[" << i << "][" << j << "][" << k
+                 << "] = " << Curvature_Lepton_F2H1[i][j][k] << "\n";
+              Curvature_Lepton_F2H1[i][j][k] -=
+                  1.0 / 6.0 * Curvature_Lepton_F2H3[i][j][k][l][m] *
+                  HiggsVev[l] * HiggsVev[m];
+              ss << "Curvature_Lepton_F2H1Corr[" << i << "][" << j << "][" << k
+                 << "] = " << Curvature_Lepton_F2H1[i][j][k] << "\n";
+            }
+          }
+        }
+      }
+    }
+  }
+
+  Logger::Write(LoggingLevel::ProgDetailed, ss.str());
+}
+
+void Class_Potential_Origin::CorrectQuarkTensorsDim6()
+{
+  std::stringstream ss;
+  typedef std::numeric_limits<double> dbl;
+  ss.precision(dbl::max_digits10);
+
+  for (std::size_t i = 0; i < NQuarks; i++)
+  {
+    for (std::size_t j = 0; j < NQuarks; j++)
+    {
+      for (std::size_t k = 0; k < NHiggs; k++)
+      {
+        for (std::size_t l = 0; l < NHiggs; l++)
+        {
+          for (std::size_t m = 0; m < NHiggs; m++)
+          {
+            if (abs(Curvature_Quark_F2H3[i][j][k][l][m] * HiggsVev[l] *
+                    HiggsVev[m]) > 0)
+            {
+              ss << "i: " << i << " - j: " << j << " - k: " << k
+                 << " - l: " << l << " - m: " << m << "\n";
+              ss << "Curvature_Quark_F2H1[" << i << "][" << j << "][" << k
+                 << "] = " << Curvature_Quark_F2H1[i][j][k] << "\n";
+              Curvature_Quark_F2H1[i][j][k] -=
+                  1.0 / 6.0 * Curvature_Quark_F2H3[i][j][k][l][m] *
+                  HiggsVev[l] * HiggsVev[m];
+              ss << "Curvature_Quark_F2H1Corr[" << i << "][" << j << "][" << k
+                 << "] = " << Curvature_Quark_F2H1[i][j][k] << "\n";
+            }
+          }
+        }
+      }
+    }
+  }
+
+  Logger::Write(LoggingLevel::ProgDetailed, ss.str());
+}
+
 void Class_Potential_Origin::resetbools()
 {
   SetCurvatureDone          = false;
@@ -5522,7 +5671,7 @@ bool Class_Potential_Origin::CheckNLOVEV(const std::vector<double> &v) const
 {
   // std::vector<double> vPotential;
   double MaxDiff           = 0;
-  double AllowedDifference = 1;
+  double AllowedDifference = 5;
   for (std::size_t i = 0; i < nVEV; i++)
   {
     double tmp = std::abs(std::abs(v[i]) - std::abs(vevTreeMin[i]));
@@ -5620,16 +5769,6 @@ void Class_Potential_Origin::FindSignSymmetries()
 void Class_Potential_Origin::SetUseTreeLevel(bool val)
 {
   UseTreeLevel = val;
-}
-
-void Class_Potential_Origin::SetUseTensorSymFac(bool val)
-{
-  UseTensorSymFac = val;
-}
-
-void Class_Potential_Origin::SetUseTwoLoopThermalMass(bool val)
-{
-  UseTwoLoopThermalMass = val;
 }
 
 std::pair<std::vector<double>, std::vector<double>>
@@ -5741,6 +5880,60 @@ Class_Potential_Origin::QuarkMassMatrix(const std::vector<double> &v) const
   return MIJ;
 }
 
+Eigen::MatrixXcd
+Class_Potential_Origin::QuarkMassMatrixDim4(const std::vector<double> &v) const
+{
+  MatrixXcd MIJ(NQuarks, NQuarks);
+  if (v.size() != nVEV and v.size() != NHiggs)
+  {
+    std::string ErrorString =
+        std::string("You have called ") + std::string(__func__) +
+        std::string(
+            " with an invalid vev configuration. Your vev is of dimension ") +
+        std::to_string(v.size()) + std::string(" and it should be ") +
+        std::to_string(NHiggs) + std::string(".");
+    throw std::runtime_error(ErrorString);
+  }
+  if (v.size() == nVEV and nVEV != NHiggs)
+  {
+    std::stringstream ss;
+    ss << __func__
+       << " is being called with a wrong sized vev configuration. It "
+          "has the dimension of "
+       << nVEV << " while it should have " << NHiggs
+       << ". For now this is transformed but please fix this to reduce "
+          "the runtime."
+       << std::endl;
+    Logger::Write(LoggingLevel::Default, ss.str());
+    std::vector<double> Transformedv;
+    Transformedv = MinimizeOrderVEV(v);
+    MIJ          = QuarkMassMatrixDim4(Transformedv);
+    return MIJ;
+  }
+  if (!SetCurvatureDone)
+  {
+    std::string retmes = __func__;
+    retmes += " is called before SetCurvatureArrays() is called. \n";
+    throw std::runtime_error(retmes);
+  }
+
+  MIJ = MatrixXcd::Zero(NQuarks, NQuarks);
+
+  for (std::size_t i = 0; i < NQuarks; i++)
+  {
+    for (std::size_t j = 0; j < NQuarks; j++)
+    {
+      MIJ(i, j) = Curvature_Quark_F2[i][j];
+      for (std::size_t k = 0; k < NHiggs; k++)
+      {
+        MIJ(i, j) += Curvature_Quark_F2H1_dim4[i][j][k] * v[k];
+      }
+    }
+  }
+
+  return MIJ;
+}
+
 std::vector<std::complex<double>>
 Class_Potential_Origin::QuarkMasses(const std::vector<double> &v) const
 {
@@ -5759,6 +5952,81 @@ Class_Potential_Origin::QuarkMasses(const std::vector<double> &v) const
     else
       res.push_back(tmp);
   }
+
+  return res;
+}
+
+std::vector<std::complex<double>>
+Class_Potential_Origin::QuarkMassesDim4(const std::vector<double> &v) const
+{
+  std::vector<std::complex<double>> res;
+  double ZeroMass = std::pow(10, -10);
+
+  auto MIJ = QuarkMassMatrixDim4(v);
+
+  ComplexEigenSolver<MatrixXcd> es(MIJ, false);
+
+  for (std::size_t i = 0; i < NQuarks; i++)
+  {
+    auto tmp = es.eigenvalues()[i];
+    if (std::abs(tmp) < ZeroMass)
+      res.push_back(0);
+    else
+      res.push_back(tmp);
+  }
+
+  return res;
+}
+
+std::vector<double>
+Class_Potential_Origin::GetYukawaModifier(const double &alpha) const
+{
+  std::stringstream ss;
+  typedef std::numeric_limits<double> dbl;
+  ss.precision(dbl::max_digits10);
+
+  ss << " Calculation of the Yukawa Modifiers \n";
+
+  std::vector<double> res;
+  std::size_t tR = 2, tL = 8, zeta1 = 4, zeta2 = 6;
+  std::complex<double> cHluue_d4, cHluue_d6, cHhuue_d4, cHhuue_d6;
+
+  double prefac = 1. / 2 * C_vev0 / C_MassTop;
+
+  double zeta1_dim4_term =
+      prefac * (Curvature_Quark_F2H1_dim4[tR][tL][zeta1] +
+                conj(Curvature_Quark_F2H1_dim4[tL][tR][zeta1]))
+                   .real();
+  double zeta2_dim4_term =
+      prefac * (Curvature_Quark_F2H1_dim4[tR][tL][zeta2] +
+                conj(Curvature_Quark_F2H1_dim4[tL][tR][zeta2]))
+                   .real();
+
+  cHhuue_d4 =
+      std::cos(alpha) * zeta1_dim4_term + std::sin(alpha) * zeta2_dim4_term;
+  cHluue_d4 =
+      -std::sin(alpha) * zeta1_dim4_term + std::cos(alpha) * zeta2_dim4_term;
+
+  double zeta1_dim6_term = prefac * (Curvature_Quark_F2H1[tR][tL][zeta1] +
+                                     conj(Curvature_Quark_F2H1[tL][tR][zeta1]))
+                                        .real();
+  double zeta2_dim6_term = prefac * (Curvature_Quark_F2H1[tR][tL][zeta2] +
+                                     conj(Curvature_Quark_F2H1[tL][tR][zeta2]))
+                                        .real();
+
+  cHhuue_d6 =
+      std::cos(alpha) * zeta1_dim6_term + std::sin(alpha) * zeta2_dim6_term;
+  cHluue_d6 =
+      -std::sin(alpha) * zeta1_dim6_term + std::cos(alpha) * zeta2_dim6_term;
+
+  ss << "(cHluue_d4, cHhuue_d4) = (" << cHluue_d4 << ", " << cHhuue_d4 << ")\n";
+
+  res.push_back(cHluue_d6.real());
+  res.push_back(cHhuue_d6.real());
+
+  ss << "(cHluue_d6, cHhuue_d6) = " << res << "\n";
+
+  Logger::Write(LoggingLevel::ProgDetailed, ss.str());
 
   return res;
 }
@@ -5901,6 +6169,8 @@ Class_Potential_Origin::NablaVCT(const std::vector<double> &v) const
                        v.at(k) * v.at(l);
           for (std::size_t m = 0; m < NHiggs; m++)
           {
+            result(i) += 1.0 / 24.0 * Curvature_Higgs_CT_L5[i][j][k][l][m] *
+                         v.at(j) * v.at(k) * v.at(l) * v.at(m);
             for (std::size_t n = 0; n < NHiggs; n++)
             {
               result(i) += 1.0 / 120.0 *
@@ -5933,6 +6203,8 @@ Class_Potential_Origin::HessianCT(const std::vector<double> &v) const
               0.5 * Curvature_Higgs_CT_L4[i][j][k][l] * v.at(k) * v.at(l);
           for (std::size_t m = 0; m < NHiggs; m++)
           {
+            result(i, j) += 1.0 / 6.0 * Curvature_Higgs_CT_L5[i][j][k][l][m] *
+                            v.at(k) * v.at(l) * v.at(m);
             for (std::size_t n = 0; n < NHiggs; n++)
             {
               result(i, j) += 1.0 / 24.0 *

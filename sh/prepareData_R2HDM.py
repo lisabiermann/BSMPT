@@ -16,7 +16,6 @@ def convert(InputFile, OutputFile):
 
 Seperator = "\t"
 InputFILE = "../example/R2HDM_Input.dat"
-InputFILE = "wI.csv"
 OutputFILE = "R2HDM_Ordered.dat"
 Type = "yuktype"
 Lambda1 = "L1"
@@ -26,9 +25,6 @@ Lambda4 = "L4"
 Lambda5 = "L5"
 tanbeta = "tbeta"
 m12squared = "m12sq"
-
-    with open(InputFile, 'r') as file:
-        df = pd.read_csv(file,index_col=HasIndexCol,sep=Separator)
 
 def convert(IndexCol):
     df = pd.DataFrame()

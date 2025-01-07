@@ -91,6 +91,7 @@ private:
   std::map<LoggingLevel, bool> mCurrentSetup{
       {LoggingLevel::Default, true},
       {LoggingLevel::EWBGDetailed, false},
+      {LoggingLevel::GWDetailed, false},
       {LoggingLevel::ProgDetailed, false},
       {LoggingLevel::MinimizerDetailed, false},
       {LoggingLevel::MinTracerDetailed, false},

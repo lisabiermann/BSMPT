@@ -163,7 +163,7 @@ std::vector<std::string> Class_Potential_N2HDM::addLegendVEV() const
  * returns a string which tells the user the chronological order of the EFT
  * parameters.
  */
-std::vector<std::string> Class_Potential_RN2HDM::addLegendEFT() const
+std::vector<std::string> Class_Potential_N2HDM::addLegendEFT() const
 {
   std::vector<std::string> labels;
   labels.push_back("not_set");
@@ -174,7 +174,7 @@ std::vector<std::string> Class_Potential_RN2HDM::addLegendEFT() const
  * Returns the numerical values of the EFT parameters. This has to be
  * specified in the model file.
  */
-std::vector<double> Class_Potential_RN2HDM::getParamsEFT() const
+std::vector<double> Class_Potential_N2HDM::getParamsEFT() const
 {
   std::vector<double> valsEFT;
   valsEFT.push_back(0);
@@ -3124,6 +3124,44 @@ void Class_Potential_N2HDM::SetCurvatureArrays()
   SetCurvatureDone = true;
 }
 
+double Class_Potential_N2HDM::SymFac_Higgs_OneLoop(
+    const int &i,
+    const int &j,
+    const std::vector<double> &point) const
+{
+  (void)i;
+  (void)j;
+  (void)point;
+  return 0;
+}
+
+double Class_Potential_N2HDM::SymFac_Higgs_TwoLoop(const int &i,
+                                                    const int &j) const
+{
+  (void)i;
+  (void)j;
+  return 0;
+}
+
+double Class_Potential_N2HDM::SymFac_Higgs_OneLoop(
+    const int &i,
+    const int &j,
+    const std::vector<double> &point) const
+{
+  (void)i;
+  (void)j;
+  (void)point;
+  return 0;
+}
+
+double Class_Potential_N2HDM::SymFac_Higgs_TwoLoop(const int &i,
+                                                    const int &j) const
+{
+  (void)i;
+  (void)j;
+  return 0;
+}
+
 bool Class_Potential_N2HDM::CalculateDebyeSimplified()
 {
   double cb = 0;
@@ -3202,6 +3240,11 @@ Class_Potential_N2HDM::VCounterSimplified(const std::vector<double> &v) const
   if (not UseVCounterSimplified) return 0;
   double res = 0;
   return res;
+}
+
+void Class_Potential_N2HDM::PerformVCTShift()
+{
+  // not implemented  
 }
 
 void Class_Potential_N2HDM::Debugging(const std::vector<double> &input,

@@ -1399,6 +1399,25 @@ void Class_Potential_R2HDM::SetCurvatureArrays()
   SetCurvatureDone = true;
 }
 
+double Class_Potential_R2HDM::SymFac_Higgs_OneLoop(
+    const int &i,
+    const int &j,
+    const std::vector<double> &point) const
+{
+  (void)i;
+  (void)j;
+  (void)point;
+  return 0;
+}
+
+double Class_Potential_R2HDM::SymFac_Higgs_TwoLoop(const int &i,
+                                                   const int &j) const
+{
+  (void)i;
+  (void)j;
+  return 0;
+}
+
 bool Class_Potential_R2HDM::CalculateDebyeSimplified()
 {
   double cb = 0;
@@ -1472,6 +1491,11 @@ Class_Potential_R2HDM::VCounterSimplified(const std::vector<double> &v) const
   if (not UseVCounterSimplified) return 0;
   double res = 0;
   return res;
+}
+
+void Class_Potential_R2HDM::PerformVCTShift()
+{
+  // not implemented
 }
 
 void Class_Potential_R2HDM::Debugging(const std::vector<double> &input,

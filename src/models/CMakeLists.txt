@@ -10,28 +10,32 @@ set(header
     ${header_path}/ClassPotentialOrigin.h
     ${header_path}/ClassPotentialC2HDM.h
     ${header_path}/ClassPotentialR2HDM.h
-      ${header_path}/ClassPotentialR2HDMEFTPHI6.h
-  ${header_path}/ClassPotentialR2HDMEFTPHI6_PHI2PSI3.h
+    ${header_path}/ClassPotentialR2HDMEFTPHI6.h
+    ${header_path}/ClassPotentialR2HDMEFTPHI6_PSI2PHI3.h
     ${header_path}/ClassPotentialN2HDM.h
     ${header_path}/ClassPotentialCxSM.h
     ${header_path}/ClassPotentialSM.h
     ${header_path}/ClassPotentialCPintheDark.h
+    ${header_path}/ClassPotentialSMEFT.h
     # Here you can add your new model
     ${header_path}/ClassTemplate.h)
 
 set(src
     SMParam.cpp
+
     IncludeAllModels.cpp
     ClassPotentialOrigin.cpp
     ClassPotentialOrigin_deprecated.cpp
+
     ClassPotentialC2HDM.cpp
     ClassPotentialR2HDM.cpp
-      ClassPotentialR2HDMEFTPHI6.cpp
-  ClassPotentialR2HDMEFTPHI6_PHI2PSI3.cpp
+    ClassPotentialR2HDMEFTPHI6.cpp
+    ClassPotentialR2HDMEFTPHI6_PSI2PHI3.cpp
     ClassPotentialN2HDM.cpp
     ClassPotentialCxSM.cpp
     ClassPotentialSM.cpp
     ClassPotentialCPintheDark.cpp
+    ClassPotentialSMEFT.cpp
     # Here you can add your new model
     ClassTemplate.cpp)
 

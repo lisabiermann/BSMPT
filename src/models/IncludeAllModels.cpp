@@ -11,8 +11,9 @@
 #include <BSMPT/models/ClassPotentialOrigin.h> // for Class_Potential_Origin
 #include <BSMPT/models/ClassPotentialR2HDM.h>
 #include <BSMPT/models/ClassPotentialR2HDMEFTPHI6.h>
-#include <BSMPT/models/ClassPotentialR2HDMEFTPHI6_PHI2PSI3.h>
+#include <BSMPT/models/ClassPotentialR2HDMEFTPHI6_PSI2PHI3.h>
 #include <BSMPT/models/ClassPotentialSM.h>
+#include <BSMPT/models/ClassPotentialSMEFT.h>
 #include <BSMPT/models/IncludeAllModels.h>
 #include <ctype.h>   // for isdigit, tolower
 #include <iostream>  // for operator<<, cerr, ost...
@@ -48,8 +49,8 @@ std::unique_ptr<Class_Potential_Origin> FChoose(ModelIDs choice,
   case ModelIDs::R2HDMEFTPHI6:
     return std::make_unique<Class_Potential_R2HDMEFTPHI6>();
     break;
-  case ModelIDs::R2HDMEFTPHI6_PHI2PSI3:
-    return std::make_unique<Class_Potential_R2HDMEFTPHI6_PHI2PSI3>();
+  case ModelIDs::R2HDMEFTPHI6_PSI2PHI3:
+    return std::make_unique<Class_Potential_R2HDMEFTPHI6_PSI2PHI3>();
     break;
   case ModelIDs::N2HDM:
     return std::make_unique<Class_Potential_N2HDM>(smConstants);
@@ -58,6 +59,7 @@ std::unique_ptr<Class_Potential_Origin> FChoose(ModelIDs choice,
   case ModelIDs::CPINTHEDARK:
     return std::make_unique<Class_Potential_CPintheDark>(smConstants);
     break;
+  case ModelIDs::SMEFT: return std::make_unique<Class_Potential_SMEFT>(); break;
   case ModelIDs::TEMPLATE:
     return std::make_unique<Class_Template>(smConstants);
     break;

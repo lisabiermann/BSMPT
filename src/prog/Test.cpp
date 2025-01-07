@@ -85,6 +85,7 @@ try
 
     if (linecounter == 1)
     {
+
       modelPointer->setUseIndexCol(linestr);
     }
     if (linecounter == args.Line and linecounter != 1)
