@@ -5991,7 +5991,7 @@ Class_Potential_Origin::GetYukawaModifier(const double &alpha) const
   std::size_t tR = 2, tL = 8, zeta1 = 4, zeta2 = 6;
   std::complex<double> cHluue_d4, cHluue_d6, cHhuue_d4, cHhuue_d6;
 
-  double prefac = 1. / 2 * C_vev0 / C_MassTop;
+  double prefac = 1. / 2 * SMConstants.C_vev0 / SMConstants.C_MassTop;
 
   double zeta1_dim4_term =
       prefac * (Curvature_Quark_F2H1_dim4[tR][tL][zeta1] +

@@ -43,6 +43,8 @@ public:
   std::vector<std::string> addLegendTemp() const override;
   std::vector<std::string> addLegendTripleCouplings() const override;
   std::vector<std::string> addLegendVEV() const override;
+  std::vector<std::string> addLegendEFT() const override;
+  std::vector<double> getParamsEFT() const override;
 
   void set_gen(const std::vector<double> &par) override;
   void set_CT_Pot_Par(const std::vector<double> &par) override;

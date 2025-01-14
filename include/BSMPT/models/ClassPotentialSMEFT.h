@@ -26,7 +26,7 @@ namespace Models
 class Class_Potential_SMEFT : public Class_Potential_Origin
 {
 public:
-  Class_Potential_SMEFT();
+  Class_Potential_SMEFT(const ISMConstants &smConstants);
   virtual ~Class_Potential_SMEFT();
 
   double muSq, lambda;

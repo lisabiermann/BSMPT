@@ -77,7 +77,7 @@ namespace Models
 class Class_Potential_R2HDMEFTPHI6 : public Class_Potential_Origin
 {
 public:
-  Class_Potential_R2HDMEFTPHI6();
+  Class_Potential_R2HDMEFTPHI6(const ISMConstants &smConstants);
   virtual ~Class_Potential_R2HDMEFTPHI6();
 
   double L1 = 0, L2 = 0, L3 = 0, L4 = 0, L5 = 0, m12Sq = 0, m11Sq = 0,

@@ -3136,26 +3136,7 @@ double Class_Potential_N2HDM::SymFac_Higgs_OneLoop(
 }
 
 double Class_Potential_N2HDM::SymFac_Higgs_TwoLoop(const int &i,
-                                                    const int &j) const
-{
-  (void)i;
-  (void)j;
-  return 0;
-}
-
-double Class_Potential_N2HDM::SymFac_Higgs_OneLoop(
-    const int &i,
-    const int &j,
-    const std::vector<double> &point) const
-{
-  (void)i;
-  (void)j;
-  (void)point;
-  return 0;
-}
-
-double Class_Potential_N2HDM::SymFac_Higgs_TwoLoop(const int &i,
-                                                    const int &j) const
+                                                   const int &j) const
 {
   (void)i;
   (void)j;
@@ -3244,7 +3225,7 @@ Class_Potential_N2HDM::VCounterSimplified(const std::vector<double> &v) const
 
 void Class_Potential_N2HDM::PerformVCTShift()
 {
-  // not implemented  
+  // not implemented
 }
 
 void Class_Potential_N2HDM::Debugging(const std::vector<double> &input,

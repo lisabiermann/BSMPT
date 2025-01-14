@@ -78,6 +78,8 @@ public:
   std::vector<std::string> addLegendTemp() const override;
   std::vector<std::string> addLegendTripleCouplings() const override;
   std::vector<std::string> addLegendVEV() const override;
+  std::vector<std::string> addLegendEFT() const override;
+  std::vector<double> getParamsEFT() const override;
 
   void set_gen(const std::vector<double> &par) override;
   void set_CT_Pot_Par(const std::vector<double> &par) override;
@@ -91,8 +93,14 @@ public:
   bool CalculateDebyeGaugeSimplified() override;
   double VTreeSimplified(const std::vector<double> &v) const override;
   double VCounterSimplified(const std::vector<double> &v) const override;
+  void PerformVCTShift() override;
   void Debugging(const std::vector<double> &input,
                  std::vector<double> &output) const override;
+
+  double SymFac_Higgs_OneLoop(const int &i,
+                              const int &j,
+                              const std::vector<double> &point) const override;
+  double SymFac_Higgs_TwoLoop(const int &i, const int &j) const override;
 };
 
 } // namespace Models

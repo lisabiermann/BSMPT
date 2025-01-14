@@ -97,6 +97,28 @@ std::vector<std::string> Class_Template::addLegendTemp() const
 }
 
 /**
+ * returns a string which tells the user the chronological order of the EFT
+ * parameters.
+ */
+std::vector<std::string> Class_Template::addLegendEFT() const
+{
+  std::vector<std::string> labels;
+  labels.push_back("non_set");
+  return labels;
+}
+
+/**
+ * returns the numerical values of the EFT parameters. This has to be
+ * specified in the model file.
+ */
+std::vector<double> Class_Template::getParamsEFT() const
+{
+  std::vector<double> valsEFT;
+  valsEFT.push_back(0);
+  return valsEFT;
+}
+
+/**
  * returns a string which tells the user the chronological order of the Triple
  * Higgs couplings. Use this to complement the legend of the given input file
  *

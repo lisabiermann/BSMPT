@@ -33,6 +33,8 @@ public:
   {
     return {};
   };
+  std::vector<std::string> addLegendEFT() const override { return {}; };
+  std::vector<double> getParamsEFT() const override { return {0}; };
 
   void set_gen(const std::vector<double> &par) override
   {
@@ -67,6 +69,25 @@ public:
     (void)output;
     return;
   };
+
+  void PerformVCTShift() override { return; };
+
+  double SymFac_Higgs_OneLoop(const int &i,
+                              const int &j,
+                              const std::vector<double> &point) const override
+  {
+    (void)i;
+    (void)j;
+    (void)point;
+    return 0;
+  };
+  double SymFac_Higgs_TwoLoop(const int &i, const int &j) const override
+  {
+    (void)i;
+    (void)j;
+    return 0;
+  };
+
   ////////////////////////////////////////////////////////////
   Class_Potential_OriginDerived() : Class_Potential_Origin(GetSMConstants())
   {

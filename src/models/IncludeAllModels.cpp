@@ -46,12 +46,6 @@ std::unique_ptr<Class_Potential_Origin> FChoose(ModelIDs choice,
   case ModelIDs::C2HDM:
     return std::make_unique<Class_Potential_C2HDM>(smConstants);
     break;
-  case ModelIDs::R2HDMEFTPHI6:
-    return std::make_unique<Class_Potential_R2HDMEFTPHI6>();
-    break;
-  case ModelIDs::R2HDMEFTPHI6_PSI2PHI3:
-    return std::make_unique<Class_Potential_R2HDMEFTPHI6_PSI2PHI3>();
-    break;
   case ModelIDs::N2HDM:
     return std::make_unique<Class_Potential_N2HDM>(smConstants);
     break;
@@ -59,7 +53,15 @@ std::unique_ptr<Class_Potential_Origin> FChoose(ModelIDs choice,
   case ModelIDs::CPINTHEDARK:
     return std::make_unique<Class_Potential_CPintheDark>(smConstants);
     break;
-  case ModelIDs::SMEFT: return std::make_unique<Class_Potential_SMEFT>(); break;
+  case ModelIDs::SMEFT:
+    return std::make_unique<Class_Potential_SMEFT>(smConstants);
+    break;
+  case ModelIDs::R2HDMEFTPHI6:
+    return std::make_unique<Class_Potential_R2HDMEFTPHI6>(smConstants);
+    break;
+  case ModelIDs::R2HDMEFTPHI6_PSI2PHI3:
+    return std::make_unique<Class_Potential_R2HDMEFTPHI6_PSI2PHI3>(smConstants);
+    break;
   case ModelIDs::TEMPLATE:
     return std::make_unique<Class_Template>(smConstants);
     break;

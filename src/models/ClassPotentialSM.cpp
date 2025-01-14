@@ -109,6 +109,20 @@ std::vector<std::string> Class_SM::addLegendVEV() const
   return labels;
 }
 
+std::vector<std::string> Class_SM::addLegendEFT() const
+{
+  std::vector<std::string> labels;
+  labels.push_back("not_set");
+  return labels;
+}
+
+std::vector<double> Class_SM::getParamsEFT() const
+{
+  std::vector<double> valsEFT;
+  valsEFT.push_back(0);
+  return valsEFT;
+}
+
 void Class_SM::ReadAndSet(const std::string &linestr, std::vector<double> &par)
 {
   std::stringstream ss(linestr);
@@ -612,6 +626,23 @@ void Class_SM::SetCurvatureArrays()
   SetCurvatureDone = true;
 }
 
+double Class_SM::SymFac_Higgs_OneLoop(const int &i,
+                                      const int &j,
+                                      const std::vector<double> &point) const
+{
+  (void)i;
+  (void)j;
+  (void)point;
+  return 0;
+}
+
+double Class_SM::SymFac_Higgs_TwoLoop(const int &i, const int &j) const
+{
+  (void)i;
+  (void)j;
+  return 0;
+}
+
 bool Class_SM::CalculateDebyeSimplified()
 {
   return false;
@@ -645,6 +676,11 @@ double Class_SM::VCounterSimplified(const std::vector<double> &v) const
   res += dT3 * vtmp;
 
   return res;
+}
+
+void Class_SM::PerformVCTShift()
+{
+  // not implemented
 }
 
 void Class_SM::Debugging(const std::vector<double> &input,

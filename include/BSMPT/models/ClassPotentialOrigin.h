@@ -670,43 +670,6 @@ public:
   bool getUseIndexCol();
 
   /**
-   * @brief sym2Dim Symmetrize scalar 2-dim tensor
-   * @param Tensor2Dim 2-dim scalar tensor
-   * @param Nk1 number of first indices
-   * @param Nk2 number of second indices
-   */
-  void sym2Dim(std::vector<std::vector<double>> &Tensor2Dim,
-               std::size_t Nk1,
-               std::size_t Nk2);
-
-  /**
-   * @brief sym3Dim Symmetrize scalar 3-dim tensor
-   * @param Tensor3Dim 4-dim scalar tensor
-   * @param Nk1 number of first indices
-   * @param Nk2 number of second indices
-   * @param Nk3 number of third indices
-   */
-  void sym3Dim(std::vector<std::vector<std::vector<double>>> &Tensor3Dim,
-               std::size_t Nk1,
-               std::size_t Nk2,
-               std::size_t Nk3);
-
-  /**
-   * @brief sym4Dim Symmetrize scalar 4-dim tensor
-   * @param Tensor4Dim 4-dim scalar tensor
-   * @param Nk1 number of first indices
-   * @param Nk2 number of second indices
-   * @param Nk3 number of third indices
-   * @param Nk4 number of forth indices
-   */
-  void sym4Dim(
-      std::vector<std::vector<std::vector<std::vector<double>>>> &Tensor4Dim,
-      std::size_t Nk1,
-      std::size_t Nk2,
-      std::size_t Nk3,
-      std::size_t Nk4);
-
-  /**
    * Initializes all vectors needed for the calculations.
    */
   void initVectors();
@@ -849,14 +812,6 @@ public:
    * @return sol with EWVEV dirs set to zero
    */
   virtual void SetEWVEVZero(std::vector<double> &sol) const;
-
-  /**
-   * @brief SetEWVEVZero Set all VEV directions in sol-vector to zero that
-   * contibute to EW VEV
-   * @param sol solution in nVEV-space
-   * @return sol with EWVEV dirs set to zero
-   */
-  void SetEWVEVZero(std::vector<double> &sol) const;
 
   /**
    * Reads the string linestr and sets the parameter point
