@@ -135,8 +135,9 @@ TEST_CASE(
 TEST_CASE("Checking number of EFT labels for CXSM", "[CXSM]")
 {
   using namespace BSMPT;
+  const auto SMConstants = GetSMConstants();
   std::shared_ptr<BSMPT::Class_Potential_Origin> modelPointer =
-      ModelID::FChoose(ModelID::ModelIDs::CXSM);
+      ModelID::FChoose(ModelID::ModelIDs::CXSM, SMConstants);
   modelPointer->initModel(example_point_CXSM);
   auto result = ModelTests::CheckNumberOfEFTLabels(*modelPointer);
   REQUIRE(result == ModelTests::TestResults::Pass);

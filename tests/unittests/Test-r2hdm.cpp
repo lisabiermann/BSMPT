@@ -173,8 +173,9 @@ TEST_CASE(
 TEST_CASE("Checking number of EFT labels for R2HDM", "[r2hdm]")
 {
   using namespace BSMPT;
+  const auto SMConstants = GetSMConstants();
   std::shared_ptr<BSMPT::Class_Potential_Origin> modelPointer =
-      ModelID::FChoose(ModelID::ModelIDs::R2HDM);
+      ModelID::FChoose(ModelID::ModelIDs::R2HDM, SMConstants);
   modelPointer->initModel(example_point_R2HDM);
   auto result = ModelTests::CheckNumberOfEFTLabels(*modelPointer);
   REQUIRE(result == ModelTests::TestResults::Pass);
