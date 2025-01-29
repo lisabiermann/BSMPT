@@ -1,4 +1,4 @@
-// Copyright (C) 2020  Philipp Basler, Margarete Mühlleitner and Jonas Müller
+// Copyright (C) 2018  Philipp Basler and Margarete Mühlleitner
 // SPDX-FileCopyrightText: 2021 Philipp Basler, Margarete Mühlleitner and Jonas
 // Müller
 //
@@ -6,43 +6,52 @@
 
 /**
  * @file
- * Model file for the SMEFT
+ * Model file for the SM + real singlet with the tree-level potential
  */
 
 #pragma once
 
-#include <BSMPT/models/ClassPotentialOrigin.h>
+#include <string> // for string
+#include <vector> // for vector
 
+#include <BSMPT/models/ClassPotentialOrigin.h>
 namespace BSMPT
 {
 namespace Models
 {
 
 /**
- * @brief The Class_Potential_SMEFT class
- * Implementation of the SMEFT
+ * @brief The Class_RxSM class
+ * Lagrangian from https://arxiv.org/pdf/1512.05355 Eq. (11)
  */
-
-class Class_Potential_SMEFT : public Class_Potential_Origin
+class Class_RxSM : public Class_Potential_Origin
 {
 public:
-  Class_Potential_SMEFT(const ISMConstants &smConstants);
-  virtual ~Class_Potential_SMEFT();
+  Class_RxSM(const ISMConstants &smConstants);
+  virtual ~Class_RxSM();
 
-  double muSq, lambda;
-  double Ouphi;
+  // Choice of parameters of Lagrangian from https://arxiv.org/pdf/1512.05355
+  // Eq. (11)
+  double lambdaS, lambdaHS, vS;
 
-  double dmuSq, dlambda, dT1, dT2, dT3, dT4;
-  double dZtL, dZtR, dZbL;
-  double dZtLv2, dZtRv2, dZbLv2;
-  double dZtLyv2, dZtRyv2, dZbLyv2;
-  double dZtLv3, dZtRv3, dZbLv3;
-  double dZtLy1v3, dZtRy1v3, dZbLy1v3;
-  double dZtLy2v3, dZtRy2v3, dZbLy2v3;
+  // Not an input parameter; lambda is fixed via the requirement of having
+  // one of the Higgs bosons as the SM one with 125.09 GeV
+  double lambda;
 
-  double LambdaEFT = 1000; // EFT scale
+  // Not an input parameter; set to the SM value
+  double vH;
 
-  double v0;
+  // Not input parameters; set through the tadpole equations
+  double msq, mSsq;
+
+  double alpha;
+
+  bool UnbrokenSingletPhase;
+
+  double dmsq, dlambda, dmSsq, dlambdaS, dlambdaHS, dT1, dT2, dT3, dT4, dT5;
+
+  int pos_G1, pos_G2, pos_G0, pos_h, pos_H;
+  int pos_h_SM, pos_h_H;
 
   void ReadAndSet(const std::string &linestr,
                   std::vector<double> &par) override;
@@ -57,8 +66,8 @@ public:
   void set_CT_Pot_Par(const std::vector<double> &par) override;
   void write() const override;
 
-  void TripleHiggsCouplings() override;
   void AdjustRotationMatrix() override;
+  void TripleHiggsCouplings() override;
   std::vector<double> calc_CT() const override;
 
   void SetCurvatureArrays() override;

@@ -1178,7 +1178,7 @@ std::vector<double> Class_Potential_R2HDMEFTPHI6::calc_CT() const
     retmes += " was called before SetCurvatureArrays()!\n";
     throw std::runtime_error(retmes);
   }
-  if (!CalcCouplingsdone)
+  if (!CalcCouplingsDone)
   {
     std::string retmes = __func__;
     retmes += " was called before CalculatePhysicalCouplings()!\n";
@@ -1348,6 +1348,10 @@ std::vector<double> Class_Potential_R2HDMEFTPHI6::calc_CT() const
   return parCT;
 }
 
+void Class_Potential_R2HDMEFTPHI6::AdjustRotationMatrix()
+{
+}
+
 /**
  * Calculates the corrections to the Triple higgs couplings in the mass basis.
  *
@@ -1357,7 +1361,7 @@ std::vector<double> Class_Potential_R2HDMEFTPHI6::calc_CT() const
 void Class_Potential_R2HDMEFTPHI6::TripleHiggsCouplings()
 {
   if (!SetCurvatureDone) SetCurvatureArrays();
-  if (!CalcCouplingsdone) CalculatePhysicalCouplings();
+  if (!CalcCouplingsDone) CalculatePhysicalCouplings();
 
   std::vector<double> TripleDeriv;
   TripleDeriv = WeinbergThirdDerivative();

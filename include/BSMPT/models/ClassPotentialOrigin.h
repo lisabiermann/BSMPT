@@ -182,10 +182,10 @@ protected:
    */
   bool SetCurvatureDone = false;
   /**
-   * @brief CalcCouplingsdone Used to check if CalculatePhysicalCouplings has
+   * @brief CalcCouplingsDone Used to check if CalculatePhysicalCouplings has
    * already been called
    */
-  bool CalcCouplingsdone = false;
+  bool CalcCouplingsDone = false;
   /**
    * @brief CalculatedTripleCopulings Used to check if TripleHiggsCouplings has
    * already been called
@@ -335,6 +335,11 @@ protected:
    * tree-level Vacuum
    */
   std::vector<std::vector<double>> HiggsRotationMatrix;
+  /**
+   * Storage of the model-specific Higgs rotation matrix for the Higgs mass
+   * matrix at the tree-level Vacuum
+   */
+  std::vector<std::vector<double>> HiggsRotationMatrixEnsuredConvention;
   /**
    * @brief Couplings_Higgs_Quartic stores the quartic Higgs couplings in the
    * mass base
@@ -1209,7 +1214,14 @@ public:
    * @return vector of Yukawa modifiers
    */
   std::vector<double> GetYukawaModifier(const double &alpha) const;
-
+  /**
+   * Ensures the correct rotation matrix convention
+   */
+  virtual void AdjustRotationMatrix() = 0;
+  /**
+   * Checks whether rotation matrix is properly set after implying conventions
+   */
+  bool CheckRotationMatrix();
   /**
    * Calculates the triple Higgs couplings at NLO in the mass basis.
    *

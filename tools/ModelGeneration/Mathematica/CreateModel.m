@@ -402,7 +402,7 @@ std::vector<double> Class_Potential_"<>name<>"::calc_CT() const
     retmes += \" was called before SetCurvatureArrays()!\\n\";
     throw std::runtime_error(retmes);
   }
-  if (!CalcCouplingsdone)
+  if (!CalcCouplingsDone)
   {
     std::string retmes = __func__;
     retmes += \" was called before CalculatePhysicalCouplings()!\\n\";
@@ -430,7 +430,7 @@ std::vector<double> Class_Potential_"<>name<>"::calc_CT() const
 void Class_Potential_"<>name<>"::TripleHiggsCouplings()
 {
   if (!SetCurvatureDone) SetCurvatureArrays();
-  if (!CalcCouplingsdone) CalculatePhysicalCouplings();
+  if (!CalcCouplingsDone) CalculatePhysicalCouplings();
 
   // new rotation matrix with
   MatrixXd HiggsRotSort(NHiggs, NHiggs);

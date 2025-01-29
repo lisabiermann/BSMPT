@@ -130,6 +130,7 @@ public:
   void write() const override;
 
   void TripleHiggsCouplings() override;
+  void AdjustRotationMatrix() override;
   std::vector<double> calc_CT() const override;
 
   void SetCurvatureArrays() override;
