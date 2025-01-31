@@ -980,7 +980,7 @@ double Class_Potential_SMEFT::SymFac_Higgs_TempPowerTwo(
     return (-Ouphi * SMConstants.C_MassTop) /
            (std::sqrt(2) * std::pow(LambdaEFT, 2) * SMConstants.C_vev0) *
            (point[2] * point[2] -
-            SMConstants.C_vev0 * SMConstants.C_vev0); // zetazeta}
+            SMConstants.C_vev0 * SMConstants.C_vev0); // zetazeta
   }
   else
   {
