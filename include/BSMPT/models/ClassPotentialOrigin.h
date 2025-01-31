@@ -886,18 +886,19 @@ public:
   virtual void SetCurvatureArrays() = 0;
 
   /**
-   * Defines the one-loop temperature and background field dependent dim6-Debye
+   * Defines the T^2 and background field dependent dim6-Debye
    * corrections
    */
   virtual double
-  SymFac_Higgs_OneLoop(const int &i,
-                       const int &j,
-                       const std::vector<double> &point) const = 0;
+  SymFac_Higgs_TempPowerTwo(const int &i,
+                            const int &j,
+                            const std::vector<double> &point) const = 0;
 
   /**
-   * Defines the two-loop temperature dependent debye corrections
+   * Defines the T^4-dependent debye corrections
    */
-  virtual double SymFac_Higgs_TwoLoop(const int &i, const int &j) const = 0;
+  virtual double SymFac_Higgs_TempPowerFour(const int &i,
+                                            const int &j) const = 0;
 
   /**
     Calculates all triple and quartic couplings in the physical basis

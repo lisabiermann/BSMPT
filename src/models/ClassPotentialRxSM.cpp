@@ -1119,9 +1119,10 @@ void Class_RxSM::SetCurvatureArrays()
   Curvature_Quark_F2H1[11][5][3] = 0.1e1 / vH * SMConstants.C_MassBottom;
 }
 
-double Class_RxSM::SymFac_Higgs_OneLoop(const int &i,
-                                        const int &j,
-                                        const std::vector<double> &point) const
+double
+Class_RxSM::SymFac_Higgs_TempPowerTwo(const int &i,
+                                      const int &j,
+                                      const std::vector<double> &point) const
 {
   (void)i;
   (void)j;
@@ -1129,7 +1130,7 @@ double Class_RxSM::SymFac_Higgs_OneLoop(const int &i,
   return 0;
 }
 
-double Class_RxSM::SymFac_Higgs_TwoLoop(const int &i, const int &j) const
+double Class_RxSM::SymFac_Higgs_TempPowerFour(const int &i, const int &j) const
 {
   (void)i;
   (void)j;

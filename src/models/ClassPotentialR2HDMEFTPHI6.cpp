@@ -2297,7 +2297,7 @@ void Class_Potential_R2HDMEFTPHI6::SetCurvatureArrays()
   SetCurvatureDone = true;
 }
 
-double Class_Potential_R2HDMEFTPHI6::SymFac_Higgs_OneLoop(
+double Class_Potential_R2HDMEFTPHI6::SymFac_Higgs_TempPowerTwo(
     const int &i,
     const int &j,
     const std::vector<double> &point) const
@@ -2308,8 +2308,9 @@ double Class_Potential_R2HDMEFTPHI6::SymFac_Higgs_OneLoop(
   return 0;
 }
 
-double Class_Potential_R2HDMEFTPHI6::SymFac_Higgs_TwoLoop(const int &i,
-                                                          const int &j) const
+double
+Class_Potential_R2HDMEFTPHI6::SymFac_Higgs_TempPowerFour(const int &i,
+                                                         const int &j) const
 {
   if (i == 0 and j == 0) // rho1rho1
   {

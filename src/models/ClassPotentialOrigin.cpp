@@ -974,8 +974,8 @@ bool Class_Potential_Origin::CheckRotationMatrix()
 
   double precision = 1e-10;
 
-  bool AbsDetIsOne   = almost_the_same(std::abs(mat.determinant()), 1.,
-                                       precision);
+  bool AbsDetIsOne =
+      almost_the_same(std::abs(mat.determinant()), 1., precision);
   bool InvEqTrans = true;
 
   auto inv    = mat.inverse();
@@ -2702,9 +2702,9 @@ MatrixXd Class_Potential_Origin::HiggsMassMatrix(const std::vector<double> &v,
         {
           res(i, j) +=
               DebyeHiggs[i][j] * std::pow(Temp, 2) +
-              SymFac_Higgs_OneLoop(i, j, v) *
+              SymFac_Higgs_TempPowerTwo(i, j, v) *
                   std::pow(Temp, 2) + // explicit background field dependence
-              SymFac_Higgs_TwoLoop(i, j) * std::pow(Temp, 4);
+              SymFac_Higgs_TempPowerFour(i, j) * std::pow(Temp, 4);
         }
       }
     }
@@ -2746,8 +2746,8 @@ MatrixXd Class_Potential_Origin::HiggsMassMatrix(const std::vector<double> &v,
       for (std::size_t j = 0; j < NHiggs; j++)
       {
         res(i, j) = 2 * DebyeHiggs[i][j] * Temp +
-                    2 * SymFac_Higgs_OneLoop(i, j, v) * Temp +
-                    4 * SymFac_Higgs_TwoLoop(i, j) * std::pow(Temp, 3);
+                    2 * SymFac_Higgs_TempPowerTwo(i, j, v) * Temp +
+                    4 * SymFac_Higgs_TempPowerFour(i, j) * std::pow(Temp, 3);
       }
     }
   }
@@ -2838,8 +2838,8 @@ Class_Potential_Origin::HiggsMassesSquared(const std::vector<double> &v,
       for (std::size_t j = 0; j < NHiggs; j++)
       {
         Diff(i, j) = 2 * DebyeHiggs[i][j] * Temp +
-                     2 * SymFac_Higgs_OneLoop(i, j, v) * Temp +
-                     4 * SymFac_Higgs_TwoLoop(i, j) * std::pow(Temp, 3);
+                     2 * SymFac_Higgs_TempPowerTwo(i, j, v) * Temp +
+                     4 * SymFac_Higgs_TempPowerFour(i, j) * std::pow(Temp, 3);
       }
     }
 

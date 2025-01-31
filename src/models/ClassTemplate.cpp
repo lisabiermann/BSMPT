@@ -307,8 +307,8 @@ std::vector<double> Class_Template::calc_CT() const
 void Class_Template::AdjustRotationMatrix()
 {
   // Here you implement the rotation matrix convention of your model
-  // and define HiggsRotationMatrixEnsuredConvention, use then HiggsRotationMatrixEnsuredConvention in
-  // TripleHiggsCouplings
+  // and define HiggsRotationMatrixEnsuredConvention, use then
+  // HiggsRotationMatrixEnsuredConvention in TripleHiggsCouplings
 }
 
 void Class_Template::TripleHiggsCouplings()
@@ -434,10 +434,10 @@ void Class_Template::SetCurvatureArrays()
   Curvature_Quark_F2H1[0][1][0] = yt;
 }
 
-double
-Class_Template::SymFac_Higgs_OneLoop(const int &i,
-                                     const int &j,
-                                     const std::vector<double> &point) const
+double Class_Template::SymFac_Higgs_TempPowerTwo(
+    const int &i,
+    const int &j,
+    const std::vector<double> &point) const
 {
   (void)i;
   (void)j;
@@ -445,7 +445,8 @@ Class_Template::SymFac_Higgs_OneLoop(const int &i,
   return 0;
 }
 
-double Class_Template::SymFac_Higgs_TwoLoop(const int &i, const int &j) const
+double Class_Template::SymFac_Higgs_TempPowerFour(const int &i,
+                                                  const int &j) const
 {
   (void)i;
   (void)j;

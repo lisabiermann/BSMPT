@@ -73,7 +73,7 @@ public:
 
   void PerformVCTShift() override { return; };
 
-  double SymFac_Higgs_OneLoop(const int &i,
+  double SymFac_Higgs_TempPowerTwo(const int &i,
                               const int &j,
                               const std::vector<double> &point) const override
   {
@@ -82,7 +82,7 @@ public:
     (void)point;
     return 0;
   };
-  double SymFac_Higgs_TwoLoop(const int &i, const int &j) const override
+  double SymFac_Higgs_TempPowerFour(const int &i, const int &j) const override
   {
     (void)i;
     (void)j;

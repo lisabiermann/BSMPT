@@ -633,9 +633,10 @@ void Class_SM::SetCurvatureArrays()
   SetCurvatureDone = true;
 }
 
-double Class_SM::SymFac_Higgs_OneLoop(const int &i,
-                                      const int &j,
-                                      const std::vector<double> &point) const
+double
+Class_SM::SymFac_Higgs_TempPowerTwo(const int &i,
+                                    const int &j,
+                                    const std::vector<double> &point) const
 {
   (void)i;
   (void)j;
@@ -643,7 +644,7 @@ double Class_SM::SymFac_Higgs_OneLoop(const int &i,
   return 0;
 }
 
-double Class_SM::SymFac_Higgs_TwoLoop(const int &i, const int &j) const
+double Class_SM::SymFac_Higgs_TempPowerFour(const int &i, const int &j) const
 {
   (void)i;
   (void)j;

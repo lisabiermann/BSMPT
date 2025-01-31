@@ -970,7 +970,7 @@ void Class_Potential_SMEFT::PerformVCTShift()
   }
 }
 
-double Class_Potential_SMEFT::SymFac_Higgs_OneLoop(
+double Class_Potential_SMEFT::SymFac_Higgs_TempPowerTwo(
     const int &i,
     const int &j,
     const std::vector<double> &point) const
@@ -988,8 +988,8 @@ double Class_Potential_SMEFT::SymFac_Higgs_OneLoop(
   }
 }
 
-double Class_Potential_SMEFT::SymFac_Higgs_TwoLoop(const int &i,
-                                                   const int &j) const
+double Class_Potential_SMEFT::SymFac_Higgs_TempPowerFour(const int &i,
+                                                         const int &j) const
 {
   if (i == 0 and j == 0)
   {

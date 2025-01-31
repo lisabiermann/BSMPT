@@ -4003,7 +4003,7 @@ void Class_Potential_R2HDMEFTPHI6_PSI2PHI3::SetCurvatureArrays()
   GetYukawaModifier(alpha);
 }
 
-double Class_Potential_R2HDMEFTPHI6_PSI2PHI3::SymFac_Higgs_OneLoop(
+double Class_Potential_R2HDMEFTPHI6_PSI2PHI3::SymFac_Higgs_TempPowerTwo(
     const int &i,
     const int &j,
     const std::vector<double> &point) const
@@ -4185,9 +4185,9 @@ double Class_Potential_R2HDMEFTPHI6_PSI2PHI3::SymFac_Higgs_OneLoop(
   }
 }
 
-double
-Class_Potential_R2HDMEFTPHI6_PSI2PHI3::SymFac_Higgs_TwoLoop(const int &i,
-                                                            const int &j) const
+double Class_Potential_R2HDMEFTPHI6_PSI2PHI3::SymFac_Higgs_TempPowerFour(
+    const int &i,
+    const int &j) const
 {
   double v1 = SMConstants.C_vev0 * C_CosBeta;
   double v2 = SMConstants.C_vev0 * C_SinBeta;
