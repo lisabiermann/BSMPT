@@ -220,27 +220,6 @@ TestResults CheckLegendTemp(const Class_Potential_Origin &point)
   return result;
 }
 
-TestResults CheckNumberOfEFTLabels(const Class_Potential_Origin &point)
-{
-  auto result = TestResults::Fail;
-
-  if (point.getParamsEFT().size() == point.addLegendEFT().size())
-  {
-    result = TestResults::Pass;
-  }
-  else
-  {
-    Logger::Write(
-        LoggingLevel::Default,
-        "WARNING: The number of labels for the EFT parameters does not match "
-        "the amount of supplied numerical input."
-        " If you don't fix this, then your header will not match the "
-        "numerical output in the output file.");
-  }
-
-  return result;
-}
-
 TestResults CheckNumberOfTripleCouplings(const Class_Potential_Origin &point)
 {
   std::size_t ExpectedTripleHiggs = 0;

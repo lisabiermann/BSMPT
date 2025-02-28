@@ -109,20 +109,6 @@ std::vector<std::string> Class_SM::addLegendVEV() const
   return labels;
 }
 
-std::vector<std::string> Class_SM::addLegendEFT() const
-{
-  std::vector<std::string> labels;
-  labels.push_back("not_set");
-  return labels;
-}
-
-std::vector<double> Class_SM::getParamsEFT() const
-{
-  std::vector<double> valsEFT;
-  valsEFT.push_back(0);
-  return valsEFT;
-}
-
 void Class_SM::ReadAndSet(const std::string &linestr, std::vector<double> &par)
 {
   std::stringstream ss(linestr);

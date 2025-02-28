@@ -42,8 +42,8 @@ Class_RxSMEFT::Class_RxSMEFT(const ISMConstants &smConstants)
   NNeutralHiggs = 3;              // number of neutral Higgs bosons at T = 0
   NChargedHiggs = 2; // number of charged Higgs bosons  at T = 0 (all d.o.f.)
 
-  nPar = 4;    // number of independent input parameters (in the tree-Level
-               // Lagrangian)
+  nPar = 5;    // number of independent input parameters (in the tree-Level
+               // Lagrangian + EFT)
   nParCT = 10; // number of parameters in the counterterm potential
 
   nVEV = 2; // number of VEVs to minimize the potential
@@ -156,20 +156,6 @@ std::vector<std::string> Class_RxSMEFT::addLegendVEV() const
   return labels;
 }
 
-std::vector<std::string> Class_RxSMEFT::addLegendEFT() const
-{
-  std::vector<std::string> labels;
-  labels.push_back("not_set");
-  return labels;
-}
-
-std::vector<double> Class_RxSMEFT::getParamsEFT() const
-{
-  std::vector<double> valsEFT;
-  valsEFT.push_back(0);
-  return valsEFT;
-}
-
 /**
  * Reads the string linestr and sets the parameter point
  */
@@ -179,14 +165,14 @@ void Class_RxSMEFT::ReadAndSet(const std::string &linestr,
   std::stringstream ss(linestr);
   double tmp;
 
-  double lambdaSIn{0}, lambdaHSIn{0}, vSIn{0}, MassSIn{0};
+  double lambdaSIn{0}, lambdaHSIn{0}, vSIn{0}, MassSIn{0}, etakSIn{0};
 
   if (UseIndexCol)
   {
     ss >> tmp;
   }
 
-  for (int k = 1; k <= 4; ++k)
+  for (int k = 1; k <= 5; ++k)
   {
     ss >> tmp;
     if (k == 1)
@@ -197,11 +183,14 @@ void Class_RxSMEFT::ReadAndSet(const std::string &linestr,
       vSIn = tmp;
     else if (k == 4)
       MassSIn = tmp;
+    else if (k == 5)
+      etakSIn = tmp;
   }
   par[0] = lambdaSIn;
   par[1] = lambdaHSIn;
   par[2] = vSIn;
   par[3] = MassSIn;
+  par[4] = etakSIn;
 
   set_gen(par); // This you have to call so that everything will be set
   return;
@@ -212,11 +201,11 @@ void Class_RxSMEFT::ReadAndSet(const std::string &linestr,
  */
 void Class_RxSMEFT::set_gen(const std::vector<double> &par)
 {
-  lambdaS      = par[0];
-  lambdaHS     = par[1];
-  vS           = par[2];
-  double MassS = par[3]; // this input is only used if vS == 0
-
+  lambdaS                    = par[0];
+  lambdaHS                   = par[1];
+  vS                         = par[2];
+  double MassS               = par[3]; // this input is only used if vS == 0
+  etakS                      = par[4];
   const double ZeroThreshold = 1e-5;
 
   UnbrokenSingletPhase = false;
@@ -373,7 +362,6 @@ void Class_RxSMEFT::write() const
 
   std::stringstream ss;
   ss << "Model = " << Model << std::endl;
-
   ss << "The parameters are : " << std::endl;
   ss << "lambda    = " << lambda << " (fixed via requirement of "
      << "SM Higgs mass == 125.09 GeV)" << std::endl
@@ -381,6 +369,7 @@ void Class_RxSMEFT::write() const
      << "lambda_HS = " << lambdaHS << std::endl
      << "v_S       = " << vS << std::endl
      << "v_H       = " << vH << " (fixed to SM value)" << std::endl
+     << "etakS     = " << etakS << std::endl
      << "m^2       = " << msq << " (via tadpole eqs.)" << std::endl
      << "ms^2      = " << mSsq << " (via tadpole eqs.)" << std::endl;
 
@@ -1125,10 +1114,39 @@ Class_RxSMEFT::SymFac_Higgs_TempPowerTwo(const int &i,
                                          const int &j,
                                          const std::vector<double> &point) const
 {
-  (void)i;
-  (void)j;
   (void)point;
-  return 0;
+  std::vector<double> HiggsMasses;
+  HiggsMasses = HiggsMassesSquared(vevTree, 0);
+  double msin = std::sqrt(HiggsMasses[pos_h_H]);
+  if (i == 0 and j == 0)
+  {
+    return (etakS * std::pow(msin, 2)) /
+           (12. * std::pow(LambdaEFT, 2)); // rho1rho1
+  }
+  else if (i == 1 && j == 1)
+  {
+    return (etakS * std::pow(msin, 2)) /
+           (12. * std::pow(LambdaEFT, 2)); // eta1eta1
+  }
+  else if (i == 2 && j == 2)
+  {
+    return (etakS * std::pow(msin, 2)) /
+           (12. * std::pow(LambdaEFT, 2)); // psi1psi1
+  }
+  else if (i == 3 && j == 3)
+  {
+    return (etakS * std::pow(msin, 2)) /
+           (12. * std::pow(LambdaEFT, 2)); // zeta1zeta1
+  }
+  else if (i == 4 && j == 4)
+  {
+    return (etakS * std::pow(msin, 2)) /
+           (3. * std::pow(LambdaEFT, 2)); // zetaSzetaS
+  }
+  else
+  {
+    return 0;
+  }
 }
 
 double Class_RxSMEFT::SymFac_Higgs_TempPowerFour(const int &i,

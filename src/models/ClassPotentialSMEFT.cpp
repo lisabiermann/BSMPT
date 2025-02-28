@@ -80,26 +80,6 @@ std::vector<std::string> Class_Potential_SMEFT::addLegendCT() const
   return labels;
 }
 
-/**
- * chronological order of the EFT parameters
- */
-std::vector<std::string> Class_Potential_SMEFT::addLegendEFT() const
-{
-  std::vector<std::string> labels;
-  labels.push_back("Ouphi");
-  return labels;
-}
-
-/**
- * numerical values of the EFT parameters
- */
-std::vector<double> Class_Potential_SMEFT::getParamsEFT() const
-{
-  std::vector<double> valsEFT;
-  valsEFT.push_back(Ouphi);
-  return valsEFT;
-}
-
 std::vector<std::string> Class_Potential_SMEFT::addLegendTemp() const
 {
   std::vector<std::string> labels;

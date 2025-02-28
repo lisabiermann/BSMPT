@@ -33,6 +33,10 @@ public:
   // Choice of parameters of Lagrangian from https://arxiv.org/pdf/1512.05355
   // Eq. (11)
   double lambdaS, lambdaHS, vS;
+  // EFT operator
+  double etakS;
+  // EFT scale
+  double LambdaEFT = 1000;
 
   // Not an input parameter; lambda is fixed via the requirement of having
   // one of the Higgs bosons as the SM one with 125.09 GeV
@@ -59,8 +63,6 @@ public:
   std::vector<std::string> addLegendTemp() const override;
   std::vector<std::string> addLegendTripleCouplings() const override;
   std::vector<std::string> addLegendVEV() const override;
-  std::vector<std::string> addLegendEFT() const override;
-  std::vector<double> getParamsEFT() const override;
 
   void set_gen(const std::vector<double> &par) override;
   void set_CT_Pot_Par(const std::vector<double> &par) override;

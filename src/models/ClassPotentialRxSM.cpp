@@ -155,20 +155,6 @@ std::vector<std::string> Class_RxSM::addLegendVEV() const
   return labels;
 }
 
-std::vector<std::string> Class_RxSM::addLegendEFT() const
-{
-  std::vector<std::string> labels;
-  labels.push_back("not_set");
-  return labels;
-}
-
-std::vector<double> Class_RxSM::getParamsEFT() const
-{
-  std::vector<double> valsEFT;
-  valsEFT.push_back(0);
-  return valsEFT;
-}
-
 /**
  * Reads the string linestr and sets the parameter point
  */

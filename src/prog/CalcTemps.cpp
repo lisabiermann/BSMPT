@@ -207,10 +207,11 @@ try
       std::stringstream full_legend;
       full_legend << linestr_store << sep << modelPointer->addLegendCT() << sep
                   << legend;
-      outfile << full_legend.str() << std::endl;
+      std::string str_legend = full_legend.str();
+      outfile << str_legend << std::endl;
 
       // get length of legend and of contents
-      std::string str_legend = full_legend.str();
+
       for (auto &el : str_legend)
       {
         if (el == '\t')

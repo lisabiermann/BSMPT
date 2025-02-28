@@ -33,8 +33,6 @@ public:
   {
     return {};
   };
-  std::vector<std::string> addLegendEFT() const override { return {}; };
-  std::vector<double> getParamsEFT() const override { return {0}; };
 
   void set_gen(const std::vector<double> &par) override
   {
