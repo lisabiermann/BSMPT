@@ -423,6 +423,14 @@ void Class_RxSMEFT::write() const
   ss << std::abs(HiggsRot(pos_h_H, 4)) << " zeta_S" << std::endl;
   ss << "The mixing angle is: alpha = " << alpha << std::endl;
 
+  /* Debye mass correction to check the output
+   */
+  double msin = std::sqrt(HiggsMasses[pos_h_H]);
+  ss << "Debye contribution :\n"
+     << "rho1rho1 = "
+     << (etakS * std::pow(msin, 2)) / (12. * std::pow(LambdaEFT, 2))
+     << std::endl;
+
   Logger::Write(LoggingLevel::Default, ss.str());
 }
 
