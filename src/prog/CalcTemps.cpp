@@ -33,8 +33,9 @@ struct CLIOptions
   BSMPT::ModelID::ModelIDs Model{ModelID::ModelIDs::NotSet};
   int firstline{0}, lastline{0};
   double templow{0}, temphigh{300};
-  double UserDefined_vwall = 0.95;
-  int MaxPathIntegrations  = 7;
+  double UserDefined_vwall          = 0.95;
+  double RenormalizationScaleFactor = 1.;
+  int MaxPathIntegrations           = 7;
   std::string inputfile, outputfile;
   bool UseGSL{Minimizer::UseGSLDefault};
   bool UseCMAES{Minimizer::UseLibCMAESDefault};
@@ -59,8 +60,8 @@ std::vector<std::string> convert_input(int argc, char *argv[]);
 int main(int argc, char *argv[])
 try
 {
-  const auto SMConstants = GetSMConstants();
-  auto argparser         = prepare_parser();
+  auto SMConstants = GetSMConstants();
+  auto argparser   = prepare_parser();
   argparser.add_input(convert_input(argc, argv));
   const CLIOptions args(argparser);
   if (not args.good())
@@ -77,6 +78,8 @@ try
   }
 
   Logger::Write(LoggingLevel::ProgDetailed, "Found file");
+
+  SMConstants.C_RenScale = args.RenormalizationScaleFactor * SMConstants.C_vev0;
 
   std::shared_ptr<BSMPT::Class_Potential_Origin> modelPointer =
       ModelID::FChoose(args.Model, SMConstants);
@@ -388,6 +391,16 @@ CLIOptions::CLIOptions(const BSMPT::parser &argparser)
     ss << "--thigh not set, using default value: " << temphigh << "\n";
   }
 
+  try
+  {
+    RenormalizationScaleFactor = argparser.get_value<double>("ren_scale_fac");
+  }
+  catch (BSMPT::parserException &)
+  {
+    ss << "--ren_scale_fac not set, using default value: "
+       << RenormalizationScaleFactor << "\n";
+  }
+
   std::string GSLhelp   = Minimizer::UseGSLDefault ? "true" : "false";
   std::string CMAEShelp = Minimizer::UseLibCMAESDefault ? "true" : "false";
   std::string NLoptHelp = Minimizer::UseNLoptDefault ? "true" : "false";
@@ -568,6 +581,8 @@ BSMPT::parser prepare_parser()
   argparser.add_subtext("auto: automatic mode");
   argparser.add_argument(
       "num_pts", "intermediate grid-size for default mode", "10", false);
+  argparser.add_argument(
+      "ren_scale_fac", "renormalization scale factor", "1", false);
   argparser.add_argument(
       "vwall", "wall velocity: >0 user defined", "0.95", false);
   argparser.add_subtext("-1: approximation");

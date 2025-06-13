@@ -182,8 +182,9 @@ void Class_Template::set_gen(const std::vector<double> &par)
   lambda = par[1]; // Class member is set accordingly to the input parameters
   g      = SMConstants.C_g; // SM SU (2) gauge coupling --> SMparam .h
   yt     = std::sqrt(2) / SMConstants.C_vev0 *
-       SMConstants.C_MassTop; // Top Yukawa coupling --> SMparam .h
-  scale = SMConstants.C_vev0; // Renormalisation scale is set to the SM VEV
+       SMConstants.C_MassTop;     // Top Yukawa coupling --> SMparam .h
+  scale = SMConstants.C_RenScale; // SMConstants.C_vev0; // Renormalisation
+                                  // scale is set to the SM VEV
   vevTreeMin.resize(nVEV);
   vevTree.resize(NHiggs);
   // Here you have to set the vector vevTreeMin. The vector vevTree will then be

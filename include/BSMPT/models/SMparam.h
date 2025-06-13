@@ -197,6 +197,12 @@ struct ISMConstants
    * constant
    */
   double C_vev0{0};
+
+  /**
+   * @brief Renormalization scale
+   */
+  double C_RenScale{C_vev0};
+
   /**
    * @brief gauge coupling of the U(2)_L with the SM Higgs doublett, derived
    * through the W-Boson mass and the SM VEV Unit: GeV

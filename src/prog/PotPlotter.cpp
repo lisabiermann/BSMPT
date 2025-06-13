@@ -35,6 +35,7 @@ struct CLIOptions
   int Line{2};
   std::string InputFile, OutputFile;
   double Temperature{-1};
+  double RenormalizationScaleFactor{1.};
   int npoints{100}, npoints1{0}, npoints2{0}, npoints3{0}, npoints4{0},
       npoints5{0}, npoints6{0};
   double low1{-1}, low2{-1}, low3{-1}, low4{-1}, low5{-1}, low6{-1}, high1{-1},
@@ -54,8 +55,8 @@ std::vector<std::string> convert_input(int argc, char *argv[]);
 int main(int argc, char *argv[])
 try
 {
-  const auto SMConstants = GetSMConstants();
-  auto argparser         = prepare_parser();
+  auto SMConstants = GetSMConstants();
+  auto argparser   = prepare_parser();
   argparser.add_input(convert_input(argc, argv));
   const CLIOptions args(argparser);
   if (not args.good())
@@ -64,6 +65,8 @@ try
   }
 
   std::vector<double> sol, start, solPot;
+
+  SMConstants.C_RenScale = args.RenormalizationScaleFactor * SMConstants.C_vev0;
 
   std::shared_ptr<BSMPT::Class_Potential_Origin> modelPointer =
       ModelID::FChoose(args.Model, SMConstants);
@@ -640,6 +643,16 @@ CLIOptions::CLIOptions(const BSMPT::parser &argparser)
   {
     ss << "--npoints not set, using default value: " << npoints << "\n";
   }
+
+  try
+  {
+    RenormalizationScaleFactor = argparser.get_value<double>("ren_scale_fac");
+  }
+  catch (BSMPT::parserException &)
+  {
+    ss << "--ren_scale_fac not set, using default value: "
+       << RenormalizationScaleFactor << "\n";
+  }
 }
 
 BSMPT::parser prepare_parser()
@@ -652,6 +665,8 @@ BSMPT::parser prepare_parser()
   argparser.add_argument("line", "[*] line number of line in input file", true);
   argparser.add_subtext("    (expects line 1 to be a legend)");
   argparser.add_argument("temperature", "[*] temperature [GeV]", true);
+  argparser.add_argument(
+      "ren_scale_fac", "renormalization scale factor", "1", false);
   argparser.add_argument("point", "grid reference point", "0,..,0", false);
   argparser.add_argument_only_display(
       "npointsi", "number of points in direction i", "0");

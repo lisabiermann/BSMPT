@@ -146,7 +146,7 @@ void Class_SM::set_gen(const std::vector<double> &par)
 
   lambda = -muSq * std::pow(v0, -0.2e1);
 
-  scale = v0;
+  scale = SMConstants.C_RenScale; // v0;
 
   vevTreeMin.resize(nVEV);
   vevTree.resize(NHiggs);

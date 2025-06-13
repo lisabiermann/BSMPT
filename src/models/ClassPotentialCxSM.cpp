@@ -257,7 +257,7 @@ void Class_CxSM::set_gen(const std::vector<double> &par)
     msq  = -lambda * vh * vh / 0.2e1;
   }
 
-  scale = vh;
+  scale = SMConstants.C_RenScale; // vh;
 
   vevTreeMin.resize(nVEV);
   vevTree.resize(NHiggs);

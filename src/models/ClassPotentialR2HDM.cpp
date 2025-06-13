@@ -216,7 +216,7 @@ void Class_Potential_R2HDM::set_gen(const std::vector<double> &par)
 {
 
   // double *p = (double *)par;
-  scale = SMConstants.C_vev0;
+  scale = SMConstants.C_RenScale; // SMConstants.C_vev0;
   //	scale=C_MassZ;
   L1               = par[0];
   L2               = par[1];

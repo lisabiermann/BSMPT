@@ -46,6 +46,7 @@ struct CLIOptions
   int UseMultiStepPTMode{-1};
   int CheckEWSymmetryRestoration{1};
   int num_check_pts{10};
+  double RenormalizationScaleFactor = 1.;
 
   CLIOptions(const BSMPT::parser &argparser);
   bool good() const;
@@ -58,8 +59,8 @@ std::vector<std::string> convert_input(int argc, char *argv[]);
 int main(int argc, char *argv[])
 try
 {
-  const auto SMConstants = GetSMConstants();
-  auto argparser         = prepare_parser();
+  auto SMConstants = GetSMConstants();
+  auto argparser   = prepare_parser();
   argparser.add_input(convert_input(argc, argv));
   const CLIOptions args(argparser);
   if (not args.good())
@@ -76,6 +77,8 @@ try
   }
 
   Logger::Write(LoggingLevel::ProgDetailed, "Found file");
+
+  SMConstants.C_RenScale = args.RenormalizationScaleFactor * SMConstants.C_vev0;
 
   std::shared_ptr<BSMPT::Class_Potential_Origin> modelPointer =
       ModelID::FChoose(args.Model, SMConstants);
@@ -377,6 +380,16 @@ CLIOptions::CLIOptions(const BSMPT::parser &argparser)
     ss << "--thigh not set, using default value: " << temphigh << "\n";
   }
 
+  try
+  {
+    RenormalizationScaleFactor = argparser.get_value<double>("ren_scale_fac");
+  }
+  catch (BSMPT::parserException &)
+  {
+    ss << "--ren_scale_fac not set, using default value: "
+       << RenormalizationScaleFactor << "\n";
+  }
+
   std::string GSLhelp   = Minimizer::UseGSLDefault ? "true" : "false";
   std::string CMAEShelp = Minimizer::UseLibCMAESDefault ? "true" : "false";
   std::string NLoptHelp = Minimizer::UseNLoptDefault ? "true" : "false";
@@ -494,6 +507,8 @@ BSMPT::parser prepare_parser()
   argparser.add_subtext("auto: automatic mode");
   argparser.add_argument(
       "num_pts", "intermediate grid-size for default mode", "10", false);
+  argparser.add_argument(
+      "ren_scale_fac", "renormalization scale factor", "1", false);
   argparser.add_argument(
       "checkewsr", "check for EWSR at high temperature", "on", false);
   argparser.add_subtext("on: perform check");

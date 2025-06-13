@@ -261,7 +261,8 @@ void Class_Potential_CPintheDark::set_gen(const std::vector<double> &par)
   // set vev
   v1 = SMConstants.C_vev0;
 
-  scale = SMConstants.C_vev0; // renormalisation scale is set to the SM VEV
+  scale = SMConstants.C_RenScale; // SMConstants.C_vev0; // renormalisation
+                                  // scale is set to the SM VEV
 
   vevTreeMin.resize(nVEV);
   vevTree.resize(NHiggs);

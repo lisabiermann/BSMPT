@@ -232,7 +232,7 @@ void Class_Potential_N2HDM::set_gen(const std::vector<double> &p)
   TanBeta  = p[8];
   Nvs      = p[9];
   RealMMix = p[10];
-  scale    = SMConstants.C_vev0;
+  scale    = SMConstants.C_RenScale; // SMConstants.C_vev0;
   Type     = p[11];
 
   C_CosBetaSquared = 1.0 / (1 + TanBeta * TanBeta);
