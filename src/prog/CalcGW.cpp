@@ -160,9 +160,10 @@ try
 
       output_contents.at(count - 1)
           << linestr << sep << parameters.second << sep
-          << output.status.status_nlo_stability << sep
-          << output.status.status_ewsr << sep << output.status.status_tracing
-          << sep << output.status.status_coex_pairs << sep << time << sep;
+          << SMConstants.C_RenScale << sep << output.status.status_nlo_stability
+          << sep << output.status.status_ewsr << sep
+          << output.status.status_tracing << sep
+          << output.status.status_coex_pairs << sep << time << sep;
 
       if ((output.status.status_tracing == StatusTracing::Success) &&
           (output.status.status_coex_pairs == StatusCoexPair::Success))

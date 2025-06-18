@@ -2802,6 +2802,7 @@ std::vector<std::string> MinimumTracer::GetLegend(const int &num_coex_phases,
 {
   std::vector<std::string> legend;
 
+  legend.push_back("ren_scale");
   legend.push_back("status_nlo_stability");
   legend.push_back("status_ewsr");
   legend.push_back("status_tracing");
