@@ -14,6 +14,7 @@
 #include <numeric>
 #include <random>
 #include <string>
+#include <unordered_map>
 #include <vector>
 #include <complex>
 
@@ -32,6 +33,30 @@
  */
 namespace BSMPT
 {
+
+/**
+ * @brief Inverts a map
+ * @param originalMap Map to be inverted
+ * @param errorOnDuplicateValue Error message on duplicate value
+ * @throw std::runtime_error if the new map would have duplicate keys
+ */
+template <typename key, typename value>
+std::unordered_map<value, key>
+InvertMap(const std::unordered_map<key, value> &originalMap,
+          const std::string &errorOnDuplicateValue)
+{
+  std::unordered_map<value, key> result;
+  for (const auto &[orig_key, orig_value] : originalMap)
+  {
+    auto success = result.emplace(orig_value, orig_key);
+    if (not success.second)
+    {
+      throw std::runtime_error(errorOnDuplicateValue);
+    }
+  }
+
+  return result;
+}
 
 /**
  * @brief StringStartsWith checks if str starts with prefix
@@ -286,37 +311,6 @@ double Li2(const double &x);
  */
 double EllipIntSecond(const double &x);
 
-/**
- * @brief Checks if two double numbers are (almost) the same with a given
- * relative precision; if both numbers are smaller than num_zero, then they
- * are considered to be zero and the function always returns true; with
- * additional versions of the function for std::complex<double> and
- * std::vector<double> input.
- */
-bool almost_the_same(const double &a,
-                     const double &b,
-                     const double &rel_precision = 0.01,
-                     const double &num_zero = 1e-10);
-bool almost_the_same(const std::complex<double> &a,
-		     const std::complex<double> &b,
-                     const double &rel_precision = 0.01,
-		     const double &num_zero = 1e-10);
-bool almost_the_same(const std::vector<double> &a,
-                     const std::vector<double> &b,
-                     const bool &allow_for_sign_flip = false,
-                     const double &rel_precision = 0.01,
-                     const double &num_zero = 1e-10);
-
-/**
- * @brief operator << overload for the model parameter
- */
-namespace ModelID
-{
-enum class ModelIDs;
-}
-std::ostream &operator<<(std::ostream &os, const ModelID::ModelIDs &Model);
-std::string ModelIDToString(const ModelID::ModelIDs &Model);
-
 #ifdef Boost_FOUND
 #if BOOST_VERSION >= 107200
 template <typename T>
@@ -327,5 +321,53 @@ template <typename T>
 using boost_cubic_b_spline = boost::math::cubic_b_spline<T>;
 #endif
 #endif
+
+/**
+ * @brief almost_the_same
+ * check if two doubles
+ * @param a and
+ * @param b are the (almost) same with a given
+ * @param rel_precision relative precision
+ * @param num_zero if both numbers are smaller than num_zero, they
+ * are considered to be zero and the function always returns true
+ * @return true if a and b are almost the same and false if not
+ */
+bool almost_the_same(const double &a,
+                     const double &b,
+                     const double &rel_precision,
+                     const double &num_zero = 1e-10);
+
+/**
+ * @brief almost_the_same
+ * check if two complex doubles
+ * @param a and
+ * @param b are the (almost) same with a given
+ * @param rel_precision relative precision
+ * @param num_zero if both numbers are smaller than num_zero, they
+ * are considered to be zero and the function always returns true
+ * @return true if a and b are almost the same and false if not
+ */
+bool almost_the_same(const std::complex<double> &a,
+                     const std::complex<double> &b,
+                     const double &rel_precision,
+                     const double &num_zero = 1e-10);
+
+/**
+ * @brief almost_the_same
+ * check if two vectors (element-wise)
+ * @param a and
+ * @param b are the (almost) same with a given
+ * @param allow_for_sign_flip if set to false only the absolute values of the
+ * vector coordinates are compared
+ * @param rel_precision relative precision
+ * @param num_zero if both numbers are smaller than num_zero, they
+ * are considered to be zero and the function always returns true
+ * @return true if a and b are almost the same and false if not
+ */
+bool almost_the_same(const std::vector<double> &a,
+                     const std::vector<double> &b,
+                     const bool &allow_for_sign_flip,
+                     const double &rel_precision,
+                     const double &num_zero = 1e-10);
 
 } // namespace BSMPT
