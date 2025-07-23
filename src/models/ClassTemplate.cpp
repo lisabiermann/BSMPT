@@ -412,6 +412,14 @@ void Class_Template::SetCurvatureArrays()
   Curvature_Quark_F2H1[0][1][0] = yt;
 }
 
+std::vector<double>
+Class_Template::GetAlphaVec(const std::vector<double> &point) const
+{
+  (void)point;
+
+  return std::vector<double>(NHiggs, 1);
+}
+
 double Class_Template::SymFac_Higgs_TempPowerTwo(
     const int &i,
     const int &j,

@@ -1117,6 +1117,17 @@ void Class_RxSMEFT::SetCurvatureArrays()
   Curvature_Quark_F2H1[11][5][3] = 0.1e1 / vH * SMConstants.C_MassBottom;
 }
 
+std::vector<double>
+Class_RxSMEFT::GetAlphaVec(const std::vector<double> &point) const
+{
+  std::vector<double> alpha_vec = std::vector<double>(NHiggs, 1);
+
+  alpha_vec[4] =
+      1 - etakS / std::pow(LambdaEFT, 2) * std::pow(point[4], 2); // zetaS
+
+  return alpha_vec;
+}
+
 double
 Class_RxSMEFT::SymFac_Higgs_TempPowerTwo(const int &i,
                                          const int &j,

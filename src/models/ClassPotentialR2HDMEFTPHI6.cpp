@@ -2241,6 +2241,14 @@ void Class_Potential_R2HDMEFTPHI6::SetCurvatureArrays()
   SetCurvatureDone = true;
 }
 
+std::vector<double> Class_Potential_R2HDMEFTPHI6::GetAlphaVec(
+    const std::vector<double> &point) const
+{
+  (void)point;
+
+  return std::vector<double>(NHiggs, 1);
+}
+
 double Class_Potential_R2HDMEFTPHI6::SymFac_Higgs_TempPowerTwo(
     const int &i,
     const int &j,

@@ -1388,6 +1388,14 @@ void Class_CxSM::SetCurvatureArrays()
   SetCurvatureDone = true;
 }
 
+std::vector<double>
+Class_CxSM::GetAlphaVec(const std::vector<double> &point) const
+{
+  (void)point;
+
+  return std::vector<double>(NHiggs, 1);
+}
+
 double
 Class_CxSM::SymFac_Higgs_TempPowerTwo(const int &i,
                                       const int &j,

@@ -3910,6 +3910,14 @@ void Class_Potential_R2HDMEFTPHI6_PSI2PHI3::SetCurvatureArrays()
   GetYukawaModifier(alpha);
 }
 
+std::vector<double> Class_Potential_R2HDMEFTPHI6_PSI2PHI3::GetAlphaVec(
+    const std::vector<double> &point) const
+{
+  (void)point;
+
+  return std::vector<double>(NHiggs, 1);
+}
+
 double Class_Potential_R2HDMEFTPHI6_PSI2PHI3::SymFac_Higgs_TempPowerTwo(
     const int &i,
     const int &j,

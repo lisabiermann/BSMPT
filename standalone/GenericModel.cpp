@@ -71,9 +71,17 @@ public:
 
   void PerformVCTShift() override { return; };
 
-  double SymFac_Higgs_TempPowerTwo(const int &i,
-                              const int &j,
-                              const std::vector<double> &point) const override
+  std::vector<double>
+  GetAlphaVec(const std::vector<double> &point) const override
+  {
+    (void)point;
+
+    return std::vector<double>(NHiggs, 1);
+  };
+  double
+  SymFac_Higgs_TempPowerTwo(const int &i,
+                            const int &j,
+                            const std::vector<double> &point) const override
   {
     (void)i;
     (void)j;

@@ -111,31 +111,32 @@ Class_Potential_Origin::CWTerm(double MassSquared, double cb, int diff) const
 double Class_Potential_Origin::boson(double MassSquared,
                                      double Temp,
                                      double cb,
-                                     int diff) const
+                                     int diff,
+                                     double alpha) const
 {
   double res = 0;
   if (diff >= 0) res = CWTerm(std::abs(MassSquared), cb, diff);
-  if (Temp == 0) return res;
-  double Ratio = MassSquared / std::pow(Temp, 2);
+  if (Temp == 0) return 1. / std::pow(alpha, 4) * res;
+  double Ratio = MassSquared / std::pow(alpha * Temp, 2);
   if (diff == 0)
   {
-    res += std::pow(Temp, 4) / (2 * std::pow(M_PI, 2)) *
+    res += std::pow(alpha * Temp, 4) / (2 * std::pow(M_PI, 2)) *
            ThermalFunctions::JbosonInterpolated(Ratio);
   }
   else if (diff == 1)
   {
-    res += std::pow(Temp, 2) / (2 * std::pow(M_PI, 2)) *
+    res += std::pow(alpha * Temp, 2) / (2 * std::pow(M_PI, 2)) *
            ThermalFunctions::JbosonNumericalIntegration(Ratio, 1);
   }
   else if (diff == -1)
   {
     res += 1.0 / (2 * std::pow(M_PI, 2)) *
-           (4 * std::pow(Temp, 3) *
+           (4 * std::pow(alpha * Temp, 3) *
                 ThermalFunctions::JbosonNumericalIntegration(Ratio, 0) -
-            2 * Temp * MassSquared *
+            2 * alpha * Temp * MassSquared *
                 ThermalFunctions::JbosonNumericalIntegration(Ratio, 1));
   }
-  return res;
+  return 1. / std::pow(alpha, 4) * res;
 }
 
 double
@@ -3459,19 +3460,21 @@ double Class_Potential_Origin::V1Loop(const std::vector<double> &v,
    * the masses
    */
   std::vector<double> HiggsMassesVec, QuarkMassesVec, GaugeMassesVec,
-      LeptonMassesVec, HiggsMassesZeroTempVec, GaugeMassesZeroTempVec;
+      LeptonMassesVec, HiggsMassesZeroTempVec, GaugeMassesZeroTempVec, AlphaVec;
   HiggsMassesVec         = HiggsMassesSquared(v, Temp, diff);
   GaugeMassesVec         = GaugeMassesSquared(v, Temp, diff);
   GaugeMassesZeroTempVec = GaugeMassesSquared(v, 0, diff);
   QuarkMassesVec         = QuarkMassesSquared(v, diff);
   LeptonMassesVec        = LeptonMassesSquared(v, diff);
 
+  AlphaVec = GetAlphaVec(v);
+
   if (diff == 0)
   {
     if (C_UseParwani)
     {
       for (std::size_t k = 0; k < NHiggs; k++)
-        res += boson(HiggsMassesVec[k], Temp, C_CWcbHiggs, 0);
+        res += boson(HiggsMassesVec[k], Temp, C_CWcbHiggs, 0, AlphaVec[k]);
       for (std::size_t k = 0; k < NGauge; k++)
         res += boson(GaugeMassesVec[k], Temp, C_CWcbGB, 0);
       for (std::size_t k = 0; k < NGauge; k++)
@@ -3486,7 +3489,8 @@ double Class_Potential_Origin::V1Loop(const std::vector<double> &v,
       HiggsMassesZeroTempVec = HiggsMassesSquared(v, 0);
       for (std::size_t k = 0; k < NHiggs; k++)
       {
-        res += boson(HiggsMassesZeroTempVec[k], Temp, C_CWcbHiggs, 0);
+        res +=
+            boson(HiggsMassesZeroTempVec[k], Temp, C_CWcbHiggs, 0, AlphaVec[k]);
       }
       for (std::size_t k = 0; k < NGauge; k++)
       {
@@ -3527,8 +3531,9 @@ double Class_Potential_Origin::V1Loop(const std::vector<double> &v,
     {
       for (std::size_t k = 0; k < NHiggs; k++)
       {
-        res += HiggsMassesVec.at(k + NHiggs) *
-               boson(HiggsMassesVec.at(k), Temp, C_CWcbHiggs, diff);
+        res +=
+            HiggsMassesVec.at(k + NHiggs) *
+            boson(HiggsMassesVec.at(k), Temp, C_CWcbHiggs, diff, AlphaVec[k]);
       }
       for (std::size_t k = 0; k < NGauge; k++)
       {
@@ -3557,7 +3562,11 @@ double Class_Potential_Origin::V1Loop(const std::vector<double> &v,
       for (std::size_t k = 0; k < NHiggs; k++)
       {
         res += HiggsMassesZeroTempVec.at(k + NHiggs) *
-               boson(HiggsMassesZeroTempVec[k], Temp, C_CWcbHiggs, diff);
+               boson(HiggsMassesZeroTempVec[k],
+                     Temp,
+                     C_CWcbHiggs,
+                     diff,
+                     AlphaVec[k]);
       }
       for (std::size_t k = 0; k < NGauge; k++)
       {
@@ -3617,8 +3626,8 @@ double Class_Potential_Origin::V1Loop(const std::vector<double> &v,
       for (std::size_t k = 0; k < NHiggs; k++)
       {
         res += HiggsMassesVec.at(k + NHiggs) *
-               boson(HiggsMassesVec[k], Temp, C_CWcbHiggs, 0);
-        res += boson(HiggsMassesVec[k], Temp, C_CWcbHiggs, -1);
+               boson(HiggsMassesVec[k], Temp, C_CWcbHiggs, 0, AlphaVec[k]);
+        res += boson(HiggsMassesVec[k], Temp, C_CWcbHiggs, -1, AlphaVec[k]);
       }
       for (std::size_t k = 0; k < NGauge; k++)
       {
@@ -3644,7 +3653,8 @@ double Class_Potential_Origin::V1Loop(const std::vector<double> &v,
       HiggsMassesZeroTempVec = HiggsMassesSquared(v, 0, diff);
       for (std::size_t k = 0; k < NHiggs; k++)
       {
-        res += boson(HiggsMassesZeroTempVec[k], Temp, C_CWcbHiggs, -1);
+        res += boson(
+            HiggsMassesZeroTempVec[k], Temp, C_CWcbHiggs, -1, AlphaVec[k]);
       }
       for (std::size_t k = 0; k < NGauge; k++)
       {

@@ -96,9 +96,12 @@ public:
   void Debugging(const std::vector<double> &input,
                  std::vector<double> &output) const override;
 
-  double SymFac_Higgs_TempPowerTwo(const int &i,
-                              const int &j,
-                              const std::vector<double> &point) const override;
+  std::vector<double>
+  GetAlphaVec(const std::vector<double> &point) const override;
+  double
+  SymFac_Higgs_TempPowerTwo(const int &i,
+                            const int &j,
+                            const std::vector<double> &point) const override;
   double SymFac_Higgs_TempPowerFour(const int &i, const int &j) const override;
 };
 

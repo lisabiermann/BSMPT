@@ -1105,6 +1105,14 @@ void Class_RxSM::SetCurvatureArrays()
   Curvature_Quark_F2H1[11][5][3] = 0.1e1 / vH * SMConstants.C_MassBottom;
 }
 
+std::vector<double>
+Class_RxSM::GetAlphaVec(const std::vector<double> &point) const
+{
+  (void)point;
+
+  return std::vector<double>(NHiggs, 1);
+}
+
 double
 Class_RxSM::SymFac_Higgs_TempPowerTwo(const int &i,
                                       const int &j,
