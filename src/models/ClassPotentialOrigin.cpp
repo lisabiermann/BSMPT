@@ -115,28 +115,29 @@ double Class_Potential_Origin::boson(double MassSquared,
                                      double alpha) const
 {
   double res = 0;
-  if (diff >= 0) res = CWTerm(std::abs(MassSquared), cb, diff);
-  if (Temp == 0) return 1. / std::pow(alpha, 4) * res;
+  if (diff >= 0)
+    res = 1. / std::pow(alpha, 4) * CWTerm(std::abs(MassSquared), cb, diff);
+  if (Temp == 0) return res;
   double Ratio = MassSquared / std::pow(alpha * Temp, 2);
   if (diff == 0)
   {
-    res += std::pow(alpha * Temp, 4) / (2 * std::pow(M_PI, 2)) *
+    res += std::pow(Temp, 4) / (2 * std::pow(M_PI, 2)) *
            ThermalFunctions::JbosonInterpolated(Ratio);
   }
   else if (diff == 1)
   {
-    res += std::pow(alpha * Temp, 2) / (2 * std::pow(M_PI, 2)) *
+    res += std::pow(Temp, 2) / (2 * std::pow(M_PI, 2)) *
            ThermalFunctions::JbosonNumericalIntegration(Ratio, 1);
   }
   else if (diff == -1)
   {
     res += 1.0 / (2 * std::pow(M_PI, 2)) *
-           (4 * std::pow(alpha * Temp, 3) *
+           (4 * std::pow(Temp, 3) *
                 ThermalFunctions::JbosonNumericalIntegration(Ratio, 0) -
-            2 * alpha * Temp * MassSquared *
+            2 * Temp * MassSquared *
                 ThermalFunctions::JbosonNumericalIntegration(Ratio, 1));
   }
-  return 1. / std::pow(alpha, 4) * res;
+  return res;
 }
 
 double
