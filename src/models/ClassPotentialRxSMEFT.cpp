@@ -1133,7 +1133,7 @@ Class_RxSMEFT::SymFac_Higgs_TempPowerTwo(const int &i,
                                          const int &j,
                                          const std::vector<double> &point) const
 {
-  std::vector<double> HiggsMasses = HiggsMassesSquared(vevTree, 0);
+  std::vector<double> HiggsMasses = HiggsMassesSquared(point, 0);
   double msin                     = std::sqrt(HiggsMasses[pos_h_H]);
 
   if (i == 0 and j == 0)
