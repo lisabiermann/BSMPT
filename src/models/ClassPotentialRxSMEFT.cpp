@@ -698,7 +698,7 @@ void Class_RxSMEFT::AdjustRotationMatrix()
     HiggsRotFixed.row(pos_G0) *= -1;
   }
 
-  // // check neutral, CP-even submatrix
+  // check neutral, CP-even submatrix
   if (HiggsRotFixed(pos_h, pos_zeta1) < 0) // h zeta1 (+ cos(alpha))
   {
     // if negative, rotate h
@@ -1133,10 +1133,9 @@ Class_RxSMEFT::SymFac_Higgs_TempPowerTwo(const int &i,
                                          const int &j,
                                          const std::vector<double> &point) const
 {
-  (void)point;
-  std::vector<double> HiggsMasses;
-  HiggsMasses = HiggsMassesSquared(vevTree, 0);
-  double msin = std::sqrt(HiggsMasses[pos_h_H]);
+  std::vector<double> HiggsMasses = HiggsMassesSquared(vevTree, 0);
+  double msin                     = std::sqrt(HiggsMasses[pos_h_H]);
+
   if (i == 0 and j == 0)
   {
     return (etakS * std::pow(msin, 2)) /
