@@ -204,7 +204,7 @@ void Class_RxSMEFT::set_gen(const std::vector<double> &par)
   lambdaS                    = par[0];
   lambdaHS                   = par[1];
   vS                         = par[2];
-  double MassS               = par[3]; // this input is only used if vS == 0
+  MassS                      = par[3]; // this input is only used if vS == 0
   etakS                      = par[4];
   const double ZeroThreshold = 1e-5;
 
@@ -1133,8 +1133,24 @@ Class_RxSMEFT::SymFac_Higgs_TempPowerTwo(const int &i,
                                          const int &j,
                                          const std::vector<double> &point) const
 {
-  std::vector<double> HiggsMasses = HiggsMassesSquared(point, 0);
+  // take field-dependent singlet mass
+  // NOTE: field-dependence is higher-order effect, better use on-shell mass as
+  // it's already renormalized
+  //
+  // std::vector<double> HiggsMasses = HiggsMassesSquared(point, 0);
+  // double msin                     = std::sqrt(HiggsMasses[pos_h_H]);
+
+  // take singlet mass from tree-level VEV (already renormalized!)
+  (void)point;
+  std::vector<double> HiggsMasses = HiggsMassesSquared(vevTree, 0);
   double msin                     = std::sqrt(HiggsMasses[pos_h_H]);
+
+  if (not almost_the_same(MassS, msin, 1e-5))
+  {
+    std::cout << "mS_in = " << MassS << " != mS_deriv = " << msin << std::endl;
+    throw std::runtime_error(
+        "Derived singlet mass does not agree with input. Error");
+  }
 
   if (i == 0 and j == 0)
   {

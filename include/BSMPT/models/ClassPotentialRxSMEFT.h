@@ -50,6 +50,8 @@ public:
 
   double alpha;
 
+  double MassS;
+
   bool UnbrokenSingletPhase;
 
   double dmsq, dlambda, dmSsq, dlambdaS, dlambdaHS, dT1, dT2, dT3, dT4, dT5;
