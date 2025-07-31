@@ -8,6 +8,7 @@
 
 #include <BSMPT/config.h>
 #include <algorithm>
+#include <complex>
 #include <functional>
 #include <gsl/gsl_integration.h>
 #include <iostream>
@@ -16,8 +17,6 @@
 #include <string>
 #include <unordered_map>
 #include <vector>
-#include <complex>
-
 
 #ifdef Boost_FOUND
 #include <boost/version.hpp>
@@ -277,6 +276,13 @@ std::vector<T> flatten(std::vector<std::vector<T>> const &vec)
  * @return L2 norm of vector
  */
 double L2NormVector(const std::vector<double> &vec);
+
+/**
+ * @brief abs_vector
+ * @param vec
+ * @return element-wise absolute
+ */
+std::vector<double> abs_vector(const std::vector<double> &vec);
 
 /**
  * @brief Calculates the tranpose of a matrix

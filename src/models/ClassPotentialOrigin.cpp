@@ -3908,6 +3908,12 @@ void Class_Potential_Origin::initVectors()
       std::vector<std::vector<double>>{NHiggs, std::vector<double>(NHiggs, 0)};
 }
 
+void Class_Potential_Origin::set_FlatDirections(const std::size_t dir)
+{
+  FlatDirections.push_back(dir);
+  std::sort(FlatDirections.begin(), FlatDirections.end());
+}
+
 void Class_Potential_Origin::sym2Dim(
     std::vector<std::vector<double>> &Tensor2Dim,
     std::size_t Nk1,

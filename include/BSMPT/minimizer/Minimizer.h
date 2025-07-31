@@ -111,6 +111,19 @@ Minimize_gen_all(const std::shared_ptr<Class_Potential_Origin> &modelPointer,
                  bool UseMultithreading    = true);
 
 /**
+ * @brief SelectDeepestMinimum select the deepest minimum out of a list of found
+ * minima taking into account 1D flat directions
+ * @param modelPointer model pointer
+ * @param PotValues array of potential values
+ * @param Minima array of minima points
+ * @return deepest minimum with encountered flat direction set to 0
+ */
+std::vector<double> SelectDeepestMinimum(
+    const std::shared_ptr<Class_Potential_Origin> &modelPointer,
+    const std::vector<double> PotValues,
+    const std::vector<std::vector<double>> Minima);
+
+/**
  * @brief The MinimizerStatus enum for the Statusflags of the minimizer
  */
 enum class MinimizerStatus

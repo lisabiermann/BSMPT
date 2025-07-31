@@ -6,10 +6,10 @@
 
 #include <BSMPT/models/IncludeAllModels.h>
 #include <BSMPT/utility/utility.h>
+#include <complex>
 #include <ostream>
 #include <sstream>
 #include <string>
-#include <complex>
 
 /**
  * @file
@@ -49,6 +49,20 @@ double L2NormVector(const std::vector<double> &vec)
     r += vec[i] * vec[i];
   }
   return std::sqrt(r);
+}
+
+std::vector<double> abs_vector(const std::vector<double> &vec)
+{
+  std::vector<double> res = vec;
+
+  for (std::size_t i = 0; i < res.size(); i++)
+  {
+    if (res.at(i) < 0)
+    {
+      res.at(i) *= -1;
+    }
+  }
+  return res;
 }
 
 std::vector<std::vector<double>>

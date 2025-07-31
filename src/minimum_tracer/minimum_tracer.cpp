@@ -949,6 +949,10 @@ void MinimumTracer::ConvertToNonFlatDirections(std::vector<double> &point)
 {
   if (flat_dirs_found) // flat directions in point
   {
+    for (const auto &dir : flat_1D_dirs)
+    {
+      point.at(dir) = 0;
+    }
     for (const auto &pair : flat_2D_dirs)
     {
       auto a               = point.at(pair.at(0));
@@ -956,6 +960,15 @@ void MinimumTracer::ConvertToNonFlatDirections(std::vector<double> &point)
       auto c               = std::sqrt(a * a + b * b);
       point.at(pair.at(0)) = c;
       point.at(pair.at(1)) = 0;
+    }
+    for (const auto &tuple : flat_3D_dirs)
+    {
+      auto a                = point.at(tuple.at(0));
+      auto b                = point.at(tuple.at(1));
+      auto c                = point.at(tuple.at(2));
+      point.at(tuple.at(0)) = std::sqrt(a * a + b * b + c * c);
+      point.at(tuple.at(1)) = 0;
+      point.at(tuple.at(2)) = 0;
     }
   }
 
@@ -1423,7 +1436,7 @@ Create1DimGrid(const std::vector<double> &min_start,
     }
   }
   return res_vec;
-} 
+}
 
 Phase::Phase()
 {

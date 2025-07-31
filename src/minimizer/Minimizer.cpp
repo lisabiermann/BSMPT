@@ -10,8 +10,9 @@
 #include <BSMPT/utility/Logger.h>
 #include <BSMPT/utility/utility.h>
 #include <algorithm> // for copy, max
-#include <iostream>  // for operator<<, cout, endl
-#include <math.h>    // for abs, log10
+#include <iomanip>
+#include <iostream> // for operator<<, cout, endl
+#include <math.h>   // for abs, log10
 #include <memory>
 #include <random>
 #include <thread>
@@ -91,7 +92,7 @@ Minimize_gen_all(const std::shared_ptr<Class_Potential_Origin> &modelPointer,
   std::vector<double> PotValues;
   std::vector<std::vector<double>> Minima;
 
-  UseMultithreading = false;
+  UseMultithreading = false; // hack for ITP cluster
 
   auto UseMinimizer = GetMinimizers(WhichMinimizer);
 
@@ -163,7 +164,8 @@ Minimize_gen_all(const std::shared_ptr<Class_Potential_Origin> &modelPointer,
     if (UseMultithreading)
     {
       thread_CMAES = std::thread(
-          [&modelPointer, &Temp, &start, &LibCMAES]() {
+          [&modelPointer, &Temp, &start, &LibCMAES]()
+          {
             LibCMAES = LibCMAES::min_cmaes_gen_all(*modelPointer, Temp, start);
           });
     }
@@ -207,7 +209,8 @@ Minimize_gen_all(const std::shared_ptr<Class_Potential_Origin> &modelPointer,
     Minima.push_back(NLOPTResult.Minimum);
     std::stringstream ss;
     ss << "NLopt candidate at T = " << Temp << " :  " << NLOPTResult.Minimum
-       << " with potential value " << NLOPTResult.PotVal << std::endl;
+       << " with potential value " << std::setprecision(15)
+       << NLOPTResult.PotVal << std::endl;
     Logger::Write(LoggingLevel::MinimizerDetailed, ss.str());
   }
 #endif
@@ -226,8 +229,8 @@ Minimize_gen_all(const std::shared_ptr<Class_Potential_Origin> &modelPointer,
 
     std::stringstream ss;
     ss << "CMAES candidate at T = " << Temp << " : " << solCMAES
-       << " with potential value = " << PotValues.at(PotValues.size() - 1)
-       << std::endl;
+       << " with potential value = " << std::setprecision(15)
+       << PotValues.at(PotValues.size() - 1) << std::endl;
     Logger::Write(LoggingLevel::MinimizerDetailed, ss.str());
   }
 #endif
@@ -246,18 +249,17 @@ Minimize_gen_all(const std::shared_ptr<Class_Potential_Origin> &modelPointer,
 
     std::stringstream ss;
     ss << "GSL found a minimum at T = " << Temp << ": (" << solGSLMin
-       << ") with Potential value = " << PotValues.at(PotValues.size() - 1)
-       << std::endl;
+       << ") with potential value = " << std::setprecision(15)
+       << PotValues.at(PotValues.size() - 1) << std::endl;
     Logger::Write(LoggingLevel::MinimizerDetailed, ss.str());
   }
 
-  std::size_t minIndex = 0;
-  for (std::size_t i = 1; i < PotValues.size(); i++)
-  {
-    if (PotValues.at(i) < PotValues.at(minIndex)) minIndex = i;
-  }
+  auto sol = SelectDeepestMinimum(modelPointer, PotValues, Minima);
 
-  auto sol   = Minima.at(minIndex);
+  std::stringstream ss;
+  ss << "Deepest minimum found is located at = " << sol << std::endl;
+  Logger::Write(LoggingLevel::MinimizerDetailed, ss.str());
+
   auto EWVEV = modelPointer->EWSBVEV(modelPointer->MinimizeOrderVEV(sol));
   if (EWVEV <= 0.5) modelPointer->SetEWVEVZero(sol);
 
@@ -268,6 +270,76 @@ Minimize_gen_all(const std::shared_ptr<Class_Potential_Origin> &modelPointer,
     Check.push_back(-1);
 
   return sol;
+}
+
+std::vector<double> SelectDeepestMinimum(
+    const std::shared_ptr<Class_Potential_Origin> &modelPointer,
+    const std::vector<double> PotValues,
+    const std::vector<std::vector<double>> Minima)
+{
+  std::size_t minIndex      = 0;
+  double MaxAllowedDistance = 1;
+
+  for (std::size_t i = 1; i < PotValues.size(); i++)
+  {
+    if (PotValues.at(i) < PotValues.at(minIndex))
+    {
+      if (not almost_the_same(PotValues.at(i), PotValues.at(minIndex), 1e-6))
+      {
+        minIndex = i;
+      }
+      else // check distance if points are just the same and if not check for a
+           // flat direction
+      {
+        auto min_i_abs = abs_vector(Minima.at(i));
+        auto min_0_abs = abs_vector(Minima.at(minIndex));
+
+        std::vector<double> Distance;
+        std::transform(min_i_abs.begin(),
+                       min_i_abs.end(),
+                       min_0_abs.begin(),
+                       std::back_inserter(Distance),
+                       std::minus<double>());
+
+        for (std::size_t j = 0; j < Distance.size(); j++)
+        {
+          if (std::abs(Distance.at(j)) > MaxAllowedDistance)
+          {
+            // check if new flat direction encountered
+            if (std::find(modelPointer->get_FlatDirections().begin(),
+                          modelPointer->get_FlatDirections().end(),
+                          j) == modelPointer->get_FlatDirections().end())
+            {
+              auto test_min_1 = min_i_abs;
+              auto test_min_2 = min_i_abs;
+
+              test_min_1.at(j) = -200;
+              test_min_2.at(j) = 200;
+
+              if (almost_the_same(
+                      modelPointer->VEff(
+                          modelPointer->MinimizeOrderVEV(test_min_1)),
+                      modelPointer->VEff(
+                          modelPointer->MinimizeOrderVEV(test_min_2)),
+                      1e-5))
+              {
+                modelPointer->set_FlatDirections(j);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  auto res = Minima.at(minIndex);
+
+  for (std::size_t i = 0; i < modelPointer->get_FlatDirections().size(); i++)
+  {
+    res.at(modelPointer->get_FlatDirections().at(i)) = 0;
+  }
+
+  return res;
 }
 
 EWPTReturnType

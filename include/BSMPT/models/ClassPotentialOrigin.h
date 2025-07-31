@@ -445,6 +445,11 @@ protected:
    */
   std::vector<std::size_t> VevOrder;
 
+  /**
+   * @brief FlatDirections stores the flat directions of the potential
+   */
+  std::vector<std::size_t> FlatDirections;
+
 public:
   [[deprecated("Will call Class_Potential_Origin with GetSMConstants(). "
                "Please use the "
@@ -611,6 +616,17 @@ public:
   {
     return DebyeHiggs;
   }
+
+  /**
+   * @brief get_FlatDirections returns the flat directions vector
+   */
+  std::vector<std::size_t> get_FlatDirections() const { return FlatDirections; }
+
+  /**
+   * @brief set_FlatDirections add a new flat direction
+   * @param dir field direction
+   */
+  void set_FlatDirections(const std::size_t dir);
 
   /**
    * @brief set_InputLineNumber
