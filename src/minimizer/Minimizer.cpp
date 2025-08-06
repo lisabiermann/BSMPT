@@ -277,57 +277,83 @@ std::vector<double> SelectDeepestMinimum(
     const std::vector<double> PotValues,
     const std::vector<std::vector<double>> Minima)
 {
-  std::size_t minIndex      = 0;
-  double MaxAllowedDistance = 1;
+  std::size_t minIndex       = 0;
+  int maxDistanceIndex       = 0;
+  double MaxAllowedDistance  = 5;
+  bool PotValues_almost_same = false;
+  std::vector<double> min_i_abs, min_min_abs, Distance_abs;
+
+  std::stringstream ss;
 
   for (std::size_t i = 1; i < PotValues.size(); i++)
   {
     if (PotValues.at(i) < PotValues.at(minIndex))
     {
-      if (not almost_the_same(PotValues.at(i), PotValues.at(minIndex), 1e-6))
+      PotValues_almost_same =
+          almost_the_same(PotValues.at(i), PotValues.at(minIndex), 1e-8);
+
+      if (PotValues_almost_same)
       {
-        minIndex = i;
+        ss << "PotValues between " << Minima.at(i) << " and "
+           << Minima.at(minIndex) << " are found almost the same." << std::endl;
       }
-      else // check distance if points are just the same and if not check for a
-           // flat direction
+
+      // if PotValues almost the same, but large Distance: detect flat direction
+      // but allow for almost the same PotValues and small distances to detect
+      // slight potential changes
+
+      min_i_abs   = abs_vector(Minima.at(i));
+      min_min_abs = abs_vector(Minima.at(minIndex));
+
+      std::vector<double> Distance;
+      std::transform(min_i_abs.begin(),
+                     min_i_abs.end(),
+                     min_min_abs.begin(),
+                     std::back_inserter(Distance),
+                     std::minus<double>());
+      Distance_abs     = abs_vector(Distance);
+      maxDistanceIndex = std::distance(
+          Distance_abs.begin(),
+          std::max_element(Distance_abs.begin(), Distance_abs.end()));
+
+      if ((Distance.at(maxDistanceIndex) > MaxAllowedDistance))
       {
-        auto min_i_abs = abs_vector(Minima.at(i));
-        auto min_0_abs = abs_vector(Minima.at(minIndex));
+        ss << "Minima positions of " << Minima.at(i) << " and "
+           << Minima.at(minIndex) << " are found to be sufficiently different."
+           << std::endl;
+      }
 
-        std::vector<double> Distance;
-        std::transform(min_i_abs.begin(),
-                       min_i_abs.end(),
-                       min_0_abs.begin(),
-                       std::back_inserter(Distance),
-                       std::minus<double>());
+      if ((Distance.at(maxDistanceIndex) > MaxAllowedDistance) and
+          PotValues_almost_same)
+      {
+        ss << "Flat direction is suspected!" << std::endl;
 
-        for (std::size_t j = 0; j < Distance.size(); j++)
+        // TODO: The following only works for 1D flat directions!
+        if (std::find(modelPointer->get_FlatDirections().begin(),
+                      modelPointer->get_FlatDirections().end(),
+                      maxDistanceIndex) ==
+            modelPointer->get_FlatDirections().end())
         {
-          if (std::abs(Distance.at(j)) > MaxAllowedDistance)
+          auto test_min_1 = min_i_abs;
+          auto test_min_2 = min_i_abs;
+
+          test_min_1.at(maxDistanceIndex) = -200;
+          test_min_2.at(maxDistanceIndex) = 200;
+
+          if (almost_the_same(modelPointer->VEff(
+                                  modelPointer->MinimizeOrderVEV(test_min_1)),
+                              modelPointer->VEff(
+                                  modelPointer->MinimizeOrderVEV(test_min_2)),
+                              1e-5))
           {
-            // check if new flat direction encountered
-            if (std::find(modelPointer->get_FlatDirections().begin(),
-                          modelPointer->get_FlatDirections().end(),
-                          j) == modelPointer->get_FlatDirections().end())
-            {
-              auto test_min_1 = min_i_abs;
-              auto test_min_2 = min_i_abs;
-
-              test_min_1.at(j) = -200;
-              test_min_2.at(j) = 200;
-
-              if (almost_the_same(
-                      modelPointer->VEff(
-                          modelPointer->MinimizeOrderVEV(test_min_1)),
-                      modelPointer->VEff(
-                          modelPointer->MinimizeOrderVEV(test_min_2)),
-                      1e-5))
-              {
-                modelPointer->set_FlatDirections(j);
-              }
-            }
+            modelPointer->set_FlatDirections(maxDistanceIndex);
+            ss << "New flat direction identified!" << std::endl;
           }
         }
+      }
+      else // no flat direction
+      {
+        minIndex = i;
       }
     }
   }
@@ -339,6 +365,7 @@ std::vector<double> SelectDeepestMinimum(
     res.at(modelPointer->get_FlatDirections().at(i)) = 0;
   }
 
+  Logger::Write(LoggingLevel::MinimizerDetailed, ss.str());
   return res;
 }
 

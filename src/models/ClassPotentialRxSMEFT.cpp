@@ -1172,12 +1172,8 @@ Class_RxSMEFT::SymFac_Higgs_TempPowerTwo(const int &i,
     return (etakS * std::pow(msin, 2)) /
            (12. * std::pow(LambdaEFT, 2)); // zeta1zeta1
   }
-  else if (i == 4 && j == 4)
-  {
-    return (etakS * std::pow(msin, 2)) /
-           (3. * std::pow(LambdaEFT, 2)); // zetaSzetaS
-  }
-  else
+  else // thermal mass for zetaSzetaS is zero because then (d_mu S) -> (external
+       // momentum) * S = 0
   {
     return 0;
   }
