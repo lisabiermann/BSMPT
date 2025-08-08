@@ -58,6 +58,7 @@ public:
     (void)v;
     return 0;
   };
+  void AdjustRotationMatrix() override { return; };
   void TripleHiggsCouplings() override { return; };
   std::vector<double> calc_CT() const override { return {0}; };
   void Debugging(const std::vector<double> &input,
@@ -144,8 +145,8 @@ int main()
       0,                                  /* CheckEWSymmetryRestoration*/
       0,                                  /* CheckNLOStability*/
       WhichMinimizerDefault,              /* WhichMinimizer*/
-      false,                              /* GW calculation*/
-      true,                               /* gw_calculation */
+      false,                              /* use multithreading */
+      true,                               /* gw calculation */
       TransitionTemperature::Percolation, /* WhichTransitionTemperature */
       1};                                 /* UserDefined_PNLO_scaling */
 

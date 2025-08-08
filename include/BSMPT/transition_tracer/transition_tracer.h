@@ -30,8 +30,6 @@ namespace BSMPT
  * @param compl_prbl false vacuum fraction at completion temperature, default:
  * 1%
  * @param epsturb epsilon value of turbulence contribution, default: 0.1
- * @param PNLO_scaling pressure scaling at NLO, 1 -> N processes at bubble
- * wall
  * @param maxpathintegrations maximal number of path integrations, default: 7
  * @param multistepmode choose multi-step PT modes: default (= -1), 0, 1, 2,
  * auto (= 3)
@@ -40,13 +38,12 @@ namespace BSMPT
  * @param ewsr_check check of electroweak symmetry restoration, default: off (=
  * 0)
  * @param nlo_check check of nlo stability, default: on (= 1)
- * @param use_gsl whether GSL minimizer is used
- * @param use_cmaes whether CMAES minimizer is used
- * @param use_nlopt whether NLopt minimizer is used
  * @param which_minimizer which minimizers are used
  * @param use_multithreading whether multi-threading is used
  * @param gw_calculation bool to turn GW parameter calculation on/off
  * @param which_transition_temp which transition temperature is chosen
+ * @param PNLO_scaling pressure scaling at NLO, 1 -> N processes at bubble
+ * wall
  * @param number_of_initial_scan_temperatures number of temperature steps in the
  * initial scan of the bounce solver
  */
@@ -84,6 +81,7 @@ struct status_codes
   StatusEWSR status_ewsr                  = StatusEWSR::NotSet;
   StatusTracing status_tracing            = StatusTracing::NotSet;
   StatusCoexPair status_coex_pairs        = StatusCoexPair::NotSet;
+  StatusLastPhaseEW status_last_phase_ew  = StatusLastPhaseEW::NotSet; // CB added
   // index of vectors is coex_phase_id
   std::vector<StatusCrit> status_crit;
   std::vector<StatusGW> status_bounce_sol;
@@ -114,6 +112,24 @@ struct transition_data
   std::vector<double> perc_false_vev;
   std::vector<double> compl_true_vev;
   std::vector<double> compl_false_vev;
+
+  std::optional<double> crit_deltaVif; // CB added
+  std::optional<double> nucl_approx_deltaVif; // CB added
+  std::optional<double> nucl_deltaVif; // CB added
+  std::optional<double> perc_deltaVif; // CB added
+  std::optional<double> compl_deltaVif; // CB added
+
+  // CB: for (m(T)/T)^2 output in CalcGW and CalcTemps
+  std::optional<double> crit_m2T2_scalar; // CB added
+  std::optional<double> crit_m2T2_gauge; // CB added
+  std::optional<double> nucl_approx_m2T2_scalar; // CB added
+  std::optional<double> nucl_approx_m2T2_gauge; // CB added
+  std::optional<double> nucl_m2T2_scalar; // CB added
+  std::optional<double> nucl_m2T2_gauge; // CB added
+  std::optional<double> perc_m2T2_scalar; // CB added
+  std::optional<double> perc_m2T2_gauge; // CB added
+  std::optional<double> compl_m2T2_scalar; // CB added
+  std::optional<double> compl_m2T2_gauge; // CB added
 };
 
 /**
@@ -213,6 +229,10 @@ public:
    * @return maximal ratio
    */
   double CheckMassRatio(const user_input &input,
+                        const std::vector<double> &vec,
+                        const double &temp) const;
+  // CB: output m(T)^2/T^2 separately for scalar and gauge bosons
+  std::pair<double, double> CheckMassRatio_sep(const user_input &input,
                         const std::vector<double> &vec,
                         const double &temp) const;
 };

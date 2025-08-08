@@ -50,6 +50,13 @@ std::ostream &operator<<(std::ostream &os, const StatusTemperature &status)
   os << StatusTemperatureToString.at(status);
   return os;
 }
+// CB added v
+std::ostream &operator<<(std::ostream &os, const StatusLastPhaseEW &status)
+{
+  os << StatusLastPhaseEWToString.at(status);
+  return os;
+}
+// CB added ^
 
 std::vector<double> MinimumTracer::LocateMinimum(
     const std::vector<double> &guess_In,
@@ -141,7 +148,11 @@ double MinimumTracer::SmallestEigenvalue(
     current_min = std::min(element.real(), current_min);
   // If the "SmallestEigenvalue" is zero, it can become negative due to
   // numerical errors. To prevent unstable behaviour we add a small constant.
+
+  // CB: change it to 1e-3, which coincides with the value of HessianDiagonalShift
+  //     used in LocateMinimum()
   return current_min + 1e-7;
+  // return current_min + 1e-3;
 }
 
 std::vector<double>
@@ -384,6 +395,17 @@ MinimumTracer::TrackPhase(double &globMinEndT,
       // It is a nearby stationary point!
       if (SmallestEigenvalue(new_point, Hessian) < 0)
       {
+        // // CB: saddle point (i.e. end of phase), move back one step
+        // //     and reduce step size to approach it more slowly
+
+        // if (currentT == initialT) {
+        //   point = new_point;
+        //   continue;
+        // }
+
+        // currentT -= dT;
+        // dT /= 2.;
+
         if (IsInMin == -1)
         {
           zeroTemp = FindZeroSmallestEigenvalue(
@@ -472,7 +494,10 @@ MinimumTracer::TrackPhase(double &globMinEndT,
           if (abs(initialdT) <= abs(dT)) dT = initialdT;
         }
         IsInMin = -1;
+       // // CB: moved here instead of outside the "else"
+       // point = new_point;
       }
+      //// CB: see above
       point = new_point;
     }
 
@@ -482,8 +507,14 @@ MinimumTracer::TrackPhase(double &globMinEndT,
     bool SafeStep = abs(finalT - currentT) > abs(dT);
     if (SafeStep)
       currentT += dT;
-    else
+    // CB: v
+    // else
+    //   currentT = finalT;
+    else {
+      dT = finalT - currentT;
       currentT = finalT;
+    }
+    // CB: ^
   }
   if (output) Logger::Write(LoggingLevel::MinTracerDetailed, ss.str());
   if (output)
@@ -623,6 +654,16 @@ MinimumTracer::TrackPhase(const std::vector<double> &point_In,
       // It is a nearby stationary point!
       if (SmallestEigenvalue(new_point, Hessian) < 0)
       {
+        // // CB: saddle point (i.e. end of phase), move back one step
+        // //     and reduce step size to approach it more slowly
+//        if (currentT == initialT) {
+//          point = new_point;
+//          continue;
+//        }
+
+//        currentT -= dT;
+//        dT /= 2.;
+
         if (IsInMin == -1)
         {
           zeroTemp = FindZeroSmallestEigenvalue(
@@ -677,7 +718,10 @@ MinimumTracer::TrackPhase(const std::vector<double> &point_In,
           if (abs(initialdT) <= abs(dT)) dT = initialdT;
         }
         IsInMin = -1;
+      //  // CB: moved here instead of outside the "else"
+      //  point = new_point;
       }
+      //// CB: see above
       point = new_point;
     }
 
@@ -687,9 +731,16 @@ MinimumTracer::TrackPhase(const std::vector<double> &point_In,
     bool SafeStep = abs(finalT - currentT) > abs(dT);
     if (SafeStep)
       currentT += dT;
-    else
+    // CB: fixed setting dT correctly v
+    // else
+      // currentT = finalT;
+    else {
+      dT = finalT - currentT;
       currentT = finalT;
+    }
+    // CB: ^
   }
+
   if (output) Logger::Write(LoggingLevel::MinTracerDetailed, ss.str());
   if (output)
     Logger::Write(LoggingLevel::MinTracerDetailed,
@@ -1307,19 +1358,21 @@ void CoexPhases::CalculateTc()
                        100,
                        35);
   std::vector<double> plotT, plotDeltaV, plot0;
-  for (double T = T_low; T <= T_high; T += (T_high - T_low) / 100)
-  {
-    plotT.push_back(T);
-    plotDeltaV.push_back(deltaV(T));
-    plot0.push_back(0);
-  }
-  plotter.addPlot(plotT, plot0, "", '.');
-  plotter.addPlot(plotT, plotDeltaV, "dV", '*');
+  if (T_high > T_low) { // CB added; leave this for now to avoid memory overflow if T_high == T_low
+    for (double T = T_low; T <= T_high; T += (T_high - T_low) / 100)
+    {
+      plotT.push_back(T);
+      plotDeltaV.push_back(deltaV(T));
+      plot0.push_back(0);
+    }
+    plotter.addPlot(plotT, plot0, "", '.');
+    plotter.addPlot(plotT, plotDeltaV, "dV", '*');
 
-  plotter.xlabel("T (GeV)");
-  plotter.ylabel("dV (GeV)");
-  plotter.show(ss);
-  Logger::Write(LoggingLevel::MinTracerDetailed, ss.str());
+    plotter.xlabel("T (GeV)");
+    plotter.ylabel("dV (GeV)");
+    plotter.show(ss);
+    Logger::Write(LoggingLevel::MinTracerDetailed, ss.str());
+  }
 
   if (deltaV(T_high) > 0 and deltaV(T_low) > 0)
   {
@@ -1423,52 +1476,6 @@ Create1DimGrid(const std::vector<double> &min_start,
     }
   }
   return res_vec;
-}
-
-bool almost_the_same(const double &a,
-                     const double &b,
-                     const double &rel_precision,
-                     const double &num_zero)
-{
-  if (std::abs(a) < num_zero and std::abs(b) < num_zero)
-  {
-    return true;
-  }
-  return std::abs(a - b) < std::abs(a + b) / 2 * rel_precision;
-}
-
-bool almost_the_same(const std::vector<double> &a,
-                     const std::vector<double> &b,
-                     const bool &allow_for_sign_flip,
-                     const double &rel_precision,
-                     const double &num_zero)
-{
-  if (a.size() != b.size())
-  {
-    throw std::runtime_error("Error. Vectors must have the same size.");
-  }
-  int count_true = 0;
-  for (std::size_t i = 0; i < a.size(); i++)
-  {
-    if (allow_for_sign_flip)
-    {
-      count_true +=
-          int(almost_the_same(a.at(i), b.at(i), rel_precision, num_zero));
-    }
-    else
-    {
-      count_true += int(almost_the_same(
-          std::abs(a.at(i)), std::abs(b.at(i)), rel_precision, num_zero));
-    }
-  }
-  if (std::size_t(count_true) == a.size())
-  {
-    return true;
-  }
-  else
-  {
-    return false;
-  }
 }
 
 Phase::Phase()
@@ -2657,6 +2664,17 @@ void Vacuum::setCoexRegion(const int &UseMultiStepPTMode)
                 2) // more than just endpoints found
             {
               status_vacuum = StatusTracing::Success;
+
+              // CB: fix: when patching up gap, the phase IDs were not
+              //     properly assigned; thus, in case the gap is patched,
+              //     assign ids again to all phases.
+              //     TODO: Now they are not necessarily all in ascending
+              //     order, can this cause a problem?
+              for (std::size_t j = 0; j < PhasesList.size(); j++)
+              {
+                PhasesList[j].id = j;
+              }
+
               setCoexRegion(UseMultiStepPTMode);
             }
           }
@@ -2807,6 +2825,7 @@ std::vector<std::string> MinimumTracer::GetLegend(const int &num_coex_phases,
   legend.push_back("status_ewsr");
   legend.push_back("status_tracing");
   legend.push_back("status_coex_pairs");
+  legend.push_back("status_last_phase_ew"); // CB added
   legend.push_back("runtime");
 
   for (int i = 0; i < num_coex_phases; i++)
@@ -2823,6 +2842,9 @@ std::vector<std::string> MinimumTracer::GetLegend(const int &num_coex_phases,
       legend.push_back(this->modelPointer->addLegendVEV().at(j).append(
           "_crit_true_" + std::to_string(i)));
     }
+    // legend.push_back("deltaVif_crit_" + std::to_string(i)); // CB added
+    legend.push_back("m2T2_scalar_crit_" + std::to_string(i)); // CB added
+    legend.push_back("m2T2_gauge_crit_" + std::to_string(i)); // CB added
     legend.push_back("status_bounce_sol_" + std::to_string(i));
     legend.push_back("status_nucl_approx_" + std::to_string(i));
     legend.push_back("T_nucl_approx_" + std::to_string(i));
@@ -2836,6 +2858,9 @@ std::vector<std::string> MinimumTracer::GetLegend(const int &num_coex_phases,
       legend.push_back(this->modelPointer->addLegendVEV().at(j).append(
           "_nucl_approx_true_" + std::to_string(i)));
     }
+    // legend.push_back("deltaVif_nucl_approx_" + std::to_string(i)); // CB added
+    legend.push_back("m2T2_scalar_nucl_approx_" + std::to_string(i)); // CB added
+    legend.push_back("m2T2_gauge_nucl_approx_" + std::to_string(i)); // CB added
     legend.push_back("status_nucl_" + std::to_string(i));
     legend.push_back("T_nucl_" + std::to_string(i));
     for (std::size_t j = 0; j < this->modelPointer->addLegendVEV().size(); j++)
@@ -2848,6 +2873,9 @@ std::vector<std::string> MinimumTracer::GetLegend(const int &num_coex_phases,
       legend.push_back(this->modelPointer->addLegendVEV().at(j).append(
           "_nucl_true_" + std::to_string(i)));
     }
+    // legend.push_back("deltaVif_nucl_" + std::to_string(i)); // CB added
+    legend.push_back("m2T2_scalar_nucl_" + std::to_string(i)); // CB added
+    legend.push_back("m2T2_gauge_nucl_" + std::to_string(i)); // CB added
     legend.push_back("status_perc_" + std::to_string(i));
     legend.push_back("T_perc_" + std::to_string(i));
     for (std::size_t j = 0; j < this->modelPointer->addLegendVEV().size(); j++)
@@ -2860,6 +2888,9 @@ std::vector<std::string> MinimumTracer::GetLegend(const int &num_coex_phases,
       legend.push_back(this->modelPointer->addLegendVEV().at(j).append(
           "_perc_true_" + std::to_string(i)));
     }
+    // legend.push_back("deltaVif_perc_" + std::to_string(i)); // CB added
+    legend.push_back("m2T2_scalar_perc_" + std::to_string(i)); // CB added
+    legend.push_back("m2T2_gauge_perc_" + std::to_string(i)); // CB added
     legend.push_back("status_compl_" + std::to_string(i));
     legend.push_back("T_compl_" + std::to_string(i));
     for (std::size_t j = 0; j < this->modelPointer->addLegendVEV().size(); j++)
@@ -2872,6 +2903,10 @@ std::vector<std::string> MinimumTracer::GetLegend(const int &num_coex_phases,
       legend.push_back(this->modelPointer->addLegendVEV().at(j).append(
           "_compl_true_" + std::to_string(i)));
     }
+    // legend.push_back("deltaVif_compl_" + std::to_string(i)); // CB added
+    legend.push_back("m2T2_scalar_compl_" + std::to_string(i)); // CB added
+    legend.push_back("m2T2_gauge_compl_" + std::to_string(i)); // CB added
+
     if (do_gw_calc)
     {
       legend.push_back("status_gw_" + std::to_string(i));

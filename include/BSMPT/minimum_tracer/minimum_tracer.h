@@ -164,6 +164,28 @@ const std::unordered_map<StatusTemperature, std::string>
                               {StatusTemperature::Success, "success"},
                               {StatusTemperature::NotMet, "not_met"},
                               {StatusTemperature::NaN, "nan"}};
+// CB added v
+/**
+ * @brief Possible status for if the last phase ends up at T = 0
+ * in the EW minimum
+ *
+ */
+enum class StatusLastPhaseEW
+{
+  NotSet,
+  Success,
+  Failure
+};
+/**
+ * @brief Map to convert StatusEWT0 to strings
+ *
+ */
+const std::unordered_map<StatusLastPhaseEW, std::string> StatusLastPhaseEWToString{
+    {StatusLastPhaseEW::NotSet, "not_set"},
+    {StatusLastPhaseEW::Success, "success"},
+    {StatusLastPhaseEW::Failure, "failure"}};
+// CB added ^
+
 /**
  * @brief Possible results for the GW and bounce_sol class.
  *
@@ -252,6 +274,16 @@ std::ostream &operator<<(std::ostream &os, const StatusGW &status);
  * @return std::ostream& buffer
  */
 std::ostream &operator<<(std::ostream &os, const StatusTemperature &status);
+// CB added v
+/**
+ * @brief Override << operator to handle StatusLastPhaseEW
+ *
+ * @param os ostream buffer
+ * @param status status to be printed
+ * @return std::ostream& buffer
+ */
+std::ostream &operator<<(std::ostream &os, const StatusLastPhaseEW &status);
+// CB added ^
 
 /**
  * @brief struct to store minimum and temperature
@@ -592,24 +624,6 @@ std::vector<std::vector<double>>
 Create1DimGrid(const std::vector<double> &min_start,
                const std::vector<double> &min_end,
                const int npoints = 100);
-
-/**
- * Returns true if two values are the same given some relative precision
- */
-bool almost_the_same(const double &a,
-                     const double &b,
-                     const double &rel_precision = 0.01,
-                     const double &num_zero      = 1e-10);
-
-/**
- * Returns true if two vectors are the element-wise the same given some relative
- * precision
- */
-bool almost_the_same(const std::vector<double> &a,
-                     const std::vector<double> &b,
-                     const bool &allow_for_sign_flip = false,
-                     const double &rel_precision     = 0.01,
-                     const double &num_zero          = 1e-10);
 
 /**
  * @brief Phase object

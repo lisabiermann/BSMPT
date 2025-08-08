@@ -268,7 +268,7 @@ try
                   1000.;
 
       BSMPT::Logger::Write(BSMPT::LoggingLevel::ProgDetailed,
-                           "Took\t" + std::to_string(time) + " seconds.\n");
+                           "\nTook\t" + std::to_string(time) + " seconds.\n");
     }
     linecounter++;
     if (infile.eof()) break;

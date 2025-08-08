@@ -150,7 +150,7 @@ try
                   1000.;
 
       BSMPT::Logger::Write(BSMPT::LoggingLevel::ProgDetailed,
-                           "Took\t" + std::to_string(time) + " seconds.\n");
+                           "\nTook\t" + std::to_string(time) + " seconds.\n");
 
       auto output = trans.output_store;
 
@@ -159,7 +159,8 @@ try
           << SMConstants.C_RenScale << sep << output.status.status_nlo_stability
           << sep << output.status.status_ewsr << sep
           << output.status.status_tracing << sep
-          << output.status.status_coex_pairs << sep << time << sep;
+          << output.status.status_coex_pairs << sep
+          << output.status.status_last_phase_ew << sep << time << sep; // CB added
 
       if ((output.status.status_tracing == StatusTracing::Success) &&
           (output.status.status_coex_pairs == StatusCoexPair::Success))
@@ -172,24 +173,39 @@ try
               << output.vec_trans_data.at(i).crit_temp.value_or(EmptyValue)
               << sep << output.vec_trans_data.at(i).crit_false_vev << sep
               << output.vec_trans_data.at(i).crit_true_vev << sep
+              // << output.vec_trans_data.at(i).crit_deltaVif.value_or(EmptyValue) << sep // CB added
+              << output.vec_trans_data.at(i).crit_m2T2_scalar.value_or(EmptyValue) << sep // CB added
+              << output.vec_trans_data.at(i).crit_m2T2_gauge.value_or(EmptyValue) << sep // CB added
               << output.status.status_bounce_sol.at(i) << sep
               << output.status.status_nucl_approx.at(i) << sep
               << output.vec_trans_data.at(i).nucl_approx_temp.value_or(
                      EmptyValue)
               << sep << output.vec_trans_data.at(i).nucl_approx_false_vev << sep
               << output.vec_trans_data.at(i).nucl_approx_true_vev << sep
+              // << output.vec_trans_data.at(i).nucl_approx_deltaVif.value_or(EmptyValue) << sep // CB added
+              << output.vec_trans_data.at(i).nucl_approx_m2T2_scalar.value_or(EmptyValue) << sep // CB added
+              << output.vec_trans_data.at(i).nucl_approx_m2T2_gauge.value_or(EmptyValue) << sep // CB added
               << output.status.status_nucl.at(i) << sep
               << output.vec_trans_data.at(i).nucl_temp.value_or(EmptyValue)
               << sep << output.vec_trans_data.at(i).nucl_false_vev << sep
               << output.vec_trans_data.at(i).nucl_true_vev << sep
+              // << output.vec_trans_data.at(i).nucl_deltaVif.value_or(EmptyValue) << sep // CB added
+              << output.vec_trans_data.at(i).nucl_m2T2_scalar.value_or(EmptyValue) << sep // CB added
+              << output.vec_trans_data.at(i).nucl_m2T2_gauge.value_or(EmptyValue) << sep // CB added
               << output.status.status_perc.at(i) << sep
               << output.vec_trans_data.at(i).perc_temp.value_or(EmptyValue)
               << sep << output.vec_trans_data.at(i).perc_false_vev << sep
               << output.vec_trans_data.at(i).perc_true_vev << sep
+              // << output.vec_trans_data.at(i).perc_deltaVif.value_or(EmptyValue) << sep // CB added
+              << output.vec_trans_data.at(i).perc_m2T2_scalar.value_or(EmptyValue) << sep // CB added
+              << output.vec_trans_data.at(i).perc_m2T2_gauge.value_or(EmptyValue) << sep // CB added
               << output.status.status_compl.at(i) << sep
               << output.vec_trans_data.at(i).compl_temp.value_or(EmptyValue)
               << sep << output.vec_trans_data.at(i).compl_false_vev << sep
-              << output.vec_trans_data.at(i).compl_true_vev << sep;
+              << output.vec_trans_data.at(i).compl_true_vev << sep
+              // << output.vec_trans_data.at(i).compl_deltaVif.value_or(EmptyValue) << sep; // CB added
+              << output.vec_trans_data.at(i).compl_m2T2_scalar.value_or(EmptyValue) << sep // CB added
+              << output.vec_trans_data.at(i).compl_m2T2_gauge.value_or(EmptyValue) << sep; // CB added
         }
       }
 
